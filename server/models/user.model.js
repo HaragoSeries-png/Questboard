@@ -1,14 +1,17 @@
 const mongoose = require('mongoose'),
      bcrypt = require('bcrypt'),
 passportLocalMongoose = require('passport-local-mongoose');
+let InfomaSchema = new mongoose.Schema({
+    skill : []
+})
 
 let UserSchema =  new mongoose.Schema({
     username : String,
+    lastname:String,
     email : String,
     password : String,
     infoma :{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Infoma"
+        InfomaSchema
     },
     quests :[{
         type:mongoose.Schema.Types.ObjectId,

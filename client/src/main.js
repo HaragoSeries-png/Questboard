@@ -1,11 +1,13 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router/AppControl'
+import App from './Appp.vue'
+import router from './router/Appcontrol'
+import store from './store'
 
 Vue.config.productionTip = false
 Vue.config.silent=false
 
 new Vue({
   router,
-  render: h => h(App),
+  store,
+  render: h => h(App)
 }).$mount('#app')

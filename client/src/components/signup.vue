@@ -3,25 +3,56 @@
         <h1>Register</h1>
         <form>
             <p>Name</p>
-            <input type="text" name="" placeholder="Name">
+            <input type="text" v-model="username" placeholder="Name">
             <p>Lastname</p>
-            <input type="text" name="" placeholder="Lastname">
+            <input type="text" v-model="lastname" placeholder="Lastname">
             <p>E-mail</p>
-            <input type="email" name="" placeholder="E-mail">
+            <input type="email" v-model="email" placeholder="E-mail">
             <p>Password</p>
-            <input type="password" name="" placeholder="Password">
+            <input type="password" v-model="password" placeholder="Password">
             <p>Confirm Password</p>
-            <input type="password" name="" placeholder="Confirm Password">
+            <input type="password" v-model="conpassword" placeholder="Confirm Password">
             <br><br>
-            <button type="submit" class="button1" href="#">Register</button>
+            <button v-on:click="register()" class="button1" href="#">Register</button>
   
         </form>
     </div>
 </template>
 
 <script>
+import authService from '../service/Fuckservice'
 export default {
-
+    name:'register',
+    data(){
+        return {
+            username:"",
+            lastname:"",
+            email:"",
+            password:"",
+            conpassword:""
+        }
+    },
+    methods: {
+        register:async function(){
+            
+            let data = {
+                username:this.username,
+                lastname:this.lastname,
+                email: this.email,
+                password:this.password,
+            }     
+            let suc = await authService.register(data).then((res)=>{return res})
+            console.log("suc"+suc)
+            
+            if(suc){
+                this.$router.push({path:'/login'})
+            }
+            else{
+                alert("fail")
+            }
+            
+        }
+    }
 }
 </script>
 
@@ -29,7 +60,7 @@ export default {
     body{
 margin : 0;
 padding : 0;
-background : url(https://images.hdqwalls.com/download/evening-talks-4k-uq-1600x900.jpg);
+
 background-position: center;
 background-size: cover;
 font-family: sans-serif;

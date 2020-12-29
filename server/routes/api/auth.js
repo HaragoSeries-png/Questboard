@@ -9,15 +9,39 @@ const mongodb = require('mongodb'),
         
 const router = express.Router();
 
-router.post('/signup',
-    passport.authenticate('signup', { session: false }),
-    async (req, res, next) => {
-      res.json({
-        message: 'Signup successful',
-        user: req.user
-      });
-    }
-  );
+router.post('/signup',async (req, res, next) => {
+    passport.authenticate(
+      'signup', { session: false },
+      async (err,user,info)=>{
+        console.log(info.success)
+        if(!info.success){
+          res.json({
+            success:info.success,
+            message: 'Signup not suck',
+            user: req.user
+          })
+        }
+        else{
+          newuser={
+            email:req.body.email,
+            username:req.body.username,
+            lastname:req.body.lastname,
+            password:req.body.password
+          }
+          console.log(newuser)
+          User.create(newuser).then(user=>{
+            res.json({
+              success:true,
+              message: 'Signup sucessful ',
+              username:user.username
+            })
+          })
+          
+        }
+      }
+    )(req, res, next);
+  }    
+);
 
 router.post('/login',async (req, res, next) => {
       passport.authenticate(
@@ -41,12 +65,13 @@ router.post('/login',async (req, res, next) => {
                             _id: user._id,
                             email: user.email 
                         };
-                        // console.log(payload.email)
+                        console.log("name "+user.username)
                         const token = jwt.sign(payload, 'TOP_SECRET');        
                         return res.json({ 
                             token :'Bearer '+token ,
-                            success : true
-                    });
+                            success : true,
+                            username :user.username
+                      });
                 }
             );
           } catch (error) {

@@ -7,6 +7,6 @@ const Infoma = mongoose.model(
     })
 )
 
-export default Infoma
+module.exports = Infoma
 
 

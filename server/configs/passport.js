@@ -35,8 +35,6 @@ const   passport = require('passport'),
 
        
 
-    
-
 passport.use(
     'signup',
     new LocalStrategy(
@@ -44,16 +42,17 @@ passport.use(
         usernameField: 'email',
         passwordField: 'password'
       },
-      async (email, password, done) => {
+      async (email,password,done) => {
+        console.log("name ")
         try {
             User.findOne({email}).then(async user =>{
-                if(!user){
-                    const user = await User.create({ email, password });
-                    return done(null, user);
+                if(!user){     
+                    console.log("suc from pass")              
+                    return done(null,undefined,{success:true});
                 }
                 else {
-                    console.log("Already")
-                    return done(null)
+                    console.log("Already from pass")
+                    return done(null,undefined,{success:false})
                 }
             }   
             )

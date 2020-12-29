@@ -4,9 +4,9 @@
         <h1>Login</h1>
         <form>
             <p>E-mail</p>
-            <input type="email" v-model="email"  placeholder="Enter E-mail">
+            <input type="email" v-model="user.email"  placeholder="Enter E-mail">
             <p>Password</p>
-            <input type="password" v-model="password" value="" placeholder="Enter Password"><br>
+            <input type="password" v-model="user.password" value="" placeholder="Enter Password"><br>
             <button v-on:click="login()">Login</button><br><br><br>
             <p class="p-1">Not have account yet?<router-link to="/signup"><a href="#"> Sign up</a></router-link></p>
         </form>
@@ -14,27 +14,35 @@
 </template>
 
 <script>
-import FuckService from '../Fuckservice'
+import authService from '../service/Fuckservice'
 export default {
     name: 'login',
     data(){
-        return{
-            username:"",
-            email:"",
-            password:""
-        }
+            return{
+                user:{  
+                    username:"",
+                    email:"",
+                    password:""
+                }
+            }
     },
+    
     methods: {
-        login:async function(){
+        async login(){
             
             let data = {
-                username:this.username,
-                email: this.email,
-                password:this.password
+                username:this.user.username,
+                email: this.user.email,
+                password:this.user.password
             }     
-            await FuckService.postfuck(data)
-            
-        }
+            const re =await authService.login(data)
+
+            if (re.suc){
+                this.$store.dispatch('authen',re.name)
+                this.$router.push({path:'/feed'})
+                
+            }
+        },          
     }
 }
 </script>
@@ -63,7 +71,6 @@ export default {
     top: -50px;
     left: calc(50% - 50px);
 }
-
 button{
   border: none;
   outline: none;
@@ -80,14 +87,12 @@ button:hover {
   background: linear-gradient(120deg,rgb(69, 160, 212),#4CAF50);
   color: #fff;
 }
-
 h1{
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
     font-size: 30px;
 }
-
 .loginfrom p{
     margin: 0;
     padding: 0;
@@ -106,8 +111,6 @@ h1{
     color: #fff;
     font-size: 16px;
 }
-
-
 .loginfrom a{
     text-decoration: none;
     font-size: 12px;

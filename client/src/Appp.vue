@@ -11,16 +11,17 @@
         </div>
         <ul class="nav-links" >
         <li>
-            <a href="#">Quest</a>
+            <a href="#">{{$store.getters.isLoggedIn}}</a>
         </li>
         <li>
             <a href="">About</a>
         </li>
         <li>
-            <a href="#">Work</a>
+            <router-link to="/feed"><a href="#">Work</a></router-link>
         </li>
         <li>
-          
+            <router-link to="/login" v-if="!$store.getters.isLoggedIn"><a href="#"> login</a></router-link>
+            <a v-on:click="logout" v-else> logout</a>
         </li>
         </ul>
         <div class="burger" v-on:click="navSlide();">
@@ -28,8 +29,8 @@
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
-        <div class="display_name">
-            name
+        <div class="display_name" v-if=$store.getters.isLoggedIn>        
+            <router-link to="/profile"><a href="#"> {{$store.getters.getusername}}</a></router-link>
         </div>
     </nav>   
     <router-view></router-view>
@@ -44,12 +45,17 @@
 // import VueRouter from 'vue-router'
 // import Vue from 'vue'
 
-
+import authService from '@/service/Fuckservice'
 
 
 
 export default {
   name: 'App',
+  data() {
+    return {
+        islogon:this.$store.getters.isLoggedIn
+    }
+  },
   
   methods: {
     navSlide : () =>{
@@ -70,9 +76,19 @@ export default {
             burger.classList.toggle('toggle');
         
         });
+    },
+    logout(){
+        
+        authService.logout();
+        this.$store.dispatch('deluser').then(this.islogon=false)
+        this.$router.push({path:'/login'})
+    }      
+  },
+  computed: {
+    out(){
+        return this.islogon
     }  
   }
- 
 }
 </script>
 <style scoped >
