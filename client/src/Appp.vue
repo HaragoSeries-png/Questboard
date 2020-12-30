@@ -45,7 +45,7 @@
 // import VueRouter from 'vue-router'
 // import Vue from 'vue'
 
-import authService from '@/service/Fuckservice'
+import authService from '@/service/Authservice'
 
 
 

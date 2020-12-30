@@ -11,7 +11,7 @@ class authService{
     //     return data   
     // }
     static async login(text){        
-        let a = await axios.post(url+'/login',text).then(res=> {return res.data})
+        let a = await axios.post(url+'/login',text).then(function(res){alert(res.data)})
         if(a.success){ 
             axios.defaults.headers.common['Authorization'] = a.token;
             console.log('axi '+a.token)

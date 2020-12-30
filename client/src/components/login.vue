@@ -4,9 +4,9 @@
         <h1>Login</h1>
         <form>
             <p>E-mail</p>
-            <input type="email" v-model="user.email"  placeholder="Enter E-mail">
+            <input type="email" v-model="email"  placeholder="Enter E-mail">
             <p>Password</p>
-            <input type="password" v-model="user.password" value="" placeholder="Enter Password"><br>
+            <input type="password" v-model="password"  placeholder="Enter Password"><br>
             <button v-on:click="login()">Login</button><br><br><br>
             <p class="p-1">Not have account yet?<router-link to="/signup"><a href="#"> Sign up</a></router-link></p>
         </form>
@@ -14,34 +14,35 @@
 </template>
 
 <script>
-import authService from '../service/Fuckservice'
+import authService from '../service/Authservice'
 export default {
     name: 'login',
     data(){
             return{
-                user:{  
-                    username:"",
-                    email:"",
-                    password:""
-                }
+                username:"",
+                email:"",
+                password:""
             }
     },
     
     methods: {
-        async login(){
-            
+        login:async function(){
+            alert('re.name')
             let data = {
-                username:this.user.username,
-                email: this.user.email,
-                password:this.user.password
+                username:this.username,
+                email: this.email,
+                password:this.password
             }     
-            const re =await authService.login(data)
-
-            if (re.suc){
-                this.$store.dispatch('authen',re.name)
-                this.$router.push({path:'/feed'})
-                
-            }
+            alert('re.name '+ data.username)
+            authService.login(data).then(function(res){
+                alert(res.name)
+                    if (res.suc){
+                        this.$store.dispatch('authen',res.name)
+                        this.$router.push({path:'/feed'})
+                        
+                    }
+            })
+            
         },          
     }
 }
