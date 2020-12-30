@@ -10,21 +10,20 @@ class authService{
     //     console.log("data in f "+data)
     //     return data   
     // }
-    static async login(text){        
-        let a = await axios.post(url+'/login',text).then(function(res){alert(res.data)})
-        if(a.success){ 
+    static async login(text){  
+    
+        let a = await axios.post(url+'/login',text).then(res=>{return res.data})
+        console.log("succ")
+        if(a.success)
             axios.defaults.headers.common['Authorization'] = a.token;
             console.log('axi '+a.token)
             localStorage.setItem('token', a.token);
-            return {name:a.username,suc:a.success};
-        }
-        else{
-            alert(a.success)
-        }
+        return {suc:a.success,name:a.username}
+      
     }
     static async register(text){
         let a = await axios.post(url+'/signup',text).then(res=> {return res.data})
-       
+        console.log('suc reg')
         return a.success
     }
     static async logout(){
@@ -32,6 +31,7 @@ class authService{
         delete axios.defaults.headers.common['Authorization'];
         
     }
+    
 }
 
 export default authService

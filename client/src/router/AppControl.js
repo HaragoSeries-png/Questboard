@@ -9,12 +9,12 @@ import Vue from 'vue'
 Vue.use(VueRouter)
 const routes = [
   
-
+    
     { path: '/login', component: login }, 
     { path: '/profile', component: profile },
     { path: '/signup', component: signup },
     { path:'/feed',component:questfeed}
 ]
-const router = new VueRouter({routes})
+const router = new VueRouter({mode: 'history',routes})
 
 export default router;

@@ -45,39 +45,31 @@ router.post('/signup',async (req, res, next) => {
 
 router.post('/login',async (req, res, next) => {
       passport.authenticate(
-        'login',
-        async (err, user, info) => {
-          try {
+        'login',{ session: false },
+        async (err, user, info) => {         
             if (err || !user) {
                 message = info.message
                 console.log("have err")
-                return res.json({
+                res.json({
                     message:message,
                     success: false
                 });
             }
-  
-            req.login(
-                user, { session: false },
-                async (error) => {
-                    if (error) return next(error);
-                        const payload = {
-                            _id: user._id,
-                            email: user.email 
-                        };
-                        console.log("name "+user.username)
-                        const token = jwt.sign(payload, 'TOP_SECRET');        
-                        return res.json({ 
-                            token :'Bearer '+token ,
-                            success : true,
-                            username :user.username
-                      });
-                }
-            );
-          } catch (error) {
-            return next(error);
-          }
-        }
+            else{
+              const payload = {
+                      _id: user._id,
+                      email: user.email 
+                    };
+                    console.log("name "+user.username)
+                    const token = jwt.sign(payload, 'TOP_SECRET');  
+                    console.log("token "+token)     
+                    res.json({ 
+                      token :'Bearer '+token ,
+                      success : true,
+                      username :user.username
+                    });
+                } 
+            }  
       )(req, res, next);
     }
 );

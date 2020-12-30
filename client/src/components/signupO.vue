@@ -1,7 +1,7 @@
 <template>
     <div class="register_from">
         <h1>Register</h1>
-        
+        <form>
             <p>Name</p>
             <input type="text" v-model="username" placeholder="Name">
             <p>Lastname</p>
@@ -15,7 +15,7 @@
             <br><br>
             <button v-on:click="register()" class="button1" href="#">Register</button>
   
-        
+        </form>
     </div>
 </template>
 
@@ -42,7 +42,7 @@ export default {
                 password:this.password,
             }     
             let suc = await authService.register(data).then((res)=>{return res})
-            console.log("logsuc"+suc)
+            console.log("suc"+suc)
             
             if(suc){
                 this.$router.push({path:'/login'})

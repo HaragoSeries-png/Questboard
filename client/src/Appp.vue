@@ -30,7 +30,7 @@
             <div class="line3"></div>
         </div>
         <div class="display_name" v-if=$store.getters.isLoggedIn>        
-            <router-link to="/profile"><a href="#"> {{$store.getters.getusername}}</a></router-link>
+            <router-link to="/profile"><a href="#">hee {{$store.getters.getusername}}</a></router-link>
         </div>
     </nav>   
     <router-view></router-view>

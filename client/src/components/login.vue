@@ -1,15 +1,15 @@
 <template>
     <div class="loginfrom">
         <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257_1280.png" class="avater">
-        <h1>Login</h1>
-        <form>
+        <h1>login</h1>
+      
             <p>E-mail</p>
             <input type="email" v-model="email"  placeholder="Enter E-mail">
             <p>Password</p>
             <input type="password" v-model="password"  placeholder="Enter Password"><br>
             <button v-on:click="login()">Login</button><br><br><br>
             <p class="p-1">Not have account yet?<router-link to="/signup"><a href="#"> Sign up</a></router-link></p>
-        </form>
+       
     </div>
 </template>
 
@@ -19,7 +19,6 @@ export default {
     name: 'login',
     data(){
             return{
-                username:"",
                 email:"",
                 password:""
             }
@@ -27,22 +26,22 @@ export default {
     
     methods: {
         login:async function(){
-            alert('re.name')
+            
             let data = {
-                username:this.username,
                 email: this.email,
                 password:this.password
             }     
-            alert('re.name '+ data.username)
-            authService.login(data).then(function(res){
-                alert(res.name)
-                    if (res.suc){
-                        this.$store.dispatch('authen',res.name)
-                        this.$router.push({path:'/feed'})
-                        
-                    }
-            })
             
+            let re= await authService.login(data).then((res)=>{return res})
+            console.log("dadsa"+re)
+            if (re.suc){
+                this.$store.dispatch('authen',re.name)
+                this.$router.push({path:'/feed'})            
+            }
+            else{
+                alert("fail")
+            }
+
         },          
     }
 }
