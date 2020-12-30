@@ -7,3 +7,5 @@ Run client
 2. npm run serve
 
 C ใหญ่
+If bug
+1. npm install -g @vue/cli
