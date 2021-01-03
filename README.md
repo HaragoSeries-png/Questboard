@@ -9,3 +9,6 @@ Run client
 C ใหญ่
 If bug
 1. npm install -g @vue/cli
+
+เอาพวกหน้าต่างๆไว้ใน views
++ Clock.vue (ยังไม่ได้ใช้ทำอะไร)

@@ -18,17 +18,17 @@
       </div>
       <ul class="nav-links">
         <li>
-          <router-link to="">{{ $store.getters.isLoggedIn }}</router-link>
+          <router-link to="/">{{ $store.getters.isLoggedIn }}</router-link>
         </li>
         <li>
-          <router-link to="">About</router-link>
+          <router-link to="/">About</router-link>
         </li>
         <li>
           <router-link to="/feed">Work</router-link>
         </li>
         <li>
           <router-link to="/login" v-if="!$store.getters.isLoggedIn"
-            ><a href="#"> login</a></router-link
+            >Login</router-link
           >
           <a v-else @click="$emit('logout')">logout</a>
         </li>
