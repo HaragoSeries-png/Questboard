@@ -77,7 +77,7 @@ router.get('/test',passport.authenticate('pass',{
     session:false
 }),(req,res)=>{
     return res.json({
-        user:"Hee"
+        user:req.user
     })
 })
 
