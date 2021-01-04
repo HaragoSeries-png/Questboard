@@ -1,6 +1,6 @@
-import login from '../components/login.vue'
-import profile from '../components/profile.vue'
-import signup from '../components/signup.vue'
+import login from '../views/login.vue'
+import profile from '../views/profile.vue'
+import signup from '../views/signup.vue'
 import questfeed from '@/views/questfeed'
 
 import VueRouter from 'vue-router'
@@ -8,8 +8,6 @@ import Vue from 'vue'
 
 Vue.use(VueRouter)
 const routes = [
-  
-    
     { path: '/login', component: login }, 
     { path: '/profile', component: profile },
     { path: '/signup', component: signup },

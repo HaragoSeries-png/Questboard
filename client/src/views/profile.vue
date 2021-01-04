@@ -1,6 +1,6 @@
 <template>
 <div>
-<div class="w3-col m4  w3-center">
+<div class="w3-col m4 w3-center">
 
     <div class="container1">
       <div class="card1-pic">
