@@ -9,7 +9,7 @@ let UserSchema =  new mongoose.Schema({
     email : String,
     password : String,
     infoma :{
-        contaxt:[{
+        contact:[{
             con:String,
             val:String
         }],

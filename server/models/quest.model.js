@@ -3,8 +3,15 @@ const mongoose = require('mongoose');
 const Quest = mongoose.model(
     'Quest',
     new mongoose.Schema({
-        questname:String
+        helper:String,
+        questname:String,
+        category:String,
+        questdetail:String,
+        objective:String,
+        reward:String,
+        location:String,
+        status:String,
+        date:String
     })
 )
-
-export default Quest
+module.exports = Quest

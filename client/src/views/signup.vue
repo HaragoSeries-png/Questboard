@@ -34,6 +34,9 @@ export default {
     },
     methods: {
         register:async function(){
+            if(this.password!=this.conpassword){
+                return alert("not match")
+            }
             
             let data = {
                 username:this.username,
