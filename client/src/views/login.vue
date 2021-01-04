@@ -32,10 +32,10 @@ export default {
                 password:this.password
             }     
             
-            let re= await authService.login(data).then((res)=>{return res})
+            let re = await authService.login(data).then((res)=>{return res})
             console.log("dadsa"+re)
             if (re.suc){
-                this.$store.dispatch('authen',re.name)
+                this.$store.dispatch('authen', re.name)
                 this.$router.push({path:'/feed'})            
             }
             else{

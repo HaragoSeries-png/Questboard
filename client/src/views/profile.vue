@@ -14,14 +14,12 @@
         <span class="fa fa-star"></span>
       </div>
     </div>
-
   </div>
-
 
   <div class="w3-col m4  w3-center">
     <div class="container2">
         <div class="card2-name">
-            Name  Last-name
+            {{ $store.getters.getusername }}
         </div>
         <div class="card2-aboutself">
           <div class="w3-card w3-margin">

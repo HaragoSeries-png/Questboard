@@ -16,6 +16,7 @@
           style="color: white; cursor: pointer; font:size 30px;"
         ></i>
       </div>
+      <div style="color: white"><Clock /></div>
       <ul class="nav-links">
         <li>
           <router-link to="/">{{ $store.getters.isLoggedIn }}</router-link>
@@ -40,7 +41,7 @@
       </div>
       <div class="display_name" v-if="$store.getters.isLoggedIn">
         <router-link to="/profile"
-          ><a href="#">Welcome {{ $store.getters.getusername }}</a></router-link
+          >Welcome {{ $store.getters.getusername }}</router-link
         >
       </div>
     </nav>
@@ -48,8 +49,13 @@
 </template>
 
 <script>
+import Clock from "@/helpers/clock";
+
 export default {
   name: "Navbar",
+  components: {
+    Clock,
+  },
 };
 </script>
 
