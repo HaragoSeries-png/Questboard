@@ -52,8 +52,8 @@ export default {
       this.$router.push({ path: "/login" });
     },
     Polar() {
-        console.log("Can Pass")
-    }
+      console.log("Can Pass");
+    },
   },
   computed: {
     out() {
@@ -63,4 +63,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css%22");
+</style>
