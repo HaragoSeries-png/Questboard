@@ -24,19 +24,19 @@
                   <input type="date" />
                 </td>
               </tr>
-              <tr>
+              <tr id="main_Start">
                 Start Quest :
                 <td>
                   <input type="time" />
                 </td>
               </tr>
-              <tr>
+              <tr id="main_End">
                 End Quest :
                 <td>
                   <input type="time" />
                 </td>
               </tr>
-              <tr>
+              <tr id="main_Person">
                 <i class="material-icons">person</i>
                 <td>
                   <input type="number" min="0" name="" id="" />
@@ -55,7 +55,7 @@
                 <tr id="main_Quest_name">
                   Quest name :
                   <td>
-                    <input type="text" />
+                    <input type="text">
                   </td>
                 </tr>
                 <tr id="main_Category">
@@ -69,24 +69,21 @@
                     </select>
                   </td>
                 </tr>
-                <tr id="main_Details">
-                  Details :
+                <tr id="main_Details"> Details : 
                   <td>
-                    <div class="S_card">
-                      <textarea>
-                      </textarea> 
-                    </div>
+                      <textarea type="text" name="" id=""></textarea>
                   </td>
                 </tr>
               </table>
+              <center><div id="foot">Quest Board</div></center>
             </div>
-           
-            <center><div id="foot">Quest Board</div></center>
-             <center id="btn">
-              <v-btn x-medium class="success">
-                Create
-              </v-btn>
-            </center>
+         
+              <center><v-btn id="btn"
+              x-large
+              color="success"
+            >
+              Create
+              </v-btn></center>
           </div>
         </v-col>
       </v-row>
@@ -122,10 +119,8 @@ export default {
   justify-items: center;
 }
 .section1 {
-  height: 100%;
-  overflow-y: hidden;
+  height: 100vh;
   border: 1px solid black;
-
   border-radius: 1%;
   padding-left: 2%;
   padding-right: 2%;
@@ -147,12 +142,19 @@ export default {
 .fill-text {
   margin-top: 5%;
 }
-.fill-text2 {
-  padding-top: 10%;
+.fill-text2{
+  padding-top:10% ;
 }
 .fill-text table {
   margin-left: auto;
   margin-right: auto;
+  width: 300px;
+  height: 230px;
+  border: 0px solid black;
+}
+.fill-text2 table{
+    width: 600px;
+    height: 230px;
 }
 
 table input {
@@ -172,35 +174,33 @@ table input {
 #foot {
   font-family: "Redressed", cursive;
   font-size: 20px;
-  margin-top: 2%;
+  margin-top: 5%;
 }
-#category {
+#category{
   border: 1px solid black;
   margin-left: 2%;
   font-size: 15px;
-  margin-bottom: 10%;
+  margin-bottom:10%;
 }
 
-#main_Details {
-  font-size: 20px;
+#main_Details{
+  font-size: 15px;
 }
-#main_Quest_name {
-  font-size: 20px;
+#main_Quest_name{
+  font-size: 15px;
 }
-#main_Category {
-  font-size: 20px;
+#main_Category{
+  font-size: 15px;
 }
-.fill-text2 table {
-  margin-left: 10%;
+textarea{
+  width: 400px;
+  height: 200px;
+  border: 1px solid black;
+  font-size:20px;
+  margin-left: 10px;
 }
 #btn{
   margin-top: 10%;
-  
 }
-.S_card textarea{
-  margin-left: 1%;
-  width: 300px;
-  height: 250px;
-  border: 1px solid black;
-}
+
 </style>
