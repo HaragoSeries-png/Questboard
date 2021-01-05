@@ -8,7 +8,7 @@ const mongodb = require('mongodb'),
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'server/public/image')
+        cb(null, 'server/public')
     },
     filename: function (req, file, cb) {
         cb(null,new Date().toISOString().replace(/:/g, '-')+file.originalname)
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 })
 const fileFilter = (req, file, cb) => {
     // reject a file
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' ||file.mimetype === 'image/gif') {
       cb(null, true);
     } else {
       cb(null, false);

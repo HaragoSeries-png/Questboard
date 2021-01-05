@@ -1,8 +1,10 @@
 <template>
+<v-app>
   <div id="app">
     <Navbar @logout="logout" />
     <router-view></router-view>
   </div>
+</v-app>
 </template>
 
 <script src="script.js"></script>

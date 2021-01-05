@@ -11,7 +11,9 @@ const Quest = mongoose.model(
         reward:String,
         location:String,
         status:String,
-        date:String
+        date:String,
+        image:String,
+        duedate:String
     })
 )
 module.exports = Quest

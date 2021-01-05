@@ -14,11 +14,15 @@ class authService{
     
         let a = await axios.post(url+'/login',text).then(res=>{return res.data})
         console.log("succ")
-        if(a.success)
+        if(a.success){
             axios.defaults.headers.common['Authorization'] = a.token;
             console.log('axi '+a.token)
             localStorage.setItem('token', a.token);
-        return {suc:a.success,name:a.username}
+            return {suc:a.success,name:a.username}
+        }
+        else{
+            alert("wrong")
+        }   
       
     }
     static async register(text){
