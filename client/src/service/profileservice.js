@@ -7,7 +7,6 @@ class profileService{
         let a = await axios.put(url,text).then(res=>{return res.data})
         console.log("suc "+a.success)
         return {suc:a.success}
-        
     }
 }
 export default profileService
