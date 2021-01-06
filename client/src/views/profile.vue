@@ -20,8 +20,7 @@
     <div class="w3-col m4  w3-center">
       <div class="container2">
         <div class="card2-name">
-          {{ $store.getters.getusername }}
-          {{ user }}
+          Name Last-name
         </div>
         <div class="card2-aboutself">
           <div class="w3-card w3-margin">
@@ -161,38 +160,12 @@
 </template>
 
 <script>
-import authService from "@/service/Authservice";
-// import store from "@/store/index";
-
-export default {
-  name: "Profile",
-  methods: {
-    // getUserInfo: async function() {
-    //   let re = authService.profile.then((res) => {
-    //     return res.data;
-    //     });
-    //   return re.data;
-    // },
-  },
-  mounted() {
-    // this.user = this.$store.dispatch('profile');
-    let re = authService.profile().then();
-    console.log("RE: " + re);
-    this.user = re;
-    console.log("Result :" + this.user);
-  },
-  data() {
-    return {
-      user: { name: "A", lastname: "B" },
-    };
-  },
-};
+export default {};
 </script>
-
 <style scoped>
-@import url(https://www.w3schools.com/w3css/4/w3.css);
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css);
-
+@import "../styles/profile.css";
+</style>
+<style scoped>
 .container1 {
   margin: 2%;
   width: 100%;
