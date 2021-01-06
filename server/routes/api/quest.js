@@ -43,6 +43,7 @@ router.post('/',upload.single('image'),passport.authenticate('pass',{
   console.log("filename "+req.file.filename)
   let newquest = {
     helper:req.body.helper,
+    helperID:req.user._id,
     questname:req.body.questname,
     category:req.body.category,
     questdetail:req.body.questdetail,
@@ -51,7 +52,9 @@ router.post('/',upload.single('image'),passport.authenticate('pass',{
     location:req.body.location,
     status:"wait",
     image:req.file.filename,
-    date:new Date().toISOString().replace(/:/g, '-')
+    date:dateFormat(new Date(), "hh:MM  ddmmm "),
+    duedate:req.body.duedate,
+    numberofcon:req.body.numberofcon
   }
   
   Quest.create(newquest).then((quest,err)=>{

@@ -4,6 +4,10 @@ const Quest = mongoose.model(
     'Quest',
     new mongoose.Schema({
         helper:String,
+        helperID:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User'
+        },
         questname:String,
         category:String,
         questdetail:String,
@@ -13,7 +17,12 @@ const Quest = mongoose.model(
         status:String,
         date:String,
         image:String,
-        duedate:String
+        duedate:String,
+        contributor:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User'
+        }],
+        numberofcon:Number
     })
 )
 module.exports = Quest
