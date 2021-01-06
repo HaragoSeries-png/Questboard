@@ -8,17 +8,21 @@ export default new Vuex.Store({
     token:localStorage.getItem('token')||'',
     currentUser:'',
     count:0,
-    islog:false
+    islog:false,
+    userinfoma:''
   },
   getters:{
     isLoggedIn(state){return state.islog},
     getusername(state){return state.currentUser},
-    getcount(state){return state.count}
+    getcount(state){return state.count},
+    getinfoma(state){return state.userinfoma}
   },
   mutations: {
     logon(state,value){
-      state.currentUser =value
+      state.currentUser =value.name
       state.islog=true
+      state.userinfoma=value.infoma
+      console.log("logon info "+state.userinfoma)
       // if(this.$store.getters.isLoggedIn){
       //   alert(state.currentUser+' has logon')
       // }else{
@@ -29,6 +33,7 @@ export default new Vuex.Store({
       state.currentUser =value
       state.islog=false
     },
+
     setcount:(state,value)=>state.count=value
   },
   actions: {

@@ -9,5 +9,10 @@ class profileService{
         return {suc:a.success}
         
     }
+    static async getprofile(){
+        let a = await axios.get(url).then(res=>{return res.data})
+        console.log("suc "+a.user)
+        return {suc:a.success,infoma:a.user}
+    }
 }
 export default profileService

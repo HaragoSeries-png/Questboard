@@ -1,5 +1,5 @@
 import login from '../views/login.vue'
-import profile from '../views/profile.vue'
+import profile from '@/views/profile.vue'
 import signup from '../views/signup.vue'
 import questfeed from '@/views/questfeed'
 import createQuest from '../views/createQuest.vue'
