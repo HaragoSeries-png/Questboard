@@ -17,3 +17,5 @@ https://jossef.github.io/material-design-icons-iconfont/
 
 เอาพวกหน้าต่างๆไว้ใน views
 + Clock.vue (ยังไม่ได้ใช้ทำอะไร)
+
+หน้า questfeed เป็นที่ทดลองของ harago
