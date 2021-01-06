@@ -30,9 +30,9 @@ class authService {
 
     }
     static async profile() {
-        let data = await axios.get('http://localhost:5000/api/profile').then((res) => {
-            console.log(res.data)
-        })
+        console.log("Profile Search :")
+        // let data = await axios.get('http://localhost:5000/api/profile').then((res) => {console.log("RES1 : " + res)})
+        let data = {name: 'Kittisak', lastname: 'Sangkarak'}
         console.log("data in f " + data)
         return data
     }

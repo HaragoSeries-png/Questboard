@@ -13,7 +13,12 @@ export default new Vuex.Store({
   getters:{
     isLoggedIn(state){return state.islog},
     getusername(state){return state.currentUser},
-    getcount(state){return state.count}
+    getcount(state){return state.count},
+    getUserData(){
+      let b = {name: 'Kittisak', lastname: 'Sangkarak'}
+      // console.log("B:" + b.name)
+      return b
+    }
   },
   mutations: {
     logon(state,value){
@@ -29,13 +34,17 @@ export default new Vuex.Store({
       state.currentUser =value
       state.islog=false
     },
-    setcount:(state,value)=>state.count=value
+    setcount:(state,value)=>state.count=value,
   },
   actions: {
     authen(context,value){context.commit('logon',value)},
     deluser(context){context.commit('logout','')},
     set(context){
       context.commit('setcount',this.getters.getcount+1)
+    },
+    profile(){
+      let c = {name: 'Kittisak', lastname: 'Sangkarak'}
+      return c
     }
   },
   modules: {
