@@ -21,7 +21,7 @@
             <v-btn @click="sendim">
                 submit
             </v-btn>
-            
+            <v-btn @click="getinfoma">profile</v-btn>
             </v-row>
             <v-row>
                 
@@ -101,6 +101,18 @@ export default {
         },
         chooseFiles() {
             document.getElementById("fileUpload").click()
+        },
+        getinfoma:async function(){
+            console.log("gett")
+            let re = await profileService.getprofile().then((res)=>{return res})
+            console.log("dadsaaaaaaa"+re)
+            if (re.suc){
+                console.log(re.infoma)
+                alert("yeah")       
+            }
+            else{
+                alert("fail")
+            }
         },
     }
 

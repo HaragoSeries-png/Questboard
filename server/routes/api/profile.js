@@ -33,8 +33,14 @@ const router = express.Router();
 router.get('/',passport.authenticate('pass',{
     session:false
 }),(req,res)=>{
+    console.log('getprofile')
+  
+    res.send({success:true,user:req.user.infoma})
+  
+
+       
+
    
-   res.send(req.user.infoma)
 }),
 router.put('/',upload.single('image'),passport.authenticate('pass',{
     session:false
