@@ -4,15 +4,20 @@
         <v-container>
             <v-row>
             <v-col cols="12" md="4">
-                <v-file-input
-                truncate-length="15"
-                label="image"
-                width="50%"
-                v-model="files"
-                ></v-file-input>
+                <div style="display: none;">
+                   <v-file-input
+                    truncate-length="15"
+                    label="image"
+                    width="50%"
+                    v-model="files"
+                    @change="onFileChange"
+                    id="fileUpload"
+                    ></v-file-input> 
+                </div>
+                
             </v-col>
             <v-spacer></v-spacer>
-            
+
             <v-btn @click="sendim">
                 submit
             </v-btn>
@@ -23,13 +28,22 @@
             </v-row>
         </v-container>
 
-            
+     
     </v-form>
-    <img
-        max-height="150"
-        max-width="250"
-        src="http://localhost:5000/2021-01-05T15-16-14.571Zdeadman_bg.jpg"
-    >
+    <v-img
+        max-height="200"
+        max-width="200"
+        src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif"
+        @click="chooseFiles()"
+    >hee</v-img>
+    <div id="preview">
+        <v-img 
+            v-if="url"
+            :src="url" 
+            max-height="250"
+            max-width="250"
+        ></v-img>
+    </div>
      
   </div>
 </template>
@@ -43,7 +57,8 @@ export default {
     data(){
         return {
             count:this.$store.getters.getcount,
-            files:null
+            files:null,
+            url:null
         }
     },
     methods:{
@@ -76,7 +91,17 @@ export default {
             } else {
                 console.log("there are no files.");
             }
-        }
+        },
+        onFileChange() {
+            if(this.files!=null){
+                const file = this.files
+                console.log(file)
+                this.url = URL.createObjectURL(file);
+            }
+        },
+        chooseFiles() {
+            document.getElementById("fileUpload").click()
+        },
     }
 
 }

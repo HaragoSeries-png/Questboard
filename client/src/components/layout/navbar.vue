@@ -21,7 +21,7 @@
           <router-link to="/">{{ $store.getters.isLoggedIn }}</router-link>
         </li>
         <li>
-          <router-link to="/">About</router-link>
+          <router-link to="/createQuest">About</router-link>
         </li>
         <li>
           <router-link to="/feed">Work</router-link>

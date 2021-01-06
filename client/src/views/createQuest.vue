@@ -14,32 +14,32 @@
             <table>
               <tr>
                 Reward :
-                <td><input type="text" /></td>
+                <td><input type="text" v-model="reward" /></td>
               </tr>
               Deadline
               <div><i class="material-icons">assessment</i></div>
               <tr>
                 Date :
                 <td>
-                  <input type="date" />
+                  <input type="date" v-model="duedate" />
                 </td>
               </tr>
               <tr id="main_Start">
                 Start Quest :
                 <td>
-                  <input type="time" />
+                  <input type="time" v-model="stime" />
                 </td>
               </tr>
               <tr id="main_End">
                 End Quest :
                 <td>
-                  <input type="time" />
+                  <input type="time" v-model="etime" />
                 </td>
               </tr>
               <tr id="main_Person">
                 <i class="material-icons">person</i>
                 <td>
-                  <input type="number" min="0" name="" id="" />
+                  <input type="number" min="0" name="" id="" v-model="numberofcon"/>
                 </td>
               </tr>
             </table>
@@ -55,13 +55,13 @@
                 <tr id="main_Quest_name">
                   Quest name :
                   <td>
-                    <input type="text">
+                    <input type="text" v-model="questname">
                   </td>
                 </tr>
                 <tr id="main_Category">
                   Category :
                   <td>
-                    <select id="category" name="category">
+                    <select id="category" name="category" v-model="category">
                       <option value="Warin">Warin</option>
                       <option value="Chukiat">Chukiat</option>
                       <option value="Wiwat">Wiwat</option>
@@ -71,7 +71,7 @@
                 </tr>
                 <tr id="main_Details"> Details : 
                   <td>
-                      <textarea type="text" name="" id=""></textarea>
+                      <textarea type="text" name="" id="" v-model="questdetail"></textarea>
                   </td>
                 </tr>
               </table>
@@ -96,6 +96,17 @@ export default {
   name: "createQuest",
   data() {
     return {
+      questname:"",
+      category:"",
+      reward:"",
+      duedate:"",
+      stime:"",
+      etime:"",
+      objective:"",
+      image:null,
+      questdetail:"",
+      loaction:"",
+      numberofcon:0,
       Pic1:
         "https://scontent.fbkk9-2.fna.fbcdn.net/v/t1.0-9/133938314_2872986902934842_460214208886165488_o.jpg?_nc_cat=1&ccb=2&_nc_sid=730e14&_nc_eui2=AeE1cE1W5Y5x9Iz4fYutlkE5bs8Lw3bRmyhuzwvDdtGbKNSmrlNumUBHIhtSLLSpz6AxnEaV8ilRriR8eKmpPErx&_nc_ohc=OieJ_lBVLn8AX99otvG&_nc_ht=scontent.fbkk9-2.fna&oh=46edfe6a4c0b32a2c9390e7fe68564d8&oe=601BBF1E",
     };

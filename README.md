@@ -1,10 +1,9 @@
 # Questboard
 Run serve
-1. npm run dev
+1. npm run ser
 
 Run client
-1. cd cli*
-2. npm run serve
+1. npm run cli
 
 C ใหญ่
 If bug
