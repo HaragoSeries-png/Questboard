@@ -9,9 +9,20 @@ let UserSchema =  new mongoose.Schema({
     email : String,
     password : String,
     infoma :{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Infoma'
+        contaxt:[{
+            con:String,
+            val:String
+        }],
+        skill:[],
+        education:[{
+            banch:String,
+            date:Date
+        }],
+        intro:String,
+        address:String,
+        proimage:String,
     },
+    
     quests :[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Quest'
@@ -36,7 +47,6 @@ UserSchema.methods.isValidPassword = async function(password) {
 
 UserSchema.plugin(passportLocalMongoose);
 const User = mongoose.model('User', UserSchema) 
-
 
 
 module.exports = User

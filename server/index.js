@@ -3,11 +3,12 @@ const express = require('express'),
     cors = require('cors'),
     mongoose = require('mongoose'),
     passport = require('passport');
-require('./configs/passport'),
+    require('./configs/passport'),
     passportLocalMongoose = require('passport-local-mongoose'),
     passportLocal = require('passport-local'),
     User = require('./models/user.model'),
-    methodOverride = require("method-override")
+    methodOverride = require("method-override"),
+    multer = require('multer')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));

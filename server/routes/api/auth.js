@@ -72,6 +72,13 @@ router.post('/login', async (req, res, next) => {
   )(req, res, next);
 }
 );
+router.get('/test',passport.authenticate('pass',{
+    session:false
+}),(req,res)=>{
+    return res.json({
+        user:req.user
+    })
+})
 
 router.get('/test', passport.authenticate('pass', {
   session: false
