@@ -45,9 +45,9 @@ export default {
       let re = await authService.login(data).then((res) => {
         return res;
       });
-      console.log("dadsa" + re);
+      console.log("dadsa" + re.name);
       if (re.suc) {
-        this.$store.dispatch("authen", re.name);
+        this.$store.dispatch("authen", re);
         this.$router.push({ path: "/feed" });
       } else {
         alert("fail");

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'),
-     bcrypt = require('bcrypt'),
+        bcrypt = require('bcrypt'),
 passportLocalMongoose = require('passport-local-mongoose');
 
 
@@ -40,8 +40,9 @@ UserSchema.pre(
 );
 UserSchema.methods.isValidPassword = async function(password) {
     const user = this;
+   
     const compare = await bcrypt.compare(password, user.password);
-  
+    console.log(compare)
     return compare;
 }
 

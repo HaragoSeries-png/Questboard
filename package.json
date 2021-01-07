@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
     "ser": "nodemon server/index.js",
-    "cli":"cd cli* & npm run serve"
+    "cli": "cd cli* & npm run serve"
   },
   "author": "harago",
   "license": "ISC",
