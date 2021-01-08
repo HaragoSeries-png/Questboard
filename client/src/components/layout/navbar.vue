@@ -6,37 +6,59 @@
         <div class="line2"></div>
         <div class="line3"></div>
       </div>
-      <div
-        class="Cata"
-        style="position: absolute; top:3%; margin-left: 26.9%;z-index: 2; "
-      >
-        <select name="cars" id="cars" style="font-size:16px; height: 30px;;">
-          <option value="test1">All</option>
-          <option value="test2">craft</option>
-          <option value="test3">home</option>
-          <option value="test4">...</option>
-        </select>
-      </div>
+      
       <div class="logo_search">
         <span id="header_Logo" 
-          >Quest board</span> 
-        <input
+          ><v-img
+            width="80"
+            height="70"
+            src=@/assets/logo.png
+          ></v-img>
+          </span> 
+        
+        <div
+        class="Cata"
+        style="position: absolute; width:300px; margin-left:10px; top:30%; z-index: 2; "
+      ><input
           type="text"
           placeholder="Search.."
           name="search"
           size="40px"
           style="font: size 30px;height:30px"
-        />
+        >
+        <select name="cars" id="cars" style="position:absolute; font-size:16px; height: 30px;">
+          <option value="test1">All</option>
+          <option value="test2">craft</option>
+          <option value="test3">home</option>
+          <option value="test4">...</option>
+        </select>
+        <div class="search">
+          <i class="fa fa-search"></i>
+        </div>
       </div>
-      <div class="search">
-        <i class="fa fa-search"></i>
       </div>
+      
 
       <ul class="nav-links">
-        <li><a href="#">Quest</a></li>
-        <li><a href="#">About Us</a></li>
-        <li class="Switch_M"><a href="#">Switch to Mobile</a></li>
-        <li><a href="#">Login</a></li>
+        <li>
+          <router-link to="/profile">{{ $store.getters.isLoggedIn }}</router-link>
+        </li>
+        <li>
+          <router-link to="/createQuest2">About</router-link>
+        </li>
+        <li>
+          <router-link to="/feed">Work</router-link>
+        </li>
+        <li class="Switch_M"><a href="#"
+        >Switch to Mobile</a>
+        </li>
+        <li>
+          <router-link to="/login" v-if="!$store.getters.isLoggedIn"
+            >Login</router-link
+          >
+          <a v-else @click="$emit('logout')">logout</a>
+        </li>
+       
       </ul>
     </nav>
   </div>
@@ -54,10 +76,9 @@ export default {
 <style scoped>
 @import "../../styles/nav.css";
 #header_Logo{
-  color:white;
-  font-weight: bold; 
-  font-size: 30px;
-  font-family: "Redressed", cursive;
+  float: left;
+  margin-left:30px;
+  margin-top:10px
 }
 *{
   margin: 0;
@@ -93,12 +114,13 @@ nav {
   position: absolute;
   display: flex;
   list-style: none;
-  width: 40%;
+  width: 80%;
+  /* background-color: #f7efea; */
   background-color: #fd9047;
   height: 10vh;
-  justify-content: space-around;
+  justify-content:left;
   margin-right: auto;
-  align-items: center;
+  align-items: left;
 }
 .nav-links li a {
   font-size: 20px;
@@ -138,17 +160,19 @@ nav {
   }
 }
 
+
 .search {
   color: black;
   cursor: pointer;
   font: size 30px;
   position: absolute;
-  margin-left: 39.7%;
+  float:rigth;
+  margin-left:90% ;
   top: 3.14%;
-  width: 2%;
+  width: 25px;
   align-items: center;
   padding: 5px 2px 2px;
-  height: 30px;
+  height: inherit;
   background: rgb(7, 143, 223);
 }
 .search:hover {
@@ -168,7 +192,7 @@ nav {
 }
 input[type="text"] {
   background: #fff;
-  width: 200px;
+  width: 70%;
   height: 0px;
   border: none;
   outline: none;

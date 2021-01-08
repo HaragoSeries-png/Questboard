@@ -9,9 +9,9 @@
 
           <center>
             <h2 id="head">WANTED</h2>
-            <div class="pictureQuest">
-              <img v-bind:src="Pic1" />
-            </div>
+            <v-hover class="pictureQuest">
+              <img src="@/assets/miku.gif" />
+            </v-hover>
           </center>
             <center>
           <div class="text-fill">
@@ -168,7 +168,7 @@ export default {
   data() {
     return {
       items: ["Crafter", "House worker", "Handicup", "Etc"],
-      Pic1: "https://pbs.twimg.com/media/EBBMoBNU4AA2DXn.jpg",
+      // Pic1: "https://pbs.twimg.com/media/EBBMoBNU4AA2DXn.jpg",
     };
   },
 };

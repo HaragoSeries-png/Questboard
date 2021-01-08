@@ -21,7 +21,7 @@
   <div class="w3-col m4  w3-center">
     <div class="container2">
         <div class="card2-name">
-            Name  Last-name
+            {{temp}}
         </div>
         <div class="card2-aboutself">
           <div class="w3-card w3-margin">
@@ -120,17 +120,16 @@ import questService from '../service/Queastservice'
 // eslint-disable-next-line no-unused-vars
 import profileService from '../service/profileservice'
 export default {
-    createt(){
+    
+    mounted: function mounted () {
       this.getinfoma()
-    },
-    watch(){
-
     },
     data(){
         return {
             count:this.$store.getters.getcount,
             files:null,
-            url:null
+            url:null,
+            profile:''
         }
     },
     methods:{
@@ -178,9 +177,9 @@ export default {
             console.log("gett")
             let re = await profileService.getprofile().then((res)=>{return res})
             console.log("dadsaaaaaaa"+re)
-            
-                console.log(re.infoma)
-                alert("yeah")       
+            this.profile=re
+            console.log(re.infoma)
+                   
             
         },
     }

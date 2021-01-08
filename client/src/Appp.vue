@@ -53,16 +53,11 @@ export default {
     },
     logout() {
       authService.logout();
-      this.$store.dispatch("deluser").then((this.islogon = false));
+      this.$store.dispatch("deluser");
       this.$router.push({ path: "/login" });
     },
     Polar() {
       console.log("Can Pass");
-    },
-  },
-  computed: {
-    out() {
-      return this.islogon;
     },
   },
 };
