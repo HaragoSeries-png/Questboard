@@ -206,18 +206,11 @@ export default {
   created() {
     this.getinfoma();
 
-    let usertitle = this.$store.getters.getusername
-    if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
-    else this.$emit("setTitle", this.$options.name);
-  },
-  data() {
-    return {
-      count: this.$store.getters.getcount,
-      files: null,
-      url: null,
-      profile: "",
-    };
-  },
+      let usertitle = this.$store.getters.getusername
+      if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
+      else this.$emit("setTitle", this.$options.name);
+    },
+    
 };
 </script>
 
