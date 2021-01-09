@@ -1,23 +1,39 @@
 <template>
-  <v-app>
-    <div id="app">
-      <Navbar @logout="logout" />
-      <router-view @setTitle="setPageTitle"></router-view>
-    </div>
-  </v-app>
+  <div id="app">
+    <table>
+      <tr>
+        <Navbar @setNavbarSide="setNavbarSide" @logout="logout" />
+      </tr>
+      <tr>
+        <th v-if="showNavBarSide">
+          <NavbarSide />
+        </th>
+        <th style="width: auto">
+          <router-view @setTitle="setPageTitle"></router-view>
+        </th>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script src="script.js"></script>
 <script>
 import authService from "@/service/Authservice";
 import Navbar from "@/components/layout/navbar";
+import NavbarSide from "@/components/layout/navbar-side";
 
 export default {
   name: "App",
   components: {
     Navbar,
+    NavbarSide,
   },
   methods: {
+    setNavbarSide() {
+      console.log("AAA");
+      this.showNavBarSide = !this.showNavBarSide;
+    },
+
     navSlide: () => {
       const burger = document.querySelector(".burger");
       const nav = document.querySelector(".nav-links");
@@ -52,6 +68,7 @@ export default {
   },
   data() {
     return {
+      showNavBarSide: false,
       islogon: this.$store.getters.isLoggedIn,
     };
   },
@@ -60,4 +77,9 @@ export default {
 
 <style>
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css%22");
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 </style>
