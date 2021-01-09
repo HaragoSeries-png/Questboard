@@ -79,19 +79,22 @@ body {
   background-size: cover;
   font-family: sans-serif;
 }
-.register_from {
-  width: 420px;
-  height: min-content;
-  background: #000;
-  color: #fff;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
-  box-shadow: 8px 8px 50px rgb(36, 35, 34);
-  padding: 70px 30px;
-  border-radius: 10px;
+.register_from{
+    margin-top: 3%;
+   
+    justify-items: center;
+     width: 400px;
+    height: min-content;
+    background:#000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    box-shadow: 8px 8px 50px rgb(36, 35, 34);
+    padding: 70px 30px;
+    border-radius: 10px;
 }
 h1 {
   margin: 0;
