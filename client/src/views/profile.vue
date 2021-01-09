@@ -5,18 +5,10 @@
 
     <div class="container1">
       <v-container>
-        
 
-        
-         
             <v-img  class="rounded-circle mx-auto mt-6" :aspect-ratio="1/1" max-width= 300 src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif" v-if="!ch" @click="chooseFiles" ></v-img>
             <v-img class="rounded-circle mx-auto mt-6" :aspect-ratio="1/1" max-width= 300   v-if="url" :src="url" @click="chooseFiles" ></v-img>
-            <!-- <v-img
-          max-height="200"
-          max-width="200"
-          src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif"
-          @click="chooseFiles()"
-      >hee</v-img> -->
+
             <div style="display: none;">
                     <v-file-input
                       truncate-length="15"
