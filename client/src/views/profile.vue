@@ -242,14 +242,7 @@ export default {
       if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
       else this.$emit("setTitle", this.$options.name);
     },
-    data() {
-      return {
-        count: this.$store.getters.getcount,
-        files: null,
-        url: null,
-        profile: "",
-      };
-    },
+    
 };
 </script>
 
