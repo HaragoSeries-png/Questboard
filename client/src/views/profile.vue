@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="profile">
     <div class="w3-col m4  w3-center">
       <div class="container1">
         <div class="card1-pic">
@@ -8,6 +8,7 @@
             @click="getinfoma"
           />
         </div>
+
         <div class="rate">
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
@@ -20,9 +21,8 @@
 
     <div class="w3-col m4  w3-center">
       <div class="container2">
-        <div class="card2-name">
-          Name Last-name
-        </div>
+        <div class="card2-name">{{ temp }}</div>
+        
         <div class="card2-aboutself">
           <div class="w3-card w3-margin">
             <div
@@ -31,6 +31,7 @@
             >
               <h3 style="margin-right:100%;">Introduce</h3>
             </div>
+
             <div
               class="w3-container w3-white"
               style="width: 100%; padding-top: 2vh;"
@@ -57,6 +58,7 @@
             >
               <h3 style="margin-right:100%;">Education</h3>
             </div>
+            
             <div
               class="w3-container w3-white"
               style="width: 100%; padding-top: 2vh;"
@@ -66,14 +68,11 @@
               >
                 <h4><b>Oxford-University</b></h4>
                 <h5><span class="w3-opacity"> Jan 2000 - Feb 2001</span></h5>
-                <li>
-                  Department of mathematic
-                </li>
+                <li>Department of mathematic</li>
+                
                 <h4><b>Cambridge-University</b></h4>
                 <h5><span class="w3-opacity"> Jan 2002 - Feb 2003</span></h5>
-                <li>
-                  Department of science
-                </li>
+                <li>Department of science</li>
               </div>
             </div>
           </div>
@@ -91,6 +90,7 @@
             >
               <h3 style="margin-right:100%;">Skills</h3>
             </div>
+            
             <div
               class="w3-container w3-white"
               style="width: 100%; padding-top: 2vh;"
@@ -138,6 +138,7 @@
             >
               <h3 style="margin-right:100%;">Experience</h3>
             </div>
+            
             <div
               class="w3-container w3-white"
               style="width: 100%; padding-top: 2vh;"
@@ -145,7 +146,7 @@
               <div
                 style="text-align: left; list-style: none; padding-bottom: 2%;"
               >
-                {{ user }}
+                {{ profile }}
               </div>
             </div>
           </div>
@@ -157,24 +158,10 @@
 
 <script>
 import questService from "../service/Queastservice";
-// eslint-disable-next-line no-unused-vars
 import profileService from "../service/profileservice";
 
 export default {
-  created() {
-    // this.user = this.getinfoma();
-    // console.log("User:")
-    console.log(this.user)
-  },
-  watch() {},
-  data() {
-    return {
-      user: this.$store.getters.getinfoma,
-      count: this.$store.getters.getcount,
-      files: null,
-      url: null,
-    };
-  },
+  name: "Profile",
   methods: {
     add() {
       this.$store.dispatch("set");
@@ -185,25 +172,16 @@ export default {
         let formData = new FormData();
 
         // files
-
         formData.append("image", this.files);
-
-        // additional data
-        formData.append("questname", "foo bar");
 
         let suc = await questService.createquest(formData).then((res) => {
           return res;
         });
         console.log("logsuc" + suc);
 
-        if (suc) {
-          this.$router.push({ path: "/login" });
-        } else {
-          alert("fail");
-        }
-      } else {
-        console.log("there are no files.");
-      }
+        if (suc) this.$router.push({ path: "/login" });
+        else alert("fail");
+      } else console.log("there are no files.");
     },
     onFileChange() {
       if (this.files != null) {
@@ -218,23 +196,34 @@ export default {
     getinfoma: async function() {
       console.log("gett");
       let re = await profileService.getprofile().then((res) => {
-        console.log("RES")
-        console.log(res)
-        return res.infoma;
+        return res;
       });
-      console.log("dadsaaaaaaa");
-      console.log(re)
-      console.log("A:");
-      console.log(re.informa)
-      alert("yeah");
+      console.log("dadsaaaaaaa" + re);
+      this.profile = re;
+      console.log(re.infoma);
     },
+  },
+  created() {
+    this.getinfoma();
+
+    let usertitle = this.$store.getters.getusername
+    if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
+    else this.$emit("setTitle", this.$options.name);
+  },
+  data() {
+    return {
+      count: this.$store.getters.getcount,
+      files: null,
+      url: null,
+      profile: "",
+    };
   },
 };
 </script>
+
 <style scoped>
 @import "../styles/profile.css";
-</style>
-<style scoped>
+
 .container1 {
   margin: 2%;
   width: 100%;

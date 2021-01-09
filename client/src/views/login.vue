@@ -1,24 +1,20 @@
 <template>
-  <div class="loginfrom">
-    <img
-      src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257_1280.png"
-      class="avater"
-    />
+  <div id="login" class="loginfrom">
+    <img class="avatar" :src="profilePic" />
     <h1>login</h1>
 
     <p>E-mail</p>
     <input type="email" v-model="email" placeholder="Enter E-mail" />
+
     <p>Password</p>
-    <input
-      type="password"
-      v-model="password"
-      placeholder="Enter Password"
-    /><br />
-    <button v-on:click="login()">Login</button><br /><br /><br />
+    <input type="password" v-model="password" placeholder="Enter Password" />
+
+    <br />
+    <button v-on:click="login()">Login</button>
+
+    <br /><br /><br />
     <p class="p-1">
-      Not have account yet?<router-link to="/signup"
-        ><a href="#"> Sign up</a></router-link
-      >
+      Not have account yet? <router-link to="/signup"> Sign up</router-link>
     </p>
   </div>
 </template>
@@ -27,14 +23,7 @@
 import authService from "../service/Authservice";
 
 export default {
-  name: "login",
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
-
+  name: "Login",
   methods: {
     login: async function() {
       let data = {
@@ -45,14 +34,24 @@ export default {
       let re = await authService.login(data).then((res) => {
         return res;
       });
-      console.log("dadsa" + re.name);
+
       if (re.suc) {
         this.$store.dispatch("authen", re);
         this.$router.push({ path: "/feed" });
-      } else {
-        alert("fail");
-      }
+      } else alert("Fail");
     },
+  },
+  created() {
+    this.$emit("setTitle", this.$options.name);
+  },
+  data() {
+    return {
+      profilePic:
+        "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257_1280.png",
+
+      email: "",
+      password: "",
+    };
   },
 };
 </script>
@@ -72,7 +71,7 @@ export default {
   padding: 70px 30px;
   border-radius: 10px;
 }
-.avater {
+.avatar {
   width: 100px;
   height: 100px;
   border-radius: 50%;
