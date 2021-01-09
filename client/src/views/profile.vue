@@ -1,13 +1,55 @@
 <template>
-  <div id="profile" style="margin-top:-40%">
+  <div style="margin-top : -40%;">
     <div class="w3-col m4  w3-center">
       <div class="container1">
-        <div class="card1-pic">
-          <img
-            src="https://i.pinimg.com/474x/02/6a/cc/026acca08fb7beea6bd4ecd430e312bd.jpg"
-            @click="getinfoma"
-          />
-        </div>
+        <v-container>
+          <v-hover v-slot="{ hover }">
+            <v-card
+              :elevation="hover ? 12 : 2"
+              :class="{ 'on-hover': hover }"
+              class="rounded-circle mx-auto mt-6"
+              max-width="300"
+            >
+              <v-img
+                class="rounded-circle mx-auto mt-6"
+                :aspect-ratio="1 / 1"
+                max-width="300"
+                src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif"
+                v-if="!ch"
+                @click="chooseFiles"
+                id="upload_img"
+              >
+                <v-btn
+                 :class="{ 'show-btns': hover }"
+                  :color="transparent"
+                >
+                  <div :class="{ 'show-btns': hover }" :color="transparent" id="t_img">
+                    {{ text }}
+                  </div>
+                </v-btn>
+
+              </v-img>
+            </v-card>
+          </v-hover>
+          <v-img
+            class="rounded-circle mx-auto mt-6"
+            :aspect-ratio="1 / 1"
+            max-width="300"
+            v-if="url"
+            :src="url"
+            @click="chooseFiles"
+          ></v-img>
+
+          <div style="display: none;">
+            <v-file-input
+              label="image"
+              width="50%"
+              v-model="files"
+              @change="onFileChange"
+              id="fileUpload"
+            ></v-file-input>
+          </div>
+        </v-container>
 
         <div class="rate">
           <span class="fa fa-star checked"></span>
@@ -22,7 +64,7 @@
     <div class="w3-col m4  w3-center">
       <div class="container2">
         <div class="card2-name">{{ temp }}</div>
-        
+
         <div class="card2-aboutself">
           <div class="w3-card w3-margin">
             <div
@@ -58,7 +100,7 @@
             >
               <h3 style="margin-right:100%;">Education</h3>
             </div>
-            
+
             <div
               class="w3-container w3-white"
               style="width: 100%; padding-top: 2vh;"
@@ -69,7 +111,7 @@
                 <h4><b>Oxford-University</b></h4>
                 <h5><span class="w3-opacity"> Jan 2000 - Feb 2001</span></h5>
                 <li>Department of mathematic</li>
-                
+
                 <h4><b>Cambridge-University</b></h4>
                 <h5><span class="w3-opacity"> Jan 2002 - Feb 2003</span></h5>
                 <li>Department of science</li>
@@ -90,7 +132,7 @@
             >
               <h3 style="margin-right:100%;">Skills</h3>
             </div>
-            
+
             <div
               class="w3-container w3-white"
               style="width: 100%; padding-top: 2vh;"
@@ -138,7 +180,7 @@
             >
               <h3 style="margin-right:100%;">Experience</h3>
             </div>
-            
+
             <div
               class="w3-container w3-white"
               style="width: 100%; padding-top: 2vh;"
@@ -162,6 +204,12 @@ import profileService from "../service/profileservice";
 
 export default {
   name: "Profile",
+      data: () => ({
+      icons: ['mdi-rewind', 'mdi-play', 'mdi-fast-forward'],
+      transparent: 'rgba(255, 255, 255, 0)',
+      text:'Upload',
+      }),
+
   methods: {
     add() {
       this.$store.dispatch("set");
@@ -206,17 +254,32 @@ export default {
   created() {
     this.getinfoma();
 
-      let usertitle = this.$store.getters.getusername
-      if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
-      else this.$emit("setTitle", this.$options.name);
-    },
-    
+    let usertitle = this.$store.getters.getusername;
+    if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
+    else this.$emit("setTitle", this.$options.name);
+  },
 };
 </script>
 
 <style scoped>
 @import "../styles/profile.css";
+.v-card {
+  transition: opacity 0.4s ease-in-out;
+}
 
+.v-card:not(.on-hover) {
+  opacity: 0.6;
+}
+
+.show-btns {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+#upload_img:hover {
+  background: #ececec;
+  z-index: 3;
+  max-width: 300px;
+}
 .container1 {
   margin: 2%;
   width: 100%;
