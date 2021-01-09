@@ -6,42 +6,46 @@
         <div class="line2"></div>
         <div class="line3"></div>
       </div>
-      
+
       <div class="logo_search">
-        <span id="header_Logo" 
-          ><router-link to="/"><v-img
-            width="70"
-            height="70"
-            src="@/assets/logo2.png"
-          ></v-img></router-link>
-          </span> 
-        
+        <span id="header_Logo"
+          ><router-link to="/"
+            ><v-img width="70" height="70" src="@/assets/logo2.png"></v-img
+          ></router-link>
+        </span>
+
         <div
-        class="Cata"
-        style="position: absolute; width:300px; margin-left:10px; top:30%; z-index: 2; "
-      ><input
-          type="text"
-          placeholder="Search.."
-          name="search"
-          size="40px"
-          style="font: size 30px;height:30px"
+          class="Cata"
+          style="position: absolute; width:300px; margin-left:10px; top:30%; z-index: 2; "
         >
-        <select name="cars" id="cars" style="position:absolute; font-size:16px; height: 30px;">
-          <option value="test1">All</option>
-          <option value="test2">craft</option>
-          <option value="test3">home</option>
-          <option value="test4">...</option>
-        </select>
-        <div class="search">
-          <i class="fa fa-search"></i>
+          <input
+            type="text"
+            placeholder="Search.."
+            name="search"
+            size="40px"
+            style="font: size 30px;height:30px"
+          />
+          <select
+            name="cars"
+            id="cars"
+            style="position:absolute; font-size:16px; height: 30px;"
+          >
+            <option value="test1">All</option>
+            <option value="test2">craft</option>
+            <option value="test3">home</option>
+            <option value="test4">...</option>
+          </select>
+          <div class="search">
+            <i class="fa fa-search"></i>
+          </div>
         </div>
-        <Clock />
-      </div>
       </div>
 
       <ul class="nav-links">
         <li>
-          <router-link to="/profile">{{ $store.getters.isLoggedIn }}</router-link>
+          <router-link to="/profile">
+            {{ $store.getters.isLoggedIn }}
+          </router-link>
         </li>
         <li>
           <router-link to="/createQuest2">About</router-link>
@@ -49,28 +53,27 @@
         <li>
           <router-link to="/feed">Work</router-link>
         </li>
-        <li class="Switch_M"><a href="#"
-        >Switch to Mobile</a>
+        <li class="Switch_M">
+          <a href="#">Switch to Mobile</a>
         </li>
         <li>
-          <router-link to="/login" v-if="!$store.getters.isLoggedIn"
-            >Login</router-link
-          >
+          <router-link to="/login" v-if="!$store.getters.isLoggedIn">
+            Login
+          </router-link>
           <a v-else @click="$emit('logout')">logout</a>
         </li>
-       
       </ul>
     </nav>
   </div>
 </template>
 
 <script>
-import Clock from "@/helpers/clock";
+// import Clock from "@/helpers/clock";
 
 export default {
   name: "Navbar",
   components: {
-    Clock,
+    // Clock,
   },
   data() {
     return {
@@ -82,10 +85,10 @@ export default {
 
 <style scoped>
 @import "../../styles/nav.css";
-#header_Logo{
+#header_Logo {
   float: left;
-  margin-left:30px;
-  margin-top:10px
+  margin-left: 30px;
+  margin-top: 10px;
 }
 * {
   margin: 0;
@@ -125,7 +128,7 @@ nav {
   /* background-color: #f7efea; */
   background-color: #fd9047;
   height: 10vh;
-  justify-content:left;
+  justify-content: left;
   margin-right: auto;
   align-items: left;
 }
@@ -170,14 +173,13 @@ nav {
   }
 }
 
-
 .search {
   color: black;
   cursor: pointer;
   font: size 30px;
   position: absolute;
-  float:rigth;
-  margin-left:90% ;
+  float: rigth;
+  margin-left: 90%;
   top: 3.14%;
   width: 25px;
   align-items: center;
