@@ -51,7 +51,10 @@
         </div>
         <div class="card2-aboutself">
           <div class="w3-card w3-margin">
-            <div class="w3-container w3-padding" style="background-color: #ececec;" >
+            <div
+              class="w3-container w3-padding"
+              style="background-color: #ececec;"
+            >
               <h3 style="margin-right:100%;">Introduce</h3>
             </div>
             <div class="w3-container w3-white" style="width: 100%; padding-top: 2vh;">
@@ -61,40 +64,36 @@
             </div>
           </div>
         </div>
-    
 
         <div class="card2-education">
           <div class="w3-card w3-margin">
-            <div class="w3-container w3-padding" style="background-color: #ececec;" >
+            <div
+              class="w3-container w3-padding"
+              style="background-color: #ececec;"
+            >
               <h3 style="margin-right:100%;">Education</h3>
             </div>
-            <div class="w3-container w3-white" style="width: 100%; padding-top: 2vh;">
-              <div style="text-align: left; list-style: none; padding-bottom: 2%;" >
-              <h4><b>Oxford-University</b></h4>
-              <h5><span class="w3-opacity"> Jan 2000 - Feb 2001</span></h5>
-              <li>
-                Department of mathematic 
-              </li>
-              <h4><b>Cambridge-University</b></h4>
-              <h5><span class="w3-opacity"> Jan 2002 - Feb 2003</span></h5>
-              <li>
-                Department of science
-              </li>
-            </div> 
+            
+            <div
+              class="w3-container w3-white"
+              style="width: 100%; padding-top: 2vh;"
+            >
+              <div
+                style="text-align: left; list-style: none; padding-bottom: 2%;"
+              >
+                <h4><b>Oxford-University</b></h4>
+                <h5><span class="w3-opacity"> Jan 2000 - Feb 2001</span></h5>
+                <li>Department of mathematic</li>
+                
+                <h4><b>Cambridge-University</b></h4>
+                <h5><span class="w3-opacity"> Jan 2002 - Feb 2003</span></h5>
+                <li>Department of science</li>
+              </div>
             </div>
           </div>
         </div>
-
-
-
-
-
-
       </div>
     </div>
-  
-  <div class="w3-col m4 w3-center">
-    <div class="container3">
 
       <div class="card3-skill">
         <div class="w3-card w3-margin">
@@ -148,34 +147,36 @@
       
       </div>
 
-      <div class="card3-experience">
-        <div class="w3-card w3-margin">
-          <div class="w3-container w3-padding" style="background-color: #ececec;" >
-            <h3 style="margin-right:100%;">Experience</h3>
-          </div>
-          <div class="w3-container w3-white" style="width: 100%; padding-top: 2vh;">
-            <div style="text-align: left; list-style: none; padding-bottom: 2%;" >
-              Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
-              tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla
-          </div> 
+        <div class="card3-experience">
+          <div class="w3-card w3-margin">
+            <div
+              class="w3-container w3-padding"
+              style="background-color: #ececec;"
+            >
+              <h3 style="margin-right:100%;">Experience</h3>
+            </div>
+            
+            <div
+              class="w3-container w3-white"
+              style="width: 100%; padding-top: 2vh;"
+            >
+              <div
+                style="text-align: left; list-style: none; padding-bottom: 2%;"
+              >
+                {{ profile }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-
-
-    </div>
-    
-  </div>
-
-</div>
+ 
 </v-app>
 </template>
 
 <script>
-import questService from '../service/Queastservice'
-// eslint-disable-next-line no-unused-vars
-import profileService from '../service/profileservice'
+import questService from "../service/Queastservice";
+import profileService from "../service/profileservice";
+
 export default {
     
     mounted: function mounted () {
@@ -197,69 +198,61 @@ export default {
             }
         }
     },
-    methods:{
-        add (){
-            this.$store.dispatch('set')
-        },
-        sendim:async function(){
-            
-            if (this.files) {
-                alert("inn")
-                let formData = new FormData();
+    sendim: async function() {
+      if (this.files) {
+        alert("inn");
+        let formData = new FormData();
 
-                // files
-                
-                formData.append("image", this.files);
-                
+        // files
+        formData.append("image", this.files);
 
-                // additional data
-                formData.append("questname", "foo bar");
+        let suc = await questService.createquest(formData).then((res) => {
+          return res;
+        });
+        console.log("logsuc" + suc);
 
-                let suc = await questService.createquest(formData).then((res)=>{return res})
-                console.log("logsuc"+suc)
-                
-                if(suc){
-                    this.$router.push({path:'/login'})
-                }
-                else{
-                    alert("fail")
-                }
-            } else {
-                console.log("there are no files.");
-            }
-        },
-        onFileChange() {
-            if(this.files!=null){
-                const file = this.files
-                console.log(file)
-                this.ch=true
-                this.url = URL.createObjectURL(file);
-            }
-        },
-        chooseFiles() {
-            document.getElementById("fileUpload").click()
-        },
-        getinfoma:async function(){
-            console.log("gett")
-            let re = await profileService.getprofile().then((res)=>{return res})
-            console.log("dadsaaaaaaa"+re)
-            this.profile=re.infoma
-            console.log(this.profile)    
-        },
-        addskill:async function(){
-          let newskill=this.newd.skill
-          console.log('add '+newskill)
-          let re = await profileService.addskill(newskill,1).then((res)=>{return res})
-          if(re.suc){
-            this.profile.skills.push(newskill)
-            console.log('add '+this.profile.skills)  
-          } 
-        }
-    }
+        if (suc) this.$router.push({ path: "/login" });
+        else alert("fail");
+      } else console.log("there are no files.");
+    },
+    onFileChange() {
+      if (this.files != null) {
+        const file = this.files;
+        console.log(file);
+        this.url = URL.createObjectURL(file);
+      }
+    },
+    chooseFiles() {
+      document.getElementById("fileUpload").click();
+    },
+    getinfoma: async function() {
+      console.log("gett");
+      let re = await profileService.getprofile().then((res) => {
+        return res;
+      });
+      console.log("dadsaaaaaaa" + re);
+      this.profile = re;
+      console.log(re.infoma);
+    },
+  
+    created() {
+      this.getinfoma();
 
-
+      let usertitle = this.$store.getters.getusername
+      if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
+      else this.$emit("setTitle", this.$options.name);
+    },
+    data() {
+      return {
+        count: this.$store.getters.getcount,
+        files: null,
+        url: null,
+        profile: "",
+      };
+    },
 };
 </script>
+
 <style scoped>
 @import "../styles/profile.css";
 </style>

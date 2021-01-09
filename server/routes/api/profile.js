@@ -35,7 +35,7 @@ router.get('/',passport.authenticate('pass',{
 }),(req,res)=>{
     console.log('getprofile')
   
-    res.send({success:true,user:req.user.infoma})
+    res.send({success:true,user:req.user})
   
 
        

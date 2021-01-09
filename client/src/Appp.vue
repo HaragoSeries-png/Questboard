@@ -1,25 +1,15 @@
 <template>
-<v-app>
-  <div id="app">
-    <Navbar @logout="logout" />
-    <router-view></router-view>
-    
-
-
-
-
-  </div>
-</v-app>
+  <v-app>
+    <div id="app">
+      <Navbar @logout="logout" />
+      <router-view id="router" @setTitle="setPageTitle"></router-view>
+    </div>
+  </v-app>
 </template>
 
 <script src="script.js"></script>
 <script>
-// import home from './components/home.vue'
-// import hello from './components/HelloWorld.vue'
-// import VueRouter from 'vue-router'
-// import Vue from 'vue'
 import authService from "@/service/Authservice";
-
 import Navbar from "@/components/layout/navbar";
 
 export default {
@@ -27,12 +17,6 @@ export default {
   components: {
     Navbar,
   },
-  data() {
-    return {
-      islogon: this.$store.getters.isLoggedIn,
-    };
-  },
-
   methods: {
     navSlide: () => {
       const burger = document.querySelector(".burger");
@@ -51,14 +35,25 @@ export default {
         burger.classList.toggle("toggle");
       });
     },
+
     logout() {
       authService.logout();
       this.$store.dispatch("deluser");
       this.$router.push({ path: "/login" });
     },
-    Polar() {
-      console.log("Can Pass");
+
+    setPageTitle(title) {
+      if (title) document.title = title + " | " + this.$store.getters.getTitle;
+      else document.title = this.$store.getters.getTitle;
     },
+  },
+  created() {
+    this.setPageTitle()
+  },
+  data() {
+    return {
+      islogon: this.$store.getters.isLoggedIn,
+    };
   },
 };
 </script>
