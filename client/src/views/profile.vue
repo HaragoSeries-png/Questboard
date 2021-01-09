@@ -145,30 +145,7 @@
               style="width: 100%; padding-top: 2vh;"
             >
               <p style="text-align: left; padding-top: 2%;">
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Talkative</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Sex</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Double</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Need to limit for information </b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Talkative</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Sex</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Double</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Need to limit for information </b></on
-                >
+                
                 <on class="w3-button w3-padding-small w3-blue w3-border">
                   <span style="font-size: 20px;" class="glyphicon"
                     >&#xe081;</span
@@ -269,6 +246,12 @@ export default {
 
 <style scoped>
 @import "../styles/profile.css";
+</style>
+<style scoped>
+
+.v-text-field{
+  width: 450px;
+} 
 .v-card {
   transition: opacity 0.4s ease-in-out;
 }
