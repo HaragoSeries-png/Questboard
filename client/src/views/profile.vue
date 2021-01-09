@@ -19,15 +19,22 @@
                 @click="chooseFiles"
                 id="upload_img"
               >
-                <v-btn :class="{ 'show-btns': hover }" :color="transparent">
-                  <div
-                    :class="{ 'show-btns': hover }"
+                <div class="align-self-center">
+                  <v-btn
+                    :class="{ 'show-btns': hover }" 
                     :color="transparent"
-                    id="t_img"
+                    icon
+                    style="margin-top : 45%"
                   >
-                    {{ text }}
-                  </div>
-                </v-btn>
+                    <v-icon
+                      :class="{ 'show-btns': hover }"
+                      :color="transparent"
+                    >
+                      mdi-upload
+                    </v-icon>
+                 <span id="text_upload">{{text}}</span>
+                  </v-btn>
+                </div>
               </v-img>
             </v-card>
           </v-hover>
@@ -179,14 +186,16 @@ import questService from "../service/Queastservice";
 import profileService from "../service/profileservice";
 export default {
   name: "Profile",
-  data: () => ({
-    icons: ["mdi-rewind", "mdi-play", "mdi-fast-forward"],
+  data() {
+    return {
     transparent: "rgba(255, 255, 255, 0)",
-    text: "Upload",
     files: null,
     url: "",
     profile: "",
-  }),
+    text : 'Upload',
+    }
+  },
+
   methods: {
     add() {
       this.$store.dispatch("set");
@@ -248,7 +257,7 @@ export default {
   opacity: 0.6;
 }
 .show-btns {
-  color: rgba(255, 255, 255, 1) !important;
+  color: black !important;
 }
 #upload_img:hover {
   background: #ececec;
@@ -300,6 +309,10 @@ img {
   width: 100%;
   height: 20vh;
   margin-top: 10%;
+}
+#text_upload{
+  font-size: 20px;
+  
 }
 .card2-education {
   margin-top: 10%;

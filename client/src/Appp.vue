@@ -3,15 +3,14 @@
     <v-app>
       <v-simple-table>
         <tr>
-          <Navbar @keydown.esc="setNavbarSide" @setNavbarSide="setNavbarSide" @logout="logout" />
+          <Navbar @setNavbarSide="setNavbarSide" @logout="logout" />
         </tr>
         <tr>
-          <th v-if="showNavBarSide" style="width: 5%">
+          <th v-if="showNavBarSide" style="width: 12.2%">
             <NavbarSide />
           </th>
           <th>
             <div class="component" style="width: auto">
-              appear-active-class=""
               <router-view @setTitle="setPageTitle"></router-view>
             </div>
           </th>
@@ -29,13 +28,9 @@ import NavbarSide from "@/components/layout/navbar-side";
 
 export default {
   name: "App",
-  components: {
-    Navbar,
-    NavbarSide,
-  },
+  components: { Navbar, NavbarSide },
   methods: {
     setNavbarSide() {
-      console.log("AAA");
       this.showNavBarSide = !this.showNavBarSide;
     },
 
@@ -90,8 +85,8 @@ table {
 
 .component {
   margin: 1%;
-  border-width: 1px;
-  border-color: black;
-  border-style: dashed;
+  margin-top: 4%;
+  /* border: 1px solid black;
+  border-style: dashed; */
 }
 </style>
