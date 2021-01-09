@@ -1,7 +1,7 @@
 <template>
 
-  <div>
-    <v-container style=" width:60%; border:1px solid black; margin-top:5%; height:100%;" >
+  <div id="main">
+    <v-container style=" width:60%; border:1px solid black; height:100%;" >
         <!-- <div class="main"> -->
 
       <v-row>
@@ -109,53 +109,12 @@
         </v-col>
 
     
-            <!-- <tr>
-              <span id="q1"> Quest name : </span>
-              <td>
-                <v-text-field
-                style="margin-bottom:5%;"
-                    id="iq"
-                  :rules="rules"
-                  counter="25"
-                  hint="Baby sister,Tutor "
-                  label="Quest"
-                ></v-text-field>
-              </td>
-              
-            </tr>
-            <tr>
-              <span id="c1"> Category : </span>
-              <td>
-                <v-select :items="items" id="ic" label="Default" style="margin-bottom:5%;" dense></v-select>
-              </td>
-            </tr>
-            <tr>
-              <span id="d1">Details :</span>
-              <td>
-                <v-textarea
-                  v-model="title"
-                  label="More information about quest"
-                  counter
-                  maxlength="120"
-                  full-width
-                  single-line
-                  filled
-                  id="id"
-                ></v-textarea>
-              </td>
-            </tr>
-          
-             <center><v-btn id="btn"
-              x-large
-              color="success"
-            >
-              Create
-              </v-btn></center> -->
+            
             
         
         
       </v-row>
-      <!-- </div> -->
+   
     </v-container>
         <center><div id="foot">Quest Board</div></center>
   </div>
@@ -204,15 +163,16 @@ td {
   height: 50px;
   font: 20px;
 }
-.section2{
-    margin-top: 10%;
-}
+
 .v-textarea {
   width: 400px;
   height:200px
 }
 .v-text-field input {
   font-size: 80px;
+}
+#main{
+  margin-top: -43%;
 }
 #reward {
   margin-bottom: 20px;
@@ -224,7 +184,7 @@ td {
 }
 .main{
     width: 100%;
-    align-content: center;
+    align-content:  center;
     border-left: 1px solid black;
     border-right: 1px solid black;
 }

@@ -50,6 +50,7 @@ export default {
 <style scoped>
     
 .loginfrom{
+    margin-top:4%;
     width: 320px;
     height: 420px;
     background:#000;

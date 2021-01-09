@@ -69,7 +69,10 @@ background-size: cover;
 font-family: sans-serif;
 }
 .register_from{
-    width: 420px;
+    margin-top: 3%;
+   
+    justify-items: center;
+     width: 400px;
     height: min-content;
     background:#000;
     color: #fff;
