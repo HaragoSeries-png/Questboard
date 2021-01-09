@@ -1,10 +1,10 @@
 <template>
   <div id="clock" class="clock">
-      <slot name="header"></slot>
-      <slot></slot>{{ time }}
-      <slot name="footer"></slot>
-      <!-- Default -->
-      <!-- <slot><span style="font-size: 20px">Default Time : </span></slot>{{ time }} -->
+    <slot name="header"></slot>
+    <slot></slot>{{ time }}
+    <slot name="footer"></slot>
+    <!-- Default -->
+    <!-- <slot><span style="font-size: 20px">Default Time : </span></slot>{{ time }} -->
   </div>
 </template>
 

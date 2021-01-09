@@ -35,7 +35,7 @@ router.get('/',passport.authenticate('pass',{
 }),(req,res)=>{
     console.log('getprofile')
   
-    res.send({success:true,user:req.user.infoma})
+    res.send({success:true,user:req.user})
   
 
        
@@ -51,10 +51,7 @@ router.put('/',upload.single('image'),passport.authenticate('pass',{
         if(err){
             res.send({success:false})
         }
-        else{
-            res.send({success:true})
-        }       
-    })    
+    })
 })
 
 module.exports = router;

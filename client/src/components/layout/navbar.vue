@@ -1,4 +1,5 @@
 <template>
+
   <v-app id="inspire">
      <v-navigation-drawer 
      v-model="drawer" app   >
@@ -73,8 +74,7 @@
           { title: 'Sign up', icon: 'mdi-book-account',to:'/signup' },
         ],
         right: null,
-       }),
-  }
+       }),}
 </script>
 <style scoped>
 @import '../../styles/nav.css';
@@ -91,6 +91,7 @@
 .ic:hover{
   background-color: gray;
 }
+
 
 </style>
 
