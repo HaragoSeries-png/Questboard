@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <v-container style=" width:60%; border:1px solid black; height:100%;" >
+    <v-container style=" width:60%; border:1px solid black; height:100%; margin-top:-40%;" >
         <!-- <div class="main"> -->
 
   <div id="questcreate">
@@ -139,6 +139,7 @@ export default {
 </script>
 
 <style scoped>
+
 .pictureQuest img {
   width: 400px;
   height: 200px;

@@ -1,5 +1,5 @@
 <template>
-  <div id="Home" class="content-warpper">
+  <div id="home" class="banner">
     <img alt="Banner" style="max-width: 80%; height: auto;" src="@/assets/landing-demo.jpg" />
   </div>
 </template>
@@ -14,11 +14,10 @@ export default {
 </script>
 
 <style>
-.content-warpper {
+.banner {
   margin: 1%;
   padding: 10px;
-  border-width: 1px;
-  border-color: black;
+  padding-top: 0px;
   text-align: center;
 }
 </style>

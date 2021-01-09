@@ -1,39 +1,33 @@
 <template>
   <div id="navbar-side">
-    <v-app>
-      <v-navigation-drawer app>
-        <v-list-item>
+    <v-navigation-drawer app>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title>
+            <span style="font-size:20px;font-weight: bold;">Quest Board</span>
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            <span style="font-size:15px">project</span>
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense nav>
+        <v-list-item v-for="item in items" :key="item.title" link :to="item.to">
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
           <v-list-item-content>
-            <v-list-item-title>
-              <span style="font-size:20px;font-weight: bold;">Quest Board</span>
-            </v-list-item-title>
-            <v-list-item-subtitle>
-              <span style="font-size:15px">project</span>
-            </v-list-item-subtitle>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-
-        <v-divider></v-divider>
-
-        <v-list dense nav>
-          <v-list-item
-            v-for="item in items"
-            :key="item.title"
-            link
-            :to="item.to"
-          >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <router-link to="/profile">Profile</router-link>
-      </v-navigation-drawer>
-    </v-app>
+      </v-list>
+      <router-link to="/profile">Profile</router-link>
+      <router-link to="/feed">Feed</router-link>
+    </v-navigation-drawer>
   </div>
 </template>
 

@@ -1,18 +1,23 @@
 <template>
   <div id="app">
-    <table>
-      <tr>
-        <Navbar @setNavbarSide="setNavbarSide" @logout="logout" />
-      </tr>
-      <tr>
-        <th v-if="showNavBarSide">
-          <NavbarSide />
-        </th>
-        <th style="width: auto">
-          <router-view @setTitle="setPageTitle"></router-view>
-        </th>
-      </tr>
-    </table>
+    <v-app>
+      <v-simple-table>
+        <tr>
+          <Navbar @keydown.esc="setNavbarSide" @setNavbarSide="setNavbarSide" @logout="logout" />
+        </tr>
+        <tr>
+          <th v-if="showNavBarSide" style="width: 5%">
+            <NavbarSide />
+          </th>
+          <th>
+            <div class="component" style="width: auto">
+              appear-active-class=""
+              <router-view @setTitle="setPageTitle"></router-view>
+            </div>
+          </th>
+        </tr>
+      </v-simple-table>
+    </v-app>
   </div>
 </template>
 
@@ -81,5 +86,12 @@ export default {
 table {
   border-collapse: collapse;
   width: 100%;
+}
+
+.component {
+  margin: 1%;
+  border-width: 1px;
+  border-color: black;
+  border-style: dashed;
 }
 </style>
