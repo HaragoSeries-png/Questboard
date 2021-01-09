@@ -3,6 +3,11 @@
   <div id="app">
     <Navbar @logout="logout" />
     <router-view></router-view>
+    
+
+
+
+
   </div>
 </v-app>
 </template>
