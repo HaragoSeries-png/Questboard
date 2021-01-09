@@ -15,8 +15,8 @@ const routes = [
     { path: '/login', component: login },
     { path: '/profile', component: profile },
     { path: '/signup', component: signup },
-    { path:'/feed',component:questfeed},
-    {path: '/createQuest2',component:createQuest2}
+    { path: '/feed', component: questfeed },
+    { path: '/createQuest2', component: createQuest2 }
 ]
 const router = new VueRouter({ mode: 'history', routes })
 

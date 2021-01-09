@@ -2,7 +2,7 @@
   <v-app>
     <div id="app">
       <Navbar @logout="logout" />
-      <router-view id="router" @setTitle="setPageTitle"></router-view>
+      <router-view @setTitle="setPageTitle"></router-view>
     </div>
   </v-app>
 </template>
@@ -48,7 +48,7 @@ export default {
     },
   },
   created() {
-    this.setPageTitle()
+    this.setPageTitle();
   },
   data() {
     return {

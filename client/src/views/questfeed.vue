@@ -61,7 +61,9 @@ export default {
         // additional data
         formData.append("questname", "foo bar");
 
-        let suc = await questService.createquest(formData).then((res) => { return res; });
+        let suc = await questService.createquest(formData).then((res) => {
+          return res;
+        });
         console.log("logsuc" + suc);
 
         if (suc) this.$router.push({ path: "/login" });
