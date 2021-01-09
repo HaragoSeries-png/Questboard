@@ -13,7 +13,7 @@ let UserSchema =  new mongoose.Schema({
             con:String,
             val:String
         }],
-        skill:[],
+        skills:[],
         education:[{
             banch:String,
             date:Date
