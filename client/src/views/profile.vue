@@ -1,6 +1,6 @@
 <template>
-<v-app>
-<div>
+
+<div style="margin-top:-40%">
   <div class="w3-col m4  w3-center">
 
     <div class="container1">
@@ -87,7 +87,8 @@
       </div>
     </div>
 
-      <div class="card3-skill">
+  <div class="card3-skill">
+      
         <div class="w3-card w3-margin">
           <div class="w3-container w3-padding" style="background-color: #ececec;">
             <h3 style="margin-right:100%;">Skills</h3>
@@ -160,9 +161,9 @@
             </div>
           </div>
         </div>
-      </div>
+</div>
  
-</v-app>
+
 </template>
 
 <script>
@@ -242,9 +243,7 @@ export default {
 @import "../styles/profile.css";
 </style>
 <style scoped>
-.v-btn{
-  mt:30px
-}
+
 .v-text-field{
   width: 450px;
  
