@@ -1,5 +1,5 @@
 <template>
-  <div id="profile">
+  <div id="profile" style="margin-top:-40%">
     <div class="w3-col m4  w3-center">
       <div class="container1">
         <div class="card1-pic">
