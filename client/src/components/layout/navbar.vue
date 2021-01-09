@@ -72,6 +72,7 @@
           { title: 'Contact', icon: 'mdi-android-messages',to:'/contact' },
           { title: 'Sign in', icon: 'mdi-login',to:'/login' },
           { title: 'Sign up', icon: 'mdi-book-account',to:'/signup' },
+          { title: 'createQuest', icon: 'mdi-book-account',to:'/createQuest2' }
         ],
         right: null,
        }),}
