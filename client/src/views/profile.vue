@@ -1,28 +1,54 @@
 <template>
-  <div id="profile">
-    <div class="w3-col m4  w3-center">
-      <div class="container1">
-        <div class="card1-pic">
-          <img
-            src="https://i.pinimg.com/474x/02/6a/cc/026acca08fb7beea6bd4ecd430e312bd.jpg"
-            @click="getinfoma"
-          />
-        </div>
+<v-app>
+<div>
+  <div class="w3-col m4  w3-center">
 
-        <div class="rate">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-        </div>
+    <div class="container1">
+      <v-container>
+        
+
+        
+         
+            <v-img  class="rounded-circle mx-auto mt-6" :aspect-ratio="1/1" max-width= 300 src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif" v-if="!ch" @click="chooseFiles" ></v-img>
+            <v-img class="rounded-circle mx-auto mt-6" :aspect-ratio="1/1" max-width= 300   v-if="url" :src="url" @click="chooseFiles" ></v-img>
+            <!-- <v-img
+          max-height="200"
+          max-width="200"
+          src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif"
+          @click="chooseFiles()"
+      >hee</v-img> -->
+            <div style="display: none;">
+                    <v-file-input
+                      truncate-length="15"
+                      label="image"
+                      width="50%"
+                      v-model="files"
+                      @change="onFileChange"
+                      id="fileUpload"
+                      ></v-file-input> 
+                  </div>
+           
+         
+        
+      </v-container>
+      
+      <div class="rate">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
       </div>
     </div>
 
-    <div class="w3-col m4  w3-center">
-      <div class="container2">
-        <div class="card2-name">{{ temp }}</div>
-        
+  </div>
+
+
+  <div class="w3-col m4  w3-center">
+    <div class="container2">
+        <div class="card2-name">
+            
+        </div>
         <div class="card2-aboutself">
           <div class="w3-card w3-margin">
             <div
@@ -31,21 +57,10 @@
             >
               <h3 style="margin-right:100%;">Introduce</h3>
             </div>
-
-            <div
-              class="w3-container w3-white"
-              style="width: 100%; padding-top: 2vh;"
-            >
-              <div
-                style="text-align: left; list-style: none; padding-bottom: 2%;"
-              >
-                Mauris neque quam, fermentum ut nisl vitae, convallis maximus
-                nisl. Sed mattis nunc id lorem euismod placerat. Vivamus
-                porttitor magna enim, ac accumsan tortor cursus at. Phasellus
-                sed ultricies mi non congue ullam corper. Praesent tincidunt sed
-                tellus ut rutrum. Sed vitae justo condimentum, porta lectus
-                vitae, ultricies congue gravida diam non fringilla
-              </div>
+            <div class="w3-container w3-white" style="width: 100%; padding-top: 2vh;">
+              <div style="text-align: left; list-style: none; padding-bottom: 2%;" >
+               {{profile.intro}}
+            </div> 
             </div>
           </div>
         </div>
@@ -80,55 +95,57 @@
       </div>
     </div>
 
-    <div class="w3-col m4 w3-center">
-      <div class="container3">
-        <div class="card3-skill">
-          <div class="w3-card w3-margin">
-            <div
-              class="w3-container w3-padding"
-              style="background-color: #ececec;"
-            >
-              <h3 style="margin-right:100%;">Skills</h3>
-            </div>
-            
-            <div
-              class="w3-container w3-white"
-              style="width: 100%; padding-top: 2vh;"
-            >
-              <p style="text-align: left; padding-top: 2%;">
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Talkative</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Sex</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Double</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Need to limit for information </b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Talkative</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Sex</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Double</b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border"
-                  ><b>Need to limit for information </b></on
-                >
-                <on class="w3-button w3-padding-small w3-blue w3-border">
-                  <span style="font-size: 20px;" class="glyphicon"
-                    >&#xe081;</span
-                  ></on
-                >
-              </p>
-            </div>
+      <div class="card3-skill">
+        <div class="w3-card w3-margin">
+          <div class="w3-container w3-padding" style="background-color: #ececec;">
+            <h3 style="margin-right:100%;">Skills</h3>
+          </div>
+          <!-- <div v-for="skill in profile.skill" :key="skill">{{skill}}</div> -->
+          <div class="w3-container w3-white" style="width: 100%; padding-top: 2vh;">
+            <p style="text-align: left; padding-top: 2%;">
+
+              <on class="w3-button w3-padding-small w3-blue w3-border"  v-for="skill in profile.skills" :key="skill"><b>{{skill}}</b></on> 
+              <!-- <on class="w3-button w3-padding-small w3-blue w3-border"><b>Talkative</b></on>  
+              <on class="w3-button w3-padding-small w3-blue w3-border"><b>Sex</b></on>
+              <on class="w3-button w3-padding-small w3-blue w3-border"><b>Double</b></on>
+              <on class="w3-button w3-padding-small w3-blue w3-border"><b>Need to limit for information </b></on>  
+              <on class="w3-button w3-padding-small w3-blue w3-border"><b>Talkative</b></on>  
+              <on class="w3-button w3-padding-small w3-blue w3-border"><b>Sex</b></on>
+              <on class="w3-button w3-padding-small w3-blue w3-border"><b>Double</b></on>
+              <on class="w3-button w3-padding-small w3-blue w3-border"><b>Need to limit for information </b></on> 
+              <on class="w3-button w3-padding-small w3-blue w3-border"><span style="font-size: 20px;" class="glyphicon">&#xe081;</span> </on>  -->
+              <v-dialog max-width="600px">
+                <template v-slot:activator="{ on }">
+                  <on class="w3-button w3-padding-small w3-blue w3-border" v-on="on"><span style="font-size: 20px;" class="glyphicon">&#xe081;</span></on>
+                </template>
+                <v-card>
+                  <v-card-title class="headline grey lighten-2" primary-title>Add a New Project</v-card-title>
+                  <v-card-text>
+                   <v-form >
+                     <v-row>
+                       <v-col>
+                          <v-text-field
+                            v-model="newd.skill"
+                            label="add skill"
+                          ></v-text-field>
+                       </v-col>
+                       <v-col>
+                         <v-btn class="mt-4" @click="addskill()">add</v-btn>
+                       </v-col>
+                      
+                    </v-row>
+                    
+                   </v-form> 
+                  </v-card-text>
+                  
+                </v-card>
+              </v-dialog>
+              
+          </p> 
           </div>
         </div>
+      
+      </div>
 
         <div class="card3-experience">
           <div class="w3-card w3-margin">
@@ -152,8 +169,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+ 
+</v-app>
 </template>
 
 <script>
@@ -161,10 +178,25 @@ import questService from "../service/Queastservice";
 import profileService from "../service/profileservice";
 
 export default {
-  name: "Profile",
-  methods: {
-    add() {
-      this.$store.dispatch("set");
+    
+    mounted: function mounted () {
+      this.getinfoma()
+    },
+    data(){
+        return {
+            ch:false,
+            count:this.$store.getters.getcount,
+            files:null,
+            url:null,
+            profile:'',
+            newd:{
+              skill:'',
+              contact:{
+                con:'',
+                val:''
+              }
+            }
+        }
     },
     sendim: async function() {
       if (this.files) {
@@ -202,28 +234,36 @@ export default {
       this.profile = re;
       console.log(re.infoma);
     },
-  },
-  created() {
-    this.getinfoma();
+  
+    created() {
+      this.getinfoma();
 
-    let usertitle = this.$store.getters.getusername
-    if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
-    else this.$emit("setTitle", this.$options.name);
-  },
-  data() {
-    return {
-      count: this.$store.getters.getcount,
-      files: null,
-      url: null,
-      profile: "",
-    };
-  },
+      let usertitle = this.$store.getters.getusername
+      if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
+      else this.$emit("setTitle", this.$options.name);
+    },
+    data() {
+      return {
+        count: this.$store.getters.getcount,
+        files: null,
+        url: null,
+        profile: "",
+      };
+    },
 };
 </script>
 
 <style scoped>
 @import "../styles/profile.css";
-
+</style>
+<style scoped>
+.v-btn{
+  mt:30px
+}
+.v-text-field{
+  width: 450px;
+ 
+}
 .container1 {
   margin: 2%;
   width: 100%;
