@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Navbar">
     <nav>
       <div class="hamburger">
         <div class="line1"></div>
@@ -8,7 +8,7 @@
       </div>
       <div
         class="Cata"
-        style="position: absolute; top:3%; margin-left: 26.9%;z-index: 2; "
+        style="position: absolute; top:3%; margin-left: 26.9%; z-index: 2;"
       >
         <select name="cars" id="cars" style="font-size:16px; height: 30px;;">
           <option value="test1">All</option>
@@ -18,8 +18,8 @@
         </select>
       </div>
       <div class="logo_search">
-        <span id="header_Logo" 
-          >Quest board</span> 
+        <img style="width: 50px; height: 50px" src="@/assets/logo2.png" />
+        <span id="header_Logo">Quest board</span>
         <input
           type="text"
           placeholder="Search.."
@@ -37,14 +37,11 @@
         <li><a href="#">Quest</a></li>
         <li><a href="#">About Us</a></li>
         <li class="Switch_M"><a href="#">Switch to Mobile</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="/login">Login</a></li>
       </ul>
     </nav>
   </div>
 </template>
-
-
-
 
 <script>
 import Clock from "@/helpers/clock";
@@ -54,26 +51,31 @@ export default {
   components: {
     Clock,
   },
+  data() {
+    return {
+      Pic1: "/src/assets/logo2.png",
+    };
+  },
 };
 </script>
 
 <style scoped>
 @import "../../styles/nav.css";
-#header_Logo{
-  color:white;
-  font-weight: bold; 
+
+#header_Logo {
+  color: white;
+  font-weight: bold;
   font-size: 30px;
   font-family: "Redressed", cursive;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 template {
   font-family: "Poppins", sans-serif;
-  
-
   background-attachment: fixed;
   background-size: cover;
 }
@@ -82,6 +84,7 @@ nav {
   height: 10vh;
   background-color: #fd9047;
 }
+
 .nav-links {
   display: flex;
   list-style: none;
@@ -106,16 +109,18 @@ nav {
   margin-right: auto;
   align-items: center;
 }
+
 .nav-links li a {
   font-size: 20px;
   position: relative;
-  
+
   color: white;
   -webkit-text-stroke: 1px white;
   font-weight: 900;
   text-decoration: none;
   line-height: 1.2em;
 }
+
 .nav-links li a:hover {
   color: white;
   -webkit-text-stroke: 1px #000;
@@ -123,6 +128,7 @@ nav {
   animation: a 1s ease;
   animation-iteration-count: 1;
 }
+
 @keyframes a {
   15% {
     transform: translateX(5px);
@@ -157,10 +163,12 @@ nav {
   height: 30px;
   background: rgb(7, 143, 223);
 }
+
 .search:hover {
   background: cornflowerblue;
   color: cornsilk;
 }
+
 .Cata {
   left: 128px;
   position: relative;
@@ -172,6 +180,7 @@ nav {
   margin: -4px;
   border-radius: 15px solid #fff;
 }
+
 input[type="text"] {
   background: #fff;
   width: 200px;

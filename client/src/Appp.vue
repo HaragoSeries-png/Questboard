@@ -1,15 +1,10 @@
 <template>
-<v-app>
-  <div id="app">
-    <Navbar @logout="logout" />
-    <router-view></router-view>
-    
-
-
-
-
-  </div>
-</v-app>
+  <v-app>
+    <div id="app">
+      <Navbar @logout="logout" />
+      <router-view></router-view>
+    </div>
+  </v-app>
 </template>
 
 <script src="script.js"></script>
@@ -32,7 +27,6 @@ export default {
       islogon: this.$store.getters.isLoggedIn,
     };
   },
-
   methods: {
     navSlide: () => {
       const burger = document.querySelector(".burger");
