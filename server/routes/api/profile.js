@@ -55,6 +55,21 @@ router.put('/',upload.single('image'),passport.authenticate('pass',{
             res.send({success:true})
         }       
     })    
+}),
+router.put('/skill',passport.authenticate('pass',{
+    session:false
+}),(req,res)=>{
+    let data= req.body
+    if(data.flag==1){
+        console.log("let add "+data.skill)
+        req.user.infoma.skills.push(data.skill)    
+    }
+    else{
+        console.log("let add "+data.skill)
+        req.user.infoma.skill.pull(data.skill) 
+    }
+    req.user.save()
+    res.send({success:true})
 })
 
 module.exports = router;

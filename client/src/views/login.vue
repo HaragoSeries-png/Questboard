@@ -18,10 +18,10 @@ import authService from '../service/Authservice'
 export default {
     name: 'login',
     data(){
-            return{
-                email:"",
-                password:""
-            }
+        return{
+            email:"",
+            password:""
+        }
     },
     
     methods: {
@@ -35,7 +35,7 @@ export default {
             let re= await authService.login(data).then((res)=>{return res})
            
             if (re.suc){
-                this.$store.dispatch('authen',re)
+                this.$store.dispatch('authen',re)        
                 this.$router.push({path:'/feed'})            
             }
             else{

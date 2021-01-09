@@ -15,9 +15,10 @@ class authService{
         let a = await axios.post(url+'/login',text).then(res=>{return res.data})
         console.log("succ")
         if(a.success){
-            axios.defaults.headers.common['Authorization'] = a.token;
+            
             console.log('axi '+a.token)
-         
+            localStorage.setItem('token',a.token);
+            axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
             return {suc:a.success,name:a.username,infoma:a.infoma,token:a.token}
         }
         else{
