@@ -1,18 +1,26 @@
 <template>
   <div id="app">
     <v-app>
+      <!-- <Navbar @setNavbarSide="setNavbarSide" @logout="logout" />
+      <NavbarSide v-if="showNavBarSide" />
+      <div class="component" style="width: auto">
+        <router-view @setTitle="setPageTitle"></router-view>
+      </div> -->
       <v-simple-table>
         <tr>
           <Navbar @setNavbarSide="setNavbarSide" @logout="logout" />
         </tr>
         <tr>
-          <th v-if="showNavBarSide" style="width: 12.2%">
-            <NavbarSide />
-          </th>
           <th>
-            <div class="component" style="width: auto">
+            <NavbarSide v-if="showNavBarSide"/>
+            <div class="component">
               <router-view @setTitle="setPageTitle"></router-view>
             </div>
+          </th>
+          <th style="width: auto">
+            <!-- <div class="component">
+              <router-view @setTitle="setPageTitle"></router-view>
+            </div> -->
           </th>
         </tr>
       </v-simple-table>
@@ -66,6 +74,9 @@ export default {
   created() {
     this.setPageTitle();
   },
+  updated() {
+    this.showNavbarSide = false;
+  },
   data() {
     return {
       showNavBarSide: false,
@@ -84,9 +95,10 @@ table {
 }
 
 .component {
-  margin: 1%;
+  margin: 2%;
   margin-top: 4%;
-  /* border: 1px solid black;
-  border-style: dashed; */
+  width: auto;
+  border: 1px solid black;
+  border-style: dashed;
 }
 </style>
