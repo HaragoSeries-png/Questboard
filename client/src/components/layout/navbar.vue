@@ -1,21 +1,75 @@
 <template>
   <div id="navbar">
-    <v-app-bar src="../../assets/rough-horn-2146181_1920.jpg" app>
-      <div class="ic" @click="$emit('setNavbarSide')">
-        <i class="fa fa-bars"></i>
-      </div>
-      <v-toolbar-title>
-        <router-link to="/">
-          <img class="logo-banner" src="@/assets/logoBanner.png" />
-        </router-link>
-      </v-toolbar-title>
+    <v-app id="inspire">
+      <v-navigation-drawer v-model="drawer" app
+    
+      
+      >
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Quest Board
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            The serie
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list
+        dense
+        nav
+        app
+
+      >
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar app  
+      src="../../assets/rough-horn-2146181_1920.jpg">
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Some icon</v-toolbar-title>
     </v-app-bar>
+
+    <v-main>
+      <!--  -->
+    </v-main>
+  </v-app>
   </div>
 </template>
 
 <script>
 export default {
   name: "Navbar",
+  data() {
+    return {
+        items: [
+        { title: "Quest", icon: "mdi-view-dashboard", to: "/feed" },
+        { title: "About Us", icon: "mdi-account-group", to: "/aboutus" },
+        { title: "Contact", icon: "mdi-android-messages", to: "/profile" },
+        { title: "Sign in", icon: "mdi-login", to: "/login" },
+        { title: "Sign up", icon: "mdi-book-account", to: "/signup" },
+      ],
+      right:null,
+      drawer :null
+    }
+  },
 };
 </script>
 
