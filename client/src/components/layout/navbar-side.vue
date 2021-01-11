@@ -27,6 +27,7 @@
       </v-list>
       <router-link to="/profile">Profile</router-link>
       <router-link to="/feed">Feed</router-link>
+      <router-link to="/lab">lab</router-link>
     </v-navigation-drawer>
   </div>
 </template>
