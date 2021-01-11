@@ -1,6 +1,6 @@
 <template>
   <div id="navbar-side">
-    <v-navigation-drawer app>
+    <v-navigation-drawer app >
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title>
@@ -13,7 +13,6 @@
       </v-list-item>
 
       <v-divider></v-divider>
-
       <v-list dense nav>
         <v-list-item v-for="item in items" :key="item.title" link :to="item.to">
           <v-list-item-icon>
@@ -24,7 +23,7 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
+      </v-list>   
       <router-link to="/profile">Profile</router-link>
       <router-link to="/feed">Feed</router-link>
       <router-link to="/lab">lab</router-link>
@@ -44,6 +43,7 @@ export default {
         { title: "Sign in", icon: "mdi-login", to: "/login" },
         { title: "Sign up", icon: "mdi-book-account", to: "/signup" },
       ],
+      right:null,
     };
   },
 };
