@@ -13,16 +13,15 @@ class authService {
     static async login(text) {
         let a = await axios.post(url + '/login', text).then(res => { return res.data })
         console.log("succ")
-        if(a.success){
-            
-            console.log('axi '+a.token)
-            localStorage.setItem('token',a.token);
+        if (a.success) {
+            console.log('axi ' + a.token)
+            localStorage.setItem('token', a.token);
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-            return {suc:a.success,name:a.username,infoma:a.infoma,token:a.token}
+            return { suc: a.success, name: a.username, infoma: a.infoma, token: a.token }
         }
-        else{
+        else {
             alert("wrong")
-        }        
+        }
     }
     static async register(text) {
         let a = await axios.post(url + '/signup', text).then(res => { return res.data })
@@ -37,7 +36,7 @@ class authService {
     static async profile() {
         console.log("Profile Search :")
         // let data = await axios.get('http://localhost:5000/api/profile').then((res) => {console.log("RES1 : " + res)})
-        let data = {name: 'Kittisak', lastname: 'Sangkarak'}
+        let data = { name: 'Kittisak', lastname: 'Sangkarak' }
         console.log("data in f " + data)
         return data
     }

@@ -22,16 +22,21 @@ router.post('/signup', async (req, res, next) => {
       }
       else {
         newuser = {
-          email: req.body.email,
           username: req.body.username,
-          lastname: req.body.lastname,
-          password: req.body.password
+          email: req.body.email,
+          password: req.body.password,
+          vertifly: false,
+          joinDate: Date.now(),
+          infoma: {
+            firstname: req.body.firstname,
+            lastname: req.body.lastname
+          }
         }
         console.log(newuser)
         User.create(newuser).then(user => {
           res.json({
             success: true,
-            message: 'Signup sucessful ',
+            message: 'Signup sucessful',
             username: user.username
           })
         })

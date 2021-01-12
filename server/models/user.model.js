@@ -1,54 +1,60 @@
 const mongoose = require('mongoose'),
-        bcrypt = require('bcrypt'),
-passportLocalMongoose = require('passport-local-mongoose');
+    bcrypt = require('bcrypt'),
+    passportLocalMongoose = require('passport-local-mongoose');
 
-
-let UserSchema =  new mongoose.Schema({
-    username : String,
-    lastname:String,
-    email : String,
-    password : String,
-    infoma :{
-        contact:[{
-            con:String,
-            val:String
+let UserSchema = new mongoose.Schema({
+    username: String,
+    password: String,
+    email: String,
+    proimage: String,
+    vertifly: Boolean,
+    joinDate: Date,
+    infoma: {
+        firstname: String,
+        lastname: String,
+        address: String,
+        desc: String,
+        contact: [{
+            con: String,
+            val: String
         }],
-        skills:[],
-        education:[{
-            banch:String,
-            date:Date
+        skills: [{
+            skill: String
         }],
-        intro:String,
-        address:String,
-        proimage:String,
+        education: [{
+            banch: String,
+            date: Date
+        }],
     },
-    
-    quests :[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Quest'
+
+    quests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Quest'
     }]
 })
+
 UserSchema.pre(
     'save',
-    async function(next) {
-      const user = this;
-      const hash = await bcrypt.hash(this.password, 10);
-  
-      this.password = hash;
-      next();
+    async function (next) {
+        const user = this;
+        const hash = await bcrypt.hash(this.password, 10);
+
+        this.password = hash;
+        next();
     }
 );
-UserSchema.methods.isValidPassword = async function(password) {
+
+UserSchema.methods.isValidPassword = async function (password) {
     const user = this;
-   
+
     const compare = await bcrypt.compare(password, user.password);
     console.log(compare)
     return compare;
-}
+};
+
 
 UserSchema.plugin(passportLocalMongoose);
-const User = mongoose.model('User', UserSchema) 
-
+const User = mongoose.model('User', UserSchema)
 
 module.exports = User
 
