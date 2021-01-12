@@ -4,6 +4,7 @@
       <div class="ic" @click="$emit('setNavbarSide')">
         <i class="fa fa-bars"></i>
       </div>
+      
       <v-toolbar-title>
         <router-link to="/">
           <img class="logo-banner" src="@/assets/logoBanner.png" />
