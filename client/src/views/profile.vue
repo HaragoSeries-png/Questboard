@@ -182,7 +182,7 @@
 </template>
 
 <script>
-import questService from "../service/Queastservice";
+import questService from "../service/Questservice";
 import profileService from "../service/profileservice";
 export default {
   name: "Profile",

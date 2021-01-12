@@ -44,7 +44,8 @@ UserSchema.methods.isValidPassword = async function(password) {
     const compare = await bcrypt.compare(password, user.password);
     console.log(compare)
     return compare;
-}
+};
+
 
 UserSchema.plugin(passportLocalMongoose);
 const User = mongoose.model('User', UserSchema) 

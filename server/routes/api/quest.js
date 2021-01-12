@@ -7,7 +7,8 @@ const router = require('./profile');
       require('../../configs/passport'),
       User = require('../../models/user.model');
       multer = require('multer'),
-      bodyParser = require('body-parser')
+      bodyParser = require('body-parser'),
+      dateFormat = require("dateformat");
 
 
 const storage = multer.diskStorage({
@@ -34,7 +35,7 @@ const upload = multer({
 });
 router.get('/feed',function(req,res){
   Quest.find({status:"approved"}).then(quest=>{
-    res.send(quest)
+    res.send({quest:quest,success:true})
   })
 })
 router.post('/',upload.single('image'),passport.authenticate('pass',{
@@ -52,9 +53,10 @@ router.post('/',upload.single('image'),passport.authenticate('pass',{
     location:req.body.location,
     status:"wait",
     image:req.file.filename,
-    date:dateFormat(new Date(), "hh:MM  ddmmm "),
+    date:dateFormat(new Date(), "longDate"),
     duedate:req.body.duedate,
-    numberofcon:req.body.numberofcon
+    numberofcon:req.body.numberofcon,
+    wait:[]
   }
   
   Quest.create(newquest).then((quest,err)=>{
@@ -65,7 +67,68 @@ router.post('/',upload.single('image'),passport.authenticate('pass',{
     req.user.quests.push(quest)
     console.log(req.user.quests)
     req.user.save()
-    return res.send({success:true})
+    return res.send({success:true,questid:quest._id})
   })
 })
+
+router.put('/accept',passport.authenticate('pass',{
+  session:false
+}),function(req,res){
+  console.log(req.body.quest_id)
+  let questid = req.body.quest_id
+  let adventurer = req.user._id
+  Quest.findById(questid).then(quest=>{
+    console.log(quest)
+    quest.wait.push(adventurer)
+    quest.save()
+    return res.send(quest)    
+  }) 
+})
+
+router.put('/decide',function(req,res){
+  let questid = req.body.quest_id
+  Quest.findById(questid).then(quest=>{
+    console.log(quest)
+    if(req.body.approve){
+      quest.status = 'approved'
+    }
+    else{
+      quest.status = 'reject'
+    }
+    quest.save()
+    return res.send(quest)    
+  })
+})
+
+router.put('/select',function(req,res){
+  let questid = req.body.quest_id
+  let contid = req.body.user_id   
+  Quest.findById(questid).then(quest=>{
+    console.log(quest)
+    if(req.body.approve){ 
+      quest.wait.pull(contid)
+      quest.contributor.push(contid)
+    }
+    else{
+      quest.wait.pull(contid)
+    }
+    quest.save()
+    return res.send(quest)    
+  })
+})
+router.get('/test',function(req,res){
+  let questid = req.body.quest_id
+  Quest.findById(questid).then(async(quest)=>{
+    let remain = await quest.remain()
+    console.log(remain)
+    return res.send({remain:remain})    
+  })
+})
+router.delete('/',function(req,res){
+  console.log(req.body.quest_id)
+  Quest.findByIdAndDelete(req.body.quest_id).then(quest=>{
+    res.send(quest)
+  })
+})
+
 module.exports = router;

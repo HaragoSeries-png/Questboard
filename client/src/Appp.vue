@@ -2,10 +2,10 @@
   <div id="app">
     <v-app>
       <!-- <Navbar @setNavbarSide="setNavbarSide" @logout="logout" />
-      <NavbarSide v-if="showNavBarSide" />
+      <NavbarSide v-if="showNavBarSide" />-->
       <div class="component" style="width: auto">
         <router-view @setTitle="setPageTitle"></router-view>
-      </div> -->
+      </div> 
      
         <tr>
           <Navbar @setNavbarSide="setNavbarSide" @logout="logout" />
