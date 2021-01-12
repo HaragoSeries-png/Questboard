@@ -3,7 +3,7 @@
     <h1>Register</h1>
 
     <p>Name</p>
-    <input type="text" v-model="username" placeholder="Name" />
+    <input type="text" v-model="firstname" placeholder="Firstname" />
 
     <p>Lastname</p>
     <input type="text" v-model="lastname" placeholder="Lastname" />
@@ -38,7 +38,7 @@ export default {
       }
 
       let data = {
-        username: this.username,
+        firstname: this.firstname,
         lastname: this.lastname,
         email: this.email,
         password: this.password,
@@ -60,7 +60,7 @@ export default {
   },
   data() {
     return {
-      username: "",
+      firstname: "",
       lastname: "",
       email: "",
       password: "",

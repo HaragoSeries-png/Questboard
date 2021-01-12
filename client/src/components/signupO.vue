@@ -3,7 +3,7 @@
         <h1>Register</h1>
         <form>
             <p>Name</p>
-            <input type="text" v-model="username" placeholder="Name">
+            <input type="text" v-model="firstname" placeholder="Name">
             <p>Lastname</p>
             <input type="text" v-model="lastname" placeholder="Lastname">
             <p>E-mail</p>
@@ -25,7 +25,7 @@ export default {
     name:'register',
     data(){
         return {
-            username:"",
+            firstname:"",
             lastname:"",
             email:"",
             password:"",
@@ -36,7 +36,7 @@ export default {
         register:async function(){
             
             let data = {
-                username:this.username,
+                firstname:this.firstname,
                 lastname:this.lastname,
                 email: this.email,
                 password:this.password,
