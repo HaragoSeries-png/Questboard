@@ -20,3 +20,4 @@ https://materialdesignicons.com/
 # History
 09-Jan-21 : 16.25 : เพิ่มหน้า Landing (หน้าเเรก), ตั้ง Title Page, Format Code หน่อยๆ
 12-Jan-21 : 0.41  : ตกแต่งหน้า Nav  Jr.
+12-Jan-21 : 14.10 : แทก img ของ profile Jr.
