@@ -23,3 +23,4 @@ https://materialdesignicons.com/
 + 12-Jan-32 : 16.00 : เเก้ Register
 + 13-Jan-21 : 2.40 : เพิ่ม method ของ quest
 + 13-Jan-21 : 3.08 : เพิ่ม Getquest function, แก้ username -> firstname
++ 14-Jan-21 : 22.08 : [Navbar Fix 2] มีความต่างเมื่อยังไม่ล็อกอิน-ล็อกอินเเล้ว, มีส่วนเเสดงชื่อผู้ใช้, ปุ่ม logout ใน Navbar, ปรบหน้า App.vue ใหม่
