@@ -17,7 +17,7 @@ class authService {
             console.log('axi ' + a.token)
             localStorage.setItem('token', a.token);
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-            return { suc: a.success, name: a.username, infoma: a.infoma, token: a.token }
+            return { suc: a.success, name: a.username, fullname: a.infoma.firstname + " " + a.infoma.lastname , infoma: a.infoma, token: a.token }
         }
         else {
             alert("wrong")

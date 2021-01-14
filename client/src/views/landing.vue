@@ -1,6 +1,9 @@
 <template>
   <div id="home" class="banner">
-    <img alt="Banner" style="max-width: 80%; height: auto;" src="@/assets/landing-demo.jpg" />
+    <img
+      style="max-width: 80%; height: auto;"
+      src="@/assets/landing-demo-2.jpg"
+    />
   </div>
 </template>
 

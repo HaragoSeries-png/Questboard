@@ -4,7 +4,7 @@
     <h1>login</h1>
 
     <div v-if="email"><p>Email</p></div>
-    <input type="email" v-model="email" placeholder="Email" />
+    <input type="text" v-model="email" placeholder="Email" />
 
     <div v-if="password"><p>Password</p></div>
     <input type="password" v-model="password" placeholder="Password" />
@@ -110,6 +110,7 @@ h1 {
   margin-bottom: 20px;
 }
 .loginfrom input[type="email"],
+input[type="text"],
 input[type="password"] {
   border: none;
   border-bottom: 1px solid #fff;
