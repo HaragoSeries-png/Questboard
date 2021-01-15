@@ -3,11 +3,11 @@
     <img class="avatar" :src="profilePic" />
     <h1>login</h1>
 
-    <p>E-mail</p>
-    <input type="email" v-model="email" placeholder="Enter E-mail" />
+    <div v-if="email"><p>Email</p></div>
+    <input type="email" v-model="email" placeholder="Email" />
 
-    <p>Password</p>
-    <input type="password" v-model="password" placeholder="Enter Password" />
+    <div v-if="password"><p>Password</p></div>
+    <input type="password" v-model="password" placeholder="Password" />
 
     <br />
     <button v-on:click="login()">Login</button>
@@ -48,7 +48,6 @@ export default {
     return {
       profilePic:
         "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257_1280.png",
-
       email: "",
       password: "",
     };
@@ -57,21 +56,20 @@ export default {
 </script>
 
 <style scoped>
-    
-.loginfrom{
-    margin-top:4%;
-    width: 320px;
-    height: 420px;
-    background:#000;
-    color: #fff;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    box-sizing: border-box;
-    box-shadow: 8px 8px 50px rgb(36, 35, 34);
-    padding: 70px 30px;
-    border-radius: 10px;
+.loginfrom {
+  margin-top: 4%;
+  width: 320px;
+  height: 420px;
+  background: #000;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 8px 8px 50px rgb(36, 35, 34);
+  padding: 70px 30px;
+  border-radius: 10px;
 }
 .avatar {
   width: 100px;

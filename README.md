@@ -19,5 +19,8 @@ https://materialdesignicons.com/
 
 # History
 09-Jan-21 : 16.25 : เพิ่มหน้า Landing (หน้าเเรก), ตั้ง Title Page, Format Code หน่อยๆ
-12-Jan-21 : 0.41  : ตกแต่งหน้า Nav  Jr.
 12-Jan-21 : 14.10 : แทก img ของ profile Jr.
++ 12-Jan-21 : 0.41  : ตกแต่งหน้า Nav  Jr.
++ 12-Jan-32 : 16.00 : เเก้ Register
++ 13-Jan-21 : 2.40 : เพิ่ม method ของ quest
++ 13-Jan-21 : 3.08 : เพิ่ม Getquest function, แก้ username -> firstname
