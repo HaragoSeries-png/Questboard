@@ -3,12 +3,14 @@
     <div class="w3-col m4  w3-center">
       <div class="container1">
         <v-container>
+          <div id="wtf">
           <v-hover v-slot="{ hover }">
             <v-card
               :elevation="hover ? 12 : 2"
               :class="{ 'on-hover': hover }"
               class="rounded-circle mx-auto mt-6"
               max-width="300"
+              
             >
               <v-img
                 class="rounded-circle mx-auto mt-6"
@@ -22,44 +24,42 @@
                 <div class="align-self-center">
                   <v-btn
                     :class="{ 'show-btns': hover }" 
-                    :color="transparent"
                     icon
-                    style="margin-top : 45%"
+                   style="position : absolute; margin-top:45%;z-index:5;margin-left:-5%"
                   >
                     <v-icon
                       :class="{ 'show-btns': hover }"
-                      :color="transparent"
                     >
                       mdi-upload
                     </v-icon>
                  <span id="text_upload">{{text}}</span>
                   </v-btn>
                 </div>
-              </v-img>
-            </v-card>
-          </v-hover>
-          <v-img
-            class="rounded-circle mx-auto mt-6"
-            :aspect-ratio="1 / 1"
-            max-width="300"
+               <v-img
             v-if="url"
             :src="url"
             @click="chooseFiles"
           ></v-img>
-          
-
+       
           <div style="display: none;">
             <v-file-input
-              label="image"
-              width="50%"
               v-model="files"
               @change="onFileChange"
               id="fileUpload"
             ></v-file-input>
           </div>
+
+
+
+
+              </v-img>
+            </v-card>
+          </v-hover>
+         
+         </div>  
         </v-container>
 
-        <div class="rate">
+        <div class="rate" id="star">
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
@@ -170,7 +170,6 @@
               style="width: 100%; padding-top: 2vh;"
             >
               <div
-                style="text-align: left; list-style: none; padding-bottom: 2%;"
               >
                 {{ profile }}
               </div>
@@ -254,11 +253,12 @@ export default {
 .v-card {
   transition: opacity 0.4s ease-in-out;
 }
-.v-card:not(.on-hover) {
+.v-card:hover {
   opacity: 0.6;
 }
 .show-btns {
   color: black !important;
+  
 }
 #upload_img:hover {
   background: #ececec;
@@ -322,4 +322,48 @@ img {
 .card3-experience {
   margin-top: 20%;
 }
+
+@media screen  and (max-width:2560px){
+#wtf{
+  margin-left:-30%;
+}
+#star{
+  margin-left: 1%;
+}
+
+}
+
+@media screen  and (max-width:1440px){
+#wtf{
+  margin-left:-65%;
+}
+#star{
+  margin-left: -3%;
+}
+
+}
+@media screen  and (max-width:1024px){
+#wtf{
+  margin-left:-67%;
+}
+}
+
+@media screen  and (max-width:768px){
+#wtf .v-card{
+width: 200px;
+}
+#wtf{
+margin-left:-70%;
+}
+}
+
+@media screen  and (max-width:320px){
+#wtf{
+margin-left:0%;
+}
+#wtf .v-card{
+width: 200px;
+}
+}
+
 </style>
