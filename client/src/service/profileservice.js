@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { text } from 'express';
+
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 const url = 'http://localhost:5000/api/profile'
 
@@ -11,7 +11,7 @@ class profileService{
         return {suc:a.success}       
     }
     static async uploadimg(text){
-        text.append("field",image)      
+        text.append("field",text)      
         let a = await axios.put(url,text).then(res=>{return res.data})
         console.log("suc "+a.success)
         return {suc:a.success}     
