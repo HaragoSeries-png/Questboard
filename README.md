@@ -12,6 +12,10 @@ If bug
 front-end   icon
 https://jossef.github.io/material-design-icons-iconfont/
 https://materialdesignicons.com/
+code สี 
+https://fahfahsworld.com/fahfahs-color-code-part1/?fbclid=IwAR0vEzkMUd5NSSZ8S8ejl2WO1FQd84jJ48gheXoMPa7_KX_T0y2Hv23mNAA
+
+
 เอาพวกหน้าต่างๆไว้ใน views
 + Clock.vue (ยังไม่ได้ใช้ทำอะไร)
 
@@ -24,3 +28,7 @@ https://materialdesignicons.com/
 + 12-Jan-32 : 16.00 : เเก้ Register
 + 13-Jan-21 : 2.40 : เพิ่ม method ของ quest
 + 13-Jan-21 : 3.08 : เพิ่ม Getquest function, แก้ username -> firstname
+<<<<<<< HEAD
+=======
++ 14-Jan-21 : 22.08 : [Navbar Fix 2] มีความต่างเมื่อยังไม่ล็อกอิน-ล็อกอินเเล้ว, มีส่วนเเสดงชื่อผู้ใช้, ปุ่ม logout ใน Navbar, ปรบหน้า App.vue ใหม่
+>>>>>>> 3107cbe2dd852e1fe68655ba631f1dd590aeae67

@@ -5,7 +5,7 @@
     <div class="divTable">
       <div class="divTableCell" style="padding-right: 5%">
         <div v-if="firstname"><p>Firstname</p></div>
-        <input type="text" v-model="firstname" placeholder="First Name" />
+        <input type="text" v-model="firstname" placeholder="First Name"  required />
       </div>
       <div class="divTableCell" style="padding-left: 5%">
         <div v-if="lastname"><p>Lastname</p></div>
@@ -103,8 +103,7 @@ body {
   font-family: sans-serif;
 }
 .register_from {
-  margin-top: 3%;
-
+  margin-top: 8%;
   justify-items: center;
   width: 400px;
   height: min-content;

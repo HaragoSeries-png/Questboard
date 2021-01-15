@@ -1,10 +1,11 @@
 <template>
+<v-app>
   <div id="login" class="loginfrom">
     <img class="avatar" :src="profilePic" />
-    <h1>login</h1>
+    <h1>Login</h1>
 
     <div v-if="email"><p>Email</p></div>
-    <input type="email" v-model="email" placeholder="Email" />
+    <input type="text" v-model="email" placeholder="Email" />
 
     <div v-if="password"><p>Password</p></div>
     <input type="password" v-model="password" placeholder="Password" />
@@ -17,6 +18,7 @@
       Not have account yet? <router-link to="/signup"> Sign up</router-link>
     </p>
   </div>
+  </v-app>
 </template>
 
 <script>
@@ -56,8 +58,13 @@ export default {
 </script>
 
 <style scoped>
+#app {
+  background: url('https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
+  no-repeat center center fixed !important;
+  background-size: cover;
+}
 .loginfrom {
-  margin-top: 4%;
+  margin-top: -4%;
   width: 320px;
   height: 420px;
   background: #000;
@@ -70,6 +77,7 @@ export default {
   box-shadow: 8px 8px 50px rgb(36, 35, 34);
   padding: 70px 30px;
   border-radius: 10px;
+  opacity: 0.8;
 }
 .avatar {
   width: 100px;
@@ -110,6 +118,7 @@ h1 {
   margin-bottom: 20px;
 }
 .loginfrom input[type="email"],
+input[type="text"],
 input[type="password"] {
   border: none;
   border-bottom: 1px solid #fff;

@@ -59,7 +59,7 @@
          </div>  
         </v-container>
 
-        <div class="rate">
+        <div class="rate" id="star">
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
@@ -170,7 +170,6 @@
               style="width: 100%; padding-top: 2vh;"
             >
               <div
-                style="text-align: left; list-style: none; padding-bottom: 2%;"
               >
                 {{ profile }}
               </div>
@@ -326,7 +325,10 @@ img {
 
 @media screen  and (max-width:2560px){
 #wtf{
-  margin-left:-38%;
+  margin-left:-30%;
+}
+#star{
+  margin-left: 1%;
 }
 
 }
@@ -335,6 +337,10 @@ img {
 #wtf{
   margin-left:-65%;
 }
+#star{
+  margin-left: -3%;
+}
+
 }
 @media screen  and (max-width:1024px){
 #wtf{

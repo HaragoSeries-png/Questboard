@@ -25,7 +25,7 @@ router.post('/signup', async (req, res, next) => {
           username: req.body.username,
           email: req.body.email,
           password: req.body.password,
-          vertifly: false,
+          verified: false,
           joinDate: Date.now(),
           infoma: {
             firstname: req.body.firstname,
@@ -71,6 +71,7 @@ router.post('/login', async (req, res, next) => {
           token: 'Bearer ' + token,
           success: true,
           username: user.username,
+          fullname: user.infoma.firstname + " " + user.infoma.lastname,
           user: user,
           infoma: user.infoma
         });

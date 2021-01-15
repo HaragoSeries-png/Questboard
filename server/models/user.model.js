@@ -7,7 +7,7 @@ let UserSchema = new mongoose.Schema({
     password: String,
     email: String,
     proimage: String,
-    vertifly: Boolean,
+    verified: Boolean,
     joinDate: Date,
     infoma: {
         firstname: String,
