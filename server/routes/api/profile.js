@@ -34,42 +34,92 @@ router.get('/',passport.authenticate('pass',{
     session:false
 }),(req,res)=>{
     console.log('getprofile')
-  
     res.send({success:true,user:req.user})
-  
-
-       
-
-   
 }),
+
 router.put('/',upload.single('image'),passport.authenticate('pass',{
     session:false
 }),(req,res)=>{
     let newdata = req.body
     console.log("file "+req.file)
-    req.user.updateOne({$set:{infoma:newdata}},function(err){
-        if(err){
-            res.send({success:false})
-        }
-        else{
-            res.send({success:true})
-        }       
-    })    
+    let test = {['infoma.'+newdata.field]:newdata.value}
+    console.log('test'+test.lastname)
+    // req.user.updateOne({$set:test},function(err){
+    //     if(err){
+    //         res.send({success:false,user:req.user})
+    //     }
+    //     else{
+    //         res.send({success:true,user:req.user})
+    //     }       
+    // })    
+    if(newdata.field == 'firstname'){
+        console.log('firstname')
+      req.user.infoma.firstname =   newdata.value  
+    }
+    else if(newdata.field == 'lastname'){
+        console.log('lastname')
+        req.user.infoma.lastname =  newdata.value  
+    }
+    else if(newdata.field == 'address'){
+        console.log('address')
+        req.user.infoma.address =  newdata.value  
+    }
+    else if(newdata.field == 'des'){
+        console.log('des')
+        req.user.infoma.des =  newdata.value  
+    }
+    else if(newdata.field == 'image'){
+        console.log('image')
+        req.user.proimage =  req.file.filename  
+    }
+    console.log(req.user)
+    req.user.save()
+    
+    res.send(req.user)
 }),
-router.put('/skill',passport.authenticate('pass',{
+
+router.put('/list',passport.authenticate('pass',{
     session:false
 }),(req,res)=>{
     let data= req.body
-    if(data.flag==1){
-        console.log("let add "+data.skill)
-        req.user.infoma.skills.push(data.skill)    
+    if(data.field==skill){
+        if(data.flag==1){
+        
+            console.log("let add "+data.value)
+            req.user.infoma.skills.push(data.value)    
+        }
+        else{
+            console.log("let add "+data.skill)
+            req.user.infoma.skill.pull(data.value) 
+        }        
     }
-    else{
-        console.log("let add "+data.skill)
-        req.user.infoma.skill.pull(data.skill) 
+    else if(data.field==contact){
+        if(data.flag==1){
+        
+            console.log("let add "+data.skill)
+            req.user.infoma.contact.push(data.value)    
+        }
+        else{
+            console.log("let add "+data.skill)
+            req.user.infoma.contact.pull(data.value) 
+        }        
     }
+    else if(data.field==education){
+        if(data.flag==1){
+        
+            console.log("let add "+data.skill)
+            req.user.infoma.education.push(data.value)    
+        }
+        else{
+            console.log("let add "+data.skill)
+            req.user.infoma.education.pull(data.value) 
+        }        
+    }
+
+    
     req.user.save()
     res.send({success:true})
 })
+
 
 module.exports = router;
