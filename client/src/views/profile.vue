@@ -15,7 +15,7 @@
                 :aspect-ratio="1 / 1"
                 max-width="300"
                 src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif"
-                v-if="!ch"
+                v-if="!url"
                 @click="chooseFiles"
                 id="upload_img"
               >
@@ -46,6 +46,7 @@
             :src="url"
             @click="chooseFiles"
           ></v-img>
+          
 
           <div style="display: none;">
             <v-file-input

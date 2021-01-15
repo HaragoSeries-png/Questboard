@@ -6,8 +6,7 @@ let UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     email: String,
-    proimage: String,
-    vertifly: Boolean,
+    verify: Boolean,
     joinDate: Date,
     infoma: {
         firstname: String,
@@ -25,8 +24,8 @@ let UserSchema = new mongoose.Schema({
             banch: String,
             date: Date
         }],
+        proimage: String
     },
-
     quests: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Quest'

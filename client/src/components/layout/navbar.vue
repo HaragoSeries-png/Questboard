@@ -1,6 +1,6 @@
 <template>
   <div id="navbar">
-    <v-app>
+    
       <v-navigation-drawer v-model="drawer" app style="background:#f9efe5">
         <v-list-item style="margin-left:17%;">
           <center>
@@ -68,7 +68,7 @@
       <v-main>
         <!--  -->
       </v-main>
-    </v-app>
+   
   </div>
 </template>
 
