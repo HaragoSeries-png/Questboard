@@ -18,8 +18,8 @@ export default {
   name: "App",
   components: { Navbar },
   methods: {
-    logout() {
-      authService.logout();
+    logout:async function() {
+      await authService.logout();      
       this.$store.dispatch("deluser");
       this.$router.push({ path: "/login" });
     },

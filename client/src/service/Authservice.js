@@ -30,8 +30,9 @@ class authService {
     }
     static async logout() {
         await localStorage.removeItem('token');
+        await localStorage.removeItem('islogin');
         delete axios.defaults.headers.common['Authorization'];
-
+        
     }
     static async profile() {
         console.log("Profile Search :")
