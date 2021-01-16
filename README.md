@@ -38,4 +38,4 @@ https://fahfahsworld.com/fahfahs-color-code-part1/?fbclid=IwAR0vEzkMUd5NSSZ8S8ej
 + 14-Jan-21 : 22.08 : [Navbar Fix 2] มีความต่างเมื่อยังไม่ล็อกอิน-ล็อกอินเเล้ว, มีส่วนเเสดงชื่อผู้ใช้, ปุ่ม logout ใน Navbar, ปรบหน้า App.vue ใหม่
 + 15-Jan-21 : 16.47 : add profileservice method , edit profile(backend)
   15-Jan-21 : 21.44 เพิ่ม profile2 -->profile_remodel
-
++ 16-Jan-21 : 14.09 : Questfeed complete 85%(Test required) need to fix responsive

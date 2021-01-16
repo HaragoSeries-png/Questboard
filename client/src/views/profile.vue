@@ -15,12 +15,12 @@
               <v-img
                 class="rounded-circle mx-auto mt-6"
                 :aspect-ratio="1 / 1"
-                max-width="300"
+                
                 src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif"
                 v-if="!url"
                 @click="chooseFiles"
                 id="upload_img"
-              >
+              ></v-img>
                 <div class="align-self-center">
                   <v-btn
                     :class="{ 'show-btns': hover }" 
@@ -36,23 +36,26 @@
                   </v-btn>
                 </div>
                <v-img
-            v-if="url"
-            :src="url"
-            @click="chooseFiles"
-          ></v-img>
+                class="rounded-circle mx-auto mt-6"
+                :aspect-ratio="1 / 1"
+                max-width="300"
+                v-if="u"
+                :src="url"
+                @click="chooseFiles"
+              ></v-img>
        
-          <div style="display: none;">
-            <v-file-input
-              v-model="files"
-              @change="onFileChange"
-              id="fileUpload"
-            ></v-file-input>
-          </div>
+              <div style="display: none;">
+              <v-file-input
+                  v-model="files"
+                  @change="onFileChange"
+                  id="fileUpload"
+              ></v-file-input>
+             </div>
 
 
 
 
-              </v-img>
+              
             </v-card>
           </v-hover>
          
@@ -218,6 +221,7 @@ export default {
       if (this.files != null) {
         const file = this.files;
         console.log(file);
+        this.u = true
         this.url = URL.createObjectURL(file);
       }
     },

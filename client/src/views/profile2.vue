@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <v-container>
+  <div style="margin:20px">
+    
       <v-row>
-        <v-col cols="12" md="4" lg="12">
-         <center>
+        <v-col cols="12" md="4">
+    
             <div class="section1" >
+              <center>
               <div>
                 <v-img
                   class="rounded-circle"
@@ -26,11 +27,13 @@
                 size="30"
                 style="margin-top:7%;"
               ></v-rating>
+              </center>
             </div>
-        </center>
+            
+     
         </v-col>
-
-        <v-col cols="12" md="4" lg="12">
+        
+        <v-col cols="12" md="4">
           <div class="section2">
             <v-card max-width="auto" max-height="auto" outlined>
               <v-list-item>
@@ -118,7 +121,7 @@
           </div>
         </v-col>
 
-        <v-col cols="12" md="4" lg=>
+        <v-col cols="12" md="4">
          <div class="seection3">
              <v-card max-width="auto" max-height="auto" outlined>
               <v-list-item>
@@ -178,18 +181,10 @@
     ></v-textarea>
             </v-card>
 
-
-
-
-
-
-
-
-
          </div>
         </v-col>
       </v-row>
-    </v-container>
+    
   </div>
 </template>
 
