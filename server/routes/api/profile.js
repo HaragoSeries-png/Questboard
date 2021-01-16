@@ -42,8 +42,7 @@ router.put('/',upload.single('image'),passport.authenticate('pass',{
 }),(req,res)=>{
     let newdata = req.body
     console.log("file "+req.file)
-    let test = {['infoma.'+newdata.field]:newdata.value}
-    console.log('test'+test.lastname)
+    
     // req.user.updateOne({$set:test},function(err){
     //     if(err){
     //         res.send({success:false,user:req.user})
