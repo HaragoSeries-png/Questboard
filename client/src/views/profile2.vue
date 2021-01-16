@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" lg="12">
          <center>
             <div class="section1" >
               <div>
@@ -30,7 +30,7 @@
         </center>
         </v-col>
 
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" lg="12">
           <div class="section2">
             <v-card max-width="auto" max-height="auto" outlined>
               <v-list-item>
@@ -118,7 +118,7 @@
           </div>
         </v-col>
 
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" lg=>
          <div class="seection3">
              <v-card max-width="auto" max-height="auto" outlined>
               <v-list-item>
