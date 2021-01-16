@@ -21,7 +21,7 @@
               >
                 <div class="align-self-center">
                   <v-btn
-                    :class="{ 'show-btns': hover }" 
+                    :class="{ 'show-btns': hover }"
                     :color="transparent"
                     icon
                     style="margin-top : 45%"
@@ -32,7 +32,7 @@
                     >
                       mdi-upload
                     </v-icon>
-                 <span id="text_upload">{{text}}</span>
+                    <span id="text_upload">{{ text }}</span>
                   </v-btn>
                 </div>
               </v-img>
@@ -188,12 +188,12 @@ export default {
   name: "Profile",
   data() {
     return {
-    transparent: "rgba(255, 255, 255, 0)",
-    files: null,
-    url: "",
-    profile: "",
-    text : 'Upload',
-    }
+      transparent: "rgba(255, 255, 255, 0)",
+      files: null,
+      url: "",
+      profile: "",
+      text: "Upload",
+    };
   },
 
   methods: {
@@ -310,9 +310,8 @@ img {
   height: 20vh;
   margin-top: 10%;
 }
-#text_upload{
+#text_upload {
   font-size: 20px;
-  
 }
 .card2-education {
   margin-top: 10%;

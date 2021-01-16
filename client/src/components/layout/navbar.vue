@@ -21,7 +21,7 @@
 
       <div id="profileTab" v-if="$store.getters.isLoggedIn">
         <div class="profileInfo">
-          Welcome {{ $store.getters.getfullname }}
+          Welcome {{ username }}
           <br />
           <router-link to="/profile" style="font-size: 12px; color: orange"
             >View your profile</router-link
@@ -52,29 +52,7 @@
         <v-divider></v-divider>
       </div>
 
-      <div id="unlogitems" v-if="$store.getters.isLoggedIn == false">
-        <v-list dense app>
-          <v-list-item
-            v-for="item in unlogitems"
-            :key="item.title"
-            link
-            :to="item.to"
-            v-model="selectedItem"
-            color="#FF598F"
-          >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <div class="titlefont">{{ item.title }}</div>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider></v-divider>
-      </div>
-
-      <div id="loginitems" v-else>
+      <div id="unlogitems" v-if="status">
         <v-list dense app>
           <v-list-item
             v-for="item in logitems"
@@ -99,6 +77,28 @@
             </v-list-item-icon>
             <v-list-item-content>
               <div class="titlefont" style="color: red">Log Out</div>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-divider></v-divider>
+      </div>
+
+      <div id="loginitems" v-else>
+        <v-list dense app>
+          <v-list-item
+            v-for="item in unlogitems"
+            :key="item.title"
+            link
+            :to="item.to"
+            v-model="selectedItem"
+            color="#FF598F"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <div class="titlefont">{{ item.title }}</div>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -132,6 +132,7 @@
           >Quest Board</span
         ></v-toolbar-title
       >
+      {{ $store.getters.isLoggedIn }}
 
       <v-spacer></v-spacer>
     </v-app-bar>
@@ -146,6 +147,10 @@ export default {
       this.$emit("logout");
     },
   },
+  updated() {
+    this.status = this.$store.getters.isLoggedIn
+    this.username = this.$store.getters.getfullname
+  },
   data() {
     return {
       comitems: [
@@ -159,8 +164,9 @@ export default {
         { title: "Sign up", icon: "mdi-book-account", to: "/signup" },
       ],
       logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile" }],
-      right: null,
+      status: this.$store.getters.isLoggedIn,
       drawer: false,
+      username: this.$store.getters.getfullname
     };
   },
 };

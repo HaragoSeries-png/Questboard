@@ -13,13 +13,14 @@
 <script>
 import authService from "@/service/Authservice";
 import Navbar from "@/components/layout/navbar";
+import NotifyBox from "@/components/layout/notifybox";
 
 export default {
   name: "App",
-  components: { Navbar },
+  components: { Navbar, NotifyBox },
   methods: {
-    logout() {
-      authService.logout();
+    logout: async function() {
+      await authService.logout();
       this.$store.dispatch("deluser");
       this.$router.push({ path: "/login" });
     },

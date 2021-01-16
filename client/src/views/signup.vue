@@ -30,17 +30,11 @@
     />
 
     <br /><br />
-    <button v-on:click="register()" class="button1" href="#">Register</button>
+    <button v-on:click="register_check()" class="button1">Register</button>
 
     <br /><br />
     <div class="alertbox">
-      <ul class="p-1" style="color: red; padding-top: 3px">
-        <li>Require Username.</li>
-        <li>Require E-Mail.</li>
-        <li>Require Password.</li>
-        <li>Please confirm you password.</li>
-        <li>This email already use.</li>
-        <li>Password do not match.</li>
+      <ul id="alertField" class="p-1" style="color: red; padding-top: 3px">
       </ul>
     </div>
   </div>
@@ -52,11 +46,21 @@ import authService from "../service/Authservice";
 export default {
   name: "Register",
   methods: {
-    register: async function() {
-      if (this.password != this.conpassword) {
-        return alert("Password do not match");
-      }
+    register_check() {
+      let alertField = document.getElementById('alertField')
+      alertField.innerHTML = "";
 
+      if (!this.firstname) alertField.innerHTML += "<li>Require Firstname.</li>"
+      if (!this.lastname) alertField.innerHTML += "<li>Require Lastname.</li>"
+      if (!this.username) alertField.innerHTML += "<li>Require Username.</li>"
+      if (!this.email) alertField.innerHTML += "<li>Require Email.</li>"
+      if (!this.password) alertField.innerHTML += "<li>Require Password.</li>"
+      else if (!this.conpassword) alertField.innerHTML += "<li>Please confirm your password.</li>"
+      else if (this.password != this.conpassword) alertField.innerHTML += "<li>Password don't match.</li>"
+
+      if (alertField.innerHTML == '') this.register()
+    },
+    register: async function() {
       let data = {
         firstname: this.firstname,
         lastname: this.lastname,
@@ -87,7 +91,7 @@ export default {
       username: "",
       email: "",
       password: "",
-      conpassword: "",
+      conpassword: ""
     };
   },
 };
