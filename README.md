@@ -40,3 +40,4 @@ https://fahfahsworld.com/fahfahs-color-code-part1/?fbclid=IwAR0vEzkMUd5NSSZ8S8ej
   15-Jan-21 : 21.44 เพิ่ม profile2 -->profile_remodel
 + 16-Jan-21 : 14.09 : Questfeed complete 85%(Test required) need to fix responsive
 + 17-Jan-21 : 00.07 : ทำ Profile.vue ให้มี Components เเล้ว, เเก้ไขรูปภาพได้
+  *ถ้าหน้า profile.vue มีปัญหาเเนะนำให้ Copy จาก git มาหมดเลยนะ
