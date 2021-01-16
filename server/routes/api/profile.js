@@ -41,15 +41,7 @@ router.put('/', upload.single('image'), passport.authenticate('pass', {
     session: false
 }), (req, res) => {
     let newdata = req.body
-    console.log(req.file)
-    // req.user.updateOne({$set:test},function(err){
-    //     if(err){
-    //         res.send({success:false,user:req.user})
-    //     }
-    //     else{
-    //         res.send({success:true,user:req.user})
-    //     }       
-    // })    
+    
     if (newdata.field == 'firstname') {
         console.log('firstname')
         req.user.infoma.firstname = newdata.value

@@ -234,6 +234,7 @@ export default {
       if (this.files != null) {
         const file = this.files;
         console.log(file);
+        this.u = true
         this.url = URL.createObjectURL(file);
       }
     },
