@@ -17,6 +17,7 @@ let QuestSchema = new mongoose.Schema({
     date:String,
     image:String,
     duedate:String,
+    virginity:Boolean,
     contributor:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'

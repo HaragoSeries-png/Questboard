@@ -11,7 +11,7 @@
           <div
             style="font-family: 'Pacifico', cursive; font-size: 23px; margin-top: 10%"
           >
-            <span style="right: 50%; text-decoration: overline;"
+            <span style="right: 50%; text-decoration: underline;"
               >Quest Board</span
             >
           </div>
@@ -111,7 +111,7 @@
       app
       color="#fcb69f"
       dark
-      src="../../assets/rough-horn-2146181_1920.jpg"
+      src="../../assets/pexels-stephan-seeber-1054289.jpg"
       full-width
     >
       <!-- backgroud color -->
@@ -174,7 +174,9 @@ export default {
 
 <style scoped>
 @import "../../styles/nav.css";
-
+.titlefont{
+  font-family: 'Fraunces', serif;
+}
 .profileInfo {
   margin-left: 10%;
 }
