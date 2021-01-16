@@ -68,6 +68,15 @@ router.put('/', upload.single('image'), passport.authenticate('pass', {
     res.send(req.user)
 });
 
+router.put('/editPic', upload.single('image'), passport.authenticate('pass', {
+    session: false
+}), (req, res) => {
+    req.user.infoma.proimage = req.file.filename
+    req.user.save()
+
+    res.send(req.user)
+});
+
 router.put('/list', passport.authenticate('pass', {
     session: false
 }), (req, res) => {
