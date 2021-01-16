@@ -21,18 +21,20 @@ export default new Vuex.Store({
     getusername(state) { return state.currentUser },
     getfullname(state) { return state.userfullname },
     getcount(state) { return state.count },
-    getinfoma(state) { return state.userinfoma }
+    getinfoma(state) { return state.userinfoma },
+
+    getAll(state) {return [state.islog, state.currentUser, state.userfullname, state.userinfoma]}
   },
   mutations: {
-    setTitle(state, value) { state.title = value + " | " + state.comptitle },
-
     logon(state, value) {
       console.log(value.fullname)
       localStorage.setItem('fullname', value.fullname)
-      state.currentUser = value.name
       localStorage.setItem('token', value.token);
       localStorage.setItem('islogin', value.suc);
+      
       state.islog = true
+      state.currentUser = value.name
+      state.fullanme = value.fullname
       state.userinfoma = value.infoma
       console.log("logon")
       // if(this.$store.getters.isLoggedIn){
@@ -42,8 +44,13 @@ export default new Vuex.Store({
       // }  
     },
     logout(state, value) {
+      localStorage.setItem('fullname', '')
+
+      state.token = ''
       state.currentUser = value
       state.islog = false
+      state.userfullname = ''
+      state.userinfoma = '' 
     },
     setcount: (state, value) => state.count = value,
   },
