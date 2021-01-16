@@ -14,12 +14,12 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/', component: home },
     { path: '/login', component: login },
-    { path: '/profile', component: profile },
+    { path: '/profile', component: profile2 },
     { path: '/signup', component: signup },
     { path: '/feed', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
-    { path: '/profile2', component: profile2 },
+    { path: '/profile2', component: profile },
 ]
 const router = new VueRouter({ mode: 'history', routes })
 

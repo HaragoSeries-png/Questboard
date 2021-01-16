@@ -4,59 +4,75 @@
       <div class="container1">
         <v-container>
           <div id="wtf">
-          <v-hover v-slot="{ hover }">
-            <v-card
-              :elevation="hover ? 12 : 2"
-              :class="{ 'on-hover': hover }"
-              class="rounded-circle mx-auto mt-6"
-              max-width="300"
-              
-            >
-              <v-img
+            <v-hover v-slot="{ hover }">
+              <v-card
+                :elevation="hover ? 12 : 2"
+                :class="{ 'on-hover': hover }"
                 class="rounded-circle mx-auto mt-6"
-                :aspect-ratio="1 / 1"
                 max-width="300"
-                src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif"
-                v-if="!url"
-                @click="chooseFiles"
-                id="upload_img"
               >
-                <div class="align-self-center">
-                  <v-btn
-                    :class="{ 'show-btns': hover }" 
-                    icon
-                   style="position : absolute; margin-top:45%;z-index:5;margin-left:-5%"
-                  >
-                    <v-icon
+                <v-img
+                  class="rounded-circle mx-auto mt-6"
+                  :aspect-ratio="1 / 1"
+                  max-width="300"
+                  :src="profilePic"
+                  v-if="!url"
+                  @click="chooseFiles"
+                  id="upload_img"
+                >
+                  <div class="align-self-center">
+                    <v-btn
                       :class="{ 'show-btns': hover }"
+                      icon
+                      style="position : absolute; margin-top:45%;z-index:5;margin-left:-5%"
                     >
-                      mdi-upload
-                    </v-icon>
-                    <span id="text_upload">{{ text }}</span>
-                  </v-btn>
+                      <v-icon :class="{ 'show-btns': hover }">
+                        mdi-upload
+                      </v-icon>
+                      <span id="text_upload">{{ text }}</span>
+                    </v-btn>
+                  </div>
+                </v-img>
+                <div class="preview">
+                  <v-img
+                    class="rounded-circle mx-auto mt-6"
+                    :aspect-ratio="1 / 1"
+                    max-width="300"
+                    v-if="url"
+                    :src="url"
+                    @click="chooseFiles"
+                  >
+                    <div class="align-self-center">
+                      <v-btn
+                        :class="{ 'show-btns': hover }"
+                        icon
+                        style="position : absolute; margin-top:45%;z-index:5;margin-left:-5%"
+                      >
+                        <v-icon :class="{ 'show-btns': hover }">
+                          mdi-upload
+                        </v-icon>
+                        <span id="text_upload">Choose other image</span>
+                      </v-btn>
+                    </div>
+                  </v-img>
                 </div>
-               <v-img
-            v-if="url"
-            :src="url"
-            @click="chooseFiles"
-          ></v-img>
-       
-          <div style="display: none;">
-            <v-file-input
-              v-model="files"
-              @change="onFileChange"
-              id="fileUpload"
-            ></v-file-input>
+
+                <div style="display: none;">
+                  <v-file-input
+                    v-model="files"
+                    @change="onFileChange"
+                    id="fileUpload"
+                  ></v-file-input>
+                </div>
+              </v-card>
+            </v-hover>
+            <div style="profileimg" v-if="url">
+              <v-btn :class="{ 'show-btns': hover }" @click="sendim"
+                >Save</v-btn
+              >
+              <v-btn :class="{ 'show-btns': hover }">Cancel</v-btn>
+            </div>
           </div>
-
-
-
-
-              </v-img>
-            </v-card>
-          </v-hover>
-         
-         </div>  
         </v-container>
 
         <div class="rate" id="star">
@@ -169,8 +185,12 @@
               class="w3-container w3-white"
               style="width: 100%; padding-top: 2vh;"
             >
-              <div
-              >
+              <div>
+                A:
+                {{ profile.infoma.proimage }}
+              </div>
+              <div>
+                B:
                 {{ profile }}
               </div>
             </div>
@@ -182,35 +202,31 @@
 </template>
 
 <script>
-import questService from "../service/Questservice";
+// import questService from "../service/Questservice";
 import profileService from "../service/profileservice";
+
 export default {
   name: "Profile",
-  data() {
-    return {
-      transparent: "rgba(255, 255, 255, 0)",
-      files: null,
-      url: "",
-      profile: "",
-      text: "Upload",
-    };
-  },
-
   methods: {
     add() {
       this.$store.dispatch("set");
     },
     sendim: async function() {
       if (this.files) {
-        alert("inn");
         let formData = new FormData();
-        // files
         formData.append("image", this.files);
-        let suc = await questService.createquest(formData).then((res) => {
+        formData.append("field", 'image');
+
+        for (var pair of formData.entries()) {
+          console.log(pair[0]);
+          console.log(pair[1]);
+        }
+
+        let suc = await profileService.editprofile(formData).then((res) => {
           return res;
         });
         console.log("logsuc" + suc);
-        if (suc) this.$router.push({ path: "/login" });
+        if (suc) this.$router.push({ path: "/profile" });
         else alert("fail");
       } else console.log("there are no files.");
     },
@@ -230,15 +246,27 @@ export default {
         return res;
       });
       console.log("dadsaaaaaaa" + re);
-      this.profile = re;
-      console.log(re.infoma);
+      this.profile = re.user;
+      console.log(re.user);
     },
   },
-  created() {
-    this.getinfoma();
-    let usertitle = this.$store.getters.getusername;
+  created: async function() {
+    await this.getinfoma();
+    this.profilePic = "http://localhost:5000/" + this.profile.infoma.proimage;
+
+    let usertitle = this.profile.infoma.firstname;
     if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
     else this.$emit("setTitle", this.$options.name);
+  },
+  data() {
+    return {
+      transparent: "rgba(255, 255, 255, 0)",
+      files: null,
+      profilePic: "",
+      url: "",
+      profile: "",
+      text: "Upload",
+    };
   },
 };
 </script>
@@ -258,7 +286,6 @@ export default {
 }
 .show-btns {
   color: black !important;
-  
 }
 #upload_img:hover {
   background: #ececec;
@@ -322,47 +349,44 @@ img {
   margin-top: 20%;
 }
 
-@media screen  and (max-width:2560px){
-#wtf{
-  margin-left:-30%;
-}
-#star{
-  margin-left: 1%;
-}
-
-}
-
-@media screen  and (max-width:1440px){
-#wtf{
-  margin-left:-65%;
-}
-#star{
-  margin-left: -3%;
+@media screen and (max-width: 2560px) {
+  #wtf {
+    margin-left: -30%;
+  }
+  #star {
+    margin-left: 1%;
+  }
 }
 
+@media screen and (max-width: 1440px) {
+  #wtf {
+    margin-left: -65%;
+  }
+  #star {
+    margin-left: -3%;
+  }
 }
-@media screen  and (max-width:1024px){
-#wtf{
-  margin-left:-67%;
-}
-}
-
-@media screen  and (max-width:768px){
-#wtf .v-card{
-width: 200px;
-}
-#wtf{
-margin-left:-70%;
-}
+@media screen and (max-width: 1024px) {
+  #wtf {
+    margin-left: -67%;
+  }
 }
 
-@media screen  and (max-width:320px){
-#wtf{
-margin-left:0%;
-}
-#wtf .v-card{
-width: 200px;
-}
+@media screen and (max-width: 768px) {
+  #wtf .v-card {
+    width: 200px;
+  }
+  #wtf {
+    margin-left: -70%;
+  }
 }
 
+@media screen and (max-width: 320px) {
+  #wtf {
+    margin-left: 0%;
+  }
+  #wtf .v-card {
+    width: 200px;
+  }
+}
 </style>

@@ -3,8 +3,8 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="4">
-         <center>
-            <div class="section1" >
+          <center>
+            <div class="section1">
               <div>
                 <v-img
                   class="rounded-circle"
@@ -13,7 +13,6 @@
                   src="../assets/bg01.jpg"
                   width:auto
                   height:auto
-                  
                 >
                 </v-img>
               </div>
@@ -27,7 +26,7 @@
                 style="margin-top:7%;"
               ></v-rating>
             </div>
-        </center>
+          </center>
         </v-col>
 
         <v-col cols="12" md="4">
@@ -35,15 +34,14 @@
             <v-card max-width="auto" max-height="auto" outlined>
               <v-list-item>
                 <v-list-item-content>
-                
                   <v-list-item-title class="headline mb-1">
-                    <span style="font-size:25px">Skills</span>    <i class="material-icons" 
-                      >local_fire_department</i >
+                    <span style="font-size:25px">Skills</span>
+                    <i class="material-icons">local_fire_department</i>
                   </v-list-item-title>
                   <v-list-item-subtitle>personal ability</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-  <v-divider></v-divider>
+              <v-divider></v-divider>
               <v-card-actions style="overflow-y: auto;">
                 <v-btn outlined rounded text>
                   Skill1
@@ -64,129 +62,139 @@
             </v-card>
 
             <v-card
-             max-width="auto"
-             max-height="auto"
-            
+              max-width="auto"
+              max-height="auto"
               outlined
               style="margin-top:10%;"
             >
               <v-list-item>
                 <v-list-item-content>
-                  <div class="overline mb-4">
-                  </div>
-                
+                  <div class="overline mb-4"></div>
+
                   <v-list-item-title class="headline mb-1">
-                  <span style="font-size:25px">   Education</span>  <i class="material-icons">school</i>
+                    <span style="font-size:25px"> Education</span>
+                    <i class="material-icons">school</i>
                   </v-list-item-title>
                   <v-list-item-subtitle
                     >degreee and department</v-list-item-subtitle
                   >
                 </v-list-item-content>
               </v-list-item>
-  <v-divider></v-divider>
-               <v-list two-line  style="max-height: 300px"
-       class="overflow-y-auto">
-        <v-card-action >
-        <template v-for="(item, index) in items"      >
-          <v-list-item :key="item.title">
-            <template v-slot:default>
-              <v-list-item-content>
-                <v-list-item-title v-text="item.title"></v-list-item-title>
+              <v-divider></v-divider>
+              <v-list
+                two-line
+                style="max-height: 300px"
+                class="overflow-y-auto"
+              >
+                <v-card-action>
+                  <template v-for="(item, index) in items">
+                    <v-list-item :key="item.title">
+                      <template v-slot:default>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            v-text="item.title"
+                          ></v-list-item-title>
 
-                <v-list-item-subtitle
-                  class="text--primary"
-                  v-text="item.headline"
-                ></v-list-item-subtitle>
+                          <v-list-item-subtitle
+                            class="text--primary"
+                            v-text="item.headline"
+                          ></v-list-item-subtitle>
 
-                <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-              </v-list-item-content>
+                          <v-list-item-subtitle
+                            v-text="item.subtitle"
+                          ></v-list-item-subtitle>
+                        </v-list-item-content>
 
-              <v-list-item-action>
-                <v-list-item-action-text v-text="item.action"></v-list-item-action-text>
-              </v-list-item-action>
-            </template>
-          </v-list-item>
+                        <v-list-item-action>
+                          <v-list-item-action-text
+                            v-text="item.action"
+                          ></v-list-item-action-text>
+                        </v-list-item-action>
+                      </template>
+                    </v-list-item>
 
-          <v-divider
-            v-if="index < items.length - 1"
-            :key="index"
-          ></v-divider>
-        </template>
-        </v-card-action>
-    </v-list>
+                    <v-divider
+                      v-if="index < items.length - 1"
+                      :key="index"
+                    ></v-divider>
+                  </template>
+                </v-card-action>
+              </v-list>
             </v-card>
           </div>
         </v-col>
 
         <v-col cols="12" md="4">
-         <div class="seection3">
-             <v-card max-width="auto" max-height="auto" outlined>
+          <div class="seection3">
+            <v-card max-width="auto" max-height="auto" outlined>
               <v-list-item>
                 <v-list-item-content>
-                
                   <v-list-item-title class="headline mb-1">
-                     <span style="font-size:25px">Experience</span>   <i class="material-icons">done_outline</i>
+                    <span style="font-size:25px">Experience</span>
+                    <i class="material-icons">done_outline</i>
                   </v-list-item-title>
-              
                 </v-list-item-content>
               </v-list-item>
-  <v-divider></v-divider>
-              <v-list two-line  style="max-height: 200px"
-       class="overflow-y-auto">
-        <v-card-action >
-        <template v-for="(item, index) in ever" >
-          <v-list-item :key="item.story">
-            <template v-slot:default>
-              <v-list-item-content>
-                <v-list-item-title v-text="item.story"></v-list-item-title>
+              <v-divider></v-divider>
+              <v-list
+                two-line
+                style="max-height: 200px"
+                class="overflow-y-auto"
+              >
+                <v-card-action>
+                  <template v-for="(item, index) in ever">
+                    <v-list-item :key="item.story">
+                      <template v-slot:default>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            v-text="item.story"
+                          ></v-list-item-title>
 
-                <v-list-item-subtitle
-                  class="text--primary"
-                  v-text="item.headline"
-                ></v-list-item-subtitle>
-              </v-list-item-content>
+                          <v-list-item-subtitle
+                            class="text--primary"
+                            v-text="item.headline"
+                          ></v-list-item-subtitle>
+                        </v-list-item-content>
 
-              <v-list-item-action>
-                <v-list-item-action-text v-text="item.action"></v-list-item-action-text>
-              </v-list-item-action>
-            </template>
-          </v-list-item>
+                        <v-list-item-action>
+                          <v-list-item-action-text
+                            v-text="item.action"
+                          ></v-list-item-action-text>
+                        </v-list-item-action>
+                      </template>
+                    </v-list-item>
 
-          <v-divider
-            v-if="index < items.length - 1"
-            :key="index"
-          ></v-divider>
-        </template>
-        </v-card-action>
-    </v-list>
+                    <v-divider
+                      v-if="index < items.length - 1"
+                      :key="index"
+                    ></v-divider>
+                  </template>
+                </v-card-action>
+              </v-list>
             </v-card>
-     <v-card max-width="auto" max-height="auto" outlined style="margin-top:10%;" >
+            <v-card
+              max-width="auto"
+              max-height="auto"
+              outlined
+              style="margin-top:10%;"
+            >
               <v-list-item>
                 <v-list-item-content>
-                
                   <v-list-item-title class="headline mb-1">
-                     <span style="font-size:25px">Introduce & Contact</span>   <i class="material-icons">perm_contact_cal</i>
+                    <span style="font-size:25px">Introduce & Contact</span>
+                    <i class="material-icons">perm_contact_cal</i>
                   </v-list-item-title>
                   <v-list-item-subtitle>personal ability</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-  
-     <v-textarea
-      readonly
-      :value="value"
-      style="margin-left:5%;"
-    ></v-textarea>
+
+              <v-textarea
+                readonly
+                :value="value"
+                style="margin-left:5%;"
+              ></v-textarea>
             </v-card>
-
-
-
-
-
-
-
-
-
-         </div>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -194,73 +202,122 @@
 </template>
 
 <script>
+import profileService from "../service/profileservice";
+
 export default {
-  name: "profile2",
+  name: "Profile",
+  methods: {
+    getinfoma: async function() {
+      let re = await profileService.getprofile().then((res) => {
+        return res;
+      });
+      this.profile = re.user;
+    },
+    add() {
+      this.$store.dispatch("set");
+    },
+    sendim: async function() {
+      if (this.files) {
+        let formData = new FormData();
+        formData.append("image", this.files);
+        formData.append("field", "image");
+
+        for (var pair of formData.entries()) {
+          console.log(pair[0]);
+          console.log(pair[1]);
+        }
+
+        let suc = await profileService.editprofile(formData).then((res) => {
+          return res;
+        });
+        console.log("logsuc" + suc);
+        if (suc) this.$router.push({ path: "/profile" });
+        else alert("fail");
+      } else console.log("there are no files.");
+    },
+    onFileChange() {
+      if (this.files != null) {
+        const file = this.files;
+        console.log(file);
+        this.url = URL.createObjectURL(file);
+      }
+    },
+    chooseFiles() {
+      document.getElementById("fileUpload").click();
+    },
+  },
+  created: async function() {
+    await this.getinfoma();
+    this.profilePic = "http://localhost:5000/" + this.profile.infoma.proimage;
+
+    let usertitle = this.profile.infoma.firstname;
+    if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
+    else this.$emit("setTitle", this.$options.name);
+  },
   data() {
     return {
-      rating: 4,
+      profile: "",
+      
+      transparent: "rgba(255, 255, 255, 0)",
+      files: null,
+      profilePic: "",
+      url: "",
+      text: "Upload",
+      rating: 3,
       items: [
         {
-          action: '11/11/2000',
+          action: "11/11/2000",
           subtitle: `Department of mathematic`,
-          title: 'Oxford university',
+          title: "Oxford university",
         },
         {
-         action: '12/11/2000',
-         subtitle: `Department of Media art`,
-          title: 'Kmutt',
+          action: "12/11/2000",
+          subtitle: `Department of Media art`,
+          title: "Kmutt",
         },
         {
-         action: '13/11/2000',
+          action: "13/11/2000",
           subtitle: `Department of Electrical Enginering`,
-          title: 'Cambridge University',
-        }, {
-         action: '12/11/2000',
-         subtitle: `Department of Media art`,
-          title: 'Kmutt',
+          title: "Cambridge University",
         },
         {
-         action: '13/11/2000',
+          action: "12/11/2000",
+          subtitle: `Department of Media art`,
+          title: "Kmutt",
+        },
+        {
+          action: "13/11/2000",
           subtitle: `Department of Electrical Enginering`,
-          title: 'Cambridge University',
-        }],
-         value: 'Putainamo',
-        ever:[
-            {
-                 action: '11/11/2000',
-                 story: 'Hotel Manager',
-              },
-                 {
-                 action: '11/11/2000',
-                 story: 'Hotel Manager',
-              },
-                 {
-                 action: '11/11/2000',
-                 story: 'Hotel Manager',
-              },
-                 {
-                 action: '11/11/2000',
-                 story: 'Hotel Manager',
-              },
-                 {
-                 action: '11/11/2000',
-                 story: 'Hotel Manager',
-              },
-                 {
-                 action: '11/11/2000',
-                 story: 'Hotel Manager',
-              },
-             
-        ]
-      
-        
-        
-        
-        
-        
-        
-        
-        
+          title: "Cambridge University",
+        },
+      ],
+      value: "Putainamo",
+      ever: [
+        {
+          action: "11/11/2000",
+          story: "Hotel Manager",
+        },
+        {
+          action: "11/11/2000",
+          story: "Hotel Manager",
+        },
+        {
+          action: "11/11/2000",
+          story: "Hotel Manager",
+        },
+        {
+          action: "11/11/2000",
+          story: "Hotel Manager",
+        },
+        {
+          action: "11/11/2000",
+          story: "Hotel Manager",
+        },
+        {
+          action: "11/11/2000",
+          story: "Hotel Manager",
+        },
+      ],
     };
   },
 };
@@ -273,7 +330,6 @@ export default {
 <style scoped>
 .section1 {
   height: 100vh;
-
 }
 .section2 {
   height: 100vh;

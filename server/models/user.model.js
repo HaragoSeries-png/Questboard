@@ -6,13 +6,15 @@ let UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     email: String,
-    verify: Boolean,
+    verified: Boolean,
     joinDate: Date,
     infoma: {
         firstname: String,
         lastname: String,
         address: String,
+        rating: Number,
         desc: String,
+        proimage: String,
         contact: [{
             con: String,
             val: String
@@ -24,7 +26,11 @@ let UserSchema = new mongoose.Schema({
             banch: String,
             date: Date
         }],
-        proimage: String
+        exp: [{
+            topic: String,
+            desc: String,
+            date: Date,
+        }],
     },
     quests: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -50,7 +56,6 @@ UserSchema.methods.isValidPassword = async function (password) {
     console.log(compare)
     return compare;
 };
-
 
 UserSchema.plugin(passportLocalMongoose);
 const User = mongoose.model('User', UserSchema)
