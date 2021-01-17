@@ -23,7 +23,7 @@ let UserSchema = new mongoose.Schema({
             skill: String
         }],
         education: [{
-            banch: String,
+            branch: String,
             date: Date
         }],
         exp: [{

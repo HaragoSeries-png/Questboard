@@ -10,8 +10,7 @@ class profileService {
         return { suc: a.success }
     }
     static async uploadimg(text) {
-        text.append("field", text)
-        let a = await axios.put(url, text).then(res => { return res.data })
+        let a = await axios.put(url + "/editPic", text).then(res => { return res.data })
         console.log("suc " + a.success)
         return { suc: a.success }
     }

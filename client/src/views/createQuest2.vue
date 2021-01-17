@@ -40,9 +40,10 @@
                 <div class="text-fill">
                   <div>
                     <table>
+                     
                       <tr>
                         <span id="Deadline"> Deadline </span>
-                        <div><i class="material-icons">assessment</i></div>
+                        <div><i class="matemrial-icons">assessment</i></div>
                         <td></td>
                       </tr>
 
@@ -110,12 +111,24 @@
                             :items="items"
                             id="ic"
                             label="Default"
-                            style="margin-bottom:5%;margin-left:0.5%"
+                            style="margin-bottom:0%;margin-left:0.5%"
                             dense
                           ></v-select>
                         </td>
                       </tr>
-
+                         <tr>
+                        <span id="q1"> Reward : </span>
+                        <td>
+                          <v-text-field
+                            style="margin-bottom:5%;margin-left:0.5%"
+                            id="iq"
+                            :rules="rules"
+                            counter="50"
+                            placeholder="Prize for helper"
+                          
+                          ></v-text-field>
+                        </td>
+                      </tr>
                       <tr>
                         <span id="d1">Details :</span>
                         <td>
