@@ -2,6 +2,7 @@
   <div id="profileBox">
     <center>
       <div>
+        <v-hover v-slot="{ hover }">
         <v-img
           class="rounded-circle"
           :aspect-ratio="1 / 1"
@@ -12,19 +13,26 @@
           @click="uploadimg"
         >
           <div class="align-self-center">
-            <v-btn
-              :class="{ 'show-btns': hover }"
-              icon
-              style="position : absolute; margin-top:45%;z-index:5;margin-left:-5%"
-            >
-              <v-icon :class="{ 'show-btns': hover }">
-                mdi-upload
-              </v-icon>
-              <span id="text_upload">{{ picHoverText }}</span>
-            </v-btn>
+            
+              <v-btn
+                :class="{ 'show-btns': hover }"
+                icon
+                style="margin-top:45% ;min-height:100% "
+                
+                color="transparent"
+                x-large
+              >
+                <v-icon   
+                >
+                  mdi-upload
+                </v-icon>
+                
+              </v-btn>
+           
+            
           </div>
         </v-img>
-
+         </v-hover>
         <div style="display: none;">
           <v-file-input
             v-model="files"
@@ -73,7 +81,7 @@ export default {
       if (this.files) {
         let formData = new FormData();
         formData.append("image", this.files);
-
+     
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
@@ -111,7 +119,9 @@ body {
 }
 
 .show-btns {
-  color: black !important;
+  color: rgb(0, 0, 0) !important;
+  background-color:rgba(177, 177, 177, 0.404);
+  size:inherit
 }
 
 #upload_img:hover {

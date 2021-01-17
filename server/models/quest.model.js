@@ -7,6 +7,8 @@ let QuestSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
+    tstart:String,
+    tend:String,  
     questname:String,
     category:String,
     questdetail:String,

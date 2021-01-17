@@ -60,22 +60,20 @@ router.put('/', upload.single('image'), passport.authenticate('pass', {
         console.log('des')
         req.user.infoma.des = newdata.value
     }
-    else if(newdata.field == 'image'){
-        console.log('image')
-        if(req.user.proimage!=""){
-            fs.unlink('../../public/'+ req.user.proimage)
-        }
-        req.user.proimage =  req.file.filename  
-    }
+    
     console.log(req.user.infoma.proimage)
     req.user.save()
 
     res.send(req.user)
 });
 
-router.put('/editPic', upload.single('image'), passport.authenticate('pass', {
+router.put('/editPic',  passport.authenticate('pass', {
     session: false
-}), (req, res) => {
+}),upload.single('image'), (req, res) => {
+    console.log(req.user.infoma.proimage)
+    if(req.user.infoma.proimage!=""){
+        fs.unlinkSync('server/public/'+ req.user.infoma.proimage)
+    }
     req.user.infoma.proimage = req.file.filename
     req.user.save()
 

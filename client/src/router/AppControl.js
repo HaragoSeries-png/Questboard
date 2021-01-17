@@ -4,7 +4,7 @@ import profile from '@/views/profile.vue'
 import signup from '../views/signup.vue'
 import questfeed from '@/views/questfeed'
 import createQuest2 from '../views/createQuest2.vue'
-import lab from '../views/lab.vue'
+import lab from '../views/Atomtest.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 

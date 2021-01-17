@@ -30,7 +30,7 @@
  </div>
 </template>>
 <style>
-        body{background-image: url();
+        body{
             background-attachment: fixed;
             background-size: cover;
         }
