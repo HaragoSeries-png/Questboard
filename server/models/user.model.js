@@ -32,9 +32,20 @@ let UserSchema = new mongoose.Schema({
             date: Date,
         }],
     },
-    quests: [{
+    ownquests: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Quest'
+    }],
+    accquest:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Quest'
+    }],
+    comquest:[{
+        quest:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Quest' 
+        },
+        rating:Number
     }]
 })
 
@@ -51,14 +62,28 @@ UserSchema.pre(
 
 UserSchema.methods.isValidPassword = async function (password) {
     const user = this;
-
     const compare = await bcrypt.compare(password, user.password);
     console.log(compare)
     return compare;
 };
 
+UserSchema.methods.getrating = async function(){
+    let r = await User.aggregate([
+        { $match: {_id: this._id} },
+        { $addFields: { avgrating: { $avg: "$comquest.rating" } } }
+    ]).then(await function(result){
+        console.log('lett '+result[0].avgrating)
+        return result[0].avgrating
+    })
+    return r
+    
+}
+
+
 UserSchema.plugin(passportLocalMongoose);
 const User = mongoose.model('User', UserSchema)
+
+
 
 module.exports = User
 

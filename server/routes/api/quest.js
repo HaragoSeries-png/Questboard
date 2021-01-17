@@ -38,12 +38,19 @@ router.get('/feed', function (req, res) {
     res.send({ quest: quest, success: true })
   })
 })
-router.post('/', upload.single('image'), passport.authenticate('pass', {
+router.post('/',  passport.authenticate('pass', {
   session: false
-}), function (req, res) {
-  console.log("filename " + req.file.filename)
+}),upload.single('image'), function (req, res) {
+  let filename = ''
+  if(req.file!=null){
+    filename=req.file.filename
+  }
+  else{
+    filename='default.png'
+  }
+  
   let newquest = {
-    helper: req.body.helper,
+    helper: req.user.fistname,
     helperID: req.user._id,
     questname: req.body.questname,
     category: req.body.category,
@@ -52,11 +59,14 @@ router.post('/', upload.single('image'), passport.authenticate('pass', {
     reward: req.body.reward,
     location: req.body.location,
     status: "wait",
-    image: req.file.filename,
+    image: filename,
     date: dateFormat(new Date(), "longDate"),
     duedate: req.body.duedate,
     numberofcon: req.body.numberofcon,
-    wait: []
+    wait: [],
+    contributor:[],
+    tstart:req.body.tstart,
+    tend:req.body.tend
   }
 
   Quest.create(newquest).then((quest, err) => {
@@ -64,7 +74,7 @@ router.post('/', upload.single('image'), passport.authenticate('pass', {
       console.log("err " + err)
       return res.send({ success: false })
     }
-    req.user.quests.push(quest)
+    req.user.ownquests.push(quest)
     console.log(req.user.quests)
     req.user.save()
     return res.send({ success: true, questid: quest._id })

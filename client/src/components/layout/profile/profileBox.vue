@@ -2,6 +2,7 @@
   <div id="profileBox">
     <center>
       <div>
+        <v-hover v-slot="{ hover }">
         <v-img
           class="rounded-circle"
           :aspect-ratio="1 / 1"
@@ -10,21 +11,34 @@
           width:auto
           height:auto
           @click="uploadimg"
+          style="border:1px solid black"
         >
           <div class="align-self-center">
-            <v-btn
-              :class="{ 'show-btns': hover }"
-              icon
-              style="position : absolute; margin-top:45%;z-index:5;margin-left:-5%"
-            >
-              <v-icon :class="{ 'show-btns': hover }">
-                mdi-upload
-              </v-icon>
-              <span id="text_upload">{{ picHoverText }}</span>
-            </v-btn>
+            
+              <v-btn
+                class="rounded-circle"
+                :class="{ 'show-btns': hover }"
+                icon
+                style="height:250px"
+                color="transparent"
+                x-large
+                width="250"
+              >
+               <div id="ggf">
+                 
+                  {{texthover}}
+                </div>
+                <v-icon   
+                >
+                  mdi-upload
+                </v-icon>
+               
+              </v-btn>
+           
+            
           </div>
         </v-img>
-
+         </v-hover>
         <div style="display: none;">
           <v-file-input
             v-model="files"
@@ -33,10 +47,10 @@
           ></v-file-input>
         </div>
 
-        <div style="profileimg" v-if="files">
+        <div style="margin-top:5%;" v-if="files">
           <v-btn :class="{ 'show-btns': hover }" @click="sendim">Save</v-btn>
           &nbsp;
-          <v-btn :class="{ 'show-btns': hover }">Cancel</v-btn>
+          <v-btn :class="{ 'show-btns': hover }" style="margin-left:2%">Cancel</v-btn>
         </div>
       </div>
 
@@ -73,7 +87,7 @@ export default {
       if (this.files) {
         let formData = new FormData();
         formData.append("image", this.files);
-
+     
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
@@ -86,6 +100,7 @@ export default {
     return {
       picHoverText: "Upload",
       files: null,
+      texthover:"Upload"
     };
   },
 };
@@ -111,7 +126,9 @@ body {
 }
 
 .show-btns {
-  color: black !important;
+  color: rgb(0, 0, 0) !important;
+  background-color:rgba(177, 177, 177, 0.404);
+  size:inherit
 }
 
 #upload_img:hover {
@@ -119,4 +136,9 @@ body {
   z-index: 3;
   max-width: 300px;
 }
+#ggf{
+    font-family: 'Xanh Mono', monospace;
+    font-size:15px;
+}
+@import url(https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap);
 </style>

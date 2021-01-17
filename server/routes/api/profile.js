@@ -1,10 +1,12 @@
 const express = require('express');
+const { fdatasync } = require('fs');
 const mongodb = require('mongodb'),
-    passport = require('passport');
-require('../../configs/passport'),
-    User = require('../../models/user.model'),
-    multer = require('multer'),
-    bodyParser = require('body-parser').json();
+      passport = require('passport');
+      require('../../configs/passport'),
+      User = require('../../models/user.model'),
+      multer = require('multer'),
+      fs = require('fs')
+      bodyParser = require('body-parser').json();
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -58,38 +60,34 @@ router.put('/', upload.single('image'), passport.authenticate('pass', {
         console.log('des')
         req.user.infoma.des = newdata.value
     }
-    else if (newdata.field == 'image') {
-        console.log('edit image')
-        req.user.infoma.proimage = req.file.filename
-    }
+    
     console.log(req.user.infoma.proimage)
     req.user.save()
 
     res.send(req.user)
 });
 
-router.put('/editPic', upload.single('image'), passport.authenticate('pass', {
+router.put('/editPic',  passport.authenticate('pass', {
     session: false
-}), (req, res) => {
+}),upload.single('image'), (req, res) => {
+    console.log(req.user.infoma.proimage)
+    if(req.user.infoma.proimage!=""){
+        fs.unlinkSync('server/public/'+ req.user.infoma.proimage)
+    }
     req.user.infoma.proimage = req.file.filename
     req.user.save()
 
     res.send(req.user)
-});
+}),
 
-router.put('/list', passport.authenticate('pass', {
-    session: false
-}), (req, res) => {
-    let data = req.body
-    if (data.field == skill) {
-        if (data.flag == 1) {
-
-            console.log("let add " + data.value)
-            req.user.infoma.skills.push(data.value)
-        }
-        else {
-            console.log("let add " + data.skill)
-            req.user.infoma.skill.pull(data.value)
+router.put('/list',passport.authenticate('pass',{
+    session:false
+}),(req,res)=>{
+    let data= req.body
+    if(data.field==skill){
+        if(data.flag==1){
+            console.log("let add "+data.value)
+            req.user.infoma.skills.push(data.value)    
         }
     }
     else if (data.field == contact) {

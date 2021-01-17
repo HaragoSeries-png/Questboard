@@ -4,12 +4,13 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      style="background: #f9efe5; border-right: 1px solid black"
+      style="border-right: 1px solid black;"
+      src="../../assets/pexels-eberhard-grossgasteiger-2088170.jpg"
     >
       <v-list-item style="margin-left: 17%;">
         <center>
           <div
-            style="font-family: 'Pacifico', cursive; font-size: 23px; margin-top: 10%"
+            style="font-family: 'Playfair Display', serif; font-size: 23px; margin-top: 10%"
           >
             <span style="right: 50%; text-decoration: underline;"
               >Quest Board</span
@@ -41,11 +42,11 @@
             color="#FF598F"
           >
             <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
+              <div style="color:black;"><v-icon>{{ item.icon }}</v-icon></div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">{{ item.title }}</div>
+              <div  style="color:black; font-family: 'Playfair Display', serif; " >{{ item.title }}</div>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -109,7 +110,6 @@
     <!-- Navbar-Top -->
     <v-app-bar
       app
-      color="#fcb69f"
       dark
       src="../../assets/pexels-stephan-seeber-1054289.jpg"
       full-width
@@ -156,7 +156,7 @@ export default {
         { title: "Quest", icon: "mdi-view-dashboard", to: "/feed" },
         { title: "About Us", icon: "mdi-account-group", to: "/aboutus" },
         { title: "Contact", icon: "mdi-android-messages", to: "/contact" },
-        { title: "Swtich to mobile ", icon: "mdi-cellphone", to: "/#" },
+       
       ],
       unlogitems: [
         { title: "Log in", icon: "mdi-login", to: "/login" },
@@ -184,4 +184,5 @@ export default {
   font-weight: bold;
   font-size: 14px;
 }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
 </style>

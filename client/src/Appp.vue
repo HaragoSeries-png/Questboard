@@ -53,6 +53,6 @@ export default {
   margin-top: 6%;
   width: auto;
   border: 1px solid black;
-  border-style: dashed;
+  border-style: solid;
 }
 </style>

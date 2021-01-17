@@ -21,7 +21,7 @@
     <input type="email" v-model="email" placeholder="E-mail" />
 
     <div v-if="password"><p>Password</p></div>
-    <input type="password" v-model="password" placeholder="Password" />
+    <input type="password" v-model="password" placeholder="Password" rules="" />
 
     <div v-if="conpassword"><p>Confirm Password</p></div>
     <input
@@ -57,9 +57,10 @@ export default {
       if (!this.username) alertField.innerHTML += "<li>Require Username.</li>"
       if (!this.email) alertField.innerHTML += "<li>Require Email.</li>"
       if (!this.password) alertField.innerHTML += "<li>Require Password.</li>"
+      if(this.password.length<8) alertField.innerHTML += "<li>required 8 length</li>"
       else if (!this.conpassword) alertField.innerHTML += "<li>Please confirm your password.</li>"
       else if (this.password != this.conpassword) alertField.innerHTML += "<li>Password don't match.</li>"
-
+     
       if (alertField.innerHTML == '') this.register()
     },
     register: async function() {

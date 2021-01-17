@@ -1,4 +1,5 @@
 <template>
+<v-app>
   <div id="main" style="margin:20px;">
     <v-container>
       <!-- <div class="main"> -->
@@ -11,60 +12,63 @@
             <v-col cols="12" md="6"  class="section1">
               
               <center>
-                <h2 id="head">Create your quest</h2>
+                <h2 id="head">WANTED</h2>
+                
                 <div
                   class="d-flex flex-column justify-space-between align-center"
                 >
-                  <v-img
-                    :aspect-ratio="16 / 14"
-                    :width="width"
-                    src="../assets/miku.gif"
-                    style="margin-top : 3%;"
                   
-                    
-                  ></v-img>
-                    <v-slider
-                    v-model="width"
-                    class="align-self-stretch"
-                    min="300"
-                    max="500"
-                    step="1"
-                    style="margin-top:5%;"
-                    color="#e3b069"
-                    
-                  ></v-slider>
+                 <v-img
+                  v-if="!url"
+                  max-height="150"
+                  max-width="250"
+                  src="default.png"
+                  @click="chooseFiles()"
+                ></v-img>  
+                <div id="preview">
+                  <v-img v-if="url" :src="url" max-height="250" max-width="250"  @click="chooseFiles()"></v-img>
+                </div>
+                <div style="display: none;">
+              <v-file-input
+               
+                v-model="files"
+                @change="onFileChange"
+                id="fileUpload"
+              ></v-file-input>
+            </div>
                 </div>
               </center>
 
               <center>
-                <div class="text-fill">
+               <v-divider></v-divider>
+                <div class="text-fill" >
                   <div>
                     <table>
                      
                       <tr>
                         <span id="Deadline"> Deadline </span>
-                        <div><i class="matemrial-icons">assessment</i></div>
-                        <td></td>
+                        <div><span style="color:gray">assessment</span></div>
+                        <td style="margin-bottom:10%;" > </td>
                       </tr>
 
-                      <tr>
+                      <tr >
                         <span id="Date"> Date : </span>
                         <td>
-                          <input type="date" name="" id="I_date" />
+                          <input type="date" name="" id="I_date" v-model="duedate" style="margin-bottom:10%;"  />
                         </td>
                       </tr>
 
                       <tr>
                         <span id="Start"> Start : </span>
                         <td>
-                          <input type="time" name="" id="I_start" />
+                          <input type="time" name="" id="I_start" v-model="tstart" style="margin-bottom:10%;" />
                         </td>
                       </tr>
 
                       <tr>
                         <span id="End"> End : </span>
                         <td>
-                          <input type="time" name="" id="I_end" />
+                          <input type="time" name="" id="I_end" v-model="tend" style="margin-bottom:10%;" />
                         </td>
                       </tr>
 
@@ -89,17 +93,19 @@
                   <v-col cols="12" md="6" >
                     
                     <div class="section2">
+                     <center>
+                       <div>
                       <tr>
                         <span id="q1"> Quest name : </span>
                         <td>
                           <v-text-field
-                            style="margin-bottom:5%;margin-left:0.5%"
+                            style="margin-bottom:5%;margin-left:-40%"
                             id="iq"
                             :rules="rules"
                             counter="25"
                             hint="Baby sister,Tutor "
-                            placeholder="Quest"
-                          
+                            label="Quest"
+                            v-model="questname"
                           ></v-text-field>
                         </td>
                       </tr>
@@ -111,19 +117,33 @@
                             :items="items"
                             id="ic"
                             label="Default"
-                            style="margin-bottom:5%;margin-left:0.5%"
+                            style="margin-bottom:0%;margin-left:-40%"
                             dense
+                            v-model="category"
                           ></v-select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <span id="q1"> Reward : </span>
+                        <td>
+                          <v-text-field
+                            style="margin-bottom:5%;margin-left:-40%;"
+                            id="iq"
+                            :rules="rules"
+                            counter="25"
+
+                            label="Prize for your helper"
+                            v-model="reward"
+                          ></v-text-field>
                         </td>
                       </tr>
                       <tr>
                         <span id="d1">Details :</span>
                         <td>
                           <v-textarea
-                           style="margin-bottom:5%;margin-left:0.5%"
-                            v-model="title"
-                            
-                             placeholder="More information about quest"
+                           
+                            v-model="detail"
+                            label="More information about quest"
                             counter
                             maxlength="120"
                             filled
@@ -131,14 +151,16 @@
                           ></v-textarea>
                         </td>
                       </tr>
-                  
+                   </div>
+                     </center>
                   </div>
                     <center>
-                      <v-btn id="btn" x-medium color="success">
+                      <v-btn id="btn" x-medium color="success" @click="sendquest">
                         Create
                       </v-btn>
                     </center>
                    <center><div id="foot">Quest Board</div></center>
+                   
               </v-col>
             
           </v-row>
@@ -147,9 +169,11 @@
      
     </v-container>
   </div>
+  </v-app>
 </template>
 
 <script>
+import questService from "../service/Questservice";
 export default {
   name: "Create Quest",
   created() {
@@ -159,13 +183,74 @@ export default {
     return {
       items: ["Crafter", "House worker", "Handicup", "Etc"],
       Pic1: "https://pbs.twimg.com/media/EBBMoBNU4AA2DXn.jpg",
-      width: 300
+      files:null,
+      url:"",
+      questname:"",
+      category:'',
+      datail:'',
+      reward:'',
+      tstart:'',
+      tend:'',
+      numberofcon:1,
+      duedate:''
     };
   },
+  methods:{
+    onFileChange() {
+      if (this.files != null) {
+        const file = this.files;
+        console.log(file);
+        this.url = URL.createObjectURL(file);
+      }
+    },
+    chooseFiles() {
+      document.getElementById("fileUpload").click();
+    },
+    sendquest: async function() {
+      
+       
+        let formData = new FormData();
+       
+        // files
+        formData.append("image", this.files);
+
+        // additional data
+        formData.append("questname", this.questname);
+        formData.append("category",this.category);  
+        formData.append("questdetail",this.detail);
+        formData.append("reward",this.reward);
+        formData.append("tstart",this.tstart);
+        formData.append("tend",this.tend);
+        formData.append("duedate",this.duedate)
+        console.log(formData.get('questdatail'))
+        let suc = await questService.createquest(formData).then((res) => {
+          return res;
+        });
+        console.log("logsuc" + suc);
+
+        if (suc) this.$router.push({ path: "/createQuest2" });
+        else alert("fail");
+      
+    },
+  }
 };
 </script>
 
 <style scoped>
+
+#app {
+  background: url('../assets/pexels-jess-bailey-designs-1172849.jpg')
+  no-repeat;
+  background-size: cover;
+  
+}
+
+
+
+
+
+
+
 .pictureQuest img {
   width: 400px;
   height: 200px;
@@ -182,7 +267,10 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-.text-fill table tr,
+.section2{
+   justify-content: center;
+}
+
 td {
   margin-top: 20%;
 }
@@ -237,7 +325,7 @@ td {
 #foot {
   font-family: "Redressed", cursive;
   font-size: 20px;
-  margin-top: 15%;
+  margin-top: 5%;
 }
 #Date {
   font-size: 18px;
@@ -274,6 +362,7 @@ td {
   margin-bottom: 10px;
 }
 #q1 {
+  
   font-size: 18px;
 }
 #c1 {
