@@ -1,9 +1,11 @@
 const express = require('express');
+const { fdatasync } = require('fs');
 const mongodb = require('mongodb'),
       passport = require('passport');
       require('../../configs/passport'),
       User = require('../../models/user.model'),
       multer = require('multer'),
+      fs = require('fs')
       bodyParser = require('body-parser').json();
 
 const storage = multer.diskStorage({
@@ -69,6 +71,9 @@ router.put('/',upload.single('image'),passport.authenticate('pass',{
     }
     else if(newdata.field == 'image'){
         console.log('image')
+        if(req.user.proimage!=""){
+            fs.unlink('../../public/'+ req.user.proimage)
+        }
         req.user.proimage =  req.file.filename  
     }
     console.log(req.user)
@@ -83,7 +88,6 @@ router.put('/list',passport.authenticate('pass',{
     let data= req.body
     if(data.field==skill){
         if(data.flag==1){
-        
             console.log("let add "+data.value)
             req.user.infoma.skills.push(data.value)    
         }
