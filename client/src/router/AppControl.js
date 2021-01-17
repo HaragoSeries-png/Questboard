@@ -5,7 +5,6 @@ import signup from '../views/signup.vue'
 import questfeed from '@/views/questfeed'
 import createQuest2 from '../views/createQuest2.vue'
 import lab from '../views/lab.vue'
-import profile2 from '../views/profile2.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -19,7 +18,6 @@ const routes = [
     { path: '/feed', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
-    { path: '/profile2', component: profile2 },
 ]
 const router = new VueRouter({ mode: 'history', routes })
 

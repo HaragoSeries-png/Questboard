@@ -125,6 +125,7 @@
     .category a{
     font-size: 10px;
     padding: 10px;
+    white-space: nowrap;
   }
   .cards{
             grid-template-columns: repeat(2,1fr);
@@ -133,6 +134,7 @@
     .category a{
     font-size: 10px;
     padding: 10px;
+    white-space: nowrap;
   }}
     </style>
 <script>

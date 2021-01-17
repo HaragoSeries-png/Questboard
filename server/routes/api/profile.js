@@ -13,61 +13,52 @@ const storage = multer.diskStorage({
         cb(null, 'server/public')
     },
     filename: function (req, file, cb) {
-        cb(null,new Date().toISOString().replace(/:/g, '-')+file.originalname)
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
     }
 })
 const fileFilter = (req, file, cb) => {
     // reject a file
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' ||file.mimetype === 'image/gif') {
-      cb(null, true);
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
+        cb(null, true);
     } else {
-      cb(null, false);
+        cb(null, false);
     }
-  };
-  
+};
+
 const upload = multer({
     storage: storage,
-    
+
     fileFilter: fileFilter
 });
-  
-const router = express.Router();
-router.get('/',passport.authenticate('pass',{
-    session:false
-}),(req,res)=>{
-    console.log('getprofile')
-    res.send({success:true,user:req.user})
-}),
 
-router.put('/',upload.single('image'),passport.authenticate('pass',{
-    session:false
-}),(req,res)=>{
+const router = express.Router();
+router.get('/', passport.authenticate('pass', {
+    session: false
+}), (req, res) => {
+    console.log('getprofile')
+    res.send({ success: true, user: req.user })
+});
+
+router.put('/', upload.single('image'), passport.authenticate('pass', {
+    session: false
+}), (req, res) => {
     let newdata = req.body
-    console.log("file "+req.file)
     
-    // req.user.updateOne({$set:test},function(err){
-    //     if(err){
-    //         res.send({success:false,user:req.user})
-    //     }
-    //     else{
-    //         res.send({success:true,user:req.user})
-    //     }       
-    // })    
-    if(newdata.field == 'firstname'){
+    if (newdata.field == 'firstname') {
         console.log('firstname')
-      req.user.infoma.firstname =   newdata.value  
+        req.user.infoma.firstname = newdata.value
     }
-    else if(newdata.field == 'lastname'){
+    else if (newdata.field == 'lastname') {
         console.log('lastname')
-        req.user.infoma.lastname =  newdata.value  
+        req.user.infoma.lastname = newdata.value
     }
-    else if(newdata.field == 'address'){
+    else if (newdata.field == 'address') {
         console.log('address')
-        req.user.infoma.address =  newdata.value  
+        req.user.infoma.address = newdata.value
     }
-    else if(newdata.field == 'des'){
+    else if (newdata.field == 'des') {
         console.log('des')
-        req.user.infoma.des =  newdata.value  
+        req.user.infoma.des = newdata.value
     }
     else if(newdata.field == 'image'){
         console.log('image')
@@ -76,9 +67,18 @@ router.put('/',upload.single('image'),passport.authenticate('pass',{
         }
         req.user.proimage =  req.file.filename  
     }
-    console.log(req.user)
+    console.log(req.user.infoma.proimage)
     req.user.save()
-    
+
+    res.send(req.user)
+});
+
+router.put('/editPic', upload.single('image'), passport.authenticate('pass', {
+    session: false
+}), (req, res) => {
+    req.user.infoma.proimage = req.file.filename
+    req.user.save()
+
     res.send(req.user)
 }),
 
@@ -91,37 +91,33 @@ router.put('/list',passport.authenticate('pass',{
             console.log("let add "+data.value)
             req.user.infoma.skills.push(data.value)    
         }
-        else{
-            console.log("let add "+data.skill)
-            req.user.infoma.skill.pull(data.value) 
-        }        
     }
-    else if(data.field==contact){
-        if(data.flag==1){
-        
-            console.log("let add "+data.skill)
-            req.user.infoma.contact.push(data.value)    
+    else if (data.field == contact) {
+        if (data.flag == 1) {
+
+            console.log("let add " + data.skill)
+            req.user.infoma.contact.push(data.value)
         }
-        else{
-            console.log("let add "+data.skill)
-            req.user.infoma.contact.pull(data.value) 
-        }        
+        else {
+            console.log("let add " + data.skill)
+            req.user.infoma.contact.pull(data.value)
+        }
     }
-    else if(data.field==education){
-        if(data.flag==1){
-        
-            console.log("let add "+data.skill)
-            req.user.infoma.education.push(data.value)    
+    else if (data.field == education) {
+        if (data.flag == 1) {
+
+            console.log("let add " + data.skill)
+            req.user.infoma.education.push(data.value)
         }
-        else{
-            console.log("let add "+data.skill)
-            req.user.infoma.education.pull(data.value) 
-        }        
+        else {
+            console.log("let add " + data.skill)
+            req.user.infoma.education.pull(data.value)
+        }
     }
 
-    
+
     req.user.save()
-    res.send({success:true})
+    res.send({ success: true })
 })
 
 

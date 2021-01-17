@@ -50,7 +50,7 @@ export default {
 
 .component {
   margin: 2%;
-  margin-top: 4%;
+  margin-top: 6%;
   width: auto;
   border: 1px solid black;
   border-style: dashed;

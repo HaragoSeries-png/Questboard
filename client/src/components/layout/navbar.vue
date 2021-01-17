@@ -21,7 +21,7 @@
 
       <div id="profileTab" v-if="$store.getters.isLoggedIn">
         <div class="profileInfo">
-          Welcome {{ username }}
+          Welcome {{ this.$store.getters.getfullname }}
           <br />
           <router-link to="/profile" style="font-size: 12px; color: orange"
             >View your profile</router-link
@@ -132,7 +132,6 @@
           >Quest Board</span
         ></v-toolbar-title
       >
-      {{ $store.getters.isLoggedIn }}
 
       <v-spacer></v-spacer>
     </v-app-bar>
