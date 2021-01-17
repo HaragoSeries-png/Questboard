@@ -39,3 +39,4 @@ https://fahfahsworld.com/fahfahs-color-code-part1/?fbclid=IwAR0vEzkMUd5NSSZ8S8ej
 + 15-Jan-21 : 16.47 : add profileservice method , edit profile(backend)
   15-Jan-21 : 21.44 เพิ่ม profile2 -->profile_remodel
 + 16-Jan-21 : 14.09 : Questfeed complete 85%(Test required) need to fix responsive
+  16-Jan-21 : 23.38 : ตกแต่งcreateQuest2 

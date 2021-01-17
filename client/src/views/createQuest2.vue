@@ -1,32 +1,34 @@
 <template>
-  <div id="main">
+  <div id="main" style="margin:20px;">
     <v-container>
       <!-- <div class="main"> -->
 
       <div id="questcreate">
         <v-container
-          style="  margin-top:5%; height:100%;"
+          style="height:100%;"
         >
           <v-row>
-            <v-col cols="12" class="section1">
+            <v-col cols="12" md="6"  class="section1">
+              
               <center>
-                <h2 id="head">WANTED</h2>
-
+                <h2 id="head">Create your quest</h2>
                 <div
                   class="d-flex flex-column justify-space-between align-center"
                 >
                   <v-img
-                    :aspect-ratio="16 / 9"
+                    :aspect-ratio="16 / 14"
                     :width="width"
-                    src="https://scontent.fbkk12-2.fna.fbcdn.net/v/t31.0-8/c0.95.2048.1070a/s843x403/12239456_1699817216921408_7074464691531276410_o.jpg?_nc_cat=105&ccb=2&_nc_sid=e3f864&_nc_eui2=AeGACpchPH-Bv2HcUvJ9epSZzvWVnZY1eI3O9ZWdljV4jRg8XnhC_jj5GS6IMK2tT8zMgzDZdMloAdsLNR-pn9hN&_nc_ohc=zzFINuL7IoEAX_RPsqG&_nc_ht=scontent.fbkk12-2.fna&tp=28&oh=e1476c4e156a98268bcc7a78f7957290&oe=60208F7A"
+                    src="../assets/miku.gif"
                     style="margin-top : 3%;"
+                  
+                    
                   ></v-img>
                     <v-slider
                     v-model="width"
                     class="align-self-stretch"
-                    min="400"
+                    min="300"
                     max="500"
-                    step="0.1"
+                    step="1"
                     style="margin-top:5%;"
                     color="#e3b069"
                     
@@ -77,7 +79,15 @@
                           />
                         </td>
                       </tr>
+                    </table>
+                  </div>
+                </div>
+              </center>
+                  </v-col>
 
+                  <v-col cols="12" md="6" >
+                    
+                    <div class="section2">
                       <tr>
                         <span id="q1"> Quest name : </span>
                         <td>
@@ -87,7 +97,7 @@
                             :rules="rules"
                             counter="25"
                             hint="Baby sister,Tutor "
-                            label="Quest"
+                            placeholder="Quest"
                           
                           ></v-text-field>
                         </td>
@@ -112,7 +122,8 @@
                           <v-textarea
                            style="margin-bottom:5%;margin-left:0.5%"
                             v-model="title"
-                            label="More information about quest"
+                            
+                             placeholder="More information about quest"
                             counter
                             maxlength="120"
                             filled
@@ -120,21 +131,20 @@
                           ></v-textarea>
                         </td>
                       </tr>
-                    </table>
-
+                  
+                  </div>
                     <center>
                       <v-btn id="btn" x-medium color="success">
                         Create
                       </v-btn>
                     </center>
-                  </div>
-                </div>
-              </center>
-            </v-col>
+                   <center><div id="foot">Quest Board</div></center>
+              </v-col>
+            
           </v-row>
         </v-container>
       </div>
-      <center><div id="foot">Quest Board</div></center>
+     
     </v-container>
   </div>
 </template>
@@ -187,7 +197,7 @@ td {
 }
 
 .section2 {
-  margin-top: 10%;
+  margin-top: 15%;
 }
 
 .v-textarea {
@@ -227,16 +237,16 @@ td {
 #foot {
   font-family: "Redressed", cursive;
   font-size: 20px;
-  margin-top: 1%;
+  margin-top: 15%;
 }
 #Date {
   font-size: 18px;
 }
 #head {
   text-decoration: underline;
-  font-family: "Anton", sans-serif;
+ font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 1px;
-  font-size: 50px;
+  font-size: 30px;
 }
 #I_start {
   margin-left: 7px;
@@ -272,10 +282,6 @@ td {
 #d1 {
   font-size: 18px;
 }
-
-#btn {
-  margin-top: 10%;
-}
 #iq {
   margin-bottom: 5;
 }
@@ -289,5 +295,10 @@ td {
     height: 150px;
   }
 }
+
+
+@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@1&display=swap);
+
+
 
 </style>

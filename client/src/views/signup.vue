@@ -1,4 +1,5 @@
 <template>
+<v-app>
   <div class="register_from">
     <h1>Register</h1>
 
@@ -38,6 +39,7 @@
       </ul>
     </div>
   </div>
+</v-app>
 </template>
 
 <script>
@@ -98,6 +100,12 @@ export default {
 </script>
 
 <style scoped>
+
+#app {
+  background: url('https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
+  no-repeat center center fixed !important;
+  background-size: cover;
+}
 body {
   margin: 0;
   padding: 0;
@@ -107,7 +115,7 @@ body {
   font-family: sans-serif;
 }
 .register_from {
-  margin-top: 8%;
+  margin-top: -3%;
   justify-items: center;
   width: 400px;
   height: min-content;
@@ -121,6 +129,7 @@ body {
   box-shadow: 8px 8px 50px rgb(36, 35, 34);
   padding: 70px 30px;
   border-radius: 10px;
+  opacity: 0.8;
 }
 h1 {
   margin: 0;
