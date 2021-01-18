@@ -142,7 +142,14 @@ export default {
   },
   created: async function() {
     await this.getinfoma();
-    this.profilePic = "http://localhost:5000/" + this.profile.infoma.proimage;
+
+    if (this.profile.infoma.proimage == ''){
+      this.profilePic = "miku.gif"
+    }
+    else {
+      this.profilePic = "http://localhost:5000/" + this.profile.infoma.proimage;
+      }
+
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;
     this.profileRate = 3;

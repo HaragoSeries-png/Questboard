@@ -20,7 +20,7 @@ class authService {
             return { suc: a.success, name: a.username, fullname: a.infoma.firstname + " " + a.infoma.lastname , infoma: a.infoma, token: a.token }
         }
         else {
-            alert("wrong")
+            alert("wrong "+a.message)
         }
     }
     static async register(text) {

@@ -1,6 +1,7 @@
 const express = require('express');
 const mongodb = require('mongodb'),
   jwt = require('jsonwebtoken'),
+  bcrypt = require('bcrypt'),
   passport = require('passport');
 require('../../configs/passport'),
   User = require('../../models/user.model'),
@@ -30,7 +31,7 @@ router.post('/signup', async (req, res, next) => {
           infoma: {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-            proimage: "2021-01-06T12-45-36.660Zmiku.gif"
+            proimage: ""
           }
         }
         console.log(newuser)
@@ -55,6 +56,7 @@ router.post('/login', async (req, res, next) => {
       if (err || !user) {
         message = info.message
         console.log("have err")
+        console.log('mess '+message)
         res.json({
           message: message,
           success: false
@@ -82,20 +84,35 @@ router.post('/login', async (req, res, next) => {
 }
 );
 
-router.get('/test', passport.authenticate('pass', {
-  session: false
-}), (req, res) => {
-  return res.json({
-    user: req.user
+router.get('/test',(req, res) => {
+  let email = req.body.email
+  console.log(email)
+  User.findOne( {email} ).then(function(user) {
+  
+   return res.json({
+    user:user
+  })
+    
+})
+  
+})
+
+router.put("/change",function(req,res){
+  let email = req.body.email
+  let newpass = req.body.pass
+  User.findOne( {email} ).then(async function(user) {
+  
+   
+      console.log("Already from pass")
+      
+      user.password = newpass
+      
+      user.save()
+      console.log("password "+user.password)
+      return res.send({user:user})
   })
 })
 
-router.get('/test', passport.authenticate('pass', {
-  session: false
-}), (req, res) => {
-  return res.json({
-    user: "Hee"
-  })
-})
+
 
 module.exports = router;
