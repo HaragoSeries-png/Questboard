@@ -31,30 +31,30 @@
         ></v-text-field>
       </div>
       <div>
- <v-text-field
+        <v-text-field
           label="E-mail"
           v-model="email"
           required
           dark
         ></v-text-field>
-</div>
-<div>
-       <v-text-field
+      </div>
+      <div>
+        <v-text-field
           label="Password"
           v-model="password"
           :type="show1 ? 'text' : 'password'"
           required
           dark
         ></v-text-field>
-   </div>
-   
-       <v-text-field
-          label="Confirm password"
-          v-model="conpassword"
-          :type="show1 ? 'password' : 'password'"
-          required
-          dark
-        ></v-text-field>
+      </div>
+
+      <v-text-field
+        label="Confirm password"
+        v-model="conpassword"
+        :type="show1 ? 'password' : 'password'"
+        required
+        dark
+      ></v-text-field>
 
       <br /><br />
       <button v-on:click="register_check()" class="button1">Register</button>

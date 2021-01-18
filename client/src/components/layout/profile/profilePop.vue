@@ -32,7 +32,14 @@
                 </v-list-item-content>
               </v-card>
             </template>
-            <ProfileFrom type="New" :infoName="infoName" :infoData="infoData[0]" />
+            <ProfileFrom
+              type="New"
+              :infoName="infoName"
+              :infoData="[]"
+              :infoKey="infoKey"
+              @sentObject="newObject"
+              @closeDialog="closeDialog()"
+            />
           </v-dialog>
 
           <div v-if="infoData != []">
@@ -48,20 +55,35 @@
                 <v-list-item-content>
                   <v-list-item-subtitle
                     class="title"
-                    v-for="(subitem, key) in item"
-                    :key="subitem"
+                    v-for="subitem in infoKey"
+                    :key="subitem.index"
                   >
                     <span
                       style="font-weight: bold; text-transform: capitalize;"
                     >
-                      {{ key }}:
+                      {{ subitem }}:
                     </span>
-                    {{ item[key] }}
+                    {{ item[subitem] }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
+
                 <v-list-item-action>
                   <v-list-item-action-text class="title">
-                    Edit Delete
+                    <v-dialog v-model="item.turn" width="600">
+                      <template v-slot:activator="{ on }">
+                        <a v-on="on">Edit</a>
+                      </template>
+                      <ProfileFrom
+                        :infoName="infoName"
+                        :infoData="item"
+                        :infoKey="infoKey"
+                        :infoIndex="index"
+                        @sentUpdateObject="updateObject"
+                        @closeDialog="closeDialog()"
+                      />
+                    </v-dialog>
+                    &nbsp;
+                    <a @click="deleteObject(index)">Delete</a>
                   </v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
@@ -101,21 +123,35 @@ import ProfileFrom from "../profile/profileFrom";
 
 export default {
   name: "ProfilePop",
-  props: ["infoName", "infoData"],
+  props: ["infoName", "infoData", "infoKey"],
   components: { ProfileFrom },
   methods: {
     requestSave() {
-      this.$emit('Save')
+      this.$emit("Save");
     },
     requestClose() {
       this.$emit("closeDialog");
     },
-    updateObject(value) {
+    newObject(value) {
       this.infoData.push(value);
+    },
+    updateObject(value, index) {
+      this.infoData[index] = value;
+    },
+    deleteObject(value) {
+      this.infoData = this.infoData.splice(value, 1);
     },
     closeDialog() {
       this.dialog = false;
+      for (var v in this.infoData) {
+        this.infoData[v].turn = false;
+      }
     },
+  },
+  created() {
+    for (var v in this.infoData) {
+      this.infoData[v].turn = false;
+    }
   },
   data() {
     return {
