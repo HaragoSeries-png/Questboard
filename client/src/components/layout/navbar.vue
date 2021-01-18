@@ -5,7 +5,7 @@
       v-model="drawer"
       app
       style="border-right: 1px solid black;"
-      src="../../assets/pexels-eberhard-grossgasteiger-2088170.jpg"
+      src="Nav_bgb.jpg"
     >
       <v-list-item style="margin-left: 17%;">
         <center>
