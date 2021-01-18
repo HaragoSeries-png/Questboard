@@ -41,6 +41,7 @@ Beware
 + 18-Jan-21 : 22.06 : update questfeed (Need to fix style)
 + 18-Jan-21 : 19.59 : แก้ไข default profilepic function
   18-Jan-21 : 22.20 : แก้ register ที่ข้อความตอน input มีขนาดไม่เท่ากัน แก้ form createQuest ให้ดูดีขึ้น   
+  19-Jan-21 : 3.31  : เพิ่ม contact ในprofile
 #Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {
