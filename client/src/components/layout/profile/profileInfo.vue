@@ -20,7 +20,12 @@
             <template v-slot:activator="{ on }">
               <i class="material-icons editbtn" v-on="on">border_color</i>
             </template>
-            <ProfilePop :infoName="infoName" :infoData="infoData" />
+            <ProfilePop
+              :infoName="infoName"
+              :infoData="infoData"
+              @closeDialog="closeDialog"
+              @Save="sendData"
+            />
           </v-dialog>
         </v-list-item-action>
       </v-list-item>
@@ -32,12 +37,40 @@
 </template>
 
 <script>
+import profileService from "@/service/profileservice";
 import ProfilePop from "../profile/profilePop";
 
 export default {
   name: "ProfileInfo",
   props: ["infoName", "infoSub", "infoLogo", "infoData", "infoAttribute"],
   components: { ProfilePop },
+  methods: {
+    sendData: async function() {
+      if (this.infoData) {
+        let formData = {};
+
+        if (this.infoName == "Skill") formData.skill = this.infoData
+        if (this.infoName == "Experience") formData.exp = this.infoData
+        if (this.infoName == "Introduce") formData.desc = this.infoData
+        if (this.infoName == "Education") formData.education = this.infoData
+        if (this.infoName == "Contact") formData.contact = this.infoData
+        
+        let suc = await profileService.editprofile(formData).then((res) => {
+          return res;
+        });
+        if (suc) this.$router.push({ path: "/feed" });
+        else alert("Edit Failed");
+      } else alert("Data Missing.");
+    },
+    closeDialog() {
+      this.dialog = false;
+    },
+  },
+  data() {
+    return {
+      dialog: false,
+    };
+  },
 };
 </script>
 

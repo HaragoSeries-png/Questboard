@@ -139,6 +139,30 @@ export default {
     add() {
       this.$store.dispatch("set");
     },
+    // sendData: async function() {
+    //   if (this.infoData) {
+    //     let formData = new FormData();
+    //     formData.append('desc', this.profileInfo)
+    //     formData.append('skill', this.profileSkill)
+    //     formData.append('education', this.profileEducation)
+
+    //     if(this.infoName == "Skill") field = "skill"
+    //     if(this.infoName == "Experience") field = "exp"
+    //     if(this.infoName == "Introduce") field = "desc"
+    //     if(this.infoName == "Education") field = "education"
+    //     if(this.infoName == "Contact") field = "contact"
+
+    //     formData.append("image", this.files);
+
+    //     console.log(this.infoData)
+    //     let suc = await profileService.editprofile(this.infoData).then((res) => {
+    //       return res;
+    //     });
+    //     if (suc) this.$router.push({ path: "/feed" });
+    //     else alert("Upload Failed");
+    //   } else alert("File Missing.");
+    //   console.log('A')
+    // },
   },
   created: async function() {
     await this.getinfoma();
