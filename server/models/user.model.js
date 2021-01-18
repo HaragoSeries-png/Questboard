@@ -15,21 +15,25 @@ let UserSchema = new mongoose.Schema({
         rating: Number,
         desc: String,
         proimage: String,
+        desc: [{
+            topic: String,
+            desc: String
+        }],
         contact: [{
             con: String,
             val: String
         }],
-        skills: [{
+        skill: [{
             skill: String
         }],
         education: [{
             branch: String,
-            date: Date
+            date: String
         }],
         exp: [{
             topic: String,
             desc: String,
-            date: Date,
+            date: String,
         }],
     },
     ownquests: [{

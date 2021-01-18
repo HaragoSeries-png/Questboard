@@ -10,7 +10,6 @@ const express = require('express'),
     methodOverride = require("method-override"),
      path = require('path');
     
-
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('express-session')({
