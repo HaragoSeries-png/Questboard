@@ -148,9 +148,10 @@ export default {
     return {
       comitems: [
         { title: "Quest", icon: "mdi-view-dashboard", to: "/feed" },
+        { title: "Create Quest", icon: "mdi-book-arrow-up", to: "/createQuest2" },
         { title: "About Us", icon: "mdi-account-group", to: "/aboutus" },
         { title: "Contact", icon: "mdi-android-messages", to: "/contact" },
-       
+
       ],
       unlogitems: [
         { title: "Log in", icon: "mdi-login", to: "/login" },

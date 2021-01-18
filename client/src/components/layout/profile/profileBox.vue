@@ -60,7 +60,7 @@
         background-color="red lighten-3"
         color="red"
         size="30"
-        style="margin-top:7%;"
+        style="margin-top:-5%;"
       ></v-rating>
     </center>
   </div>
