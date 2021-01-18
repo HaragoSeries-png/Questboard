@@ -5,12 +5,12 @@
       v-model="drawer"
       app
       style="border-right: 1px solid black;"
-      src="../../assets/pexels-eberhard-grossgasteiger-2088170.jpg"
+      src="Nav_bgb.jpg"
     >
       <v-list-item style="margin-left: 17%;">
         <center>
           <div
-            style="font-family: 'Playfair Display', serif; font-size: 23px; margin-top: 10%"
+            style="font-family: 'Maven Pro', sans-serif; font-size: 23px; margin-top: 10%"
           >
             <span style="right: 50%; text-decoration: underline;"
               >Quest Board</span
@@ -42,11 +42,11 @@
             color="#FF598F"
           >
             <v-list-item-icon>
-              <div style="color:black;"><v-icon>{{ item.icon }}</v-icon></div>
+              <div ><v-icon>{{ item.icon }}</v-icon></div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div  style="color:black; font-family: 'Playfair Display', serif; " >{{ item.title }}</div>
+              <div  style="font-size:15px;font-family: 'Montserrat', sans-serif;" >{{ item.title }}</div>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -63,13 +63,7 @@
             v-model="selectedItem"
             color="#FF598F"
           >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <div class="titlefont">{{ item.title }}</div>
-            </v-list-item-content>
+           
           </v-list-item>
 
           <v-list-item link to="/" @click="logout">
@@ -99,7 +93,7 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">{{ item.title }}</div>
+              <div class="titlefont" style="font-size:15px;font-family: 'Montserrat', sans-serif;" >{{ item.title }}</div>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -184,5 +178,6 @@ export default {
   font-weight: bold;
   font-size: 14px;
 }
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
 </style>

@@ -10,7 +10,7 @@ class questService {
     }
     static async getquest(){
         let a = await axios.get(url+'/feed').then(res=>{return res.data})
-        console.log("suc "+a.success)
+        console.log("suc "+a.quest)
         return {suc:a.success,quest:a.quest} 
     }
 }
