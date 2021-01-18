@@ -25,17 +25,24 @@
                 <v-list-item-content>
                   <v-list-item-subtitle
                     class="title"
-                    style="margin-left: 3%; color: white; font-weight: bold"
+                    style="text-transform: uppercase; margin-left: 3%; color: white; font-weight: bold"
                   >
-                    + ADD NEW ELEMENT
+                    + ADD NEW {{ infoName }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-card>
             </template>
-            <ProfileFrom type="New" :infoName="infoName" :infoData="infoData[0]" />
+            <ProfileFrom
+              type="New"
+              :infoName="infoName"
+              :infoData="infoData[0]"
+              @sentObject="updateObject"
+              @closeDialog="closeDialog"
+            />
           </v-dialog>
 
-          <v-card
+          <div v-if="infoData != []">
+            <v-card
             max-width="auto"
             max-height="auto"
             v-for="(item, index) in infoData"
@@ -51,7 +58,7 @@
                   :key="subitem"
                 >
                   <span style="font-weight: bold; text-transform: capitalize;">
-                    {{ index }}: {{ key }}:
+                    {{ key }}:
                   </span>
                   {{ item[key] }}
                 </v-list-item-subtitle>
@@ -63,6 +70,9 @@
               </v-list-item-action>
             </v-list-item>
           </v-card>
+          </div>
+
+          
         </v-list>
       </v-card>
 
@@ -92,9 +102,19 @@ export default {
   props: ["infoName", "infoData"],
   components: { ProfileFrom },
   methods: {
-    click() {
-      console.log("Click");
+    updateObject(value) {
+      console.log(value)
+      this.infoData.push(value);
+      console.log(this.infoData)
     },
+    closeDialog() {
+      this.dialog = false;
+    }
+  },
+  data() {
+    return {
+      dialog: false
+    }
   },
 };
 </script>

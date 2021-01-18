@@ -14,28 +14,26 @@
 
       <v-col cols="12" md="4">
         <div class="section">
-          <!-- Skill -->
+          <!-- Introduce -->
           <profileInfo
-            infoName="Skill"
-            infoSub="Personal Ability"
-            infoLogo="local_fire_department"
-            :infoData="profileSkill"
-            :infoAttribute="profileSkillAttribute"
+            infoName="Introduce"
+            infoLogo="perm_contact_cal"
+            :infoData="profileInfo"
           >
-            <v-card-actions style="overflow-y: auto;">
-              <v-btn
-                outlined
-                rounded
-                text
-                v-for="items in profileSkill"
-                :key="items.skill"
-              >
-                {{ items.skill }}
-              </v-btn>
-              <v-btn outlined rounded text class="v-btn-add">
-                + ADD
-              </v-btn>
-            </v-card-actions>
+            <v-list two-line style="max-height: 200px" class="overflow-y-auto">
+              <v-card-action>
+                <div
+                  v-for="(items, index) in profileInfo"
+                  :key="items.index"
+                >
+                  <profileList
+                    :title="items.topic"
+                    :subtitle="items.desc"
+                    :isDivider="index < profileInfo.length - 1"
+                  />
+                </div>
+              </v-card-action>
+            </v-list>
           </profileInfo>
 
           <!-- Education -->
@@ -66,6 +64,30 @@
 
       <v-col cols="12" md="4">
         <div class="section">
+          <!-- Skill -->
+          <profileInfo
+            infoName="Skill"
+            infoSub="Personal Ability"
+            infoLogo="local_fire_department"
+            :infoData="profileSkill"
+            :infoAttribute="profileSkillAttribute"
+          >
+            <v-card-actions style="overflow-y: auto;">
+              <v-btn
+                outlined
+                rounded
+                text
+                v-for="items in profileSkill"
+                :key="items.skill"
+              >
+                {{ items.skill }}
+              </v-btn>
+              <v-btn outlined rounded text class="v-btn-add">
+                + ADD
+              </v-btn>
+            </v-card-actions>
+          </profileInfo>
+
           <!-- Experience -->
           <profileInfo
             infoName="Experience"
@@ -87,19 +109,6 @@
                 </div>
               </v-card-action>
             </v-list>
-          </profileInfo>
-
-          <!-- Introduce -->
-          <profileInfo
-            infoName="Introduce & Contact"
-            infoSub="Personal Ability"
-            infoLogo="perm_contact_cal"
-          >
-            <v-textarea
-              readonly
-              :value="value"
-              style="margin: 1%;"
-            ></v-textarea>
           </profileInfo>
         </div>
       </v-col>
@@ -156,6 +165,15 @@ export default {
       profilePic: "",
       profileRate: 0,
 
+      profileInfo: [
+        { topic: "Name", desc: "Prayut Jan-O-Cha" },
+        {
+          topic: "สู้เพื่อแผ่นดิน",
+          desc:
+            "ฉันยังมีความหวัง เชื่อว่าวันพรุ่งนี้ อะไรต้องดีกว่าเดิม สิ่งที่เรามุ่งหมายในวันที่เราริเริ่ม จับมือกันเดินข้ามมา มองด้วยใจ ด้วยความจริง จะเห็นว่ามันดีกว่า ไม่ไกลหรอกหนา มองไปข้างหน้า ทุกวันต้องดีขึ้นไป",
+        },
+        { topic: "Money", desc: "1000 Yen" },
+      ],
       profileSkill: [
         { skill: "Eat" },
         { skill: "Poop" },
