@@ -39,31 +39,24 @@ router.get('/', passport.authenticate('pass', {
     res.send({ success: true, user: req.user })
 });
 
-router.put('/', upload.single('image'), passport.authenticate('pass', {
+router.put('/', passport.authenticate('pass', {
     session: false
 }), (req, res) => {
-    let newdata = req.body
-    
-    if (newdata.field == 'firstname') {
-        console.log('firstname')
-        req.user.infoma.firstname = newdata.value
-    }
-    else if (newdata.field == 'lastname') {
-        console.log('lastname')
-        req.user.infoma.lastname = newdata.value
-    }
-    else if (newdata.field == 'address') {
-        console.log('address')
-        req.user.infoma.address = newdata.value
-    }
-    else if (newdata.field == 'des') {
-        console.log('des')
-        req.user.infoma.des = newdata.value
-    }
-    
-    console.log(req.user.infoma.proimage)
-    req.user.save()
+    // let newdata = req.body
+    let data = req.body
+    let keys = Object.keys(data)
 
+    console.log(typeof req.user.infoma.skill)
+
+    for (var v in keys) {
+        if (keys[v] == 'skill') req.user.infoma.skill = data.skill
+        if (keys[v] == 'exp') req.user.infoma.exp = data.exp
+        if (keys[v] == 'desc') req.user.infoma.desc = data.desc
+        if (keys[v] == 'education') req.user.infoma.education = data.education
+        if (keys[v] == 'contact') req.user.infoma.contact = data.contact
+    }
+    
+    req.user.save()
     res.send(req.user)
 });
 
