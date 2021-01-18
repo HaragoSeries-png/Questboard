@@ -1,18 +1,18 @@
 <template>
   <div id="profileInfo">
-    <v-card max-width="auto" max-height="auto" outlined>
+    <v-card min-height="300px" max-width="auto" max-height="auto" outlined>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="headline mb-1">
             <i class="material-icons">{{ infoLogo }}</i>
             &nbsp;
-            <span style="font-size: 25px; font-weight: bold">{{
-              infoName
-            }}</span>
+            <span style="font-size: 25px; font-weight: bold">
+              {{ infoName }}
+            </span>
           </v-list-item-title>
-          <v-list-item-subtitle style="font-size: 16px">{{
-            infoSub
-          }}</v-list-item-subtitle>
+          <v-list-item-subtitle style="font-size: 16px">
+            {{ infoSub }}
+          </v-list-item-subtitle>
         </v-list-item-content>
 
         <v-list-item-action>
@@ -23,6 +23,7 @@
             <ProfilePop
               :infoName="infoName"
               :infoData="infoData"
+              :infoKey="infoKey"
               @closeDialog="closeDialog"
               @Save="sendData"
             />
@@ -42,7 +43,7 @@ import ProfilePop from "../profile/profilePop";
 
 export default {
   name: "ProfileInfo",
-  props: ["infoName", "infoSub", "infoLogo", "infoData", "infoAttribute"],
+  props: ["infoName", "infoSub", "infoLogo", "infoData", "infoKey"],
   components: { ProfilePop },
   methods: {
     sendData: async function() {
@@ -58,7 +59,7 @@ export default {
         let suc = await profileService.editprofile(formData).then((res) => {
           return res;
         });
-        if (suc) this.$router.push({ path: "/feed" });
+        if (suc) this.$router.push({ path: "/profile" });
         else alert("Edit Failed");
       } else alert("Data Missing.");
     },
@@ -74,7 +75,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import "../../../styles/profile.css";
 
 #profileInfo {

@@ -91,7 +91,7 @@ export default {
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
-        if (suc) this.$router.push({ path: "/feed" });
+        if (suc) this.$router.push({ path: "/profile" });
         else alert("Upload Failed");
       } else alert("File Missing.");
     },

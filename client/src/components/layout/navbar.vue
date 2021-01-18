@@ -22,7 +22,9 @@
 
       <div id="profileTab" v-if="$store.getters.isLoggedIn">
         <div class="profileInfo">
-          Welcome <span>{{ this.$store.getters.getfullname }}</span>
+          Welcome
+          <br />
+          <span style="font-size: 14px">{{ this.$store.getters.getfullname }}</span>
           <br />
           <router-link to="/profile" style="font-size: 12px; color: orange"
             >View your profile</router-link
