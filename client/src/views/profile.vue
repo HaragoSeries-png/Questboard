@@ -20,6 +20,7 @@
             infoSub="Personal Ability"
             infoLogo="local_fire_department"
             :infoData="profileSkill"
+            :infoAttribute="profileSkillAttribute"
           >
             <v-card-actions style="overflow-y: auto;">
               <v-btn
@@ -42,11 +43,20 @@
             infoName="Education"
             infoSub="Degreee and Department"
             infoLogo="school"
+            :infoData="profileEducation"
           >
             <v-list two-line style="max-height: 300px" class="overflow-y-auto">
               <v-card-action>
-                <div v-for="(items, index) in profileEducation" :key="items.index">
-                  <profileList :title="items.branch" subtitle="subtitle" :action="items.date" :isDivider="(index < profileEducation.length - 1)"/>
+                <div
+                  v-for="(items, index) in profileEducation"
+                  :key="items.index"
+                >
+                  <profileList
+                    :title="items.branch"
+                    subtitle="subtitle"
+                    :action="items.date"
+                    :isDivider="index < profileEducation.length - 1"
+                  />
                 </div>
               </v-card-action>
             </v-list>
@@ -57,11 +67,23 @@
       <v-col cols="12" md="4">
         <div class="section">
           <!-- Experience -->
-          <profileInfo infoName="Experience" infoLogo="done_outline">
+          <profileInfo
+            infoName="Experience"
+            infoLogo="done_outline"
+            :infoData="profileExperience"
+          >
             <v-list two-line style="max-height: 200px" class="overflow-y-auto">
               <v-card-action>
-                <div v-for="(items, index) in profileExperience" :key="items.index">
-                  <profileList :title="items.topic" :subtitle="items.desc" :action="items.date" :isDivider="(index < profileExperience.length - 1)"/>
+                <div
+                  v-for="(items, index) in profileExperience"
+                  :key="items.index"
+                >
+                  <profileList
+                    :title="items.topic"
+                    :subtitle="items.desc"
+                    :action="items.date"
+                    :isDivider="index < profileExperience.length - 1"
+                  />
                 </div>
               </v-card-action>
             </v-list>
@@ -76,7 +98,7 @@
             <v-textarea
               readonly
               :value="value"
-              style="margin-left:5%;"
+              style="margin: 1%;"
             ></v-textarea>
           </profileInfo>
         </div>
@@ -96,7 +118,7 @@ export default {
   components: {
     profileBox,
     profileInfo,
-    profileList
+    profileList,
   },
   methods: {
     getinfoma: async function() {
@@ -133,18 +155,21 @@ export default {
         { skill: "Yed" },
         { skill: "Sleep" },
       ],
+      profileSkillAttribute: ["skill"],
       profileEducation: [
         { branch: "Department of Mathematic", date: "11/11/2000" },
         { branch: "Department of Media art", date: "12/11/2000" },
         { branch: "Department of Electrical Enginering", date: "13/11/2000" },
         { branch: "Department of Media art", date: "12/11/2000" },
         { branch: "Department of Electrical Enginering", date: "13/11/2000" },
+        { branch: "Department of Applied Comedy Science", date: "13/11/2000" },
       ],
       profileExperience: [
         { topic: "Diving", desc: "Diving", date: "01/01/2021" },
         { topic: "Seaplant", desc: "Sea plant", date: "01/01/2021" },
         { topic: "Election", desc: "Election", date: "01/01/2021" },
         { topic: "Podium Attck", desc: "Critical Hit", date: "01/01/2021" },
+        { topic: "Podium Attck II", desc: "Normal Hit", date: "02/01/2021" },
       ],
     };
   },
