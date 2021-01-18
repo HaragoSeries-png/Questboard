@@ -72,8 +72,8 @@
                         </td>
                       </tr>
 
-                      <tr id="main_Person">
-                        <i class="material-icons">person</i>
+                      <tr id="main_Person"> 
+                        <i class="material-icons">person</i> 
                         <td>
                           <input
                             type="number"
@@ -81,7 +81,7 @@
                             name=""
                             id="num_per"
                             v-model="numberofcon"
-                          />
+                          />  <span style="margin-left:10%;">Person</span>
                         </td>
                       </tr>
                     </table>
@@ -96,38 +96,38 @@
                      <center>
                        <div>
                       <tr>
-                        <span id="q1"> Quest name : </span>
+                        <span id="q1"> Quest</span>
                         <td>
                           <v-text-field
-                            style="margin-bottom:5%;margin-left:-40%"
+                            style="margin-bottom:10%;margin-left:-40%; "
                             id="iq"
                             :rules="rules"
                             counter="25"
                             hint="Baby sister,Tutor "
-                            label="Quest"
+                            label="Quest name"
                             v-model="questname"
                           ></v-text-field>
                         </td>
                       </tr>
 
                       <tr>
-                        <span id="c1"> Category : </span>
+                        <span id="c1">Category</span>
                         <td>
                           <v-select
                             :items="items"
                             id="ic"
                             label="Default"
-                            style="margin-bottom:0%;margin-left:-40%"
+                            style="margin-bottom:10%;margin-left:-40%"
                             dense
                             v-model="category"
                           ></v-select>
                         </td>
                       </tr>
                       <tr>
-                        <span id="q1"> Reward : </span>
+                        <span id="q1"> Reward</span>
                         <td>
                           <v-text-field
-                            style="margin-bottom:5%;margin-left:-40%;"
+                            style="margin-bottom:10%;margin-left:-40%;"
                             id="iq"
                             :rules="rules"
                             counter="25"
@@ -137,8 +137,8 @@
                           ></v-text-field>
                         </td>
                       </tr>
-                      <tr>
-                        <span id="d1">Details :</span>
+                      <tr id="noob">
+                        <span id="d1">Details</span>
                         <td>
                           <v-textarea
                            
@@ -238,19 +238,6 @@ export default {
 
 <style scoped>
 
-#app {
-  background: url('../assets/pexels-jess-bailey-designs-1172849.jpg')
-  no-repeat;
-  background-size: cover;
-  
-}
-
-
-
-
-
-
-
 .pictureQuest img {
   width: 400px;
   height: 200px;
@@ -287,7 +274,9 @@ td {
 .section2 {
   margin-top: 15%;
 }
-
+.section2 iq{
+ display: inline;
+}
 .v-textarea {
   width: 400px;
   height: 200px;
@@ -364,25 +353,23 @@ td {
 #q1 {
   
   font-size: 18px;
+  text-align: left;
 }
 #c1 {
   font-size: 18px;
+   text-align: left;
 }
 #d1 {
   font-size: 18px;
+   text-align: left;
 }
 #iq {
   margin-bottom: 5;
 }
 @media only screen and (max-width: 600px) {
-  #main{
-    width: auto;
-    height: auto;
-  }
-  .v-textarea{
-    width: 150px;
-    height: 150px;
-  }
+
+
+
 }
 
 
