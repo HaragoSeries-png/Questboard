@@ -30,7 +30,7 @@ router.post('/signup', async (req, res, next) => {
           infoma: {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-            proimage: "2021-01-06T12-45-36.660Zmiku.gif"
+            proimage: ""
           }
         }
         console.log(newuser)
