@@ -9,7 +9,50 @@
             :profileRate="profileRate"
             @uploadimg="chooseFiles"
           />
+
+          <!-- Contact section -->
+          <center>
+           <v-divider></v-divider>
+            <div style="margin-top:6%;font-size:22px;margin-bottom:5%;">
+              <v-icon style="font-size:40px; color:black;"> mdi-account-circle</v-icon>
+              Contact
+            </div>
+             <v-divider></v-divider>
+          </center>
+          <center>
+          <div id="ct_section1" >
+          <div style="margin-bottom:2%;">
+          <tr>
+            <v-img :width="35" src="Facebook_img_n2.webp" :aspect-ratio="1/1" ></v-img>
+            <td > <span style="margin-left:20%;font-size:18px;">Junior Jiraphat</span>    </td>
+          </tr>
+          </div>
+
+
+          <div style="margin-bottom:2%;"  >
+          <tr   >
+            <v-img :width="35" src="Line_img_n1.webp" :aspect-ratio="1/1"  ></v-img>
+            <td><span style="margin-left:20%;font-size:18px;">Junior1143</span></td>
+          </tr>
+           </div>
+           <div style="margin-bottom:2%;"   >
+          <tr><v-img :width="30" src="call_img_n1.png" :aspect-ratio="1/1"   ></v-img>
+            <td>
+              <span style="margin-left:21%; font-size:18px;">094-727-0000</span>
+            </td>
+          </tr>
+          </div>
+          <div style="margin-bottom:2%;"   >
+          <tr><v-img :width="35" src="Email_img_n2.jpg" :aspect-ratio="1/1"></v-img>
+            <td>
+                <span style="margin-left:20%;font-size:18px;">Jiraphat-saeheng@hotmail.com</span>
+            </td>
+          </tr>
+         </div>
+         </div>
+          </center>
         </div>
+         <v-divider></v-divider>
       </v-col>
 
       <v-col cols="12" md="4">
@@ -184,7 +227,7 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
 @import "../styles/profile.css";
 
 .section {
@@ -207,4 +250,15 @@ export default {
   line-height: 0.85;
   text-shadow: 2px 2px white, 2px -2px white, -2px 2px white, -2px -2px white;
 }
+#ct_section1 td { 
+    width: 100%;
+    text-align: left;
+}
+#ct_section1 tr{
+  margin-left: 20%;
+  position: relative;
+  text-align: center;
+}
+@import url("https://cdn.jsdelivr.net/npm/font-awesome@4.x/css/font-awesome.min.css");
+@import url("https://use.fontawesome.com/releases/v5.0.13/css/all.css");
 </style>
