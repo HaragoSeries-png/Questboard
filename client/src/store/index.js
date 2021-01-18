@@ -34,7 +34,7 @@ export default new Vuex.Store({
       
       state.islog = true
       state.currentUser = value.name
-      state.fullanme = value.fullname
+      state.userfullname = value.fullname
       state.userinfoma = value.infoma
       console.log("logon")
       // if(this.$store.getters.isLoggedIn){

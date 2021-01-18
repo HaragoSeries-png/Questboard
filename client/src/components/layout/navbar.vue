@@ -38,7 +38,7 @@
             :key="item.title"
             link
             :to="item.to"
-            v-model="selectedItem"
+            
             color="#FF598F"
           >
             <v-list-item-icon>
@@ -60,10 +60,15 @@
             :key="item.title"
             link
             :to="item.to"
-            v-model="selectedItem"
+           
             color="#FF598F"
           >
-           
+            <v-list-item-icon>
+              <v-icon style="color: red">{{item.icon}}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <div class="titlefont" style="color: red">{{item.title}}</div>
+            </v-list-item-content>
           </v-list-item>
 
           <v-list-item link to="/" @click="logout">
@@ -85,7 +90,7 @@
             :key="item.title"
             link
             :to="item.to"
-            v-model="selectedItem"
+           
             color="#FF598F"
           >
             <v-list-item-icon>
