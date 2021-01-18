@@ -52,9 +52,10 @@ let UserSchema = new mongoose.Schema({
 UserSchema.pre(
     'save',
     async function (next) {
+        console.log("hree")
         const user = this;
-        const hash = await bcrypt.hash(this.password, 10);
-
+        const hash = await bcrypt.hash(this.password, bcrypt.genSaltSync(12));
+        
         this.password = hash;
         next();
     }
@@ -62,9 +63,15 @@ UserSchema.pre(
 
 UserSchema.methods.isValidPassword = async function (password) {
     const user = this;
-    const compare = await bcrypt.compare(password, user.password);
-    console.log(compare)
-    return compare;
+    // console.log('passsword in '+password)
+    // console.log("password real "+user.password)
+    // const compare = await bcrypt.compare(password, user.password);
+    // console.log('compare '+compare)
+    const hash = await bcrypt.hash(password, bcrypt.genSaltSync(12))
+    console.log(hash)
+    let compare = await bcrypt.compare(password, user.password)
+    console.log("comapre "+compare)
+    return compare
 };
 
 UserSchema.methods.getrating = async function(){
@@ -77,6 +84,16 @@ UserSchema.methods.getrating = async function(){
     })
     return r
     
+}
+UserSchema.methods.changepass = async function(newpass){
+    const user = this;
+    const hash = await bcrypt.hash(newpass, bcrypt.genSaltSync(12));
+    let compare = await bcrypt.compare(newpass, hash)
+    console.log("hash here"+compare)
+    user.password = hash;
+    console.log("newpass "+user.password)
+
+    return this.password
 }
 
 

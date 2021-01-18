@@ -33,12 +33,11 @@ Beware
 + 15-Jan-21 : 16.47 : add profileservice method , edit profile(backend)
 + 15-Jan-21 : 21.44 เพิ่ม profile2 -->profile_remodel
 + 16-Jan-21 : 14.09 : Questfeed complete 85%(Test required) need to fix responsive
-<<<<<<< HEAD
   16-Jan-21 : 23.38 : ตกแต่งcreateQuest2 
-=======
 + 17-Jan-21 : 00.07 : ทำ Profile.vue ให้มี Components เเล้ว, เเก้ไขรูปภาพได้ (ถ้าหน้า profile.vue มีปัญหาเเนะนำให้ Copy จาก git มาหมดเลยนะ)
 + 17-Jan-21 : 16.18 : ปรับ user.model,เพิ่ม rating sys
 + 17-Jan-21 : 23.43 : password lenght,create quest90%,fix profile hover
++ 18-Jan-21 : 19.33 : change login system, change password(server)
 
 #Example Code
 + How Form Data Console Log
@@ -47,4 +46,3 @@ Beware
       console.log(pair[1]);
     }
 
->>>>>>> e58b7d7c3826c2e2648a0314bcce0162ecc6adc0
