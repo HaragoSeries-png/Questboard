@@ -4,12 +4,12 @@
         <div class="card">
             <img src="Quest board.png" alt="" class="card__img">
             <div class="card__content">
-                <h2>Name</h2>
-                <p>Detail</p>
+                <h2>{{Name}}</h2>
+                <p>{{Detail}}</p>
             </div>
             <div class="card__info">
                 <div>
-                    Reward:
+                    {{Reward}}
                 </div>
             <div>
                 <a href="./" class="more">View More</a>
@@ -18,3 +18,12 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    props: {
+        Name: String,
+        Detail: String,
+        Reward: String
+    }
+}
+</script>
