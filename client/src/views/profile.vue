@@ -12,10 +12,12 @@
 
           <!-- Contact section -->
           <center>
-            <div style="margin-top:2%;font-size:22px;margin-bottom:5%;">
+           <v-divider></v-divider>
+            <div style="margin-top:6%;font-size:22px;margin-bottom:5%;">
               <v-icon style="font-size:40px; color:black;"> mdi-account-circle</v-icon>
               Contact
             </div>
+             <v-divider></v-divider>
           </center>
           <center>
           <div id="ct_section1" >
@@ -50,6 +52,7 @@
          </div>
           </center>
         </div>
+         <v-divider></v-divider>
       </v-col>
 
       <v-col cols="12" md="4">
