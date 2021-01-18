@@ -39,6 +39,7 @@ Beware
 + 17-Jan-21 : 23.43 : password lenght,create quest90%,fix profile hover
 + 18-Jan-21 : 19.33 : change login system, change password(server)
 + 18-Jan-21 : 19.59 : แก้ไข default profilepic function
+  18-Jan-21 : 22.20 : แก้ register ที่ข้อความตอน input มีขนาดไม่เท่ากัน แก้ form createQuest ให้ดูดีขึ้น   
 #Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {
