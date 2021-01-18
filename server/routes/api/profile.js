@@ -111,5 +111,11 @@ router.put('/list',passport.authenticate('pass',{
     res.send({ success: true })
 })
 
+router.delete('/', function (req, res) {
+    console.log(req.body.user_id)
+    User.findByIdAndDelete(req.body.user_id).then(quest => {
+      res.send(quest)
+    })
+  })
 
 module.exports = router;

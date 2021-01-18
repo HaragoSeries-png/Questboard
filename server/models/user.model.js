@@ -53,17 +53,14 @@ let UserSchema = new mongoose.Schema({
     }]
 })
 
-UserSchema.pre(
-    'save',
-    async function (next) {
-        console.log("hree")
-        const user = this;
-        const hash = await bcrypt.hash(this.password, bcrypt.genSaltSync(12));
-        
-        this.password = hash;
-        next();
-    }
-);
+
+UserSchema.pre("save", async function(next) {
+  const user = this;
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+  next();
+});
 
 UserSchema.methods.isValidPassword = async function (password) {
     const user = this;
@@ -71,8 +68,7 @@ UserSchema.methods.isValidPassword = async function (password) {
     // console.log("password real "+user.password)
     // const compare = await bcrypt.compare(password, user.password);
     // console.log('compare '+compare)
-    const hash = await bcrypt.hash(password, bcrypt.genSaltSync(12))
-    console.log(hash)
+
     let compare = await bcrypt.compare(password, user.password)
     console.log("comapre "+compare)
     return compare

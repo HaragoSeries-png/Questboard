@@ -25,20 +25,14 @@
                 <v-list-item-content>
                   <v-list-item-subtitle
                     class="title"
-                    style="text-transform: uppercase; margin-left: 3%; color: white; font-weight: bold"
+                    style="margin-left: 3%; color: white; font-weight: bold"
                   >
-                    + ADD NEW {{ infoName }}
+                    + ADD NEW ELEMENT
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-card>
             </template>
-            <ProfileFrom
-              type="New"
-              :infoName="infoName"
-              :infoData="infoData[0]"
-              @sentObject="updateObject"
-              @closeDialog="closeDialog"
-            />
+            <ProfileFrom type="New" :infoName="infoName" :infoData="infoData[0]" />
           </v-dialog>
 
           <div v-if="infoData != []">

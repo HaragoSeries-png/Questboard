@@ -13,7 +13,7 @@
     </div>
     
     <ul>
-        <li v-for="(item,index) in quests" :key="index"><Questcard></Questcard></li>
+        <li v-for="(item,index) in quests" :key="index"><Questcard :name = item.questname :Detail = item.questdetail :Reward = item.questreward></Questcard></li>
     </ul>
        
 
@@ -27,8 +27,40 @@
               <a href="#" class="button">»</a>
             </div>
  </div>
+ 
  </div>
 </template>>
+
+<script>
+import Questcard from '../components/Questcard'
+import Questservice from '../service/Questservice'
+export default {
+    components:{
+        Questcard
+    },
+name: "questsfeed",
+methods:{
+    getquest: async function(){
+       let a = await Questservice.getquest().then((res) => {
+          return res;
+        });
+        console.log(a.quest)
+        this.quests = a.quest
+    }
+},
+    data() {
+        return {
+            quests:['a','b']
+                }
+  }, 
+created: async function(){
+    await this.getquest()
+}
+}
+  
+
+</script>
+
 <style>
         body{
             background-attachment: fixed;
@@ -137,28 +169,4 @@
     white-space: nowrap;
   }}
     </style>
-<script>
-import Questcard from '../components/Questcard'
-import Questservice from '../service/Questservice'
-export default {
-    components:{
-        Questcard
-    },
-name: "questsfeed",
-methods:{
-    getquest: async function(){
-       let a = await Questservice.getquest().then((res) => {
-          return res;
-        });
-        console.log(a.suc)
-    }
-},
- data() {
-    return {
-    quests:[]
-    }
-  }   
-}
-  
 
-</script>
