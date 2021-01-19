@@ -16,7 +16,7 @@
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-dialog v-model="dialog" width="500">
+          <v-dialog v-model="dialog" persistent width="500">
             <template v-slot:activator="{ on }">
               <i class="material-icons editbtn" v-on="on">border_color</i>
             </template>
