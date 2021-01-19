@@ -17,6 +17,7 @@
         <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
           <v-dialog v-model="dialog" width="600">
             <template v-slot:activator="{ on }">
+              {{infoName}}
               <v-card
                 max-width="auto"
                 max-height="auto"
@@ -139,6 +140,7 @@ export default {
     },
     updateObject(value, index) {
       for (var v in this.infoKey) {
+        
         this.infoData[index][this.infoKey[v]] = value[this.infoKey[v]];
       }
     },

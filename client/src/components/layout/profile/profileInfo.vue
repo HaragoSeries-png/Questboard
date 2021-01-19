@@ -49,12 +49,14 @@ export default {
     sendData: async function() {
       if (this.infoData) {
         let formData = {};
-
+        console.log(JSON.stringify(this.infoData) + 'pre data')
         if (this.infoName == "Skill") formData.skill = this.infoData
         if (this.infoName == "Experience") formData.exp = this.infoData
         if (this.infoName == "Introduce") formData.desc = this.infoData
         if (this.infoName == "Education") formData.education = this.infoData
         if (this.infoName == "Contact") formData.contact = this.infoData
+        console.log(this.infoName + ' name')
+        console.log(JSON.stringify(this.infoData) + ' data')
         
         let suc = await profileService.editprofile(formData).then((res) => {
           return res;

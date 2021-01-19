@@ -32,17 +32,19 @@
             </span>
           </v-col>
           <v-col>
+            
             <input
               v-if="type == 'New'"
-              :id="item"
+              :id="item+infoName"
               type="text"
               value=""
               style="width: 100%"
               autocomplete="off"
             />
+            
             <input
               v-else
-              :id="item"
+              :id="item+infoName"
               type="text"
               :value="infoData[item]"
               style="width: 100%"
@@ -87,20 +89,27 @@ export default {
     sendObject: async function() {
       this.thisObject = {};
 
-      await this.infoKey.forEach(this.pushObject);
+      await this.infoKey.forEach((item)=>this.pushObject(item));
       await this.$emit("sentObject", this.thisObject);
       this.requestClose();
     },
     sendUpdateObject: async function() {
       this.thisObject = {};
 
-      await this.infoKey.forEach(this.pushObject);
+      await this.infoKey.forEach(this.pushObjectE);
       console.log(this.thisObject)
       await this.$emit("sentUpdateObject", this.thisObject, this.infoIndex);
       this.requestClose();
     },
     pushObject(value) {
-      this.thisObject[value] = document.getElementById(value).value;
+      console.log("value "+value +' is '+document.getElementById(value+this.infoName).value)
+      this.thisObject[value] = document.getElementById(value+this.infoName).value;
+      document.getElementById(value+this.infoName).value = ''
+    },
+    pushObjectE(value) {
+      console.log("value edit "+value +' is '+document.getElementById(value+this.infoName+'edit').value)
+      this.thisObject[value] = document.getElementById(value+this.infoName+'edit').value;
+      document.getElementById(value+this.infoName+'edit').value = ''
     },
     requestClose() {
       if(this.type == 'New') this.$emit("closeDialog");
