@@ -16,7 +16,12 @@
             </div>
           </v-col>
           <v-spacer></v-spacer>
-
+          <v-img
+          
+          ></v-img>
+          <v-img
+          src=miku.gif
+          >{{gurl}}</v-img>
           <v-btn @click="sendim">
             submit
           </v-btn>
@@ -29,7 +34,7 @@
     <v-img
       max-height="200"
       max-width="200"
-      src="http://localhost:5000/2021-01-06T12-45-36.660Zmiku.gif"
+     
       @click="chooseFiles()"
       >hee</v-img
     >

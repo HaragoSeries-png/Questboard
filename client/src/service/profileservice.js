@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-const url = 'http://localhost:5000/api/profile'
+const url = 'api/profile'
 
 class profileService {
     static async editprofile(text) {

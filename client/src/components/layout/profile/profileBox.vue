@@ -1,6 +1,6 @@
 <template>
   <div id="profileBox">
-    <center>
+    <center> 
       <div>
         <v-hover v-slot="{ hover }">
         <v-img
@@ -13,6 +13,7 @@
           @click="uploadimg"
           style="border:1px solid black"
         >
+       
           <div class="align-self-center">
             
               <v-btn
@@ -91,7 +92,7 @@ export default {
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
-        if (suc) this.$router.push({ path: "/profile" });
+        if (suc) this.files=null;
         else alert("Upload Failed");
       } else alert("File Missing.");
     },

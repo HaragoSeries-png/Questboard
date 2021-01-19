@@ -1,5 +1,6 @@
 <template>
   <div id="profile" style="margin: 20px">
+    
     <v-row>
       <v-col cols="12" md="4">
         <div class="section">
@@ -185,7 +186,7 @@ export default {
     await this.getinfoma();
 
     if (this.profile.infoma.proimage != "")
-      this.profilePic = "http://localhost:5000/" + this.profile.infoma.proimage;
+      this.profilePic = this.$store.state.gurl+this.profile.infoma.proimage;
     else this.profilePic = "miku.gif";
 
     if (this.profile.infoma.skill != "")

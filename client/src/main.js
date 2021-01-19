@@ -8,10 +8,21 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css';
 Vue.config.productionTip = false
 Vue.config.silent = false
 
+Vue.mixin({
+  data: function() {
+    return {
+      gurl:'http://localhost:5000'
+    }
+  }
+})
+
 new Vue({
   router,
   store,
   vuetify,
-  render: h => h(App)
+  render: h => h(App),
+  created: function() {
+    this.gurl = "http://localhost:5000";
+  }
 }).$mount('#app')
 

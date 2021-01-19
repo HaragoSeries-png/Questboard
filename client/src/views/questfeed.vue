@@ -13,7 +13,13 @@
     </div>
     
     <ul>
-        <li v-for="(item,index) in quests" :key="index"><Questcard :name = item.questname :Detail = item.questdetail :Reward = item.questreward></Questcard></li>
+        <li v-for="(item,index) in quests" :key="index"><Questcard 
+        :name = item.questname 
+        :Detail = item.questdetail 
+        :Reward = item.questreward
+        :image = item.image
+        >
+        </Questcard></li>
     </ul>
        
 
