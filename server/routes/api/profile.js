@@ -43,10 +43,9 @@ router.put('/', passport.authenticate('pass', {
     session: false
 }), (req, res) => {
     // let newdata = req.body
+    console.log(req.body)
     let data = req.body
     let keys = Object.keys(data)
-
-    console.log(typeof req.user.infoma.skill)
 
     for (var v in keys) {
         if (keys[v] == 'skill') req.user.infoma.skill = data.skill

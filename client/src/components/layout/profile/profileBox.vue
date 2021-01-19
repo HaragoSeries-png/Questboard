@@ -3,19 +3,17 @@
     <center> 
       <div>
         <v-hover v-slot="{ hover }">
-        <v-img
-          class="rounded-circle"
-          :aspect-ratio="1 / 1"
-          max-width="250"
-          :src="profilePic"
-          width:auto
-          height:auto
-          @click="uploadimg"
-          style="border:1px solid black"
-        >
-       
-          <div class="align-self-center">
-            
+          <v-img
+            class="rounded-circle"
+            :aspect-ratio="1 / 1"
+            max-width="250"
+            :src="profilePic"
+            width:auto
+            height:auto
+            @click="uploadimg"
+            style="border:1px solid black"
+          >
+            <div class="align-self-center">
               <v-btn
                 class="rounded-circle"
                 :class="{ 'show-btns': hover }"
@@ -25,21 +23,16 @@
                 x-large
                 width="250"
               >
-               <div id="ggf">
-                 
-                  {{texthover}}
+                <div id="ggf">
+                  {{ texthover }}
                 </div>
-                <v-icon   
-                >
+                <v-icon>
                   mdi-upload
                 </v-icon>
-               
               </v-btn>
-           
-            
-          </div>
-        </v-img>
-         </v-hover>
+            </div>
+          </v-img>
+        </v-hover>
         <div style="display: none;">
           <v-file-input
             v-model="files"
@@ -51,7 +44,9 @@
         <div style="margin-top:5%;" v-if="files">
           <v-btn :class="{ 'show-btns': hover }" @click="sendim">Save</v-btn>
           &nbsp;
-          <v-btn :class="{ 'show-btns': hover }" style="margin-left:2%">Cancel</v-btn>
+          <v-btn :class="{ 'show-btns': hover }" style="margin-left:2%"
+            >Cancel</v-btn
+          >
         </div>
       </div>
 
@@ -68,7 +63,7 @@
 </template>
 
 <script>
-import profileService from "@/service/profileservice"
+import profileService from "@/service/profileservice";
 
 export default {
   name: "Profile-Box",
@@ -88,7 +83,7 @@ export default {
       if (this.files) {
         let formData = new FormData();
         formData.append("image", this.files);
-     
+
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
@@ -101,7 +96,7 @@ export default {
     return {
       picHoverText: "Upload",
       files: null,
-      texthover:"Upload"
+      texthover: "Upload",
     };
   },
 };
@@ -128,8 +123,8 @@ body {
 
 .show-btns {
   color: rgb(0, 0, 0) !important;
-  background-color:rgba(177, 177, 177, 0.404);
-  size:inherit
+  background-color: rgba(177, 177, 177, 0.404);
+  size: inherit;
 }
 
 #upload_img:hover {
@@ -137,9 +132,9 @@ body {
   z-index: 3;
   max-width: 300px;
 }
-#ggf{
-    font-family: 'Xanh Mono', monospace;
-    font-size:15px;
+#ggf {
+  font-family: "Xanh Mono", monospace;
+  font-size: 15px;
 }
 @import url(https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap);
 </style>

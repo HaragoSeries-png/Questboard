@@ -4,8 +4,10 @@
       <v-card max-width="auto" max-height="auto" style="margin: 2%;" outlined>
         <v-list-item-content>
           <v-list-item-title class="headline mb-1">
-            <span style="font-size: 20px; font-weight: bold; margin-left: 3%">
-              Edit {{ infoName }}
+            <span
+              style="font-size: 20px; font-weight: bold; margin-left: 3%; text-transform: uppercase;"
+            >
+              EDIT {{ infoName }}
             </span>
           </v-list-item-title>
         </v-list-item-content>
@@ -25,9 +27,9 @@
                 <v-list-item-content>
                   <v-list-item-subtitle
                     class="title"
-                    style="margin-left: 3%; color: white; font-weight: bold"
+                    style="text-transform: uppercase; margin-left: 3%; color: white; font-weight: bold"
                   >
-                    + ADD NEW ELEMENT
+                    + ADD NEW {{ infoName }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-card>
@@ -69,7 +71,7 @@
 
                 <v-list-item-action>
                   <v-list-item-action-text class="title">
-                    <v-dialog v-model="item.turn" width="600">
+                    <v-dialog v-model="dialogArray[index]" width="600">
                       <template v-slot:activator="{ on }">
                         <a v-on="on">Edit</a>
                       </template>
@@ -79,7 +81,7 @@
                         :infoKey="infoKey"
                         :infoIndex="index"
                         @sentUpdateObject="updateObject"
-                        @closeDialog="closeDialog()"
+                        @closeDialog2="closeDialog2"
                       />
                     </v-dialog>
                     &nbsp;
@@ -136,26 +138,31 @@ export default {
       this.infoData.push(value);
     },
     updateObject(value, index) {
-      this.infoData[index] = value;
+      for (var v in this.infoKey) {
+        this.infoData[index][this.infoKey[v]] = value[this.infoKey[v]];
+      }
     },
     deleteObject(value) {
       this.infoData = this.infoData.splice(value, 1);
     },
     closeDialog() {
       this.dialog = false;
-      for (var v in this.infoData) {
-        this.infoData[v].turn = false;
-      }
+    },
+    closeDialog2(value) {
+      this.dialogArray[value] = false;
     },
   },
   created() {
-    for (var v in this.infoData) {
-      this.infoData[v].turn = false;
+    if (this.infoData != []) {
+      for (var v in this.infoData) {
+        this.dialogArray[v] = false;
+      }
     }
   },
   data() {
     return {
       dialog: false,
+      dialogArray: [],
     };
   },
 };

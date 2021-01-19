@@ -95,6 +95,7 @@ export default {
       this.thisObject = {};
 
       await this.infoKey.forEach(this.pushObject);
+      console.log(this.thisObject)
       await this.$emit("sentUpdateObject", this.thisObject, this.infoIndex);
       this.requestClose();
     },
@@ -102,11 +103,9 @@ export default {
       this.thisObject[value] = document.getElementById(value).value;
     },
     requestClose() {
-      this.$emit("closeDialog");
+      if(this.type == 'New') this.$emit("closeDialog");
+      else this.$emit("closeDialog2", this.infoIndex);
     },
-  },
-  created() {
-    
   },
   data() {
     return {

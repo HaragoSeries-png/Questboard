@@ -4,62 +4,95 @@
     <v-row>
       <v-col cols="12" md="4">
         <div class="section">
-          <profileBox
+          <ProfileBox
             :profileName="profileFullName"
             :profilePic="profilePic"
             :profileRate="profileRate"
             @uploadimg="chooseFiles"
           />
 
-          <!-- Contact section -->
-          <center>
-           <v-divider></v-divider>
-            <div style="margin-top:6%;font-size:22px;margin-bottom:5%;">
-              <v-icon style="font-size:40px; color:black;"> mdi-account-circle</v-icon>
-              Contact
-            </div>
-             <v-divider></v-divider>
-          </center>
-          <center>
-          <div id="ct_section1" >
-          <div style="margin-bottom:2%;">
-          <tr>
-            <v-img :width="35" src="Facebook_img_n2.webp" :aspect-ratio="1/1" ></v-img>
-            <td > <span style="margin-left:20%;font-size:18px;">Junior Jiraphat</span>    </td>
-          </tr>
-          </div>
+          <!-- Contact -->
+          <div id="contactBox" style="margin-left: 3%; margin-right: 3%">
+            <center>
+              <v-divider></v-divider>
+              <div style="margin-top:6%;font-size:22px;margin-bottom:5%;">
+                <v-icon style="font-size:40px; color:black;">
+                  mdi-account-circle</v-icon
+                >
+                Contact
+                <v-dialog v-model="dialog" persistent width="500">
+                  <template v-slot:activator="{ on }">
+                    <i class="material-icons editbtn" v-on="on">border_color</i>
+                  </template>
+                  <ProfilePop
+                    infoName="Contact"
+                    :infoData="profileContact"
+                    :infoKey="profileContactKey"
+                    @closeDialog="closeDialog"
+                    @Save="sendContact"
+                  />
+                </v-dialog>
+              </div>
 
+              <v-divider></v-divider>
+            </center>
 
-          <div style="margin-bottom:2%;"  >
-          <tr   >
-            <v-img :width="35" src="Line_img_n1.webp" :aspect-ratio="1/1"  ></v-img>
-            <td><span style="margin-left:20%;font-size:18px;">Junior1143</span></td>
-          </tr>
-           </div>
-           <div style="margin-bottom:2%;"   >
-          <tr><v-img :width="30" src="call_img_n1.png" :aspect-ratio="1/1"   ></v-img>
-            <td>
-              <span style="margin-left:21%; font-size:18px;">094-727-0000</span>
-            </td>
-          </tr>
+            <center>
+              <div id="ct_section1">
+                <div
+                  v-for="item in profileContact"
+                  :key="item.index"
+                  style="margin-bottom:2%;"
+                >
+                  <tr>
+                    <v-img
+                      v-if="item.con === 'facebook'"
+                      :width="35"
+                      src="Facebook_img_n2.webp"
+                      :aspect-ratio="1 / 1"
+                    ></v-img>
+                    <v-img
+                      v-else-if="item.con === 'line'"
+                      :width="35"
+                      src="Line_img_n1.webp"
+                      :aspect-ratio="1 / 1"
+                    ></v-img>
+                    <v-img
+                      v-else-if="item.con === 'tel'"
+                      :width="30"
+                      src="call_img_n1.png"
+                      :aspect-ratio="1 / 1"
+                    ></v-img>
+                    <v-img
+                      v-else-if="item.con === 'mail'"
+                      :width="30"
+                      src="Email_img_n2.jpg"
+                      :aspect-ratio="1 / 1"
+                    ></v-img>
+                    <v-img
+                      v-else
+                      :width="30"
+                      src="Email_img_n2.jpg"
+                      :aspect-ratio="1 / 1"
+                    ></v-img>
+                    <td>
+                      <span style="margin-left:20%;font-size:18px;">{{
+                        item.val
+                      }}</span>
+                    </td>
+                  </tr>
+                </div>
+              </div>
+            </center>
           </div>
-          <div style="margin-bottom:2%;"   >
-          <tr><v-img :width="35" src="Email_img_n2.jpg" :aspect-ratio="1/1"></v-img>
-            <td>
-                <span style="margin-left:20%;font-size:18px;">Jiraphat-saeheng@hotmail.com</span>
-            </td>
-          </tr>
-         </div>
-         </div>
-          </center>
         </div>
-         <v-divider></v-divider>
+        <v-divider></v-divider>
       </v-col>
 
       <v-col cols="12" md="4">
         <div class="section">
           <!-- Introduce -->
-          <profileInfo
+          <ProfileInfo
             infoName="Introduce"
             infoSub="Data Myself"
             infoLogo="perm_contact_cal"
@@ -77,10 +110,10 @@
                 </div>
               </v-card-action>
             </v-list>
-          </profileInfo>
+          </ProfileInfo>
 
           <!-- Education -->
-          <profileInfo
+          <ProfileInfo
             infoName="Education"
             infoSub="Degreee and Department"
             infoLogo="school"
@@ -101,14 +134,14 @@
                 </div>
               </v-card-action>
             </v-list>
-          </profileInfo>
+          </ProfileInfo>
         </div>
       </v-col>
 
       <v-col cols="12" md="4">
         <div class="section">
           <!-- Skill -->
-          <profileInfo
+          <ProfileInfo
             infoName="Skill"
             infoSub="Personal Ability"
             infoLogo="local_fire_department"
@@ -126,10 +159,10 @@
                 {{ items.skill }}
               </v-btn>
             </v-card-actions>
-          </profileInfo>
+          </ProfileInfo>
 
           <!-- Experience -->
-          <profileInfo
+          <ProfileInfo
             infoName="Experience"
             infoSub="My Work Experience"
             infoLogo="done_outline"
@@ -151,7 +184,7 @@
                 </div>
               </v-card-action>
             </v-list>
-          </profileInfo>
+          </ProfileInfo>
         </div>
       </v-col>
     </v-row>
@@ -160,18 +193,36 @@
 
 <script>
 import profileService from "../service/profileservice";
-import profileBox from "@/components/layout/profile/profileBox";
-import profileInfo from "@/components/layout/profile/profileInfo";
+import ProfileBox from "@/components/layout/profile/profileBox";
+import ProfilePop from "@/components/layout/profile/profilePop";
+import ProfileInfo from "@/components/layout/profile/profileInfo";
 import profileList from "@/components/layout/profile/profileList";
 
 export default {
   name: "Profile",
   components: {
-    profileBox,
-    profileInfo,
+    ProfileBox,
+    ProfilePop,
+    ProfileInfo,
     profileList,
   },
   methods: {
+    sendContact: async function() {
+      if (this.profileContact) {
+        let formData = {};
+        console.log(typeof this.profileContact)
+        formData.contact = this.profileContact;
+
+        let suc = await profileService.editprofile(formData).then((res) => {
+          return res;
+        });
+        if (suc) this.$router.push({ path: "/profile" });
+        else alert("Edit Failed");
+      } else alert("Data Missing.");
+    },
+    closeDialog() {
+      this.dialog = false;
+    },
     getinfoma: async function() {
       let re = await profileService.getprofile().then((res) => {
         return res;
@@ -198,7 +249,7 @@ export default {
     if (this.profile.infoma.desc != "")
       this.profileInfo = this.profile.infoma.desc;
     if (this.profile.infoma.contact != "")
-      this.profileContact = this.profile.infoma.contact;
+    this.profileContact = this.profile.infoma.contact;
 
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;
@@ -223,6 +274,12 @@ export default {
       profileEducationKey: ["branch", "date"],
       profileExperience: [],
       profileExperienceKey: ["topic", "desc", "date"],
+      profileContact: [
+        
+      ],
+      profileContactKey: ["con", "val"],
+
+      dialog: false
     };
   },
 };
@@ -251,11 +308,11 @@ export default {
   line-height: 0.85;
   text-shadow: 2px 2px white, 2px -2px white, -2px 2px white, -2px -2px white;
 }
-#ct_section1 td { 
-    width: 100%;
-    text-align: left;
+#ct_section1 td {
+  width: 100%;
+  text-align: left;
 }
-#ct_section1 tr{
+#ct_section1 tr {
   margin-left: 20%;
   position: relative;
   text-align: center;
