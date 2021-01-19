@@ -56,7 +56,7 @@
         background-color="red lighten-3"
         color="red"
         size="30"
-        style="margin-top:7%;"
+        style="margin-top:2%;"
       ></v-rating>
     </center>
   </div>
@@ -87,7 +87,7 @@ export default {
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
-        if (suc) this.$router.push({ path: "/feed" });
+        if (suc) this.$router.push({ path: "/profile" });
         else alert("Upload Failed");
       } else alert("File Missing.");
     },

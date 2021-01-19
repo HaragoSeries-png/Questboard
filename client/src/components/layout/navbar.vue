@@ -5,12 +5,12 @@
       v-model="drawer"
       app
       style="border-right: 1px solid black;"
-      src="../../assets/pexels-eberhard-grossgasteiger-2088170.jpg"
+      src="Nav_bgb.jpg"
     >
       <v-list-item style="margin-left: 17%;">
         <center>
           <div
-            style="font-family: 'Playfair Display', serif; font-size: 23px; margin-top: 10%"
+            style="font-family: 'Maven Pro', sans-serif; font-size: 23px; margin-top: 10%"
           >
             <span style="right: 50%; text-decoration: underline;"
               >Quest Board</span
@@ -22,7 +22,9 @@
 
       <div id="profileTab" v-if="$store.getters.isLoggedIn">
         <div class="profileInfo">
-          Welcome {{ this.$store.getters.getfullname }}
+          Welcome
+          <br />
+          <span style="font-size: 14px">{{ this.$store.getters.getfullname }}</span>
           <br />
           <router-link to="/profile" style="font-size: 12px; color: orange"
             >View your profile</router-link
@@ -42,11 +44,15 @@
             color="#FF598F"
           >
             <v-list-item-icon>
-              <div style="color:black;"><v-icon>{{ item.icon }}</v-icon></div>
+              <div class="titlefont">
+                <v-icon>{{ item.icon }}</v-icon>
+              </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div  style="color:black; font-family: 'Playfair Display', serif; " >{{ item.title }}</div>
+              <div class="titlefont">
+                {{ item.title }}
+              </div>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -64,23 +70,33 @@
             color="#FF598F"
           >
             <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
+              <div class="titlefont">
+                <v-icon>{{ item.icon }}</v-icon>
+              </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">{{ item.title }}</div>
+              <div class="titlefont">
+                {{ item.title }}
+              </div>
             </v-list-item-content>
           </v-list-item>
 
           <v-list-item link to="/" @click="logout">
             <v-list-item-icon>
-              <v-icon style="color: red">mdi-login</v-icon>
+              <div class="titlefont">
+                <v-icon style="color: red">mdi-login</v-icon>
+              </div>
             </v-list-item-icon>
+
             <v-list-item-content>
-              <div class="titlefont" style="color: red">Log Out</div>
+              <div class="titlefont" style="color: red">
+                Log Out
+              </div>
             </v-list-item-content>
           </v-list-item>
         </v-list>
+
         <v-divider></v-divider>
       </div>
 
@@ -95,14 +111,19 @@
             color="#FF598F"
           >
             <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
+              <div class="titlefont">
+                <v-icon>{{ item.icon }}</v-icon>
+              </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">{{ item.title }}</div>
+              <div class="titlefont">
+                {{ item.title }}
+              </div>
             </v-list-item-content>
           </v-list-item>
         </v-list>
+
         <v-divider></v-divider>
       </div>
     </v-navigation-drawer>
@@ -147,16 +168,16 @@ export default {
     },
   },
   updated() {
-    this.status = this.$store.getters.isLoggedIn
-    this.username = this.$store.getters.getfullname
+    this.status = this.$store.getters.isLoggedIn;
+    this.username = this.$store.getters.getfullname;
   },
   data() {
     return {
       comitems: [
         { title: "Quest", icon: "mdi-view-dashboard", to: "/feed" },
+        { title: "Create Quest", icon: "mdi-book-arrow-up", to: "/createQuest2" },
         { title: "About Us", icon: "mdi-account-group", to: "/aboutus" },
         { title: "Contact", icon: "mdi-android-messages", to: "/contact" },
-       
       ],
       unlogitems: [
         { title: "Log in", icon: "mdi-login", to: "/login" },
@@ -165,7 +186,7 @@ export default {
       logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile" }],
       status: this.$store.getters.isLoggedIn,
       drawer: false,
-      username: this.$store.getters.getfullname
+      username: this.$store.getters.getfullname,
     };
   },
 };
@@ -173,10 +194,21 @@ export default {
 
 <style scoped>
 @import "../../styles/nav.css";
-.titlefont{
-  font-family: 'Fraunces', serif;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
+
+body {
+  font-family: "Maven Pro";
 }
+
+.titlefont {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .profileInfo {
+  font-family: "Montserrat", sans-serif;
   margin-left: 10%;
 }
 
@@ -184,5 +216,4 @@ export default {
   font-weight: bold;
   font-size: 14px;
 }
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
 </style>

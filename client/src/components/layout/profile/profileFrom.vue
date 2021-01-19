@@ -4,39 +4,49 @@
       <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
         <v-list-item-content>
           <v-list-item-title
+            v-if="type == 'New'"
             class="headline mb-1"
             style="margin: 3%; font-weight: bold;"
           >
             NEW {{ infoName }}
           </v-list-item-title>
+          <v-list-item-title
+            v-else
+            class="headline mb-1"
+            style="margin: 3%; font-weight: bold;"
+          >
+            EDIT {{ infoName }}
+          </v-list-item-title>
         </v-list-item-content>
 
         <v-list-item-content
-          v-for="(item, key) in infoData"
-          :key="item"
+          v-for="item in infoKey"
+          :key="item.index"
           style="padding: 0; margin-left: 5%; margin-right: 5%"
         >
           <v-col cols="12" md="3">
             <span
               style="font-size: 14px; font-weight: bold; text-transform: capitalize;"
             >
-              {{ key }}:
+              {{ item }}:
             </span>
           </v-col>
           <v-col>
             <input
               v-if="type == 'New'"
-              :id="key"
+              :id="item"
               type="text"
               value=""
               style="width: 100%"
+              autocomplete="off"
             />
             <input
               v-else
-              :id="key"
+              :id="item"
               type="text"
-              :value="item"
+              :value="infoData[item]"
               style="width: 100%"
+              autocomplete="off"
             />
           </v-col>
         </v-list-item-content>
@@ -47,11 +57,18 @@
           <v-col cols="12" md="3"> </v-col>
           <v-col>
             <div style="margin-top: 1%;">
-              <v-btn :class="{ 'show-btns': hover }" @click="sendObject()">
-                ADD
+              <v-btn v-if="type == 'New'" :class="{ 'show-btns': hover }" @click="sendObject()">
+                Add
+              </v-btn>
+              <v-btn v-else :class="{ 'show-btns': hover }" @click="sendUpdateObject()">
+                Update
               </v-btn>
               &nbsp;
-              <v-btn :class="{ 'show-btns': hover }" @click="requestClose()" style="margin-left:2%">
+              <v-btn
+                :class="{ 'show-btns': hover }"
+                @click="requestClose()"
+                style="margin-left:2%"
+              >
                 Cancel
               </v-btn>
             </div>
@@ -65,28 +82,34 @@
 <script>
 export default {
   name: "profileFrom",
-  props: ["type", "infoName", "infoData"],
+  props: ["type", "infoName", "infoData", "infoKey", "infoIndex"],
   methods: {
     sendObject: async function() {
-      await this.thiskey.forEach(this.pushObject);
-      console.log(this.thisObject)
+      this.thisObject = {};
+
+      await this.infoKey.forEach(this.pushObject);
       await this.$emit("sentObject", this.thisObject);
+      this.requestClose();
+    },
+    sendUpdateObject: async function() {
+      this.thisObject = {};
+
+      await this.infoKey.forEach(this.pushObject);
+      console.log(this.thisObject)
+      await this.$emit("sentUpdateObject", this.thisObject, this.infoIndex);
       this.requestClose();
     },
     pushObject(value) {
       this.thisObject[value] = document.getElementById(value).value;
     },
     requestClose() {
-      this.$emit("closeDialog");
+      if(this.type == 'New') this.$emit("closeDialog");
+      else this.$emit("closeDialog2", this.infoIndex);
     },
-  },
-  created() {
-    for (let key in this.infoData) this.thiskey.push(key);
   },
   data() {
     return {
       thisObject: {},
-      thiskey: [],
     };
   },
 };

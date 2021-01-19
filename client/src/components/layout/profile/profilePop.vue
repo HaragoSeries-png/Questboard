@@ -4,8 +4,10 @@
       <v-card max-width="auto" max-height="auto" style="margin: 2%;" outlined>
         <v-list-item-content>
           <v-list-item-title class="headline mb-1">
-            <span style="font-size: 20px; font-weight: bold; margin-left: 3%">
-              Edit {{ infoName }}
+            <span
+              style="font-size: 20px; font-weight: bold; margin-left: 3%; text-transform: uppercase;"
+            >
+              EDIT {{ infoName }}
             </span>
           </v-list-item-title>
         </v-list-item-content>
@@ -35,44 +37,60 @@
             <ProfileFrom
               type="New"
               :infoName="infoName"
-              :infoData="infoData[0]"
-              @sentObject="updateObject"
-              @closeDialog="closeDialog"
+              :infoData="[]"
+              :infoKey="infoKey"
+              @sentObject="newObject"
+              @closeDialog="closeDialog()"
             />
           </v-dialog>
 
           <div v-if="infoData != []">
             <v-card
-            max-width="auto"
-            max-height="auto"
-            v-for="(item, index) in infoData"
-            :key="index"
-            style="margin: 2%;"
-            outlined
-          >
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-subtitle
-                  class="title"
-                  v-for="(subitem, key) in item"
-                  :key="subitem"
-                >
-                  <span style="font-weight: bold; text-transform: capitalize;">
-                    {{ key }}:
-                  </span>
-                  {{ item[key] }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-list-item-action-text class="title">
-                  Edit Delete
-                </v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
-          </v-card>
-          </div>
+              max-width="auto"
+              max-height="auto"
+              v-for="(item, index) in infoData"
+              :key="index"
+              style="margin: 2%;"
+              outlined
+            >
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-subtitle
+                    class="title"
+                    v-for="subitem in infoKey"
+                    :key="subitem.index"
+                  >
+                    <span
+                      style="font-weight: bold; text-transform: capitalize;"
+                    >
+                      {{ subitem }}:
+                    </span>
+                    {{ item[subitem] }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
 
-          
+                <v-list-item-action>
+                  <v-list-item-action-text class="title">
+                    <v-dialog v-model="dialogArray[index]" width="600">
+                      <template v-slot:activator="{ on }">
+                        <a v-on="on">Edit</a>
+                      </template>
+                      <ProfileFrom
+                        :infoName="infoName"
+                        :infoData="item"
+                        :infoKey="infoKey"
+                        :infoIndex="index"
+                        @sentUpdateObject="updateObject"
+                        @closeDialog2="closeDialog2"
+                      />
+                    </v-dialog>
+                    &nbsp;
+                    <a @click="deleteObject(index)">Delete</a>
+                  </v-list-item-action-text>
+                </v-list-item-action>
+              </v-list-item>
+            </v-card>
+          </div>
         </v-list>
       </v-card>
 
@@ -83,11 +101,19 @@
         outlined
       >
         <v-list-item-content>
-          <v-list-item-title class="headline mb-1">
-            <span style="font-size: 20px; font-weight: bold; margin-left: 3%">
-              SAVE CANCEL
-            </span>
-          </v-list-item-title>
+          <div style="text-align: center">
+            <v-btn :class="{ 'show-btns': hover }" @click="requestSave()">
+              SAVE
+            </v-btn>
+            &nbsp;
+            <v-btn
+              :class="{ 'show-btns': hover }"
+              @click="requestClose()"
+              style="margin-left:2%"
+            >
+              Cancel
+            </v-btn>
+          </div>
         </v-list-item-content>
       </v-card>
     </v-card>
@@ -99,22 +125,45 @@ import ProfileFrom from "../profile/profileFrom";
 
 export default {
   name: "ProfilePop",
-  props: ["infoName", "infoData"],
+  props: ["infoName", "infoData", "infoKey"],
   components: { ProfileFrom },
   methods: {
-    updateObject(value) {
-      console.log(value)
+    requestSave() {
+      this.$emit("Save");
+    },
+    requestClose() {
+      this.$emit("closeDialog");
+    },
+    newObject(value) {
       this.infoData.push(value);
-      console.log(this.infoData)
+    },
+    updateObject(value, index) {
+      for (var v in this.infoKey) {
+        this.infoData[index][this.infoKey[v]] = value[this.infoKey[v]];
+      }
+    },
+    deleteObject(value) {
+      this.infoData = this.infoData.splice(value, 1);
     },
     closeDialog() {
       this.dialog = false;
+    },
+    closeDialog2(value) {
+      this.dialogArray[value] = false;
+    },
+  },
+  created() {
+    if (this.infoData != []) {
+      for (var v in this.infoData) {
+        this.dialogArray[v] = false;
+      }
     }
   },
   data() {
     return {
-      dialog: false
-    }
+      dialog: false,
+      dialogArray: [],
+    };
   },
 };
 </script>

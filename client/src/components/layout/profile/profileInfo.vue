@@ -1,26 +1,32 @@
 <template>
   <div id="profileInfo">
-    <v-card max-width="auto" max-height="auto" outlined>
+    <v-card min-height="300px" max-width="auto" max-height="auto" outlined>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="headline mb-1">
             <i class="material-icons">{{ infoLogo }}</i>
             &nbsp;
-            <span style="font-size: 25px; font-weight: bold">{{
-              infoName
-            }}</span>
+            <span style="font-size: 25px; font-weight: bold">
+              {{ infoName }}
+            </span>
           </v-list-item-title>
-          <v-list-item-subtitle style="font-size: 16px">{{
-            infoSub
-          }}</v-list-item-subtitle>
+          <v-list-item-subtitle style="font-size: 16px">
+            {{ infoSub }}
+          </v-list-item-subtitle>
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-dialog v-model="dialog" width="500">
+          <v-dialog v-model="dialog" persistent width="500">
             <template v-slot:activator="{ on }">
               <i class="material-icons editbtn" v-on="on">border_color</i>
             </template>
-            <ProfilePop :infoName="infoName" :infoData="infoData" />
+            <ProfilePop
+              :infoName="infoName"
+              :infoData="infoData"
+              :infoKey="infoKey"
+              @closeDialog="closeDialog"
+              @Save="sendData"
+            />
           </v-dialog>
         </v-list-item-action>
       </v-list-item>
@@ -32,16 +38,44 @@
 </template>
 
 <script>
+import profileService from "@/service/profileservice";
 import ProfilePop from "../profile/profilePop";
 
 export default {
   name: "ProfileInfo",
-  props: ["infoName", "infoSub", "infoLogo", "infoData", "infoAttribute"],
+  props: ["infoName", "infoSub", "infoLogo", "infoData", "infoKey"],
   components: { ProfilePop },
+  methods: {
+    sendData: async function() {
+      if (this.infoData) {
+        let formData = {};
+
+        if (this.infoName == "Skill") formData.skill = this.infoData
+        if (this.infoName == "Experience") formData.exp = this.infoData
+        if (this.infoName == "Introduce") formData.desc = this.infoData
+        if (this.infoName == "Education") formData.education = this.infoData
+        if (this.infoName == "Contact") formData.contact = this.infoData
+        
+        let suc = await profileService.editprofile(formData).then((res) => {
+          return res;
+        });
+        if (suc) this.$router.push({ path: "/profile" });
+        else alert("Edit Failed");
+      } else alert("Data Missing.");
+    },
+    closeDialog() {
+      this.dialog = false;
+    },
+  },
+  data() {
+    return {
+      dialog: false,
+    };
+  },
 };
 </script>
 
-<style scoped>
+<style>
 @import "../../../styles/profile.css";
 
 #profileInfo {

@@ -20,8 +20,8 @@
                   
                  <v-img
                   v-if="!url"
-                  max-height="150"
-                  max-width="250"
+                  max-height="250"
+                  max-width="350"
                   src="default.png"
                   @click="chooseFiles()"
                 ></v-img>  
@@ -30,7 +30,6 @@
                 </div>
                 <div style="display: none;">
               <v-file-input
-               
                 v-model="files"
                 @change="onFileChange"
                 id="fileUpload"
@@ -45,12 +44,11 @@
                   <div>
                     <table>
                      
-                      <tr>
+                      <tr >
                         <span id="Deadline"> Deadline </span>
-                        <div><span style="color:gray">assessment</span></div>
-                        <td style="margin-bottom:10%;" > </td>
+                        <td> </td>
                       </tr>
-
+                       
                       <tr >
                         <span id="Date"> Date : </span>
                         <td>
@@ -61,19 +59,19 @@
                       <tr>
                         <span id="Start"> Start : </span>
                         <td>
-                          <input type="time" name="" id="I_start" v-model="tstart" style="margin-bottom:10%;" />
+                          <input type="time" name="" id="I_start" v-model="tstart" style="margin-bottom:10%; border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;  " />
                         </td>
                       </tr>
 
                       <tr>
                         <span id="End"> End : </span>
                         <td>
-                          <input type="time" name="" id="I_end" v-model="tend" style="margin-bottom:10%;" />
+                          <input type="time" name="" id="I_end" v-model="tend" style="margin-bottom:10%;    border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;" />
                         </td>
                       </tr>
 
                       <tr id="main_Person"> 
-                        <i class="material-icons">person</i> 
+                        <i class="material-icons"   >person</i> 
                         <td>
                           <input
                             type="number"
@@ -81,6 +79,7 @@
                             name=""
                             id="num_per"
                             v-model="numberofcon"
+                            style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
                           />  <span style="margin-left:10%;">Person</span>
                         </td>
                       </tr>
@@ -290,19 +289,19 @@ td {
   font-size: 18px;
 }
 #Deadline {
-  font-size: 18px;
+  font-size: 25px;
   padding-top: 30px;
+  color:red;
+  margin-bottom:10%;
 }
 
 .main {
   width: 100%;
   align-content: center;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
 }
 #I_date {
   margin-left: 7px;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   margin-bottom: 10px;
 }
 #Start {
@@ -374,7 +373,7 @@ td {
 
 
 @import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@1&display=swap);
-
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 
 </style>

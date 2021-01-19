@@ -1,45 +1,74 @@
 <template>
-<v-app>
-  <div class="register_from">
-    <h1>Register</h1>
+  <v-app>
+    <div class="register_from">
+      <h1>Register</h1>
 
-    <div class="divTable">
-      <div class="divTableCell" style="padding-right: 5%">
-        <div v-if="firstname"><p>Firstname</p></div>
-        <input type="text" v-model="firstname" placeholder="First Name"  required />
+      <div class="divTable">
+        <div class="divTableCell" style="padding-right: 5%">
+          <v-text-field
+            label="First name"
+            v-model="firstname"
+            required
+            dark
+          ></v-text-field>
+        </div>
+        <div class="divTableCell" style="padding-left: 5%">
+          <v-text-field
+            label="Last name"
+            v-model="lastname"
+            required
+            dark
+          ></v-text-field>
+        </div>
       </div>
-      <div class="divTableCell" style="padding-left: 5%">
-        <div v-if="lastname"><p>Lastname</p></div>
-        <input type="text" v-model="lastname" placeholder="Last Name" />
+
+      <div>
+        <v-text-field
+          label="Username"
+          v-model="username"
+          required
+          dark
+        ></v-text-field>
+      </div>
+      <div>
+        <v-text-field
+          label="E-mail"
+          v-model="email"
+          required
+          dark
+        ></v-text-field>
+      </div>
+      <div>
+        <v-text-field
+          label="Password"
+          v-model="password"
+          :type="show1 ? 'text' : 'password'"
+          required
+          dark
+        ></v-text-field>
+      </div>
+
+      <v-text-field
+        label="Confirm password"
+        v-model="conpassword"
+        :type="show1 ? 'password' : 'password'"
+        required
+        dark
+      ></v-text-field>
+
+      <br /><br />
+      <button v-on:click="register_check()" class="button1">Register</button>
+
+      <br /><br />
+      <div class="alertbox">
+        <ul
+          id="alertField"
+          class="p-1"
+          style="color: red; padding-top: 3px"
+        ></ul>
       </div>
     </div>
-
-    <div v-if="username"><p>Username</p></div>
-    <input type="text" v-model="username" placeholder="Username" />
-
-    <div v-if="email"><p>E-mail</p></div>
-    <input type="email" v-model="email" placeholder="E-mail" />
-
-    <div v-if="password"><p>Password</p></div>
-    <input type="password" v-model="password" placeholder="Password" rules="" />
-
-    <div v-if="conpassword"><p>Confirm Password</p></div>
-    <input
-      type="password"
-      v-model="conpassword"
-      placeholder="Confirm Password"
-    />
-
-    <br /><br />
-    <button v-on:click="register_check()" class="button1">Register</button>
-
-    <br /><br />
-    <div class="alertbox">
-      <ul id="alertField" class="p-1" style="color: red; padding-top: 3px">
-      </ul>
-    </div>
-  </div>
-</v-app>
+  </v-app>
 </template>
 
 <script>
@@ -49,19 +78,23 @@ export default {
   name: "Register",
   methods: {
     register_check() {
-      let alertField = document.getElementById('alertField')
+      let alertField = document.getElementById("alertField");
       alertField.innerHTML = "";
 
-      if (!this.firstname) alertField.innerHTML += "<li>Require Firstname.</li>"
-      if (!this.lastname) alertField.innerHTML += "<li>Require Lastname.</li>"
-      if (!this.username) alertField.innerHTML += "<li>Require Username.</li>"
-      if (!this.email) alertField.innerHTML += "<li>Require Email.</li>"
-      if (!this.password) alertField.innerHTML += "<li>Require Password.</li>"
-      if(this.password.length<8) alertField.innerHTML += "<li>required 8 length</li>"
-      else if (!this.conpassword) alertField.innerHTML += "<li>Please confirm your password.</li>"
-      else if (this.password != this.conpassword) alertField.innerHTML += "<li>Password don't match.</li>"
-     
-      if (alertField.innerHTML == '') this.register()
+      if (!this.firstname)
+        alertField.innerHTML += "<li>Require Firstname.</li>";
+      if (!this.lastname) alertField.innerHTML += "<li>Require Lastname.</li>";
+      if (!this.username) alertField.innerHTML += "<li>Require Username.</li>";
+      if (!this.email) alertField.innerHTML += "<li>Require Email.</li>";
+      if (!this.password) alertField.innerHTML += "<li>Require Password.</li>";
+      if (this.password.length < 8)
+        alertField.innerHTML += "<li>Password required more than 8 length</li>";
+      else if (!this.conpassword)
+        alertField.innerHTML += "<li>Please confirm your password.</li>";
+      else if (this.password != this.conpassword)
+        alertField.innerHTML += "<li>Password don't match.</li>";
+
+      if (alertField.innerHTML == "") this.register();
     },
     register: async function() {
       let data = {
@@ -89,22 +122,22 @@ export default {
   },
   data() {
     return {
+      show1: false,
       firstname: "",
       lastname: "",
       username: "",
       email: "",
       password: "",
-      conpassword: ""
+      conpassword: "",
     };
   },
 };
 </script>
 
 <style scoped>
-
 #app {
-  background: url('https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
-  no-repeat center center fixed !important;
+  background: url("https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    no-repeat center center fixed !important;
   background-size: cover;
 }
 body {
@@ -116,7 +149,7 @@ body {
   font-family: sans-serif;
 }
 .register_from {
-  margin-top: -3%;
+  margin-top: 0%;
   justify-items: center;
   width: 400px;
   height: min-content;
