@@ -42,6 +42,7 @@ Beware
   18-Jan-21 : 22.20 : แก้ register ที่ข้อความตอน input มีขนาดไม่เท่ากัน แก้ form createQuest ให้ดูดีขึ้น   
   19-Jan-21 : 3.31  : เพิ่ม contact ในprofile
   19-Jan-21 : 10.54 : Profile Edit [Skill, Intro, Exp, Edu, Contact, ProfilePic] Can
+  22-Jan-21 : 12.44 : upload img createQuest finished 
 #Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {
