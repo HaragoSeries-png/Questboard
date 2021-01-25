@@ -247,8 +247,8 @@ export default {
       this.profileExperience = this.profile.infoma.exp;
     if (this.profile.infoma.desc != "")
       this.profileInfo = this.profile.infoma.desc;
-    // if (this.profile.infoma.contact != "")
-    //   this.profileContact = this.profile.infoma.contact;
+    if (this.profile.infoma.contact != "")
+      this.profileContact = this.profile.infoma.contact;
 
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;
@@ -273,11 +273,7 @@ export default {
       profileEducationKey: ["branch", "date"],
       profileExperience: [],
       profileExperienceKey: ["topic", "desc", "date"],
-      profileContact: [
-        { con: "facebook", val: "Kittisak Sangkarak" },
-        { con: "facebook", val: "Loyalist Marketplace" },
-        { con: "ig", val: "bboykungg.2" },
-      ],
+      profileContact: [],
       profileContactKey: ["con", "val"],
 
       dialog: false

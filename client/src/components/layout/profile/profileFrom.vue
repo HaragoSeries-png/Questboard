@@ -34,7 +34,7 @@
           <v-col>
             <input
               v-if="type == 'New'"
-              :id="item"
+              :id="item + infoName"
               type="text"
               value=""
               style="width: 100%"
@@ -42,7 +42,7 @@
             />
             <input
               v-else
-              :id="item"
+              :id="item + infoName"
               type="text"
               :value="infoData[item]"
               style="width: 100%"
@@ -100,7 +100,8 @@ export default {
       this.requestClose();
     },
     pushObject(value) {
-      this.thisObject[value] = document.getElementById(value).value;
+      this.thisObject[value] = document.getElementById(value + this.infoName).value;
+      document.getElementById(value + this.infoName).value = '';
     },
     requestClose() {
       if(this.type == 'New') this.$emit("closeDialog");
