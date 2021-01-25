@@ -17,7 +17,6 @@
         <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
           <v-dialog v-model="dialog" width="600">
             <template v-slot:activator="{ on }">
-              {{infoName}}
               <v-card
                 max-width="auto"
                 max-height="auto"
@@ -35,12 +34,10 @@
                 </v-list-item-content>
               </v-card>
             </template>
-            <ProfileFrom
-              type="New"
+            <ProfileFromNew
               :infoName="infoName"
               :infoData="[]"
               :infoKey="infoKey"
-              infoIndex="-1"
               @sentObject="newObject"
               @closeDialog="closeDialog()"
             />
@@ -71,25 +68,14 @@
                   </v-list-item-subtitle>
                 </v-list-item-content>
 
-                <v-list-item-action>
-                  <v-list-item-action-text class="title">
-                    <v-dialog v-model="dialogArray[index]" width="600">
-                      <template v-slot:activator="{ on }">
-                        <a v-on="on">Edit</a>
-                      </template>
-                      <ProfileFrom
-                        :infoName="infoName"
-                        :infoData="item"
-                        :infoKey="infoKey"
-                        :infoIndex="index"
-                        @sentUpdateObject="updateObject"
-                        @closeDialog2="closeDialog2"
-                      />
-                    </v-dialog>
-                    &nbsp;
-                    <a @click="deleteObject(index)">Delete</a>
-                  </v-list-item-action-text>
-                </v-list-item-action>
+                <ProfileFrom
+                  :infoName="infoName"
+                  :infoData="item"
+                  :infoKey="infoKey"
+                  :infoIndex="index"
+                  @sentUpdateObject="updateObject"
+                  @requestDelete="deleteObject(index)"
+                />
               </v-list-item>
             </v-card>
           </div>
@@ -124,17 +110,21 @@
 
 <script>
 import ProfileFrom from "../profile/profileFrom";
+import ProfileFromNew from "../profile/profileFromNew";
 
 export default {
   name: "ProfilePop",
   props: ["infoName", "infoData", "infoKey"],
-  components: { ProfileFrom },
+  components: { ProfileFrom, ProfileFromNew },
   methods: {
     requestSave() {
       this.$emit("Save");
     },
     requestClose() {
       this.$emit("closeDialog");
+    },
+    canceled() {
+      this.$router.go();
     },
     newObject(value) {
       this.infoData.push(value);
@@ -150,21 +140,10 @@ export default {
     closeDialog() {
       this.dialog = false;
     },
-    closeDialog2(value) {
-      this.dialogArray[value] = false;
-    },
-  },
-  created() {
-    if (this.infoData != []) {
-      for (var v in this.infoData) {
-        this.dialogArray[v] = false;
-      }
-    }
   },
   data() {
     return {
       dialog: false,
-      dialogArray: [],
     };
   },
 };

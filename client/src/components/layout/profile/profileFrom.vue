@@ -1,133 +1,109 @@
 <template>
   <div id="profileFrom">
-    <v-card max-width="auto" height="auto">
-      <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
-        <v-list-item-content>
-          <v-list-item-title
-            v-if="type == 'New'"
-            class="headline mb-1"
-            style="margin: 3%; font-weight: bold;"
-          >
-            NEW {{ infoName }} {{ infoIndex }}
-          </v-list-item-title>
-          <v-list-item-title
-            v-else
-            class="headline mb-1"
-            style="margin: 3%; font-weight: bold;"
-          >
-            EDIT {{ infoName }} {{ infoIndex }}
-          </v-list-item-title>
-        </v-list-item-content>
+    <v-list-item-action>
+      <v-list-item-action-text class="title">
+        <v-dialog v-model="dialog" width="600">
+          <template v-slot:activator="{ on }">
+            <a v-on="on">Edit</a>
+          </template>
 
-        <div id="inputBox"></div>
+          <v-card max-width="auto" height="auto">
+            <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
+              <v-list-item-content>
+                <v-list-item-title
+                  class="headline mb-1"
+                  style="margin: 3%; font-weight: bold;"
+                >
+                  EDIT {{ infoName }}
+                </v-list-item-title>
+              </v-list-item-content>
 
-        <v-list-item-content
-          v-for="item in infoKey"
-          :key="item.index"
-          style="padding: 0; margin-left: 5%; margin-right: 5%"
-        >
-          <v-col cols="12" md="3">
-            <span
-              style="font-size: 14px; font-weight: bold; text-transform: capitalize;"
-            >
-              {{ item }}:
-            </span>
-          </v-col>
-          <v-col>
-            <input
-              v-if="type == 'New'"
-              :id="item + infoIndex + infoName"
-              type="text"
-              value=""
-              style="width: 100%"
-              autocomplete="off"
-            />
+              <div id="inputBox"></div>
 
-            <input
-              v-else
-              :id="item + infoIndex + infoName + 'edit'"
-              type="text"
-              :value="infoData[item]"
-              style="width: 100%"
-              autocomplete="off"
-            />
-          </v-col>
-        </v-list-item-content>
-
-        <v-list-item-content
-          style="padding: 0; margin-left: 5%; margin-right: 5%"
-        >
-          <v-col cols="12" md="3"> </v-col>
-          <v-col>
-            <div style="margin-top: 1%;">
-              <v-btn
-                v-if="type == 'New'"
-                :class="{ 'show-btns': hover }"
-                @click="sendObject()"
+              <v-list-item-content
+                v-for="item in infoKey"
+                :key="item.index"
+                style="padding: 0; margin-left: 5%; margin-right: 5%"
               >
-                Add
-              </v-btn>
-              <v-btn
-                v-else
-                :class="{ 'show-btns': hover }"
-                @click="sendUpdateObject()"
+                <v-col cols="12" md="3">
+                  <span
+                    style="font-size: 14px; font-weight: bold; text-transform: capitalize;"
+                  >
+                    {{ item }}:
+                  </span>
+                </v-col>
+                <v-col>
+                  <input
+                    :id="item + infoIndex + infoName + 'edit'"
+                    type="text"
+                    :value="infoData[item]"
+                    style="width: 100%"
+                    autocomplete="off"
+                  />
+                </v-col>
+              </v-list-item-content>
+
+              <v-list-item-content
+                style="padding: 0; margin-left: 5%; margin-right: 5%"
               >
-                Update
-              </v-btn>
-              &nbsp;
-              <v-btn
-                :class="{ 'show-btns': hover }"
-                @click="requestClose()"
-                style="margin-left:2%"
-              >
-                Cancel
-              </v-btn>
-            </div>
-          </v-col>
-        </v-list-item-content>
-      </v-list>
-    </v-card>
+                <v-col cols="12" md="3"> </v-col>
+                <v-col>
+                  <div style="margin-top: 1%;">
+                    <v-btn
+                      :class="{ 'show-btns': hover }"
+                      @click="sendUpdateObject()"
+                    >
+                      Update
+                    </v-btn>
+                    &nbsp;
+                    <v-btn
+                      :class="{ 'show-btns': hover }"
+                      @click="requestClose()"
+                      style="margin-left:2%"
+                    >
+                      Cancel
+                    </v-btn>
+                  </div>
+                </v-col>
+              </v-list-item-content>
+            </v-list>
+          </v-card>
+        </v-dialog>
+        &nbsp;
+        <a @click="requestDelete()">Delete</a>
+      </v-list-item-action-text>
+    </v-list-item-action>
   </div>
 </template>
 
 <script>
 export default {
   name: "profileFrom",
-  props: ["type", "infoName", "infoData", "infoKey", "infoIndex"],
+  props: ["infoName", "infoData", "infoKey", "infoIndex"],
   methods: {
-    sendObject: async function() {
-      this.thisObject = {};
-
-      await this.infoKey.forEach((item) => this.pushObject(item));
-      await this.$emit("sentObject", this.thisObject);
-      this.requestClose();
-    },
     sendUpdateObject: async function() {
       this.thisObject = {};
 
-      await this.infoKey.forEach((item) => this.pushObjectE(item));
+      await this.infoKey.forEach((item) => this.pushObject(item));
       await this.$emit("sentUpdateObject", this.thisObject, this.infoIndex);
       this.requestClose();
     },
     pushObject(value) {
       this.thisObject[value] = document.getElementById(
-        value + this.infoIndex + this.infoName
-      ).value;
-      document.getElementById(value + this.infoIndex + this.infoName).value = "";
-    },
-    pushObjectE(value) {
-      this.thisObject[value] = document.getElementById(
         value + this.infoIndex + this.infoName + "edit"
       ).value;
     },
     requestClose() {
-      if (this.type == "New") this.$emit("closeDialog");
-      else this.$emit("closeDialog2", this.infoIndex);
+      this.dialog = false;
+    },
+    requestDelete() {
+      this.$emit("requestDelete");
     },
   },
   data() {
     return {
       thisObject: {},
+      dialog: false,
     };
   },
 };
