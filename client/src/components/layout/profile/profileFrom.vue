@@ -8,16 +8,18 @@
             class="headline mb-1"
             style="margin: 3%; font-weight: bold;"
           >
-            NEW {{ infoName }}
+            NEW {{ infoName }} {{ infoIndex }}
           </v-list-item-title>
           <v-list-item-title
             v-else
             class="headline mb-1"
             style="margin: 3%; font-weight: bold;"
           >
-            EDIT {{ infoName }}
+            EDIT {{ infoName }} {{ infoIndex }}
           </v-list-item-title>
         </v-list-item-content>
+
+        <div id="inputBox"></div>
 
         <v-list-item-content
           v-for="item in infoKey"
@@ -32,19 +34,18 @@
             </span>
           </v-col>
           <v-col>
-            
             <input
               v-if="type == 'New'"
-              :id="item+infoName"
+              :id="item + infoIndex + infoName"
               type="text"
               value=""
               style="width: 100%"
               autocomplete="off"
             />
-            
+
             <input
               v-else
-              :id="item+infoName"
+              :id="item + infoIndex + infoName + 'edit'"
               type="text"
               :value="infoData[item]"
               style="width: 100%"
@@ -59,10 +60,18 @@
           <v-col cols="12" md="3"> </v-col>
           <v-col>
             <div style="margin-top: 1%;">
-              <v-btn v-if="type == 'New'" :class="{ 'show-btns': hover }" @click="sendObject()">
+              <v-btn
+                v-if="type == 'New'"
+                :class="{ 'show-btns': hover }"
+                @click="sendObject()"
+              >
                 Add
               </v-btn>
-              <v-btn v-else :class="{ 'show-btns': hover }" @click="sendUpdateObject()">
+              <v-btn
+                v-else
+                :class="{ 'show-btns': hover }"
+                @click="sendUpdateObject()"
+              >
                 Update
               </v-btn>
               &nbsp;
@@ -89,30 +98,30 @@ export default {
     sendObject: async function() {
       this.thisObject = {};
 
-      await this.infoKey.forEach((item)=>this.pushObject(item));
+      await this.infoKey.forEach((item) => this.pushObject(item));
       await this.$emit("sentObject", this.thisObject);
       this.requestClose();
     },
     sendUpdateObject: async function() {
       this.thisObject = {};
 
-      await this.infoKey.forEach(this.pushObjectE);
-      console.log(this.thisObject)
+      await this.infoKey.forEach((item) => this.pushObjectE(item));
       await this.$emit("sentUpdateObject", this.thisObject, this.infoIndex);
       this.requestClose();
     },
     pushObject(value) {
-      console.log("value "+value +' is '+document.getElementById(value+this.infoName).value)
-      this.thisObject[value] = document.getElementById(value+this.infoName).value;
-      document.getElementById(value+this.infoName).value = ''
+      this.thisObject[value] = document.getElementById(
+        value + this.infoIndex + this.infoName
+      ).value;
+      document.getElementById(value + this.infoIndex + this.infoName).value = "";
     },
     pushObjectE(value) {
-      console.log("value edit "+value +' is '+document.getElementById(value+this.infoName+'edit').value)
-      this.thisObject[value] = document.getElementById(value+this.infoName+'edit').value;
-      document.getElementById(value+this.infoName+'edit').value = ''
+      this.thisObject[value] = document.getElementById(
+        value + this.infoIndex + this.infoName + "edit"
+      ).value;
     },
     requestClose() {
-      if(this.type == 'New') this.$emit("closeDialog");
+      if (this.type == "New") this.$emit("closeDialog");
       else this.$emit("closeDialog2", this.infoIndex);
     },
   },

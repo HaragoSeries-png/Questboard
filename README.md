@@ -33,19 +33,22 @@ Beware
 + 15-Jan-21 : 16.47 : add profileservice method , edit profile(backend)
 + 15-Jan-21 : 21.44 เพิ่ม profile2 -->profile_remodel
 + 16-Jan-21 : 14.09 : Questfeed complete 85%(Test required) need to fix responsive
-  16-Jan-21 : 23.38 : ตกแต่งcreateQuest2 
++ 16-Jan-21 : 23.38 : ตกแต่งcreateQuest2 
 + 17-Jan-21 : 00.07 : ทำ Profile.vue ให้มี Components เเล้ว, เเก้ไขรูปภาพได้ (ถ้าหน้า profile.vue มีปัญหาเเนะนำให้ Copy จาก git มาหมดเลยนะ)
 + 17-Jan-21 : 16.18 : ปรับ user.model,เพิ่ม rating sys
 + 17-Jan-21 : 23.43 : password lenght,create quest90%,fix profile hover
 + 18-Jan-21 : 19.33 : change login system, change password(server)
 + 18-Jan-21 : 19.59 : แก้ไข default profilepic function
-  18-Jan-21 : 22.20 : แก้ register ที่ข้อความตอน input มีขนาดไม่เท่ากัน แก้ form createQuest ให้ดูดีขึ้น   
-  19-Jan-21 : 3.31  : เพิ่ม contact ในprofile
-  19-Jan-21 : 10.54 : Profile Edit [Skill, Intro, Exp, Edu, Contact, ProfilePic] Can
-  22-Jan-21 : 12.44 : upload img createQuest finished 
-  25-Jan-21 : หน้า Admin ยังไม่เสร็จ อยู่ในช่วงทำอย่างอื่นก่อน
+  
+
++ 18-Jan-21 : 22.20 : แก้ register ที่ข้อความตอน input มีขนาดไม่เท่ากัน แก้ form createQuest ให้ดูดีขึ้น   
++ 19-Jan-21 : 3.31  : เพิ่ม contact ในprofile
++ 19-Jan-21 : 10.54 : Profile Edit [Skill, Intro, Exp, Edu, Contact, ProfilePic] Can
++ 22-Jan-21 : 12.44 : upload img createQuest finished 
++ 25-Jan-21 : หน้า Admin ยังไม่เสร็จ อยู่ในช่วงทำอย่างอื่นก่อน
++ 25-Jan-21 : 14.48 : เเก้ Edit Profile (คาดว่าไม่น่ามี Bug เเล้ว)
   25-Jan-21 : See quest detail for own user complete
-#Example Code
+# Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {
 	    console.log(pair[0])

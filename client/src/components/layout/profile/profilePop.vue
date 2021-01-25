@@ -40,6 +40,7 @@
               :infoName="infoName"
               :infoData="[]"
               :infoKey="infoKey"
+              infoIndex="-1"
               @sentObject="newObject"
               @closeDialog="closeDialog()"
             />
@@ -140,7 +141,6 @@ export default {
     },
     updateObject(value, index) {
       for (var v in this.infoKey) {
-        
         this.infoData[index][this.infoKey[v]] = value[this.infoKey[v]];
       }
     },

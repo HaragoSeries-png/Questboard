@@ -249,7 +249,7 @@ export default {
     if (this.profile.infoma.desc != "")
       this.profileInfo = this.profile.infoma.desc;
     if (this.profile.infoma.contact != "")
-    this.profileContact = this.profile.infoma.contact;
+      this.profileContact = this.profile.infoma.contact;
 
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;
@@ -274,9 +274,7 @@ export default {
       profileEducationKey: ["branch", "date"],
       profileExperience: [],
       profileExperienceKey: ["topic", "desc", "date"],
-      profileContact: [
-        
-      ],
+      profileContact: [],
       profileContactKey: ["con", "val"],
 
       dialog: false
