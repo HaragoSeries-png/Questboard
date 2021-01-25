@@ -1,6 +1,5 @@
 <template>
   <div id="profile" style="margin: 20px">
-    
     <v-row>
       <v-col cols="12" md="4">
         <div class="section">
@@ -210,18 +209,19 @@ export default {
     sendContact: async function() {
       if (this.profileContact) {
         let formData = {};
-        console.log(typeof this.profileContact)
+        console.log(typeof this.profileContact);
         formData.contact = this.profileContact;
-        
+
         let suc = await profileService.editprofile(formData).then((res) => {
           return res;
         });
-        if (suc) this.$router.push({ path: "/profile" });
+        if (suc) this.$router.go();
         else alert("Edit Failed");
       } else alert("Data Missing.");
     },
     closeDialog() {
-      this.dialog = false;
+      // this.dialog = false;
+      this.$router.go();
     },
     getinfoma: async function() {
       let re = await profileService.getprofile().then((res) => {
@@ -237,7 +237,7 @@ export default {
     await this.getinfoma();
 
     if (this.profile.infoma.proimage != "")
-      this.profilePic = this.$store.state.gurl+this.profile.infoma.proimage;
+      this.profilePic = this.$store.state.gurl + this.profile.infoma.proimage;
     else this.profilePic = "miku.gif";
 
     if (this.profile.infoma.skill != "")
@@ -277,7 +277,7 @@ export default {
       profileContact: [],
       profileContactKey: ["con", "val"],
 
-      dialog: false
+      dialog: false,
     };
   },
 };

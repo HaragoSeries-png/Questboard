@@ -1,6 +1,6 @@
 <template>
   <div id="profileBox">
-    <center> 
+    <center>
       <div>
         <v-hover v-slot="{ hover }">
           <v-img
@@ -87,7 +87,7 @@ export default {
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
-        if (suc) this.files=null;
+        if (suc) this.$router.go();
         else alert("Upload Failed");
       } else alert("File Missing.");
     },
