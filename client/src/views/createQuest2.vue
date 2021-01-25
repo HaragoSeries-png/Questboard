@@ -239,7 +239,7 @@
                             style="margin-bottom:10%;margin-left:-40%;"
                             id="iq"
                             :rules="rules"
-                            counter="25"
+                            counter="55"
                             label="Prize for your helper"
                             v-model="reward"
                           ></v-text-field>
