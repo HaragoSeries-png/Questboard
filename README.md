@@ -43,6 +43,7 @@ Beware
   19-Jan-21 : 3.31  : เพิ่ม contact ในprofile
   19-Jan-21 : 10.54 : Profile Edit [Skill, Intro, Exp, Edu, Contact, ProfilePic] Can
   22-Jan-21 : 12.44 : upload img createQuest finished 
+  25-Jan-21 : หน้า Admin ยังไม่เสร็จ อยู่ในช่วงทำอย่างอื่นก่อน
 #Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {
