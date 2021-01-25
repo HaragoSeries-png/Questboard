@@ -17,6 +17,7 @@
         <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
           <v-dialog v-model="dialog" width="600">
             <template v-slot:activator="{ on }">
+              {{infoName}}
               <v-card
                 max-width="auto"
                 max-height="auto"
@@ -27,9 +28,9 @@
                 <v-list-item-content>
                   <v-list-item-subtitle
                     class="title"
-                    style="margin-left: 3%; color: white; font-weight: bold"
+                    style="text-transform: uppercase; margin-left: 3%; color: white; font-weight: bold"
                   >
-                    + ADD NEW ELEMENT
+                    + ADD NEW {{ infoName }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-card>
@@ -39,6 +40,7 @@
               :infoName="infoName"
               :infoData="[]"
               :infoKey="infoKey"
+              infoIndex="-1"
               @sentObject="newObject"
               @closeDialog="closeDialog()"
             />

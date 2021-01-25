@@ -40,7 +40,7 @@
             :key="item.title"
             link
             :to="item.to"
-            v-model="selectedItem"
+            
             color="#FF598F"
           >
             <v-list-item-icon>
@@ -66,7 +66,7 @@
             :key="item.title"
             link
             :to="item.to"
-            v-model="selectedItem"
+           
             color="#FF598F"
           >
             <v-list-item-icon>
@@ -107,7 +107,7 @@
             :key="item.title"
             link
             :to="item.to"
-            v-model="selectedItem"
+           
             color="#FF598F"
           >
             <v-list-item-icon>

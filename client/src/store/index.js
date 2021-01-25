@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     title: 'Questboard',
-
+    gurl:'http://localhost:5000/',
     token: localStorage.getItem('token') || '',
     currentUser: '',
     count: 0,

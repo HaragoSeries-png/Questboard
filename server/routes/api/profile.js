@@ -43,11 +43,13 @@ router.put('/', passport.authenticate('pass', {
     session: false
 }), (req, res) => {
     // let newdata = req.body
-    console.log(req.body)
+    console.log('in body exp '+JSON.stringify(req.body.desc))
+    console.log('in body dec '+JSON.stringify(req.body.exp))
     let data = req.body
     let keys = Object.keys(data)
-
+    console.log("key "+keys)
     for (var v in keys) {
+        console.log("key "+keys[v]+' v '+v)
         if (keys[v] == 'skill') req.user.infoma.skill = data.skill
         if (keys[v] == 'exp') req.user.infoma.exp = data.exp
         if (keys[v] == 'desc') req.user.infoma.desc = data.desc

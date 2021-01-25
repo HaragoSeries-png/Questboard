@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/api/auth'
+const url = 'api/auth'
 class authService {
     // static async getfuck(){
     //     let data = await axios.get(url).then((res)=>{

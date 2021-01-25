@@ -2,7 +2,7 @@
     <div class="cards">
 
         <div class="card">
-            <img src="Quest board.png" alt="" class="card__img">
+            <v-img :src='image' alt="" class="card__img"></v-img>
             <div class="card__content">
                 <h2>{{Name}}</h2>
                 <p>{{Detail}}</p>
@@ -23,7 +23,9 @@ export default {
     props: {
         Name: String,
         Detail: String,
-        Reward: String
+        Reward: String,
+        image:String
     }
+
 }
 </script>

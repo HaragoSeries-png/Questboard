@@ -17,7 +17,9 @@
           :name="item.questname"
           :Detail="item.questdetail"
           :Reward="item.questreward"
-        ></Questcard>
+          :image="item.image"
+        >
+        </Questcard>
       </li>
     </ul>
 
@@ -31,7 +33,7 @@
         <a href="#" class="button">»</a>
       </div>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
