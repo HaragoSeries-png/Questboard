@@ -48,6 +48,8 @@ Beware
 + 25-Jan-21 : หน้า Admin ยังไม่เสร็จ อยู่ในช่วงทำอย่างอื่นก่อน
 + 25-Jan-21 : 14.48 : เเก้ Edit Profile (คาดว่าไม่น่ามี Bug เเล้ว)
   25-Jan-21 : See quest detail for own user complete
++ 26-Jan-21 : myquest & mywork service will return inprogress,pending,waiting , rating fix, change user model, 
+
 # Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {
