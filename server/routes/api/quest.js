@@ -2,10 +2,11 @@ const express = require('express');
 const mongodb = require('mongodb'),
   passport = require('passport');
 const Quest = require('../../models/quest.model');
+const User = require('../../models/user.model');
 const { route } = require('./profile');
 const router = require('./profile');
 require('../../configs/passport'),
-  User = require('../../models/user.model');
+  
 multer = require('multer'),
   bodyParser = require('body-parser'),
   dateFormat = require("dateformat");
@@ -140,5 +141,8 @@ router.delete('/', function (req, res) {
     res.send(quest)
   })
 })
+
+
+
 
 module.exports = router;

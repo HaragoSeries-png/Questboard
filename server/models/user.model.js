@@ -44,13 +44,18 @@ let UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Quest'
     }],
-    comquest:[{
-        quest:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Quest' 
-        },
-        rating:Number
-    }]
+    // comquest:[{
+    //     quest:{
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'Quest' 
+    //     },
+    //     rating:Number
+    // }]
+    rating:{
+        rate:Number,
+        N:Number
+    }
+
 })
 
 
@@ -74,16 +79,25 @@ UserSchema.methods.isValidPassword = async function (password) {
     return compare
 };
 
-UserSchema.methods.getrating = async function(){
-    let r = await User.aggregate([
-        { $match: {_id: this._id} },
-        { $addFields: { avgrating: { $avg: "$comquest.rating" } } }
-    ]).then(await function(result){
-        console.log('lett '+result[0].avgrating)
-        return result[0].avgrating
-    })
-    return r
+// UserSchema.methods.getrating = async function(){
+//     let r = await User.aggregate([
+//         { $match: {_id: this._id} },
+//         { $addFields: { avgrating: { $avg: "$comquest.rating" } } }
+//     ]).then(await function(result){
+//         console.log('lett '+result[0].avgrating)
+//         return result[0].avgrating
+//     })
+//     return r
     
+// }
+UserSchema.methods.setrating = async function(newrate){
+    let rating = this.rating;
+    let frag = (rating.rate*rating.N)+newrate
+    let off =  rating.N+1
+    let newrating = frag/off
+    rating.rate = newrating
+    rating.N = rating.N+1
+    return this.rating.rate
 }
 UserSchema.methods.changepass = async function(newpass){
     const user = this;

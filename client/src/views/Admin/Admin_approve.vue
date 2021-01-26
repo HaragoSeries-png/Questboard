@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-app>
       <v-container>
         <v-row>
           <v-col cols="12" md="6" class="section1">
@@ -53,7 +52,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-app>
+ 
   </div>
 </template>
 

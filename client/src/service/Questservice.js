@@ -13,5 +13,6 @@ class questService {
         console.log("suc "+a.quest)
         return {suc:a.success,quest:a.quest} 
     }
+    
 }
 export default questService

@@ -39,12 +39,17 @@ Beware
 + 17-Jan-21 : 23.43 : password lenght,create quest90%,fix profile hover
 + 18-Jan-21 : 19.33 : change login system, change password(server)
 + 18-Jan-21 : 19.59 : แก้ไข default profilepic function
+  
+
 + 18-Jan-21 : 22.20 : แก้ register ที่ข้อความตอน input มีขนาดไม่เท่ากัน แก้ form createQuest ให้ดูดีขึ้น   
 + 19-Jan-21 : 3.31  : เพิ่ม contact ในprofile
 + 19-Jan-21 : 10.54 : Profile Edit [Skill, Intro, Exp, Edu, Contact, ProfilePic] Can
 + 22-Jan-21 : 12.44 : upload img createQuest finished 
 + 25-Jan-21 : หน้า Admin ยังไม่เสร็จ อยู่ในช่วงทำอย่างอื่นก่อน
 + 25-Jan-21 : 14.48 : เเก้ Edit Profile (คาดว่าไม่น่ามี Bug เเล้ว)
+  25-Jan-21 : See quest detail for own user complete
++ 26-Jan-21 : myquest & mywork service will return inprogress,pending,waiting , rating fix, change user model, 
+
 # Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {

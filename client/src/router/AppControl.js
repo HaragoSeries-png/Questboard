@@ -6,6 +6,7 @@ import questfeed from '@/views/questfeed'
 import admin_approve from '../views/Admin/Admin_approve.vue'
 import createQuest2 from '../views/createQuest2.vue'
 import lab from '../views/Atomtest.vue'
+import seeQuest from '../views/seeQuest.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -19,7 +20,8 @@ const routes = [
     { path: '/feed', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
-    { path: '/admin/admin_approve', component: admin_approve },
+    { path: '/admin', component: admin_approve },
+    {path : '/profileid/seequest',component : seeQuest}
 ]
 const router = new VueRouter({ mode: 'history', routes })
 
