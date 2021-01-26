@@ -1,4 +1,5 @@
 const express = require('express');
+const Quest = require('../../models/quest.model');
 const { fdatasync } = require('fs');
 const mongodb = require('mongodb'),
       passport = require('passport');
@@ -110,13 +111,70 @@ router.put('/list',passport.authenticate('pass',{
 
     req.user.save()
     res.send({ success: true })
-})
+}),
 
-router.delete('/', function (req, res) {
-    console.log(req.body.user_id)
-    User.findByIdAndDelete(req.body.user_id).then(quest => {
-      res.send(quest)
+router.get('/myquest',passport.authenticate('pass', {
+    session: false
+}),async function(req,res){
+    try {
+        let questid = req.user.ownquests
+        let myquest = await Quest.find().where('_id').in(questid).exec();
+        
+        let inprogress = myquest.filter(ele => ele.status == 'inprogress')
+        let pending = myquest.filter(ele => ele.status == 'pending')
+        let waiting = myquest.filter(ele => ele.status == 'wait')
+        return res.json({
+            success:true,
+            inprogress : inprogress,
+            pending: pending,
+            waiting:waiting
+        })
+    } catch (error) {
+        return res.json({success:false})
+    }   
+}),
+router.get('/mywork',passport.authenticate('pass', {
+    session: false
+}),async function(req,res){
+    try {
+        let questid = req.user.accquest
+        let accquest = await Quest.find().where('_id').in(questid).exec();
+        
+        let inprogress = accquest.filter(ele => ele.status == 'inprogress')
+        let waiting = accquest.filter(ele => ele.status == 'wait')
+        return res.json({
+            success:true,
+            inprogress : inprogress,
+            waiting:waiting
+        })
+    } catch (error) {
+        return res.json({success:false})
+    }   
+}),
+router.put('/rate',async function(req,res){
+    let data = req.body
+    let uid = data.uid
+    let rating = data.rating
+    User.findById(uid).then(async user=>{
+      let r = await user.setrating(rating)
+      user.save()
+      console.log("newrate "+r)
+      return res.send({rating: r})
     })
-  })
+}),
+
+router.delete('/',passport.authenticate('pass', {
+    session: false
+}), function (req, res) {
+    console.log(req.user)
+    let uod = req.user
+    User.findByIdAndDelete({uid},function(err){
+        if(err){
+            console.log('err'+err)
+            return res.send({error:err})
+        }
+        return res.end()
+    })
+})
 
 module.exports = router;

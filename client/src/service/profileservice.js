@@ -28,5 +28,33 @@ class profileService {
         console.log("suc " + a.success)
         return { suc: a.success }
     }
+    static async myquest(){
+        let a = await axios.get(url+'/myquest').then(res=>{return res.data})
+    
+        if(a.success){
+            let inprogress = a.inprogress
+            let pending= a.pending
+            let waiting= a.waiting  
+            return {
+                inprogress : inprogress,
+                pending: pending,
+                waiting:waiting
+            }     
+        }
+        else return false
+    }
+    static async mywork(){
+        let a = await axios.get(url+'/mywork').then(res=>{return res.data})
+    
+        if(a.success){
+            let inprogress = a.inprogress
+            let waiting= a.waiting  
+            return {
+                inprogress : inprogress,
+                waiting:waiting
+            }     
+        }
+        else return false
+    }
 }
 export default profileService
