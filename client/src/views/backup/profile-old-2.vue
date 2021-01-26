@@ -1,5 +1,5 @@
 <template>
-  <div id="profile" style="margin: 20px">
+  <div id="profile" style="margin: 20px; font-family: Montserrat;">
     <v-row>
       <v-col cols="12" md="4">
         <div class="section">
@@ -191,20 +191,20 @@
 </template>
 
 <script>
-import profileService from "../service/profileservice";
-import ProfileBox from "@/components/layout/profile/profileBox";
-import ProfilePop from "@/components/layout/profile/profilePop";
-import ProfileInfo from "@/components/layout/profile/profileInfo";
-import profileList from "@/components/layout/profile/profileList";
+// import profileService from "../service/profileservice";
+// import ProfileBox from "@/components/layout/profile/profileBox";
+// import ProfilePop from "@/components/layout/profile/profilePop";
+// import ProfileInfo from "@/components/layout/profile/profileInfo";
+// import profileList from "@/components/layout/profile/profileList";
 
 export default {
   name: "Profile",
-  components: {
-    ProfileBox,
-    ProfilePop,
-    ProfileInfo,
-    profileList,
-  },
+  // components: {
+  //   ProfileBox,
+  //   ProfilePop,
+  //   ProfileInfo,
+  //   profileList,
+  // },
   methods: {
     sendContact: async function() {
       if (this.profileContact) {
@@ -282,6 +282,10 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+</style>
 
 <style scope>
 @import "../styles/profile.css";

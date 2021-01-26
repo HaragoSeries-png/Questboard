@@ -1,6 +1,6 @@
 import home from '@/views/landing'
 import login from '../views/login.vue'
-import profile from '@/views/profile.vue'
+import profile from '@/views/profile/index.vue'
 import signup from '../views/signup.vue'
 import questfeed from '@/views/questfeed'
 import admin_approve from '../views/Admin/Admin_approve.vue'
