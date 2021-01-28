@@ -1,125 +1,36 @@
 <template>
-  <div style="margin:20px;">
-    <v-container class="ma-0 pa-0">
-      <v-row>
-        <v-col cols="12" md="6" class="section1">
-          <div class="section1">
-            <center>
-              <div
-                style="font-family: 'Playfair Display', serif;margin-top:5%;"
-              >
-                Quest Information
-              </div>
-            </center>
-            <div class="pic">
-              <v-img
-                height="250"
-                width="350"
-                src="https://cdn.pixabay.com/photo/2020/12/21/19/05/window-5850628_1280.png"
-              ></v-img>
-            </div>
-            <center>
-              <div style="font-family: 'Playfair Display', serif;">
-                Diffuculty
-              </div>
+  <div>
+    <watchquest>
+      <div style="text-decoration:underline;margin-top:5%;">Helper</div>
 
-              <div class="ratio">
-                <v-rating
-                  v-model="questRate"
-                  background-color="green lighten-3"
-                  color="green"
-                  style="margin-top:1%;"
-                ></v-rating>
-              </div>
-              <v-divider></v-divider>
-            </center>
-
-            <div id="text_fill">
-              <v-simple-table style="margin-left:15%;">
-                <tr height="50">
-                  <td>
-                    <span style="font-size:18px;">{{ name }}</span>
-                  </td>
-                  <td>
-                    <span style="font-size:15px;margin-left:5%;">{{
-                      value_name
-                    }}</span>
-                  </td>
-                </tr>
-                <tr height="50">
-                  <td>
-                    <span style="font-size:18px;">{{ reward }}</span>
-                  </td>
-                  <td>
-                    <span style="font-size:15px;margin-left:5%;">{{
-                      value_reward
-                    }}</span>
-                  </td>
-                </tr>
-              </v-simple-table>
-            </div>
-          </div>
-        </v-col>
-
-        <v-col cols="12" md="6" class="section2">
-          <div class="section2">
-            <v-simple-table style="margin-left:15%;">
-              <tr height="70">
-                <td style="padding-right:20px;">
-                  <span style="font-size:18px;">{{ cata }}</span>
-                </td>
-                <td>
-                  <span style="font-size:15px;">{{ value_cata }}</span>
-                </td>
-              </tr>
-              <tr height="100">
-                <td>
-                  <span style="font-size:18px;">{{ detail }}</span>
-                </td>
-                <td style="margin-left:20%;">
-                  <span style="font-size:15px;">{{ value_detail }}</span>
-                </td>
-              </tr>
-            </v-simple-table>
-
-            <div class="expire" style="text-align:end;">Cancle quest(expire in {{ time }}) day</div>
-            <div style="margin-left:15%;">
-          
-            <div style="text-decoration:underline;margin-top:5%;">Helper</div>
-              
-            <div style="margin-top:5%">
-              <v-data-table
-                :headers="headers"
-                :items="helper_slot"
-                class="elevation-1"
-                
-              >
-               <template v-slot:item.img>
-      <v-icon
-        medium
-        class="mr-2"
-      >
-       mdi-account-group
-      </v-icon>
-    </template>
-                <template v-slot:item.select="{ item }">
-            
-                  <v-simple-checkbox v-model="item.select"></v-simple-checkbox>
-                </template>
-              </v-data-table>
-            </div>
-            
-            </div>
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
+      <div style="margin-top:5%">
+        <v-data-table
+          :headers="headers"
+          :items="helper_slot"
+          class="elevation-1"
+        >
+          <template v-slot:item.img>
+            <v-icon medium class="mr-2">
+              mdi-account-group
+            </v-icon>
+          </template>
+          <template v-slot:item.select="{ item }">
+            <v-simple-checkbox v-model="item.select"></v-simple-checkbox>
+          </template>
+        </v-data-table>
+      </div>
+    </watchquest>
+    <div v-if="$store.getters.isLoggedIn">
+        
+    </div>
   </div>
 </template>
 
 <script>
+import watchquest from "../components/layout/Q/watchqest";
 export default {
   name: "seeQuest",
+  components: { watchquest },
   data() {
     return {
       name: "Quest name",
@@ -160,22 +71,6 @@ export default {
         {
           name_helper: "Somrak Khamsing",
           select: "false",
-        },{
-          img: "",
-          name_helper: "Somchai Eiei",
-          select: "false",
-        },
-        {
-          name_helper: "Somrak Khamsing",
-          select: "false",
-        },{
-          img: "",
-          name_helper: "Somchai Eiei",
-          select: "false",
-        },
-        {
-          name_helper: "Somrak Khamsing",
-          select: "false",
         },
       ],
       headers: [
@@ -198,7 +93,7 @@ export default {
   margin-bottom: 1%;
 }
 .section2 {
-  margin-top: 4%;
+  margin-top: 1%;
 }
 .pic {
   display: flex;
