@@ -283,7 +283,7 @@ export default {
       ],
       logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile" }],
       sub_myquest: [
-        { title: "Inprogress", icon: "mdi-account-clock", to: "/mq_inprogress" },
+        { title: "Inprogress", icon: "mdi-account-clock", to: "/mqinprogress" },
         { title: "Waiting", icon: "mdi-account-search", to: "/mq_waiting" },
         { title: "Pending", icon: "mdi-account-arrow-right", to: "/mq_pending" },
        { title: "Create Quest", icon: "mdi-book-plus", to: "/Createquest2" },
