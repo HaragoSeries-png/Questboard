@@ -7,6 +7,7 @@ import admin_approve from '../views/Admin/Admin_approve.vue'
 import createQuest2 from '../views/createQuest2.vue'
 import lab from '../views/Atomtest.vue'
 import seeQuest from '../views/seeQuest.vue'
+import mqInprogress from '../views/Quest/My_Quest/mq_inprogress.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -15,13 +16,15 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/', component: home },
     { path: '/login', component: login },
-    { path: '/profile', component: profile },
+    { path: '/profile/:id', component: profile },
     { path: '/signup', component: signup },
     { path: '/feed', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
     { path: '/admin', component: admin_approve },
-    {path : '/profileid/seequest',component : seeQuest}
+    { path : '/profileid/seequest',component : seeQuest},
+    { path : '/mqinprogress',component : mqInprogress}  
+    
 ]
 const router = new VueRouter({ mode: 'history', routes })
 

@@ -7,15 +7,15 @@
             <i class="material-icons">{{ infoLogo }}</i>
             &nbsp;
             <span style="font-size: 25px; font-weight: bold">
-              {{ infoName }}
+              {{ infoName }} {{ editable }}
             </span>
           </v-list-item-title>
           <v-list-item-subtitle style="font-size: 16px">
             {{ infoSub }}
           </v-list-item-subtitle>
         </v-list-item-content>
-
-        <v-list-item-action>
+        
+        <v-list-item-action v-if="editable">
           <v-dialog v-model="dialog" persistent width="500">
             <template v-slot:activator="{ on }">
               <i class="material-icons editbtn" v-on="on">border_color</i>
@@ -43,7 +43,7 @@ import ProfilePop from "./profilePop";
 
 export default {
   name: "ProfileInfo",
-  props: ["infoName", "infoSub", "infoLogo", "infoData", "infoKey"],
+  props: ["infoName", "infoSub", "infoLogo", "infoData", "infoKey", "editable"],
   components: { ProfilePop },
   methods: {
     sendData: async function() {

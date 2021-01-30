@@ -7,6 +7,7 @@
             :profileName="profileFullName"
             :profilePic="profilePic"
             :profileRate="profileRate"
+            :editable="editable()"
             @uploadimg="chooseFiles"
           />
 
@@ -17,6 +18,7 @@
               infoLogo="mdi-account-circle"
               :infoData="profileContact"
               :infoKey="profileContactKey"
+              :editable="editable()"
             />
           </div>
         </div>
@@ -32,6 +34,7 @@
             infoLogo="perm_contact_cal"
             :infoData="profileInfo"
             :infoKey="profileInfoKey"
+            :editable="editable()"
           >
             <v-list two-line style="max-height: 200px" class="overflow-y-auto">
               <v-card-action>
@@ -53,6 +56,7 @@
             infoLogo="school"
             :infoData="profileEducation"
             :infoKey="profileEducationKey"
+            :editable="editable()"
           >
             <v-list two-line style="max-height: 300px" class="overflow-y-auto">
               <v-card-action>
@@ -81,6 +85,7 @@
             infoLogo="local_fire_department"
             :infoData="profileSkill"
             :infoKey="profileSkillKey"
+            :editable="editable()"
           >
             <v-card-actions style="overflow-y: auto;">
               <v-btn
@@ -102,6 +107,7 @@
             infoLogo="done_outline"
             :infoData="profileExperience"
             :infoKey="profileExperienceKey"
+            :editable="editable()"
           >
             <v-list two-line style="max-height: 200px" class="overflow-y-auto">
               <v-card-action>
@@ -140,12 +146,28 @@ export default {
     ProfileInfo,
     profileList,
   },
+  watch: {
+    "$route.params.id": function() {
+      this.$router.go();
+    },
+  },
   methods: {
     getinfoma: async function() {
-      let re = await profileService.getprofile().then((res) => {
+      let userid = "";
+
+      if (this.$route.params.id) userid = this.$route.params.id;
+      else if (this.$store.getters.getuserid != "")
+        userid = this.$store.getters.getuserid;
+      else this.router.push({ path: "/login" });
+
+      let re = await profileService.getprofile(userid).then((res) => {
         return res;
       });
+
       this.profile = re.user;
+    },
+    editable() {
+      return this.$route.params.id == this.$store.getters.getuserid;
     },
     add() {
       this.$store.dispatch("set");

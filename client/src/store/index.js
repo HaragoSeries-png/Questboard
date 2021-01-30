@@ -5,13 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    // Fix
     title: 'Questboard',
-    gurl:'http://localhost:5000/',
+    gurl: 'http://localhost:5000/',
+
+    // Changeable
+    userid: localStorage.getItem('uid') || '',
     token: localStorage.getItem('token') || '',
-    currentUser: '',
-    count: 0,
     islog: localStorage.getItem('islogin') || false,
     userfullname: localStorage.getItem('fullname') || '',
+
+    // Maybe Unused
+    currentUser: '',
+    count: 0,
     userinfoma: '',
   },
   getters: {
@@ -23,40 +29,46 @@ export default new Vuex.Store({
     getcount(state) { return state.count },
     getinfoma(state) { return state.userinfoma },
 
-    getAll(state) {return [state.islog, state.currentUser, state.userfullname, state.userinfoma]}
+    getuserid(state) { return state.userid },
+    getAll(state) { return [state.islog, state.currentUser, state.userfullname, state.userinfoma] }
   },
   mutations: {
     logon(state, value) {
-      console.log(value.fullname)
+      console.log('login')
+      localStorage.setItem('uid', value.id)
       localStorage.setItem('fullname', value.fullname)
       localStorage.setItem('token', value.token);
       localStorage.setItem('islogin', value.suc);
       
-      state.islog = true
-      state.currentUser = value.name
-      state.userfullname = value.fullname
-      state.userinfoma = value.infoma
-      console.log("logon")
+      this.commit('update')
+      // state.islog = true
+      // state.currentUser = value.name
+      // state.userfullname = value.fullname
+      // state.userinfoma = value.infoma
+      // state.userid = value.id
       // if(this.$store.getters.isLoggedIn){
       //   alert(state.currentUser+' has logon')
       // }else{
       //   alert('suck')
       // }  
     },
-    logout(state, value) {
+    logout() {
+      localStorage.setItem('uid', '')
       localStorage.setItem('fullname', '')
 
-      state.token = ''
-      state.currentUser = value
-      state.islog = false
-      state.userfullname = ''
-      state.userinfoma = '' 
+      this.commit('update')
+    },
+    update(state) {
+      state.token = localStorage.getItem('token') || '',
+      state.islog = localStorage.getItem('islogin') || false,
+      state.userid = localStorage.getItem('uid') || '',
+      state.userfullname = localStorage.getItem('fullname') || ''
     },
     setcount: (state, value) => state.count = value,
   },
   actions: {
     authen(context, value) { context.commit('logon', value) },
-    deluser(context) { context.commit('logout', '') },
+    deluser(context) { context.commit('logout') },
     set(context) {
       context.commit('setcount', this.getters.getcount + 1)
     },
