@@ -55,80 +55,44 @@
             </v-list-item-content>
           </v-list-item>
 
-
         <div v-if="status">
         <v-list-group
-        :value="false"
-        prepend-icon="mdi-clipboard-arrow-down"
-          color="#FF598F"
+        :value="true"
+        prepend-icon="mdi-account-circle"
+        color="#FF598F"
       >
-        <template v-slot:activator>
-           <v-list-item-content>
-              <div class="titlefont">
-                Quest
-              </div>
-            </v-list-item-content>
-        </template>
-
-        <v-list-group
-          :value="true"
-          no-action
-          sub-group
-            color="#FF598F"
-        >
-          <template v-slot:activator   >
-            <v-list-item-content    >
-              <v-list-item-title >My Quest</v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-           <v-list-item
-            v-for="item in sub_myquest"
-            :key="item.title"
-            link
-            :to="item.to"
-            color="#FF598F"
-          >
-           <v-list-item-icon >
-              <v-icon size=20>{{item.icon}}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title ><span class="sub_font">{{item.title}}</span></v-list-item-title>
-
-           
-          </v-list-item>
-        </v-list-group>
-
-        <v-list-group
-          no-action
-          sub-group
-            color="#FF598F"
-        >
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title>My Work</v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <v-list-item
-            v-for="item in sub_mywork"
-            :key="item.title"
-            link
-            :to="item.to"
-              color="#FF598F"
-          >
-           <v-list-item-icon>
-              <v-icon size="20">{{item.icon}}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>{{item.title}}</v-list-item-title>
-
-           
-          </v-list-item>
-        </v-list-group>
+        <template v-slot:activator    >
           
-      </v-list-group>
+          <v-list-item-content><div class="titlefont">
+            Quest</div></v-list-item-content>
+        </template>
+          <v-list-item
+            v-for="item in quest"
+            color="#FF598F"
+            :key="item.title"
+            link
+            :to="item.to"
+            style="padding-left:20%;"
+          >
+          
+             <v-list-item-icon >
+              <v-icon size=20 >{{item.icon}}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content style="font-size:11px;">
+              {{item.title}}
+            </v-list-item-content>
+          
+         
+          </v-list-item>
+      
+        </v-list-group>
 
 
         </div>
+
+
+
        <v-list-item
             v-for="item in allow2"
             :key="item.title"
@@ -281,13 +245,17 @@ export default {
         { title: "Log in", icon: "mdi-login", to: "/login" },
         { title: "Sign up", icon: "mdi-book-account", to: "/signup" },
       ],
-      logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile" }],
+      logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile" + "/" + this.$store.getters.getuserid }],
       sub_myquest: [
         { title: "Inprogress", icon: "mdi-account-clock", to: "/mqinprogress" },
         { title: "Waiting", icon: "mdi-account-search", to: "/mq_waiting" },
         { title: "Pending", icon: "mdi-account-arrow-right", to: "/mq_pending" },
        { title: "Create Quest", icon: "mdi-book-plus", to: "/Createquest2" },
         { title: "Complete", icon: "mdi-book-check", to: "/mq_complete" },
+      ],
+      quest: [
+        { title :'My Quest', icon : 'mdi-account-multiple-outline',to:'./myquest'},
+        { title :'My Work', icon: 'mdi-cog-outline',to:"./mywork"}
       ],
       sub_mywork : [
         { title: "Inprogress", icon: "mdi-book-clock", to: "/mw_inprogress" },
@@ -323,7 +291,6 @@ body {
 }
 
 .titlefont {
- 
   font-size: 14px;
 }
 .sub_font{

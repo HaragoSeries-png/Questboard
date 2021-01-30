@@ -7,7 +7,7 @@
           mdi-account-circle</v-icon
         >
         Contact
-        <v-dialog v-model="dialog" persistent width="500">
+        <v-dialog v-if="editable" v-model="dialog" persistent width="500">
           <template v-slot:activator="{ on }">
             <i class="material-icons editbtn" v-on="on">border_color</i>
           </template>
@@ -80,7 +80,7 @@ import ProfilePop from "./profilePop";
 
 export default {
   name: "ProfileContact",
-  props: ["infoName", "infoSub", "infoLogo", "infoData", "infoKey"],
+  props: ["infoName", "infoSub", "infoLogo", "infoData", "infoKey", "editable"],
   components: { ProfilePop },
   methods: {
     sendData: async function() {

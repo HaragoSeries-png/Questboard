@@ -59,7 +59,7 @@ router.post('/',  passport.authenticate('pass', {
     objective: req.body.objective,
     reward: req.body.reward,
     location: req.body.location,
-    status: "wait",
+    status: "approved",
     image: filename,
     date: dateFormat(new Date(), "longDate"),
     duedate: req.body.duedate,
@@ -77,6 +77,7 @@ router.post('/',  passport.authenticate('pass', {
     }
     req.user.ownquests.push(quest)
     console.log(req.user.quests)
+   
     req.user.save()
     return res.send({ success: true, questid: quest._id })
   })
@@ -133,6 +134,12 @@ router.get('/test', function (req, res) {
     let remain = await quest.remain()
     console.log(remain)
     return res.send({ remain: remain })
+  })
+})
+router.get('/quest', function (req, res) {
+  let questid = req.body.quest_id
+  Quest.findById(questid).then(async (quest) => {   
+    return res.send({quest:quest,success:true})
   })
 })
 router.delete('/', function (req, res) {

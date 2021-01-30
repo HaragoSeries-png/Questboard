@@ -22,7 +22,7 @@
         </Questcard>
       </li>
     </ul>
-
+  {{quests}}
     <div class="page">
       <div class="bar">
         <a href="#" class="button">«</a>
