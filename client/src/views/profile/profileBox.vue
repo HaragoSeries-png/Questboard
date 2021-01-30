@@ -2,7 +2,7 @@
   <div id="profileBox">
     <center>
       <div>
-        <v-hover v-slot="{ hover }">
+        <v-hover v-slot="{ hover }" v-if="editable">
           <v-img
             class="rounded-circle"
             :aspect-ratio="1 / 1"
@@ -33,6 +33,16 @@
             </div>
           </v-img>
         </v-hover>
+        <v-img v-else
+          class="rounded-circle"
+          :aspect-ratio="1 / 1"
+          max-width="250"
+          :src="profilePic"
+          width:auto
+          height:auto
+          style="border:1px solid black"
+        >
+        </v-img>
         <div style="display: none;">
           <v-file-input
             v-model="files"
@@ -67,7 +77,7 @@ import profileService from "../../service/profileservice";
 
 export default {
   name: "Profile-Box",
-  props: ["profileName", "profilePic", "profileRate"],
+  props: ["profileName", "profilePic", "profileRate", "editable"],
   methods: {
     uploadimg() {
       document.getElementById("fileUpload").click();
@@ -80,6 +90,7 @@ export default {
       }
     },
     sendim: async function() {
+      console.log("SENDIMG")
       if (this.files) {
         let formData = new FormData();
         formData.append("image", this.files);

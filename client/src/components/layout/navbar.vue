@@ -281,7 +281,7 @@ export default {
         { title: "Log in", icon: "mdi-login", to: "/login" },
         { title: "Sign up", icon: "mdi-book-account", to: "/signup" },
       ],
-      logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile" }],
+      logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile" + "/" + this.$store.getters.getuserid }],
       sub_myquest: [
         { title: "Inprogress", icon: "mdi-account-clock", to: "/mqinprogress" },
         { title: "Waiting", icon: "mdi-account-search", to: "/mq_waiting" },

@@ -33,11 +33,13 @@ const upload = multer({
 });
 
 const router = express.Router();
-router.get('/', passport.authenticate('pass', {
+
+router.get('/:id', passport.authenticate('pass', {
     session: false
 }), (req, res) => {
-    console.log('getprofile')
-    res.send({ success: true, user: req.user })
+    User.findById(req.params.id, function(err, user){
+        res.send({ success: true, user: user })
+    });
 });
 
 router.put('/', passport.authenticate('pass', {
@@ -66,7 +68,7 @@ router.put('/editPic',  passport.authenticate('pass', {
     session: false
 }),upload.single('image'), (req, res) => {
     console.log(req.user.infoma.proimage)
-    if(req.user.infoma.proimage!=""){
+    if(req.user.infoma.proimage != ""){
         fs.unlinkSync('server/public/'+ req.user.infoma.proimage)
     }
     req.user.infoma.proimage = req.file.filename
