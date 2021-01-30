@@ -26,7 +26,7 @@
           <br />
           <span style="font-size: 14px">{{ this.$store.getters.getfullname }}</span>
           <br />
-          <router-link to="/profile" style="font-size: 12px; color: orange"
+          <router-link :to="'/profile/id/' + this.$store.getters.getuserid" style="font-size: 12px; color: orange"
             >View your profile</router-link
           >
         </div>
@@ -245,7 +245,7 @@ export default {
         { title: "Log in", icon: "mdi-login", to: "/login" },
         { title: "Sign up", icon: "mdi-book-account", to: "/signup" },
       ],
-      logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile" + "/" + this.$store.getters.getuserid }],
+      logitems: [{ title: "Profile", icon: "mdi-login", to: "/profile/id/" + this.$store.getters.getuserid }],
       sub_myquest: [
         { title: "Inprogress", icon: "mdi-account-clock", to: "/mqinprogress" },
         { title: "Waiting", icon: "mdi-account-search", to: "/mq_waiting" },

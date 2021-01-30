@@ -16,7 +16,7 @@ class profileService {
         return { suc: a.success }
     }
     static async getprofile(value) {
-        let a = await axios.get(url + "/" + value).then(res => { return res.data })
+        let a = await axios.get(url + "/id/" + value).then(res => { return res.data })
         return { suc: a.success, user: a.user }
 
     } static async addskill(value, flag, field) {

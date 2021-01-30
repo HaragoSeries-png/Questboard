@@ -34,7 +34,7 @@ const upload = multer({
 
 const router = express.Router();
 
-router.get('/:id', passport.authenticate('pass', {
+router.get('/id/:id', passport.authenticate('pass', {
     session: false
 }), (req, res) => {
     User.findById(req.params.id, function(err, user){
