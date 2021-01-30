@@ -330,11 +330,11 @@ export default {
       formData.append("duedate", this.duedate);
       console.log(formData.get("questdatail"));
       let suc = await questService.createquest(formData).then((res) => {
-        return res;
+        return res.suc;
       });
       console.log("logsuc" + suc);
 
-      if (suc) this.$router.push({ path: "/createQuest2" });
+      if (suc) this.$router.push({ path: "/feed" });
       else alert("fail");
     },
   },

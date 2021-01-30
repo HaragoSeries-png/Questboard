@@ -7,7 +7,7 @@ import admin_approve from '../views/Admin/Admin_approve.vue'
 import createQuest2 from '../views/createQuest2.vue'
 import lab from '../views/Atomtest.vue'
 import seeQuest from '../views/seeQuest.vue'
-import mqInprogress from '../views/Quest/My_Quest/mq_inprogress.vue'
+import myquest from '../views/myquest.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -23,7 +23,7 @@ const routes = [
     { path: '/lab', component: lab },
     { path: '/admin', component: admin_approve },
     { path : '/profileid/seequest',component : seeQuest},
-    { path : '/mqinprogress',component : mqInprogress}  
+    { path : '/myquest',component : myquest}
     
 ]
 const router = new VueRouter({ mode: 'history', routes })
