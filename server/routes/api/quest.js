@@ -79,6 +79,7 @@ router.post('/',  passport.authenticate('pass', {
     }
     req.user.ownquests.push(quest)
     console.log(req.user.quests)
+   
     req.user.save()
     return res.send({ success: true, questid: quest._id })
   })

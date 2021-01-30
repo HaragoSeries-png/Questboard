@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="font-family: Montserrat;">
     <v-app>
       <div class="component">
         <router-view @setTitle="setPageTitle"></router-view>
@@ -46,6 +46,7 @@ export default {
 
 <style>
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css%22");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import "./styles/table.css";
 
 .component {

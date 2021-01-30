@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="register_from">
+    <div id="register" class="register_from" style="font-family: Montserrat;">
       <h1>Register</h1>
 
       <div class="divTable">
@@ -22,50 +22,30 @@
         </div>
       </div>
 
-      <div>
-        <v-text-field
-          label="Username"
-          v-model="username"
-          required
-          dark
-        ></v-text-field>
-      </div>
-      <div>
-        <v-text-field
-          label="E-mail"
-          v-model="email"
-          required
-          dark
-        ></v-text-field>
-      </div>
-      <div>
-        <v-text-field
-          label="Password"
-          v-model="password"
-          :type="show1 ? 'text' : 'password'"
-          required
-          dark
-        ></v-text-field>
-      </div>
+      <v-text-field label="E-mail" v-model="email" required dark></v-text-field>
 
       <v-text-field
-        label="Confirm password"
-        v-model="conpassword"
-        :type="show1 ? 'password' : 'password'"
+        label="Password"
+        v-model="password"
+        type="password"
         required
         dark
       ></v-text-field>
 
-      <br /><br />
+      <v-text-field
+        label="Confirm password"
+        v-model="conpassword"
+        type="password"
+        required
+        dark
+      ></v-text-field>
+
+      <br />
       <button v-on:click="register_check()" class="button1">Register</button>
 
       <br /><br />
       <div class="alertbox">
-        <ul
-          id="alertField"
-          class="p-1"
-          style="color: red; padding-top: 3px"
-        ></ul>
+        <ul id="alertField" class="p" style="color: red; font-size: 16px"></ul>
       </div>
     </div>
   </v-app>
@@ -84,7 +64,6 @@ export default {
       if (!this.firstname)
         alertField.innerHTML += "<li>Require Firstname.</li>";
       if (!this.lastname) alertField.innerHTML += "<li>Require Lastname.</li>";
-      if (!this.username) alertField.innerHTML += "<li>Require Username.</li>";
       if (!this.email) alertField.innerHTML += "<li>Require Email.</li>";
       if (!this.password) alertField.innerHTML += "<li>Require Password.</li>";
       if (this.password.length < 8)
@@ -100,7 +79,6 @@ export default {
       let data = {
         firstname: this.firstname,
         lastname: this.lastname,
-        username: this.username,
         email: this.email,
         password: this.password,
       };
@@ -122,10 +100,8 @@ export default {
   },
   data() {
     return {
-      show1: false,
       firstname: "",
       lastname: "",
-      username: "",
       email: "",
       password: "",
       conpassword: "",
@@ -140,14 +116,17 @@ export default {
     no-repeat center center fixed !important;
   background-size: cover;
 }
+
 body {
   margin: 0;
   padding: 0;
 
   background-position: center;
   background-size: cover;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
+  font-family: Montserrat;
 }
+
 .register_from {
   margin-top: 0%;
   justify-items: center;
@@ -165,12 +144,14 @@ body {
   border-radius: 10px;
   opacity: 0.8;
 }
+
 h1 {
   margin: 0;
   padding: 0 0 20px;
   text-align: center;
   font-size: 30px;
 }
+
 button {
   border: none;
   outline: none;
@@ -182,28 +163,20 @@ button {
   width: 350px;
   /* position: absolute; */
 }
+
 button:hover {
   background: linear-gradient(120deg, rgb(69, 160, 212), #4caf50);
   color: #fff;
 }
+
 input {
   width: 100%;
   margin-bottom: 20px;
 }
-input[type="text"],
-[type="email"],
-input[type="password"] {
-  border: none;
-  border-bottom: 1px solid #fff;
-  background: transparent;
-  outline: none;
-  height: 40px;
-  color: #fff;
-  font-size: 16px;
-}
+
 p {
   margin: 0;
   padding: 0;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 </style>

@@ -34,7 +34,6 @@ export default new Vuex.Store({
   },
   mutations: {
     logon(state, value) {
-      console.log('login')
       localStorage.setItem('uid', value.id)
       localStorage.setItem('fullname', value.fullname)
       localStorage.setItem('token', value.token);

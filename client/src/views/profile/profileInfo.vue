@@ -7,7 +7,7 @@
             <i class="material-icons">{{ infoLogo }}</i>
             &nbsp;
             <span style="font-size: 25px; font-weight: bold">
-              {{ infoName }} {{ editable }}
+              {{ infoName }}
             </span>
           </v-list-item-title>
           <v-list-item-subtitle style="font-size: 16px">

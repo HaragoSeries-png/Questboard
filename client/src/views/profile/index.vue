@@ -159,7 +159,7 @@ export default {
       else if (this.$store.getters.getuserid != "")
         userid = this.$store.getters.getuserid;
       else this.router.push({ path: "/login" });
-
+      
       let re = await profileService.getprofile(userid).then((res) => {
         return res;
       });
@@ -175,10 +175,10 @@ export default {
   },
   created: async function() {
     await this.getinfoma();
-
+    
+    this.profilePic = "miku.gif"
     if (this.profile.infoma.proimage != "")
       this.profilePic = this.$store.state.gurl + this.profile.infoma.proimage;
-    else this.profilePic = "miku.gif";
 
     if (this.profile.infoma.skill != "")
       this.profileSkill = this.profile.infoma.skill;
