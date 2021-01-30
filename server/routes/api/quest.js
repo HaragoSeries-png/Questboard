@@ -3,9 +3,9 @@ const mongodb = require('mongodb'),
   passport = require('passport');
 const Quest = require('../../models/quest.model');
 const User = require('../../models/user.model');
-const { route } = require('./profile');
+
 const router = require('./profile');
-require('../../configs/passport'),
+
   
 multer = require('multer'),
   bodyParser = require('body-parser'),
@@ -35,10 +35,12 @@ const upload = multer({
   fileFilter: fileFilter
 });
 router.get('/feed', function (req, res) {
+  console.log("quest feed")
   Quest.find({ status: "approved" }).then(quest => {
     res.send({ quest: quest, success: true })
   })
 })
+
 router.post('/',  passport.authenticate('pass', {
   session: false
 }),upload.single('image'), function (req, res) {

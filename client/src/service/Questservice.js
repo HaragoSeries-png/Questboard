@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'api/quest'
+const url = '/api/quest'
 
 class questService {
     static async createquest(text) {
