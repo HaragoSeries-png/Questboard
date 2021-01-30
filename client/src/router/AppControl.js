@@ -16,8 +16,8 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/', component: home },
     { path: '/login', component: login },
-    { path: '/profile/id/:id', component: profile },
     { path: '/signup', component: signup },
+    { path: '/profile/id/:id', component: profile },
     { path: '/feed', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },

@@ -91,7 +91,7 @@ export default {
         let suc = await profileService.editprofile(formData).then((res) => {
           return res;
         });
-        
+
         if (suc) this.$router.go();
         else alert("Edit Failed");
       } else alert("Data Missing.");

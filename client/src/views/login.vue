@@ -1,23 +1,27 @@
 <template>
-<v-app>
-  <div id="login" class="loginfrom">
-    <img class="avatar" :src="profilePic" />
-    <h1>Login</h1>
+  <v-app>
+    <div id="login" class="loginfrom" style="font-family: Montserrat;">
+      <img class="avatar" :src="profilePic" />
+      <h1>Login</h1>
 
-    <div v-if="email"><p>Email</p></div>
-    <input type="text" v-model="email" placeholder="Email" />
+      <v-text-field label="Email" v-model="email" required dark></v-text-field>
 
-    <div v-if="password"><p>Password</p></div>
-    <input type="password" v-model="password" placeholder="Password" />
+      <v-text-field
+        label="Password"
+        v-model="password"
+        type="password"
+        required
+        dark
+      ></v-text-field>
 
-    <br />
-    <button v-on:click="login()">Login</button>
+      <br />
+      <button v-on:click="login()">Login</button>
 
-    <br /><br /><br />
-    <p class="p-1">
-      Not have account yet? <router-link to="/signup"> Sign up</router-link>
-    </p>
-  </div>
+      <br /><br />
+      <p class="p-1">
+        Not have account yet? <router-link to="/signup"> Sign up</router-link>
+      </p>
+    </div>
   </v-app>
 </template>
 
@@ -59,8 +63,8 @@ export default {
 
 <style scoped>
 #app {
-  background: url('https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
-  no-repeat center center fixed !important;
+  background: url("https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    no-repeat center center fixed !important;
   background-size: cover;
 }
 .loginfrom {
