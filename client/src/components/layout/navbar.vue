@@ -220,6 +220,9 @@
 export default {
   name: "Navbar",
   methods: {
+    getuserid() {
+      return this.$store.getters.getuserid
+    },
     logout() {
       this.$emit("logout");
     },
@@ -243,9 +246,9 @@ export default {
       ],
       logitems: [
         {
-          title: "Profile",
+          title: "Profile (Unavalible)",
           icon: "mdi-login",
-          to: "/profile/id/" + this.$store.getters.getuserid,
+          to: "",
         },
       ],
       sub_myquest: [
