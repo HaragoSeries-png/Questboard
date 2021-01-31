@@ -34,6 +34,7 @@ const upload = multer({
 
   fileFilter: fileFilter
 });
+
 router.get('/feed', function (req, res) {
   console.log("quest feed")
   Quest.find({ status: "approved" }).then(quest => {
@@ -130,6 +131,7 @@ router.put('/select', function (req, res) {
     return res.send(quest)
   })
 })
+
 router.get('/test', function (req, res) {
   let questid = req.body.quest_id
   Quest.findById(questid).then(async (quest) => {
@@ -138,12 +140,14 @@ router.get('/test', function (req, res) {
     return res.send({ remain: remain })
   })
 })
-router.get('/quest', function (req, res) {
-  let questid = req.body.quest_id
+
+router.get('/id/:id', function (req, res) {
+  let questid = req.params.id
   Quest.findById(questid).then(async (quest) => {   
-    return res.send({quest:quest,success:true})
+    return res.send({quest: quest, success: true})
   })
 })
+
 router.delete('/', function (req, res) {
   console.log(req.body.quest_id)
   Quest.findByIdAndDelete(req.body.quest_id).then(quest => {

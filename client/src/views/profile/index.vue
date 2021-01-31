@@ -155,11 +155,14 @@ export default {
     getinfoma: async function() {
       let userid = "";
 
-      if (this.$route.params.id) userid = this.$route.params.id;
-      else if (this.$store.getters.getuserid != "")
+      if (this.$route.params.id) {
+        userid = this.$route.params.id;
+      }
+      else if (this.$store.getters.getuserid != "") {
         userid = this.$store.getters.getuserid;
+      }
       else this.router.push({ path: "/login" });
-      
+
       let re = await profileService.getprofile(userid).then((res) => {
         return res;
       });
