@@ -277,7 +277,7 @@
 </template>
 
 <script>
-import QuestService from "@/service/QuestService";
+import QuestService from "@/service/questService";
 export default {
   name: "Create Quest",
   created() {

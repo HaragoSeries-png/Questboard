@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import profileService from "../../service/profileservice";
+import profileService from "@/service/profileService";
 
 export default {
   name: "Profile-Box",

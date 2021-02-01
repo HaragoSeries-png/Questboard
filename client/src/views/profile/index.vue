@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import profileService from "@/service/profileservice";
+import profileService from "@/service/profileService";
 import ProfileBox from "./profileBox";
 import ProfileContact from "./profileContact";
 import ProfileInfo from "./profileInfo";
