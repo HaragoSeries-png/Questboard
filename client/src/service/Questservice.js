@@ -15,7 +15,6 @@ class questService {
     }
     static async getquestinfo(value) {
         let a = await axios.get(url + "/questid/" + value).then(res => { return res.data })
-        console.log(a.quest)
         return { suc: a.success, quest: a.quest }
     }
 }

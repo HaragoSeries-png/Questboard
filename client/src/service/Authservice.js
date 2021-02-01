@@ -6,7 +6,7 @@ class authService {
     //     let data = await axios.get(url).then((res)=>{
     //     console.log(res.data)
     //     return res.data
-    //     })
+    //     })test
     //     console.log("data in f "+data)
     //     return data   
     // }
