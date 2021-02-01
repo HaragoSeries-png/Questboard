@@ -3,185 +3,148 @@
   <h1 style="text-align:center;">My quest</h1>   
  <div class="full-screen-bot">
   <v-card
-    width="300"
+    class="mx-auto"
+    max-width="340"
   >
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-      height="200px"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/In_progress_icon.svg/1024px-In_progress_icon.svg.png"
+    width=50
+    style="margin:20px"
     ></v-img>
 
-   
+    <div style="text-align:center">Status</div>
 
-   
 
-   
+
+  <br>
+      <center>
+      <v-btn
+        color="white "
+        text
+        style="font-size:20px; background-color:#1e88e5 ;"
+        @click="senddata('in progress')"
+         >
+        In progress
+       </v-btn>
+       </center>
+      <v-spacer></v-spacer>
+
+
+      <v-divider></v-divider>
+        <v-card-text style="font-size:15px;">
+     your quest is on the way to be cleared, so 
+ you can relax and enjoy your help.
+        </v-card-text>
+    
   </v-card>
-    <v-card
-   
-    max-width="300"
-    
+
+
+ 
+
+<v-card
+    class="mx-auto"
+    max-width="340"
   >
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-      height="200px"
+      src="https://kindertales.com/images/crm-waitlisticon_2x.png?crc=4099574293"
+      width=50
+      style="margin:20px"
+       
     ></v-img>
 
-    <v-card-title>
-      Top western road trips
-    </v-card-title>
+    <div style="text-align:center">Status</div>
 
-    <v-card-subtitle>
-      1,000 miles of wonder
-    </v-card-subtitle>
 
-    <v-card-actions>
+
+  <br>
+      <center>
       <v-btn
-        color="orange lighten-2"
+        color="white"
         text
-      >
-        Explore
-      </v-btn>
-
+        style="font-size:20px; background-color:#689f38 ;"
+         @click="senddata('waiting')" 
+         >
+        Waiting
+       </v-btn>
+       </center>
       <v-spacer></v-spacer>
 
-      <v-btn
-        icon
-        @click="show = !show"
-      >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
 
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
+      <v-divider></v-divider>
+        <v-card-text style="font-size:15px;">
+        Your quest needs to wait for contributor to assign in. If it's really emergency, you can have some emergency call in the field of problem.
 
-        <v-card-text>
-          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
         </v-card-text>
-      </div>
-    </v-expand-transition>
-  </v-card>        
-   <v-card
     
-    max-width="300"
-  >
-    <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-      height="200px"
-    ></v-img>
-
-    <v-card-title>
-      Top western road trips
-    </v-card-title>
-
-    <v-card-subtitle>
-      1,000 miles of wonder
-    </v-card-subtitle>
-
-    <v-card-actions>
-      <v-btn
-        color="orange lighten-2"
-        text
-      >
-        Explore
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        icon
-        @click="show = !show"
-      >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-        </v-card-text>
-      </div>
-    </v-expand-transition>
   </v-card>
-   <v-card
-    
-    max-width="300"
+ <v-card
+    class="mx-auto"
+    max-width="340"
   >
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-      height="200px"
+      src="https://image.flaticon.com/icons/png/512/1701/1701971.png"
+    width=50
+    style="margin:20px;justify-content:end;"
+
     ></v-img>
 
-    <v-card-title>
-      Top western road trips
-    </v-card-title>
+    <div style="text-align:center">Status</div>
 
-    <v-card-subtitle>
-      1,000 miles of wonder
-    </v-card-subtitle>
 
-    <v-card-actions>
+
+  <br>
+      <center>
       <v-btn
-        color="orange lighten-2"
+        color="white "
         text
-      >
-        Explore
-      </v-btn>
-
+        style="font-size:20px; background-color:#ff9100;display:inline;"
+        @click="senddata('pending')"
+         >
+        Pending
+       </v-btn>
+       </center>
       <v-spacer></v-spacer>
 
-      <v-btn
-        icon
-        @click="show = !show"
-      >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
 
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+      <v-divider></v-divider>
+        <v-card-text style="font-size:15px;">
+        Your quest is waiting to be verified by admin, please be patient.
         </v-card-text>
-      </div>
-    </v-expand-transition>
-  </v-card>      
+    
+  </v-card>
+
+ </div>
+<div style="margin-top:40px;text-align:center;font-size:30px ">
+  Information about your current quest
+</div>
+ <comtest1 
+ :search = search
+  ></comtest1>
+  
         </div>
-      <!-- <comtest1/> -->
-  </div>
+     
 </template>
 
 <script>
-// import comtest1 from '../components/layout/Q/Table'
+import comtest1 from '../components/layout/Q/Table'
 export default {
+  
     name:"my quest",
-    // components : {comtest1}
+    components : {comtest1},
     data(){
+        
         return{
-            show : false,
-        cat :[
-        { 
-          title: "Inprogress",
-          icon: "mdi-account-clock",
-          to: "/mqinprogress" 
-        },
-        { title: "Waiting",
-          icon: "mdi-account-search",
-          to: "/mq_waiting" 
-          },
-        { title: "Pending",
-          icon: "mdi-account-arrow-right",
-          to: "/mq_pending"
-        },
-            ]
+          search :''
         }
+    },
+    methods :{
+      senddata(value){
+        console.log(value);
+        this.search=value
+      }
+
     }
+
 }
 </script>
 
@@ -192,10 +155,10 @@ export default {
    justify-content: space-around;    
 }
 .full-screen-bot .v-card{
-    margin-left: 2%;
+   margin-left: 100px;
 }
 
 .container{
-    height: 100vh;
+    height: min-content;
 }
 </style>
