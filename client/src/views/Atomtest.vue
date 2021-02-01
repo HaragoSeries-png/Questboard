@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import QuestService from "../service/QuestService";
+import QuestService from "@/service/QuestService";
 import profileService from "../service/profileservice";
 
 export default {
