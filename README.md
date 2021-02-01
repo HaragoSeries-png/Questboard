@@ -53,6 +53,7 @@ Beware
 + 30-Jan-21 : Pull from ID testing (on Profile).
   30-Jan-21 : navปรับตามแล้ว แต่พวก หน้าmy quest my work       ยังไม่เสร็จ
   01-Feb-21 : my quest finished
++ 01-Feb-21 : 22.21 : ดู Quest Detail ได้เเล้ว (/quest/id/-id ของเควสนั้น-)
 # Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {

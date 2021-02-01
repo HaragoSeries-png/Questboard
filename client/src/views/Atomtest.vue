@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import questService from "../service/Questservice";
+import QuestService from "../service/QuestService";
 import profileService from "../service/profileservice";
 
 export default {
@@ -76,7 +76,7 @@ export default {
         // additional data
         formData.append("questname", "foo bar");
 
-        let suc = await questService.createquest(formData).then((res) => {
+        let suc = await QuestService.createquest(formData).then((res) => {
           return res;
         });
         console.log("logsuc" + suc);
