@@ -16,7 +16,7 @@
       :headers="headers"
       :items="information"
       :search="search"
-
+      
     ></v-data-table>
   </v-card>
 
