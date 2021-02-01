@@ -134,7 +134,6 @@
           label="Lastest"
           outlined
           v-model="search"
-          
         ></v-select>
  </div>
 
