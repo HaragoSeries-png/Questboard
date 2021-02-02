@@ -5,36 +5,38 @@
         <!-- <div class="main"> -->
 
         <div id="questcreate">
-          <v-container style="height:100%;">
+          <h1 style="text-align:center;">
+            Create you own quest
+          </h1>
+          <v-divider></v-divider>
+          <v-container fluid>
             <v-row>
-              <v-col cols="12" md="6" class="section1">
+              <v-col cols="12" md="12" class="section1">
                 <center>
-                  <h2 id="head">WANTED</h2>
-
-                  <div
-                    class="d-flex flex-column justify-space-between align-center"
-                  >
+                  <div>
                     <v-hover v-slot="{ hover }">
-                  
-                        <v-img
-                          v-if="!url"
-                          height="250"
-                          width="350"
-                          src="bg_create_text.jpg"
-                          id="quest_img"
-                          @click="chooseFiles()"
-                        >
-                          <v-card :class="{ 'on-hover': hover }">
-                          <div style="margin-top:35%;margin-left:35%;">
+                      <v-img
+                        v-if="!url"
+                        contain
+                        full-width
+                        height="400"
+                        src="https://cdn.pixabay.com/photo/2012/04/14/16/57/scroll-34606_1280.png"
+                        id="quest_img"
+                        @click="chooseFiles()"
+                      >
+                        <v-card :class="{ 'on-hover': hover }">
+                          <div style="margin-top:18%;margin-left:42%;">
                             <v-row
                               class="fill-height flex-column"
                               justify="space-between"
                             >
-                              <div style="position:absolute; opacity:0.6; border-radius: 10px;" >
+                              <div
+                                style="position:absolute; opacity:0.6; border-radius: 10px;"
+                              >
                                 <span
                                   :class="{ 'show-btns': hover }"
                                   :color="transparent"
-                                  style="font-size:20px;"
+                                  style="font-size:30px;"
                                 >
                                   {{ sometext }}
                                 </span>
@@ -47,6 +49,7 @@
                                     :class="{ 'show-btns': hover }"
                                     :color="transparent"
                                     icon
+                                    large
                                   >
                                     <v-icon
                                       :class="{ 'show-btns': hover }"
@@ -57,69 +60,66 @@
                                   </v-btn>
                                 </div>
                               </div>
-                              
                             </v-row>
                           </div>
-                          </v-card>
-                        </v-img>
-                      
+                        </v-card>
+                      </v-img>
                     </v-hover>
 
                     <div id="preview">
-                    <v-hover v-slot="{ hover }" style="cursor:pointer;">
-                      <v-img
-                        v-if="url"
-                        :src="url"
-                        height="250"
-                        width="250"
-                        @click="chooseFiles()"
-                      >
-                     
-                      <v-card :class="{ 'on-hover': hover }">
-                      <v-card-title style="margin-top:83%; background-color:#ececec"  >
-                            <v-row
-                              class="fill-height flex-column"
-                              justify="space-between"
-                            >
-                              <div   >
-                                <span
-                                  :class="{ 'show-btns': hover }"
-                                  :color="transparent"
-                                  style="font-size:20px;"
+                      <v-hover v-slot="{ hover }" style="cursor:pointer;">
+                        <v-img
+                          v-if="url"
+                          :src="url"
+                          contain
+                          width="1680"
+                          height="300"
+                          size="300"
+                          @click="chooseFiles()"
+                        >
+                          <v-card :class="{ 'on-hover': hover }">
+                            <div style="margin-top:12%;margin-left:45%;">
+                              <v-card-title
+                                style="position:absolute; opacity:0.6; border-radius: 10px;"
+                              >
+                                <v-row
+                                  class="fill-height flex-column"
+                                  justify="space-between"
                                 >
-                                  {{ sometext1 }}
-                                </span>
-
-                                <div
-                                  class="align-self-center"
-                                  style="display:inline;"
-                                >
-                                  <v-btn
-                                    :class="{ 'show-btns': hover }"
-                                    :color="transparent"
-                                    icon
-                                  >
-                                    <v-icon
+                                  <div>
+                                    <span
                                       :class="{ 'show-btns': hover }"
                                       :color="transparent"
+                                      style="font-size:20px; background-color:#ececec;border-radius:10px;"
                                     >
-                                      {{ icon }}
-                                    </v-icon>
-                                  </v-btn>
-                                </div>
-                              </div>
-                            </v-row>
-                          </v-card-title>
-                    </v-card>
-                
+                                      {{ sometext1 }}
+                                    </span>
 
-
-
-
-
-
-                      </v-img>
-                          </v-hover>
+                                    <div
+                                      class="align-self-center"
+                                      style="display:inline;"
+                                    >
+                                      <v-btn
+                                        :class="{ 'show-btns': hover }"
+                                        :color="transparent"
+                                        icon
+                                      >
+                                        <v-icon
+                                          :class="{ 'show-btns': hover }"
+                                          color="white;"
+                                          style="border-redius:2px;backgrond-color:#ececec"
+                                        >
+                                          {{ icon }}
+                                        </v-icon>
+                                      </v-btn>
+                                    </div>
+                                  </div>
+                                </v-row>
+                              </v-card-title>
+                            </div>
+                          </v-card>
+                        </v-img>
+                      </v-hover>
                     </div>
                     <div style="display: none;">
                       <v-file-input
@@ -129,145 +129,146 @@
                       ></v-file-input>
                     </div>
                   </div>
-                </center>
-
-                <center>
                   <v-divider></v-divider>
-                  <div class="text-fill">
-                    <div>
-                      <table>
-                        <tr>
-                          <span id="Deadline"> Deadline </span>
-                          <td></td>
-                        </tr>
+                </center>
+              </v-col>
 
-                        <tr>
-                          <span id="Date"> Date : </span>
-                          <td>
-                            <input
-                              type="date"
-                              name=""
-                              id="I_date"
-                              v-model="duedate"
-                              style="margin-bottom:10%;"
-                            />
-                          </td>
-                        </tr>
+              <v-col cols="12" md="6" lg="6">
+                <div class="text-fill">
+                  <div>
+                    <tr>
+                      <span id="q1"> Quest</span>
+                      <td>
+                        <v-text-field
+                          style="margin-bottom:10%; "
+                          id="iq"
+                          :rules="rules"
+                          counter="25"
+                          hint="Baby sister,Tutor "
+                          label="Quest name"
+                          v-model="questname"
+                        ></v-text-field>
+                      </td>
+                    </tr>
 
-                        <tr>
-                          <span id="Start"> Start : </span>
-                          <td>
-                            <input
-                              type="time"
-                              name=""
-                              id="I_start"
-                              v-model="tstart"
-                              style="margin-bottom:10%; border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;  "
-                            />
-                          </td>
-                        </tr>
+                    <tr>
+                      <span id="c1">Category</span>
+                      <td>
+                        <v-select
+                          :items="items"
+                          id="ic"
+                          label="Default"
+                          style="margin-bottom:3%;"
+                          dense
+                          v-model="category"
+                        ></v-select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <span id="q1"> Reward</span>
+                      <td>
+                        <v-text-field
+                          style="margin-bottom:10%;"
+                          id="iq"
+                          :rules="rules"
+                          counter="55"
+                          label="Prize for your helper"
+                          v-model="reward"
+                        ></v-text-field>
+                      </td>
+                    </tr>
 
-                        <tr>
-                          <span id="End"> End : </span>
-                          <td>
-                            <input
-                              type="time"
-                              name=""
-                              id="I_end"
-                              v-model="tend"
-                              style="margin-bottom:10%;    border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
-                            />
-                          </td>
-                        </tr>
-
-                        <tr id="main_Person">
-                          <i class="material-icons">person</i>
-                          <td>
-                            <input
-                              type="number"
-                              min="0"
-                              name=""
-                              id="num_per"
-                              v-model="numberofcon"
-                              style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
-                            />
-                            <span style="margin-left:10%;">Person</span>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
+                    <tr id="noob">
+                      <span id="d1">Details</span>
+                      <td>
+                        <v-textarea
+                          v-model="detail"
+                          color="teal"
+                          dense
+                          contain
+                          textarea
+                        >
+                          <template v-slot:label>
+                            <div>
+                              More information <small>(optional)</small>
+                            </div>
+                          </template>
+                        </v-textarea>
+                      </td>
+                    </tr>
                   </div>
-                </center>
-              </v-col>
-
-              <v-col cols="12" md="6">
-                <div class="section2">
-                  <center>
-                    <div>
-                      <tr>
-                        <span id="q1"> Quest</span>
-                        <td>
-                          <v-text-field
-                            style="margin-bottom:10%;margin-left:-40%; "
-                            id="iq"
-                            :rules="rules"
-                            counter="25"
-                            hint="Baby sister,Tutor "
-                            label="Quest name"
-                            v-model="questname"
-                          ></v-text-field>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <span id="c1">Category</span>
-                        <td>
-                          <v-select
-                            :items="items"
-                            id="ic"
-                            label="Default"
-                            style="margin-bottom:10%;margin-left:-40%"
-                            dense
-                            v-model="category"
-                          ></v-select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <span id="q1"> Reward</span>
-                        <td>
-                          <v-text-field
-                            style="margin-bottom:10%;margin-left:-40%;"
-                            id="iq"
-                            :rules="rules"
-                            counter="55"
-                            label="Prize for your helper"
-                            v-model="reward"
-                          ></v-text-field>
-                        </td>
-                      </tr>
-                      <tr id="noob">
-                        <span id="d1">Details</span>
-                        <td>
-                          <v-textarea
-                            v-model="detail"
-                            label="More information about quest"
-                            counter
-                            maxlength="120"
-                            filled
-                            id="id"
-                          ></v-textarea>
-                        </td>
-                      </tr>
-                    </div>
-                  </center>
                 </div>
-                <center>
-                  <v-btn id="btn" x-medium color="success" @click="sendquest">
-                    Create
-                  </v-btn>
-                </center>
-                <center><div id="foot">Quest Board</div></center>
               </v-col>
+
+              <div class="text-fill1">
+                <v-col cols="12" md="6" lg="6">
+                  <tr>
+                    <span id="Deadline"> Deadline </span>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <span id="Date" style="margin-top:10%;"> Date : </span>
+                    <td>
+                      <input
+                        type="date"
+                        name=""
+                        id="I_date"
+                        v-model="duedate"
+                        style="margin-bottom:10%;"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <span id="Start"> Start : </span>
+                    <td>
+                      <input
+                        type="time"
+                        name=""
+                        id="I_start"
+                        v-model="tstart"
+                        style="margin-bottom:10%; border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;  "
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <span id="End"> End : </span>
+                    <td>
+                      <input
+                        type="time"
+                        name=""
+                        id="I_end"
+                        v-model="tend"
+                        style="margin-bottom:10%;    border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr id="main_Person">
+                    <i class="material-icons">person</i>
+                    <td>
+                      <input
+                        type="number"
+                        min="0"
+                        name=""
+                        id="num_per"
+                        v-model="numberofcon"
+                        style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
+                      />
+                      <span style="margin-left:10%;">Person</span>
+                    </td>
+                  </tr>
+                  <v-btn
+                    color="white "
+                    text
+                    style="font-size:20px; background-color:#558b2f  ;margin-top:30%;margin-left:50%;"
+                  >
+                    Create your quest
+                  </v-btn>
+                </v-col>
+              </div>
             </v-row>
           </v-container>
         </div>
@@ -299,7 +300,7 @@ export default {
       numberofcon: 1,
       duedate: "",
       sometext: "Upload file",
-      sometext1:"Change file",
+      sometext1: "Change file",
       transparent: "rgba(255, 255, 255, 0)",
     };
   },
@@ -352,14 +353,14 @@ export default {
   justify-items: center;
 }
 .text-fill {
-  margin-top: 5%;
+  margin-top: 1%;
+  margin-left: 20%;
 }
-.text-fill table {
-  margin-left: auto;
-  margin-right: auto;
+.text-fill1 {
+  margin-left: 20%;
 }
-.section2 {
-  justify-content: center;
+#noob .v-textarea {
+  width: 300px;
 }
 
 td {
@@ -375,12 +376,6 @@ td {
   font: 20px;
 }
 
-.section2 {
-  margin-top: 15%;
-}
-.section2 iq {
-  display: inline;
-}
 .v-textarea {
   width: 400px;
   height: 200px;
@@ -396,7 +391,8 @@ td {
 #Deadline {
   font-size: 25px;
   padding-top: 30px;
-  color: red;
+  color: black;
+  text-decoration: underline;
   margin-bottom: 10%;
 }
 
@@ -478,7 +474,7 @@ td {
 .v-card:not(.on-hover) {
   opacity: 0;
 }
-#quest_img{
+#quest_img {
   cursor: pointer;
 }
 .show-btns {
