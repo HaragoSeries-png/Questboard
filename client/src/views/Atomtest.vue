@@ -56,8 +56,8 @@
 </template>
 
 <script>
-import QuestService from "@/service/QuestService";
-import profileService from "../service/profileservice";
+import QuestService from "@/service/questService";
+import profileService from "@/service/profileService";
 
 export default {
   name: "Quest Feed",

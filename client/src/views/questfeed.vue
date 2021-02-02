@@ -38,7 +38,7 @@
 
 <script>
 import Questcard from "../components/Questcard";
-import QuestService from "../service/QuestService";
+import QuestService from "../service/questService";
 export default {
   components: {
     Questcard,

@@ -25,7 +25,7 @@
                         @click="chooseFiles()"
                       >
                         <v-card :class="{ 'on-hover': hover }">
-                          <div style="margin-top:18%;margin-left:42%;">
+                          <div style="margin-top:18%;margin-left:42%;" contain>
                             <v-row
                               class="fill-height flex-column"
                               justify="space-between"
@@ -90,7 +90,7 @@
                                     <span
                                       :class="{ 'show-btns': hover }"
                                       :color="transparent"
-                                      style="font-size:20px; background-color:#ececec;border-radius:10px;"
+                                      style="font-size:20px; background-color:#ececec;"
                                     >
                                       {{ sometext1 }}
                                     </span>
@@ -136,6 +136,9 @@
               <v-col cols="12" md="6" lg="6">
                 <div class="text-fill">
                   <div>
+                   <div class="head123">
+                     Info.
+                   </div>
                     <tr>
                       <span id="q1"> Quest</span>
                       <td>
@@ -280,7 +283,7 @@
 </template>
 
 <script>
-import QuestService from "@/service/QuestService";
+import QuestService from "@/service/questService";
 export default {
   name: "Create Quest",
   created() {
@@ -356,10 +359,10 @@ export default {
 }
 .text-fill {
   margin-top: 1%;
-  margin-left: 20%;
+  margin-left: 5%;
 }
 .text-fill1 {
-  margin-left: 20%;
+  margin-left: 5%;
 }
 #noob .v-textarea {
   width: 300px;
@@ -397,7 +400,11 @@ td {
   text-decoration: underline;
   margin-bottom: 10%;
 }
-
+.head123{
+font-size: 25px;
+color: black;
+text-decoration: underline;
+}
 .main {
   width: 100%;
   align-content: center;
