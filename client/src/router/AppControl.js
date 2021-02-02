@@ -22,10 +22,10 @@ const routes = [
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
     { path: '/admin', component: admin_approve },
-    { path : '/profileid/seequest',component : seeQuest},
+    { path : '/quest/id/:id',component : seeQuest},
     { path : '/myquest',component : myquest}
-    
 ]
+
 const router = new VueRouter({ mode: 'history', routes })
 
 export default router;

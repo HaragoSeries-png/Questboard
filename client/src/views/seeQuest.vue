@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <watchquest>
+  <div id="questDetail">
+    <Watchquest>
       <div style="text-decoration:underline;margin-top:5%;">Helper</div>
 
       <div style="margin-top:5%">
@@ -9,28 +9,31 @@
           :items="helper_slot"
           class="elevation-1"
         >
-          <template v-slot:item.img>
+          <!-- <template v-slot:item.img>
             <v-icon medium class="mr-2">
               mdi-account-group
             </v-icon>
           </template>
           <template v-slot:item.select="{ item }">
             <v-simple-checkbox v-model="item.select"></v-simple-checkbox>
-          </template>
+          </template> -->
         </v-data-table>
       </div>
-    </watchquest>
-    <div v-if="$store.getters.isLoggedIn">
-        
-    </div>
+    </Watchquest>
   </div>
 </template>
 
 <script>
-import watchquest from "../components/layout/Q/watchqest";
+import Watchquest from "../components/layout/Q/watchqest";
+
 export default {
-  name: "seeQuest",
-  components: { watchquest },
+  name: "QuestDetail",
+  components: { Watchquest },
+  watch: {
+    "$route.params.id": function() {
+      this.$router.go();
+    },
+  },
   data() {
     return {
       name: "Quest name",

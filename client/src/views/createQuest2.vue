@@ -277,7 +277,7 @@
 </template>
 
 <script>
-import questService from "../service/Questservice";
+import QuestService from "@/service/questService";
 export default {
   name: "Create Quest",
   created() {
@@ -329,7 +329,7 @@ export default {
       formData.append("tend", this.tend);
       formData.append("duedate", this.duedate);
       console.log(formData.get("questdatail"));
-      let suc = await questService.createquest(formData).then((res) => {
+      let suc = await QuestService.createquest(formData).then((res) => {
         return res.suc;
       });
       console.log("logsuc" + suc);

@@ -1,5 +1,5 @@
 <template>
-  <div style="margin:20px;">
+  <div id="questInfo" style="margin:20px;">
     <v-container class="ma-0 pa-0">
       <v-row>
         <v-col cols="12" md="6" class="section1">
@@ -12,11 +12,7 @@
               </div>
             </center>
             <div class="pic">
-              <v-img
-                height="250"
-                width="350"
-                src="https://cdn.pixabay.com/photo/2020/12/21/19/05/window-5850628_1280.png"
-              ></v-img>
+              <v-img height="250" width="350" :src="questPic"></v-img>
             </div>
             <center>
               <div style="font-family: 'Playfair Display', serif;">
@@ -38,22 +34,22 @@
               <v-simple-table style="margin-left:15%;">
                 <tr height="50">
                   <td>
-                    <span style="font-size:18px;">{{ name }}</span>
+                    <span style="font-size:18px;">Name: </span>
                   </td>
                   <td>
-                    <span style="font-size:15px;margin-left:5%;">{{
-                      value_name
-                    }}</span>
+                    <span style="font-size:15px;margin-left:5%;">
+                      {{ quest.questname }}
+                    </span>
                   </td>
                 </tr>
                 <tr height="50">
                   <td>
-                    <span style="font-size:18px;">{{ reward }}</span>
+                    <span style="font-size:18px;">Reward: </span>
                   </td>
                   <td>
-                    <span style="font-size:15px;margin-left:5%;">{{
-                      value_reward
-                    }}</span>
+                    <span style="font-size:15px;margin-left:5%;">
+                      {{ quest.reward }}
+                    </span>
                   </td>
                 </tr>
               </v-simple-table>
@@ -66,28 +62,27 @@
             <v-simple-table style="margin-left:15%;">
               <tr height="70">
                 <td style="padding-right:20px;">
-                  <span style="font-size:18px;">{{ cata }}</span>
+                  <span style="font-size:18px;">Category: </span>
                 </td>
                 <td>
-                  <span style="font-size:15px;">{{ value_cata }}</span>
+                  <span style="font-size:15px;">{{ quest.category }}</span>
                 </td>
               </tr>
               <tr height="100">
                 <td>
-                  <span style="font-size:18px;">{{ detail }}</span>
+                  <span style="font-size:18px;">Detail: </span>
                 </td>
                 <td style="margin-left:20%;">
-                  <span style="font-size:15px;">{{ value_detail }}</span>
+                  <span style="font-size:15px;">{{ quest.questdetail }}</span>
                 </td>
               </tr>
             </v-simple-table>
 
-            <div class="expire" style="text-align:end;">Cancle quest(expire in {{ time }}) day</div>
+            <div class="expire" style="text-align:end;">
+              Cancle quest(expire in {{ time }}) day
+            </div>
             <div style="margin-left:15%;">
-
-            <slot></slot>
-
-
+              <slot></slot>
             </div>
           </div>
         </v-col>
@@ -97,61 +92,34 @@
 </template>
 
 <script>
+import questService from "@/service/questService";
+
 export default {
-  name: "watchquest",
+  name: "questInfo",
+  methods: {
+    getinfoma: async function() {
+      let questid = this.$route.params.id;
+
+      let re = await questService.getquestinfo(questid).then((res) => {
+        return res;
+      });
+
+      this.quest = re.quest;
+      console.log("complete");
+      console.log(this.quest);
+    },
+  },
+  created: async function() {
+    await this.getinfoma();
+
+    this.questPic = this.$store.state.gurl + this.quest.image;
+  },
   data() {
     return {
-      name: "Quest name",
-      value_name: "Unlimited sword breaker",
-      reward: "Reward",
-      value_reward: "Armlet of mordigan",
-      cata: "Catagories",
-      value_cata: "Demon upper moon 4",
-      detail: "Details",
-      value_detail:
-        "Defeat wall maria and wall rose then go to the malay to destroy the wall hammer titan",
-      time: "2",
-
-      helper_slot: [
-        {
-          img: "",
-          name_helper: "Somchai Eiei",
-          select: "false",
-        },
-        {
-          name_helper: "Somrak Khamsing",
-          select: "false",
-        },
-        {
-          img: "",
-          name_helper: "Somchai Eiei",
-          select: "false",
-        },
-        {
-          name_helper: "Somrak Khamsing",
-          select: "false",
-        },
-        {
-          img: "",
-          name_helper: "Somchai Eiei",
-          select: "false",
-        },
-        {
-          name_helper: "Somrak Khamsing",
-          select: "false",
-        }
-        
-      ],
-      headers: [
-        {
-          text: "List",
-          align: "start",
-          sortable: false,
-          value: "img",
-        },
-        { text: "Name", value: "name_helper", align: "center" },
-        { text: "Selected", value: "select", align: "end" },
-      ],
+      quest: "",
+      questPic: "",
+      questRate: 3,
+      time: 2,
     };
   },
 };
