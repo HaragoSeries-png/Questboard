@@ -42,8 +42,14 @@ router.get('/questid/:id', function (req, res) {
 })
 
 router.get('/feed', function (req, res) {
+  let page = Math.max(0, req.query.page)
+  let perPage = 20
   console.log("quest feed")
-  Quest.find({ status: "approved" }).then(quest => {
+  Quest.find({ status: "approved" })
+  .limit(perPage)
+  .skip(perPage*page)
+  .sort({rdate:-1})
+  .then(quest => {
     res.send({ quest: quest, success: true })
   })
 })
@@ -71,6 +77,7 @@ router.post('/',  passport.authenticate('pass', {
     status: "approved",
     image: filename,
     date: dateFormat(new Date(), "longDate"),
+    rdate: dateFormat(new Date(), "longDate"),
     duedate: req.body.duedate,
     numberofcon: req.body.numberofcon,
     wait: [],
