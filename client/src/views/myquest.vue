@@ -142,7 +142,7 @@
       <v-btn
         color="white "
         text
-        style="font-size:20px; background-color:#00bcd4;margin-top:10%;"
+        style="font-size:20px; background-color:#00bcd4 ;margin-top:10%;"
          >
          <router-link to="/createQuest2" style="text-decoration:none;color:white;"  >  
         Create your quest
