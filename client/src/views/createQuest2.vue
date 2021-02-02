@@ -260,13 +260,15 @@
                       <span style="margin-left:10%;">Person</span>
                     </td>
                   </tr>
+                  <center>
                   <v-btn
                     color="white "
                     text
-                    style="font-size:20px; background-color:#558b2f  ;margin-top:30%;margin-left:50%;"
+                    style="font-size:20px; background-color:#558b2f;margin-top:20%;"
                   >
                     Create your quest
                   </v-btn>
+                  </center>
                 </v-col>
               </div>
             </v-row>
