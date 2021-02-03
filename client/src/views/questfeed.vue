@@ -12,7 +12,7 @@
     </div>
 
     <ul>
-      <li v-for="(item, index) in quests" :key="index">
+      <li v-for="(item, index) in quests" :key="index" style="list-style:none">
         <Questcard
           :name="item.questname"
           :Detail="item.questdetail"
@@ -69,7 +69,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
-.cards {
+.Questcards {
   margin: 0 auto;
   max-width: 1300px;
   display: grid;
