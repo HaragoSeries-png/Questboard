@@ -17,6 +17,7 @@ let QuestSchema = new mongoose.Schema({
     location:String,
     status:String,
     date:String,
+    rdate:Date,
     image:String,
     duedate:String,
     virginity:Boolean,

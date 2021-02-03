@@ -11,7 +11,7 @@
 
 <script src="script.js"></script>
 <script>
-import authService from "@/service/Authservice";
+import authService from "@/service/authService";
 import Navbar from "@/components/layout/navbar";
 import NotifyBox from "@/components/layout/notifybox";
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-const url = '/api/profile'
+const url = 'api/profile'
 
 class profileService {
     static async editprofile(text) {
@@ -31,12 +31,13 @@ class profileService {
     
         if(a.success){
             let inprogress = a.inprogress
-            let pending= a.pending
-            let waiting= a.waiting  
+            let pending = a.pending
+            let waiting = a.waiting  
             return {
-                inprogress : inprogress,
+                allquest: a.allquest,
+                inprogress: inprogress,
                 pending: pending,
-                waiting:waiting
+                waiting: waiting
             }     
         }
         else return false

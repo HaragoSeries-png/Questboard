@@ -3,9 +3,9 @@ const mongodb = require('mongodb'),
   passport = require('passport');
 const Quest = require('../../models/quest.model');
 const User = require('../../models/user.model');
-const { route } = require('./profile');
+
 const router = require('./profile');
-require('../../configs/passport'),
+
   
 multer = require('multer'),
   bodyParser = require('body-parser'),
@@ -35,8 +35,21 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
+router.get('/questid/:id', function (req, res) {
+  Quest.findById(req.params.id).then(async (quest) => {   
+    return res.send({quest: quest, success: true})
+  })
+})
+
 router.get('/feed', function (req, res) {
-  Quest.find({ status: "approved" }).then(quest => {
+  let page = Math.max(0, req.query.page)
+  let perPage = 20
+  console.log("quest feed")
+  Quest.find({ status: "approved" })
+  .limit(perPage)
+  .skip(perPage*page)
+  .sort({rdate:-1})
+  .then(quest => {
     res.send({ quest: quest, success: true })
   })
 })
@@ -64,6 +77,7 @@ router.post('/',  passport.authenticate('pass', {
     status: "approved",
     image: filename,
     date: dateFormat(new Date(), "longDate"),
+    rdate: dateFormat(new Date(), "longDate"),
     duedate: req.body.duedate,
     numberofcon: req.body.numberofcon,
     wait: [],
@@ -140,21 +154,11 @@ router.get('/test', function (req, res) {
   })
 })
 
-router.get('/id/:id', function (req, res) {
-  let questid = req.params.id
-  Quest.findById(questid).then(async (quest) => {   
-    return res.send({quest: quest, success: true})
-  })
-})
-
 router.delete('/', function (req, res) {
   console.log(req.body.quest_id)
   Quest.findByIdAndDelete(req.body.quest_id).then(quest => {
     res.send(quest)
   })
 })
-
-
-
 
 module.exports = router;

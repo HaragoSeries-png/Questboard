@@ -12,7 +12,7 @@
     </div>
 
     <ul>
-      <li v-for="(item, index) in quests" :key="index">
+      <li v-for="(item, index) in quests" :key="index" style="list-style:none">
         <Questcard
           :name="item.questname"
           :Detail="item.questdetail"
@@ -38,7 +38,7 @@
 
 <script>
 import Questcard from "../components/Questcard";
-import Questservice from "../service/Questservice";
+import QuestService from "../service/questService";
 export default {
   components: {
     Questcard,
@@ -46,7 +46,7 @@ export default {
   name: "questsfeed",
   methods: {
     getquest: async function() {
-      let a = await Questservice.getquest().then((res) => {
+      let a = await QuestService.getquest().then((res) => {
         return res;
       });
       console.log(a.quest);
@@ -69,7 +69,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
-.cards {
+.Questcards {
   margin: 0 auto;
   max-width: 1300px;
   display: grid;

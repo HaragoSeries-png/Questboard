@@ -121,20 +121,23 @@ router.get('/myquest',passport.authenticate('pass', {
     try {
         let questid = req.user.ownquests
         let myquest = await Quest.find().where('_id').in(questid).exec();
-        
+
         let inprogress = myquest.filter(ele => ele.status == 'inprogress')
         let pending = myquest.filter(ele => ele.status == 'pending')
-        let waiting = myquest.filter(ele => ele.status == 'wait')
+        let waiting = myquest.filter(ele => ele.status == 'waiting')
+        
         return res.json({
-            success:true,
+            success: true,
+            allquest: myquest,
             inprogress : inprogress,
             pending: pending,
-            waiting:waiting
+            waiting: waiting
         })
     } catch (error) {
-        return res.json({success:false})
+        return res.json({success: false})
     }   
 }),
+
 router.get('/mywork',passport.authenticate('pass', {
     session: false
 }),async function(req,res){
@@ -153,6 +156,7 @@ router.get('/mywork',passport.authenticate('pass', {
         return res.json({success:false})
     }   
 }),
+
 router.put('/rate',async function(req,res){
     let data = req.body
     let uid = data.uid

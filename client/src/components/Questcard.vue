@@ -1,8 +1,12 @@
 <template>
     <div class="cards">
 
-        <div class="card">
-            <v-img :src='image' alt="" class="card__img"></v-img>
+        <div class="card" style="max-width:300px">
+            <v-img
+             :src='image'
+             max-width="300" 
+             
+             class="card__img"></v-img>
             <div class="card__content">
                 <h2>{{Name}}</h2>
                 <p>{{Detail}}</p>
