@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="font-family: Montserrat">
     <h1 style="text-align:center;">My quest</h1>
     <div class="full-screen-bot">
       <v-card class="mx-auto" width="400" height="230">

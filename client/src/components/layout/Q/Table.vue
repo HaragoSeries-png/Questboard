@@ -11,13 +11,17 @@
         ></v-text-field>
       </v-card-title>
       <v-data-table :headers="headers" :items="questdata" :search="search">
-        <template slot="items" slot-scope="props">
-          <tr @click="showAlert(props.item)">
-            <td>{{ props.item._id }}</td>
-            <td>{{ props.item.questname }}</td>
-            <td >{{ props.item.status }}</td>
-            <td >{{ props.item.helperID }}</td>
-            <td >{{ props.item.tend }}</td>
+        <template v-slot:item="{ item }">
+          <tr @click="sentToDetail(item._id)">
+            <td class="item">{{ item._id }}</td>
+            <td class="item">{{ item.questname }}</td>
+            <td class="item" style="text-transform: uppercase;">
+              <v-chip :color="getColor(item.status)" dark>
+                {{ item.status }}
+              </v-chip>
+            </td>
+            <td class="item">{{ item.helperID }}</td>
+            <td class="item">{{ item.tend }}</td>
           </tr>
         </template>
       </v-data-table>
@@ -41,8 +45,17 @@ export default {
       console.log(this.questdata);
     },
     showAlert(a) {
-      // if (event.target.classList.contains("btn__content")) return;
       alert("Alert! \n" + a._id);
+    },
+    sentToDetail(value) {
+      let path = '/quest/id/' + value
+      this.$router.push({ path: path})
+    },
+    getColor(value) {
+      if (value == "waiting") return "blue";
+      else if (value == "approved") return "green";
+      else if (value == "pending") return "orange";
+      else return "grey";
     },
   },
   created: async function() {
@@ -85,4 +98,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.item {
+  font-family: 'Montserrat';
+  font-size: 20px;
+  font-weight: bold;
+}
+</style>

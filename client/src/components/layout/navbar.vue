@@ -263,8 +263,8 @@ export default {
         { title: "Complete", icon: "mdi-book-check", to: "/mq_complete" },
       ],
       quest: [
-        { title :'My Quest', icon : 'mdi-account-multiple-outline',to:'./myquest'},
-        { title :'My Work', icon: 'mdi-cog-outline',to:"./mywork"}
+        { title :'My Quest', icon : 'mdi-account-multiple-outline',to:'/myquest'},
+        { title :'My Work', icon: 'mdi-cog-outline',to:"/mywork"}
       ],
       sub_mywork : [
         { title: "Inprogress", icon: "mdi-book-clock", to: "/mw_inprogress" },
