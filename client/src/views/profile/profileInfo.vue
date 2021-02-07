@@ -6,7 +6,7 @@
           <v-list-item-title class="headline mb-1">
             <i class="material-icons">{{ infoLogo }}</i>
             &nbsp;
-            <span style="font-size: 25px; font-weight: bold">
+            <span style="font-size: 25px; font-weight: bold; font-family: Montserrat">
               {{ infoName }}
             </span>
           </v-list-item-title>

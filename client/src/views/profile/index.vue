@@ -1,5 +1,5 @@
 <template>
-  <div id="profile" style="margin: 20px; font-family: Montserrat;">
+  <div id="profile" style="margin: 20px;">
     <v-row>
       <v-col cols="12" md="4">
         <div class="section">

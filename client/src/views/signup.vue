@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <div id="register" class="register_from" style="font-family: Montserrat;">
-      <h1>Register</h1>
+    <div id="signUp" class="register_from">
+      <h1>Sign Up</h1>
 
       <div class="divTable">
         <div class="divTableCell" style="padding-right: 5%">
@@ -10,6 +10,7 @@
             v-model="firstname"
             required
             dark
+            autocomplete="off"
           ></v-text-field>
         </div>
         <div class="divTableCell" style="padding-left: 5%">
@@ -18,6 +19,7 @@
             v-model="lastname"
             required
             dark
+            autocomplete="off"
           ></v-text-field>
         </div>
       </div>
@@ -30,6 +32,7 @@
         type="password"
         required
         dark
+        autocomplete="off"
       ></v-text-field>
 
       <v-text-field
@@ -38,15 +41,22 @@
         type="password"
         required
         dark
+        autocomplete="off"
       ></v-text-field>
 
       <br />
-      <button v-on:click="register_check()" class="button1">Register</button>
+      <button v-on:click="register_check()" class="button">Register</button>
 
       <br /><br />
       <div class="alertbox">
         <ul id="alertField" class="p" style="color: red; font-size: 16px"></ul>
       </div>
+
+      <v-dialog v-model="dialog" width="500">
+        <v-card>
+          Complete
+        </v-card>
+      </v-dialog>
     </div>
   </v-app>
 </template>
@@ -55,7 +65,7 @@
 import authService from "@/service/authService";
 
 export default {
-  name: "Register",
+  name: "Sign Up",
   methods: {
     register_check() {
       let alertField = document.getElementById("alertField");
@@ -105,6 +115,7 @@ export default {
       email: "",
       password: "",
       conpassword: "",
+      dialog: false
     };
   },
 };
@@ -112,6 +123,7 @@ export default {
 
 <style scoped>
 #app {
+  font-family: Montserrat;
   background: url("https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center fixed !important;
   background-size: cover;
@@ -150,6 +162,7 @@ h1 {
   padding: 0 0 20px;
   text-align: center;
   font-size: 30px;
+  font-weight: bold;
 }
 
 button {

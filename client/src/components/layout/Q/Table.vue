@@ -13,7 +13,6 @@
       <v-data-table :headers="headers" :items="questdata" :search="search">
         <template v-slot:item="{ item }">
           <tr @click="sentToDetail(item._id)">
-            <td class="item">{{ item._id }}</td>
             <td class="item">{{ item.questname }}</td>
             <td class="item" style="text-transform: uppercase;">
               <v-chip :color="getColor(item.status)" dark>
@@ -52,8 +51,8 @@ export default {
       this.$router.push({ path: path})
     },
     getColor(value) {
-      if (value == "waiting") return "blue";
-      else if (value == "approved") return "green";
+      if (value == "waiting") return "green";
+      else if (value == "approved") return "blue";
       else if (value == "pending") return "orange";
       else return "grey";
     },
@@ -66,11 +65,6 @@ export default {
       questdata: [],
       selected: [],
       headers: [
-        {
-          text: "Quest ID",
-          align: "start",
-          value: "_id",
-        },
         { text: "Quest Name", value: "questname", align: "start" },
         {
           text: "Status",
@@ -81,7 +75,7 @@ export default {
         {
           text: "Time",
           value: "tend",
-          align: "center",
+          align: "start",
         },
       ],
       information: [
@@ -100,7 +94,6 @@ export default {
 
 <style scoped>
 .item {
-  font-family: 'Montserrat';
   font-size: 20px;
   font-weight: bold;
 }

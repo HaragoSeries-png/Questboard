@@ -142,7 +142,21 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item link to="/" @click="logout">
+          <v-list-item link :to="getuserLink()" color="#FF598F">
+            <v-list-item-icon>
+              <div class="titlefont">
+                <v-icon>mdi-login</v-icon>
+              </div>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <div class="titlefont">
+                Profile
+              </div>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item @click="logout">
             <v-list-item-icon>
               <div class="titlefont">
                 <v-icon style="color: red">mdi-login</v-icon>
@@ -220,8 +234,12 @@
 export default {
   name: "Navbar",
   methods: {
-    getuserid() {
-      return this.$store.getters.getuserid
+    getuserLink() {
+      return '/profile/id/' + this.$store.getters.getuserid
+    },
+    linkProfile() {
+      let profileLink = '/profile/id/' + this.$store.getters.getuserid
+      this.$router.push({path: profileLink})
     },
     logout() {
       this.$emit("logout");
@@ -238,19 +256,13 @@ export default {
       ],
       allow2: [
         { title: "About", icon: "mdi-account-group", to: "/About" },
-        { title: "Contact", icon: "mdi-message-draw", to: "/Contact" },
+        { title: "Contact", icon: "mdi-message-draw", to: "/contact" },
       ],
       unlogitems: [
         { title: "Log in", icon: "mdi-login", to: "/login" },
         { title: "Sign up", icon: "mdi-book-account", to: "/signup" },
       ],
-      logitems: [
-        {
-          title: "Profile (Unavalible)",
-          icon: "mdi-login",
-          to: "",
-        },
-      ],
+      logitems: [],
       sub_myquest: [
         { title: "Inprogress", icon: "mdi-account-clock", to: "/mqinprogress" },
         { title: "Waiting", icon: "mdi-account-search", to: "/mq_waiting" },

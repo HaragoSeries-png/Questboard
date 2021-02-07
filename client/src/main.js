@@ -5,6 +5,9 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
+// import VueSimpleAlert from "vue-simple-alert";
+// Vue.use(VueSimpleAlert);
+
 Vue.config.productionTip = false
 Vue.config.silent = false
 
