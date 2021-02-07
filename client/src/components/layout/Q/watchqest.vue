@@ -1,89 +1,111 @@
 <template>
   <div id="questInfo" style="margin:20px;">
-    <v-container class="ma-0 pa-0">
+    <v-container>
       <v-row>
-        <v-col cols="12" md="6" class="section1">
+        <v-col cols="12" md="6">
           <div class="section1">
             <center>
-              <div
-                style="font-family: 'Playfair Display', serif;margin-top:5%;"
-              >
-                Quest Information
+              <div class="pic">
+                <v-img height="400" width="350" :src="questPic"></v-img>
               </div>
             </center>
-            <div class="pic">
-              <v-img height="250" width="350" :src="questPic"></v-img>
-            </div>
+            <v-divider></v-divider>
             <center>
-              <div style="font-family: 'Playfair Display', serif;">
-                Diffuculty
+              <div
+                style="font-family: 'Playfair Display', serif;font-size:25px;"
+                id="status"
+              >
+                <span style="background-color:white;margin:auto;">Status</span>
               </div>
-
-              <div class="ratio">
-                <v-rating
-                  v-model="questRate"
-                  background-color="green lighten-3"
-                  color="green"
-                  style="margin-top:1%;"
-                ></v-rating>
-              </div>
-              <v-divider></v-divider>
+              <v-btn
+                disable
+                color="white"
+                text
+                style="margin-top:2%;font-size:15px; background-color:#1e88e5 ;"
+              >
+                In progress
+              </v-btn>
             </center>
-
-            <div id="text_fill">
-              <v-simple-table style="margin-left:15%;">
-                <tr height="50">
-                  <td>
-                    <span style="font-size:18px;">Name: </span>
-                  </td>
-                  <td>
-                    <span style="font-size:15px;margin-left:5%;">
-                      {{ quest.questname }}
-                    </span>
-                  </td>
-                </tr>
-                <tr height="50">
-                  <td>
-                    <span style="font-size:18px;">Reward: </span>
-                  </td>
-                  <td>
-                    <span style="font-size:15px;margin-left:5%;">
-                      {{ quest.reward }}
-                    </span>
-                  </td>
-                </tr>
-              </v-simple-table>
-            </div>
           </div>
         </v-col>
 
-        <v-col cols="12" md="6" class="section2">
+        <v-col cols="12" md="6">
           <div class="section2">
-            <v-simple-table style="margin-left:15%;">
-              <tr height="70">
-                <td style="padding-right:20px;">
-                  <span style="font-size:18px;">Category: </span>
-                </td>
-                <td>
-                  <span style="font-size:15px;">{{ quest.category }}</span>
-                </td>
-              </tr>
-              <tr height="100">
-                <td>
-                  <span style="font-size:18px;">Detail: </span>
-                </td>
-                <td style="margin-left:20%;">
-                  <span style="font-size:15px;">{{ quest.questdetail }}</span>
-                </td>
-              </tr>
-            </v-simple-table>
+            <h2 style="text-align:center;">
+              {{ quest.questname }}
+            </h2>
+            <v-divider></v-divider>
+            <v-card-actions class="pa-4">
+              Difficulty
+              <v-spacer></v-spacer>
+              <span class="grey--text text--lighten-2 caption mr-2">
+                ({{ rating }})
+              </span>
+              <v-rating
+                v-model="rating"
+                background-color="white"
+                color="yellow accent-4"
+                dense
+                half-increments
+                hover
+                size="18"
+              ></v-rating>
+            </v-card-actions>
 
-            <div class="expire" style="text-align:end;">
-              Cancle quest(expire in {{ time }}) day
+            <v-card-actions class="pa-4">
+              Category
+              <v-spacer></v-spacer>
+              <span style="text-align:center;"> {{ quest.category }}</span>
+            </v-card-actions>
+
+            <v-card-actions class="pa-4">
+              Reward
+              <v-spacer></v-spacer>
+              <span style="text-align:center;"> {{ quest.reward }}</span>
+            </v-card-actions>
+            <v-card-actions class="pa-4">
+              Date
+              <v-spacer></v-spacer>
+              <span style="font-size:18px;"> {{ quest.date }}</span>
+              <v-spacer></v-spacer>
+              <span style="font-size:18px;">{{ quest.tstart }} </span>
+              <v-spacer></v-spacer>
+              <span style="font-size:18px;">{{ quest.tend }} </span>
+            </v-card-actions>
+            <div class="pa-4" style="margin-top:-1%;">
+              <div>
+                Details
+              </div>
+
+              <v-card width="650" height="100" autogrow style="margin-top:4%;">
+                <p style="font-size:18px;text-indent:20px; ">
+                  {{ quest.questdetail }}
+                </p>
+              </v-card>
             </div>
-            <div style="margin-left:15%;">
+            <div style="display:flex;">
+            <v-btn
+              color="white "
+              text
+              style="margin-left:3%;margin-top:2%;font-size:20px; background-color:#ff6e40 ;"
+             
+            >
+              Helper
+              
+            </v-btn>
+            <v-spacer></v-spacer>
+              <v-btn
+              color="white "
+              text
+              style="margin-top:2%;font-size:20px; background-color:#388e3c;"
+             
+            >
+              Next
+            </v-btn>
+            </div>
+            <!-- <div style="margin-left:15%;">
               <slot></slot>
-            </div>
+            </div> -->
           </div>
         </v-col>
       </v-row>
@@ -120,18 +142,13 @@ export default {
       questPic: "",
       questRate: 3,
       time: 2,
+      rating: 4.3,
     };
   },
 };
 </script>
 
 <style scope>
-.section1 {
-  margin-bottom: 1%;
-}
-.section2 {
-  margin-top: 1%;
-}
 .pic {
   display: flex;
   padding: 20px;
@@ -159,6 +176,38 @@ export default {
 tbody tr td {
   border: none;
 }
+#status {
+  position: relative;
+  margin: 100 auto;
+  z-index: 5;
+  margin-bottom: 5%;
+}
+#status:before {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: -2;
+}
+#status:after {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  z-index: -2;
+}
+table {
+  width: 50%;
+}
+
 #text_fill {
   margin-top: 5%;
   text-align: left;
