@@ -268,6 +268,7 @@
                     color="white "
                     text
                     style="font-size:20px; background-color:#558b2f;margin-top:20%;"
+                    @click="sendquest"
                   >
                     Create your quest
                   </v-btn>
