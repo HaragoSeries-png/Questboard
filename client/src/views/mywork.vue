@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="font-family: Montserrat">
-    <h1  id="hd" >My quesst</h1>
+    <h1 style="text-align:center;text-decoration:underline;margin-bottom:5%;">My Work</h1>
     <div class="full-screen-bot">
       <v-card class="mx-auto" width="400" height="230">
         <v-row>
@@ -140,7 +140,7 @@
 import QuestTable from "../components/layout/Q/Table";
 
 export default {
-  name: "My Quest",
+  name: "My Work",
   components: { QuestTable },
   methods: {
     senddata(value) {
@@ -176,11 +176,6 @@ export default {
 
 #mobi-screen {
   display: none;
-}
-#hd{
-  text-align: center;
-  text-decoration: underline;
-  margin-bottom:5%;
 }
 
 @media screen and (max-width: 1072px) {

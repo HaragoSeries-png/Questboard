@@ -8,6 +8,7 @@ import createQuest2 from '../views/createQuest2.vue'
 import lab from '../views/Atomtest.vue'
 import seeQuest from '../views/seeQuest.vue'
 import myquest from '../views/myquest.vue'
+import mywork from '../views/mywork.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -23,7 +24,8 @@ const routes = [
     { path: '/lab', component: lab },
     { path: '/admin', component: admin_approve },
     { path : '/quest/id/:id',component : seeQuest},
-    { path : '/myquest',component : myquest}
+    { path : '/myquest',component : myquest},
+    { path : '/mywork',component : mywork}
 ]
 
 const router = new VueRouter({ mode: 'history', routes })
