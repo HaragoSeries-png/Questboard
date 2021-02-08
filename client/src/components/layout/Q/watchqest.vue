@@ -6,25 +6,31 @@
           <div class="section1">
             <center>
               <div class="pic">
-                <v-img height="400" width="350" :src="questPic"></v-img>
+                <v-img height="400" width="370" :src="questPic"></v-img>
               </div>
             </center>
-            <v-divider></v-divider>
+         
             <center>
-              <div
-                style="font-family: 'Playfair Display', serif;font-size:25px;"
-                id="status"
-              >
-                <span style="background-color:white;margin:auto;">Status</span>
-              </div>
-              <v-btn
-                disable
-                color="white"
-                text
-                style="margin-top:2%;font-size:15px; background-color:#1e88e5 ;"
-              >
-                In progress
-              </v-btn>
+              
+                 <v-card-actions style="float:center;" class="Rate">
+                  <span style="color:#43a047;font-weight:800">COMPLETE</span>
+           
+              <span class="grey--text text--lighten-2 caption mr-2">
+          
+              </span>
+                 <v-spacer></v-spacer>
+              <v-rating
+                v-model="rating"
+                background-color="white"
+                color="yellow accent-4"
+                dense
+                half-increments
+                hover
+                size="25"
+              ></v-rating>
+            </v-card-actions>
+              
+              
             </center>
           </div>
         </v-col>
@@ -34,12 +40,9 @@
             <h2 style="text-align:center;">
               {{ quest.questname }}
             </h2>
-            <v-divider></v-divider>
-            <v-card-actions class="pa-4">
-              Difficulty
-              <v-spacer></v-spacer>
+              <v-card-actions style="text-align:center;" class="Rate2">
               <span class="grey--text text--lighten-2 caption mr-2">
-                ({{ rating }})
+            
               </span>
               <v-rating
                 v-model="rating"
@@ -48,9 +51,16 @@
                 dense
                 half-increments
                 hover
-                size="18"
+                size="20"
               ></v-rating>
             </v-card-actions>
+            <v-divider></v-divider>
+             <v-card-actions class="pa-4">
+              Create by 
+              <v-spacer></v-spacer>
+              <span style="text-align:center;"> {{ name }}</span>
+            </v-card-actions>
+         
 
             <v-card-actions class="pa-4">
               Category
@@ -77,8 +87,8 @@
                 Details
               </div>
 
-              <v-card width="650" height="100" autogrow style="margin-top:4%;">
-                <p style="font-size:18px;text-indent:20px; ">
+              <v-card width="650" height="100" style="margin-top:5%;overflow-x:auto;padding:16px;">
+                <p style="font-size:18px;text-indent:90px; ">
                   {{ quest.questdetail }}
                 </p>
               </v-card>
@@ -102,6 +112,7 @@
             >
               Next
             </v-btn>
+          
             </div>
             <!-- <div style="margin-left:15%;">
               <slot></slot>
@@ -143,6 +154,8 @@ export default {
       questRate: 3,
       time: 2,
       rating: 4.3,
+      testdetail:"sssssssssssssssssssssssssssssssssss",
+      name:"Jiraphat Sae-heng"
     };
   },
 };
@@ -152,6 +165,9 @@ export default {
 .pic {
   display: flex;
   padding: 20px;
+}
+.section2{
+  margin-top: -10%;
 }
 .expire {
   margin-left: 15%;
@@ -212,5 +228,17 @@ table {
   margin-top: 5%;
   text-align: left;
 }
+.Rate2{
+  display:none;
+}
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lexend+Mega&display=swap');
+@media screen and (max-width:956px){
+.Rate{
+  display:none;
+}
+.Rate2{
+  display: inline;
+}
+}
 </style>
