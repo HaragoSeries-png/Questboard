@@ -2,7 +2,14 @@ import axios from 'axios';
 
 const url = 'api/auth'
 class authService {
-    
+    // static async getfuck(){
+    //     let data = await axios.get(url).then((res)=>{
+    //     console.log(res.data)
+    //     return res.data
+    //     })test
+    //     console.log("data in f "+data)
+    //     return data   
+    // }
     static async login(text) {
         let a = await axios.post(url + '/login', text).then(res => { return res.data })
         if (a.success) {
