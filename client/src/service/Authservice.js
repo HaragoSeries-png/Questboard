@@ -13,9 +13,7 @@ class authService {
     static async login(text) {
         let a = await axios.post(url + '/login', text).then(res => { return res.data })
         if (a.success) {
-            localStorage.setItem('token', a.token);
-            axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-            return { suc: a.success, name: a.username, id: a.id , fullname: a.infoma.firstname + " " + a.infoma.lastname , infoma: a.infoma, token: a.token }
+            console.log("deletaaaaa")
         }
         else {
             alert("wrong "+a.message)
