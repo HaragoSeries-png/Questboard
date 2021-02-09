@@ -63,11 +63,27 @@
 
 <script>
 import authService from "@/service/authService";
+import Swal from 'sweetalert2'
+
+// import 'sweetalert2/src/sweetalert2.scss'
 
 export default {
   name: "Sign Up",
   methods: {
     register_check() {
+      // Swal.fire({
+      //   icon: "success",
+      //   title: "<sw>Register Complete!</sw>",
+      //   html: "<sw2>Go back for Sign in Questboard</sw2>",
+      //   width: 450,
+      // });
+
+      Swal.fire(
+        "Register Complete!",
+        "Go back for Sign in Questboard",
+        "success"
+      );
+
       let alertField = document.getElementById("alertField");
       alertField.innerHTML = "";
 
@@ -115,7 +131,7 @@ export default {
       email: "",
       password: "",
       conpassword: "",
-      dialog: false
+      dialog: false,
     };
   },
 };

@@ -60,4 +60,18 @@ export default {
   border: 1px solid black;
   border-style: solid;
 }
+
+sw {
+  font-size: 28px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
+sw2 {
+  font-size: 14px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+
+  color: gray;
+}
 </style>
