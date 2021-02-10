@@ -10,6 +10,7 @@ import lab from '../views/Atomtest.vue'
 import seeQuest from '../views/seeQuest.vue'
 import myquest from '../views/myquest.vue'
 import mywork from '../views/mywork.vue'
+import profile_v2_test from '../views/test_profile_v2/pf.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -27,7 +28,9 @@ const routes = [
     { path: '/admin', component: admin_approve },
     { path : '/quest/id/:id',component : seeQuest},
     { path : '/myquest',component : myquest},
-    { path : '/mywork',component : mywork}
+    { path : '/mywork',component : mywork},
+    {path : '/pftest',component:profile_v2_test}
+
 ]
 
 const router = new VueRouter({ mode: 'history', routes })
