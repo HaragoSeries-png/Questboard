@@ -12,6 +12,7 @@
 <script src="script.js"></script>
 <script>
 import authService from "@/service/authService";
+
 import Navbar from "@/components/layout/navbar";
 import NotifyBox from "@/components/layout/notifybox";
 
@@ -33,20 +34,13 @@ export default {
   created() {
     this.setPageTitle();
   },
-  updated() {
-    this.showNavbarSide = false;
-  },
-  data() {
-    return {
-      islogon: this.$store.getters.isLoggedIn,
-    };
-  },
 };
 </script>
 
 <style>
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css%22");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import "./styles/alert.css";
 @import "./styles/table.css";
 
 #app {
@@ -59,19 +53,5 @@ export default {
   width: auto;
   border: 1px solid black;
   border-style: solid;
-}
-
-sw {
-  font-size: 28px;
-  font-family: 'Montserrat';
-  font-weight: bold;
-}
-
-sw2 {
-  font-size: 14px;
-  font-family: 'Montserrat';
-  font-weight: bold;
-
-  color: gray;
 }
 </style>
