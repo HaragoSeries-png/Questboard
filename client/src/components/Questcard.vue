@@ -1,15 +1,17 @@
 <template>
     <div class="cards">
 
-        <div class="card" style="max-width:300px">
+        <div class="card" style="max-width:300px, max-height:500px">
             <v-img
-             :src='image'
+             :src='Image'
              max-width="300" 
              
              class="card__img"></v-img>
             <div class="card__content">
                 <h2>{{Name}}</h2>
                 <p>{{Detail}}</p>
+                
+                
             </div>
             <div class="card__info">
                 <div>
@@ -28,8 +30,132 @@ export default {
         Name: String,
         Detail: String,
         Reward: String,
-        image:String
+        Image:String,
+    },
+    methods: {
+     collapse(Detail) {
+       console.log("in"+this.Name)
+                //let l = await Detail.replace(/(^\s+|\s+$)/g, "")
+                if (Detail.length > 20) {
+                    Detail = Detail.substring(0, 17) + '...';
+                }
+                this.Detail = Detail
+        console.log("out"+this.Name)
+            }
+        
+    },
+    created(){
+        this.collapse(this.Detail)
+        if (this.Image != "default.png")
+          this.Image = this.$store.state.gurl + this.Image;
+        console.log(this.Image)
     }
-
 }
+
 </script>
+<style>
+body {
+  background-attachment: fixed;
+  background-size: cover;
+}
+.Questcards {
+  margin: 0 auto;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  font-family: sans-serif;
+}
+.card {
+  box-shadow: 0 0 5px rgb(0, 0, 0);
+}
+.card__img {
+  width: 100%;
+  display: block;
+}
+.card__content {
+  line-height: 1.5;
+  font-size: 0.9em;
+  padding: 15px;
+  background: #fafafa;
+}
+.card__content > h2:first-of-type {
+  margin-top: 0;
+}
+.card__content > p:first-of-type {
+  margin-top: 0;
+}
+.card__content > h2:last-of-type {
+  margin-bottom: 0;
+}
+.card__info {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eeeeee;
+  font-size: 0.8em;
+  border-bottom: 2px solid #cccccc;
+}
+.more {
+  color: #6a966a;
+  text-decoration: none;
+}
+.more:hover {
+  text-decoration: underline;
+}
+.category {
+  font-size: 25px;
+  padding: 50px;
+  text-align: center;
+}
+.category a {
+  color: #072448;
+  background: #f8aa4b;
+  padding: 15px;
+  text-decoration: none;
+  border-radius: 40px;
+  font-family: sans-serif;
+  box-shadow: 0 2px 5px #54d2d2;
+}
+.category a:hover {
+  color: #ffa822;
+  background: #134e6f;
+  box-shadow: 5px 0 10px #54d2d2;
+  text-decoration: underline;
+}
+.page {
+  font-family: sans-serif;
+  font-size: 30px;
+  text-align: center;
+  padding: 50px;
+}
+.page .button {
+  color: #072448;
+  padding: 10px;
+  text-decoration: none;
+  text-shadow: 0 2px 5px #f8aa4b;
+}
+.page .button:hover {
+  color: #f8aa4b;
+  font-size: 50px;
+  text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+  .category a {
+    font-size: 10px;
+    padding: 10px;
+    white-space: nowrap;
+  }
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .category a {
+    font-size: 10px;
+    padding: 10px;
+    white-space: nowrap;
+  }
+}
+</style>

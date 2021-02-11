@@ -11,18 +11,17 @@
       <a href="./">Traffic</a>
     </div>
 
-    <ul>
+    <ul class = "Questcards">
       <li v-for="(item, index) in quests" :key="index" style="list-style:none">
         <Questcard
-          :name="item.questname"
+          :Name="item.questname"
           :Detail="item.questdetail"
           :Reward="item.questreward"
-          :image="item.image"
+          :Image="item.image"
         >
         </Questcard>
       </li>
     </ul>
-  {{quests}}
     <div class="page">
       <div class="bar">
         <a href="#" class="button">«</a>
@@ -50,17 +49,24 @@ export default {
         return res;
       });
       console.log(a.quest);
-      this.quests = a.quest;
+      this.quests = await a.quest;
     },
   },
   data() {
     return {
-      quests: ["a", "b"],
+      quests: ''
     };
   },
   created: async function() {
     await this.getquest();
   },
+  // detail: async function(Detail) {
+  //               if (Detail.length > 20) {
+  //                   Detail = Detail.substring(0, 17) + 'abc';
+  //               }
+  //               return Detail
+  //           }
+  
 };
 </script>
 
@@ -73,7 +79,7 @@ body {
   margin: 0 auto;
   max-width: 1300px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 2fr);
   gap: 30px;
   font-family: sans-serif;
 }
