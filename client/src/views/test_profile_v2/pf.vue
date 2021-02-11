@@ -44,6 +44,7 @@
               background-color="#40c4ff "
               color="#40c4ff "
               dense
+              readonly
               half-increments
               hover
               size="18"
