@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
     "ser": "nodemon server/index.js",
-    "cli": "cd cli* & npm run serve"
+    "cli": "cd cli* & npm run serve",
+    "admin": "cd adm* & npm run serve"
   },
   "author": "harago",
   "license": "ISC",
@@ -31,6 +32,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
+    "vue": "^2.6.12",
     "vue-simple-alert": "^1.1.1",
     "vue-sweetalert2": "^4.2.0"
   },
