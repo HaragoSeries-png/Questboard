@@ -1,11 +1,11 @@
 <template>
-    <div class="cards">
+    
 
         <div class="card" style="max-width:300px, max-height:500px">
             <v-img
              :src='Image'
              max-width="300" 
-             
+             :aspect-ratio=16/9
              class="card__img"></v-img>
             <div class="card__content">
                 <h2>{{Name}}</h2>
@@ -18,11 +18,11 @@
                     {{Reward}}
                 </div>
             <div>
-                <a href="./" class="more">View More</a>
+                <a to="'/quest/id/'+this.Qid" class="more">View More</a>
             </div>
         </div>
         </div>
-    </div>
+ 
 </template>
 <script>
 export default {
@@ -31,6 +31,7 @@ export default {
         Detail: String,
         Reward: String,
         Image:String,
+        Qid:String
     },
     methods: {
      collapse(Detail) {
@@ -58,16 +59,11 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
-.Questcards {
-  margin: 0 auto;
-  max-width: 1300px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
-  font-family: sans-serif;
-}
+
 .card {
   box-shadow: 0 0 5px rgb(0, 0, 0);
+  width:300px;
+  
 }
 .card__img {
   width: 100%;
