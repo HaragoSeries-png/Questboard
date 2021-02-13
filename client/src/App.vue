@@ -45,6 +45,8 @@ export default {
 
 #app {
   font-family: 'Montserrat';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .component {

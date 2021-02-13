@@ -50,7 +50,7 @@ router.put('/', passport.authenticate('pass', {
     console.log('in body dec '+JSON.stringify(req.body.exp))
     let data = req.body
     let keys = Object.keys(data)
-    console.log("key "+keys)
+    
     for (var v in keys) {
         console.log("key "+keys[v]+' v '+v)
         if (keys[v] == 'skill') req.user.infoma.skill = data.skill

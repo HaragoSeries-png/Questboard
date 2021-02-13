@@ -10,7 +10,6 @@ import lab from '../views/Atomtest.vue'
 import quest from '../views/seeQuest.vue'
 import myquest from '../views/myquest.vue'
 import mywork from '../views/mywork.vue'
-import profile_v2_test from '../views/test_profile_v2/pf.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -29,7 +28,6 @@ const routes = [
     { path : '/quest/id/:id',component : quest},
     { path : '/myquest',component : myquest},
     { path : '/mywork',component : mywork},
-    {path : '/pftest/id/:id',component:profile_v2_test}
 
 ]
 

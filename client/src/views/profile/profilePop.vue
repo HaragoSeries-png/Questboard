@@ -60,9 +60,9 @@
                     :key="subitem.index"
                   >
                     <span
-                      style="font-weight: bold; text-transform: capitalize;"
+                      style="font-weight: bold;"
                     >
-                      {{ subitem }}:
+                      {{ transformText(subitem) }}:
                     </span>
                     {{ item[subitem] }}
                   </v-list-item-subtitle>
@@ -139,6 +139,14 @@ export default {
     },
     closeDialog() {
       this.dialog = false;
+    },
+    transformText(value) {
+      if (value == "topic") return "Title";
+      else if (value == "desc") return "Detail";
+      else if (value == "skill") return "Skill";
+      else if (value == "branch") return "Branch";
+      else if (value == "date") return "Year";
+      else return value;
     },
   },
   data() {
