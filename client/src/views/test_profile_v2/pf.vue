@@ -3,13 +3,13 @@
     <v-row>
       <v-col cols="12" md="4">
         <center>
-          <div style="padding:16px;">
+          <div style="padding: 16px;">
             <v-img
               style="margin-top:3%;"
               full-width
               width="400"
               height="300"
-              src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/146948856_2181343888671237_7644784523041324727_n.jpg?_nc_cat=105&ccb=3&_nc_sid=8bfeb9&_nc_eui2=AeEFnx2Bp8bco0hSuz7rK0rmXjlWcXP0oi5eOVZxc_SiLsEXvGT5XmkCSe5wTswB3cTYZFaR1TjIYiXfs1kRweR2&_nc_ohc=WexSe42sSioAX_MmvEh&_nc_ht=scontent.fbkk13-1.fna&oh=23889b7019e69bb9a7bdd1098de0ddf8&oe=6049E801"
+              :src="profilePic"
             ></v-img>
           </div>
         </center>
@@ -18,36 +18,33 @@
       <v-col cols="12" md="8">
         <div>
           <h3 style="font-weight: bold">
-            Junior Jiraphat
-            <span style="color: lightgrey; margin-left: 2%">@junearza007</span>
+            {{ profileFullName }}
+            <!-- <span style="color: lightgrey; margin-left: 2%">@junearza007</span> -->
           </h3>
-
           <v-divider></v-divider>
+
           <!-- Introduce -->
-          <div id="introduce">
+          <div id="profileIntroduce">
             <h4 style="font-weight: bold">
               Introduce
             </h4>
             <div
               style="color: gray; width: auto; height: 60px; display: block; overflow-x: auto; font-size: 14px;"
             >
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Reprehenderit debitis ex asperiores! Sed quod ad, officiis
-              consectetur tempora commodi autem tenetur ducimus unde distinctio
-              iste nostrum tempore, nesciunt itaque neque.
+              -- Under Construction --
             </div>
           </div>
 
           <!-- Rating -->
-          <div id="rating">
+          <div id="profileRating" style="padding-top: 1%">
             <h4 style="font-weight: bold">
               Rating
             </h4>
             <v-card-actions>
-              <span style="font-size: 16px;"> ({{ rating }}) </span>
+              <span style="font-size: 16px;"> ({{ profileRate }}) </span>
               <v-rating
                 style="margin-left: 16px;"
-                v-model="rating"
+                v-model="profileRate"
                 background-color="#40c4ff "
                 color="#40c4ff "
                 dense
@@ -60,7 +57,7 @@
           </div>
 
           <!-- Contact -->
-          <div id="contact">
+          <div id="profileContact" style="padding-top: 1%">
             <h4 style="font-weight: bold">
               Contact
             </h4>
@@ -114,23 +111,25 @@
           </h4>
           <v-divider></v-divider>
 
-          <v-list style="height:200px;overflow-x:auto;">
-            <template v-for="item in items">
-              <v-list-item :key="item.title">
-                <v-list-item-content style="margin-left:-15px;text-align:left;">
+          <v-list style="height: 200px; overflow-x: auto;">
+            <template v-for="(item, index) in profileEducation">
+              <v-list-item :key="item.index">
+                <v-list-item-content
+                  style="margin-left: -15px; text-align: left;"
+                >
                   <v-list-item-subtitle
-                    v-html="item.Year"
-                    style="margin-top:-13px;font-size:15px;color:#ffab40"
+                    v-html="item.date"
+                    style="margin-top: -13px; font-size: 15px; color: #ffab40"
                   ></v-list-item-subtitle>
                   <v-list-item-title
-                    v-html="item.University"
-                    style="font-size:15px;padding-top:4px;"
+                    v-html="item.branch"
+                    style="font-size: 15px; padding-top: 4px;"
                   ></v-list-item-title>
                   <v-list-item-subtitle
-                    v-html="item.Branch"
-                    style="font-size:15px;padding-top:4px;"
+                    v-html="item.branch"
+                    style="font-size: 15px; padding-top: 4px;"
                   ></v-list-item-subtitle>
-                  <v-divider></v-divider>
+                  <v-divider v-if="index != profileEducation.length - 1"></v-divider>
                 </v-list-item-content>
               </v-list-item>
             </template>
@@ -147,19 +146,25 @@
           </h4>
           <v-divider></v-divider>
 
-          <v-list style="height:200px;overflow-x:auto;">
-            <template v-for="item in Exp">
+          <v-list style="height: 200px; overflow-x: auto;">
+            <template v-for="(item, index) in profileExperience">
               <v-list-item :key="item.date">
-                <v-list-item-content style="margin-left:-15px;text-align:left;">
-                  <v-list-item-title
+                <v-list-item-content
+                  style="margin-left: -15px; text-align: left;"
+                >
+                  <v-list-item-subtitle
                     v-html="item.date"
-                    style="font-size:15px;color:#ffab40"
+                    style="margin-top: -13px; font-size: 15px; color: #ffab40"
+                  ></v-list-item-subtitle>
+                  <v-list-item-title
+                    v-html="item.topic"
+                    style="font-size: 15px; padding-top: 4px;"
                   ></v-list-item-title>
                   <v-list-item-subtitle
-                    v-html="item.header"
-                    style="font-size:15px;margin-top:0%;"
+                    v-html="item.desc"
+                    style="font-size: 15px; padding-top: 4px;"
                   ></v-list-item-subtitle>
-                  <v-divider></v-divider>
+                  <v-divider v-if="index != profileExperience.length - 1"></v-divider>
                 </v-list-item-content>
               </v-list-item>
             </template>
@@ -175,81 +180,100 @@
           </h4>
           <v-divider></v-divider>
 
-          <v-combobox
-            color="primary"
-            style="overflow-x:auto;height:200px;"
-            v-model="chips"
-            :items="something"
-            clearable
-            multiple
-            solo
-          >
-            <template v-slot:selection="{ attrs, item, select, selected }">
-              <v-chip
-                color="#ff80ab"
-                v-bind="attrs"
-                :input-value="selected"
-                close
-                @click="select"
-                @click:close="remove(item)"
-              >
-                <strong>{{ item }}</strong
-                >&nbsp;
-              </v-chip>
-            </template>
-          </v-combobox>
+          <span style="font-size: 15px; text-transform: uppercase" v-for="item in profileSkill" :key="item.index">
+            {{ item.skill }}
+            <span v-if="index != profileSkill.length - 1"> / </span>
+          </span>
         </div>
       </v-col>
     </v-row>
+    <v-divider></v-divider>
   </div>
 </template>
 
 <script>
+import profileService from "@/service/profileService";
+
 export default {
   name: "pf",
-  data() {
-    return {
-      rating: 4.3,
-      items: [
-        {
-          University: "King monkhut university of technology thonburi",
-          Branch: `Computer Science`,
-          Year: "2000-2004",
-        },
-        {
-          University: "Kmutt",
-          Branch: `Computer Science`,
-          Year: "2000-2004",
-        },
-        {
-          University: "Brunch this weekend?",
-          Branch: `Computer Science`,
-          Year: "2000-2004",
-        },
-        {
-          University: "Brunch this weekend?",
-          Branch: `Computer Science`,
-          Year: "2000-2004",
-        },
-      ],
-      Exp: [
-        { date: "10/10/10 - 12/10/10", header: "Project Manager" },
-        { date: "10/10/10 - 12/10/10", header: "Project Manager" },
-        { date: "10/10/10 - 12/10/10", header: "Project Manager" },
-        { date: "10/10/10 - 12/10/10", header: "Project Manager" },
-        { date: "10/10/10 - 12/10/10", header: "Project Manager" },
-        { date: "10/10/10 - 12/10/10", header: "Project Manager" },
-        { date: "10/10/10 - 12/10/10", header: "Project Manager" },
-      ],
-      chips: [],
-      something: ["Handicraft", "Programmer"],
-    };
+  watch: {
+    "$route.params.id": function() {
+      this.$router.go();
+    },
   },
   methods: {
+    getinfoma: async function() {
+      let userid = "";
+
+      if (this.$route.params.id) {
+        userid = this.$route.params.id;
+      } else if (this.$store.getters.getuserid != "") {
+        userid = this.$store.getters.getuserid;
+      } else this.router.push({ path: "/login" });
+
+      let re = await profileService.getprofile(userid).then((res) => {
+        return res;
+      });
+
+      this.profile = re.user;
+    },
+    editable() {
+      return this.$route.params.id == this.$store.getters.getuserid;
+    },
+    add() {
+      this.$store.dispatch("set");
+    },
     remove(item) {
       this.chips.splice(this.chips.indexOf(item), 1);
       this.chips = [...this.chips];
     },
+  },
+  created: async function() {
+    await this.getinfoma();
+
+    this.profilePic = "miku.gif";
+    if (this.profile.infoma.proimage != "")
+      this.profilePic = this.$store.state.gurl + this.profile.infoma.proimage;
+
+    if (this.profile.infoma.skill != "")
+      this.profileSkill = this.profile.infoma.skill;
+    if (this.profile.infoma.education != "")
+      this.profileEducation = this.profile.infoma.education;
+    if (this.profile.infoma.exp != "")
+      this.profileExperience = this.profile.infoma.exp;
+    if (this.profile.infoma.desc != "")
+      this.profileInfo = this.profile.infoma.desc;
+    if (this.profile.infoma.contact != "")
+      this.profileContact = this.profile.infoma.contact;
+
+    this.profileFullName =
+      this.profile.infoma.firstname + " " + this.profile.infoma.lastname;
+    this.profileRate = 4.3;
+
+    let usertitle = this.profile.infoma.firstname;
+    if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
+    else this.$emit("setTitle", this.$options.name);
+  },
+  data() {
+    return {
+      profile: "",
+      profileFullName: "",
+      profilePic: "",
+      profileRate: 0,
+
+      profileInfo: [],
+      profileInfoKey: ["topic", "desc"],
+      profileSkill: [],
+      profileSkillKey: ["skill"],
+      profileEducation: [],
+      profileEducationKey: ["branch", "date"],
+      profileExperience: [],
+      profileExperienceKey: ["topic", "desc", "date"],
+      profileContact: [],
+      profileContactKey: ["con", "val"],
+
+      dialog: false,
+    };
   },
 };
 </script>

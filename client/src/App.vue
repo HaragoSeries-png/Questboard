@@ -51,7 +51,7 @@ export default {
   margin: 2%;
   margin-top: 5%;
   width: auto;
-  border: 1px solid black;
-  border-style: solid;
+  /* border: 1px solid black;
+  border-style: solid; */
 }
 </style>
