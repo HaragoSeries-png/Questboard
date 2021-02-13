@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from "sweetalert2";
 
 const url = 'api/auth'
 class authService {
@@ -15,10 +16,14 @@ class authService {
         if (a.success) {
             localStorage.setItem('token', a.token);
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-            return { suc: a.success, name: a.username, id: a.id , fullname: a.infoma.firstname + " " + a.infoma.lastname , infoma: a.infoma, token: a.token }
+            return { suc: a.success, name: a.username, id: a.id, fullname: a.infoma.firstname + " " + a.infoma.lastname, infoma: a.infoma, token: a.token }
         }
         else {
-            alert("wrong "+a.message)
+            Swal.fire(
+                "<alert-title>Error!</alert-title>",
+                "<alert-subtitle>Please enter your Email and Password.</alert-subtitle>",
+                "error",
+            );
         }
     }
     static async register(text) {

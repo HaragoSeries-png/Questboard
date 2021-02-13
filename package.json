@@ -2,15 +2,15 @@
   "name": "vue01",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js",
-    "ser": "nodemon server/index.js",
-    "cli": "cd cli* & npm run serve"
-  },
   "author": "harago",
-  "license": "ISC",
+  "scripts": {
+    "admin": "cd adm* & npm run serve",
+    "cli": "cd cli* & npm run serve",
+    "ser": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
   "dependencies": {
     "@vue/cli": "^4.5.11",
     "axios": "^0.21.0",
@@ -31,10 +31,18 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
+    "vue": "^2.6.12",
     "vue-simple-alert": "^1.1.1",
-    "vue-sweetalert2": "^4.2.0"
+    "vue-sweetalert2": "^4.2.0",
+    "vuetify": "^2.4.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
-  }
+    "@vue/cli-plugin-router": "^4.5.11",
+    "nodemon": "^2.0.6",
+    "sass": "^1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.1.0",
+    "vuetify-loader": "^1.7.0"
+  },
+  "license": "ISC"
 }

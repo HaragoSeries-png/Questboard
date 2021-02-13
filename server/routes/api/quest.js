@@ -3,8 +3,8 @@ const mongodb = require('mongodb'),
   passport = require('passport');
 const Quest = require('../../models/quest.model');
 const User = require('../../models/user.model');
+const router = express.Router();
 
-const router = require('./profile');
 
   
 multer = require('multer'),
@@ -74,7 +74,7 @@ router.post('/',  passport.authenticate('pass', {
     objective: req.body.objective,
     reward: req.body.reward,
     location: req.body.location,
-    status: "approved",
+    status: "pending",
     image: filename,
     date: dateFormat(new Date(), "longDate"),
     rdate: dateFormat(new Date(), "longDate"),
@@ -113,20 +113,7 @@ router.put('/accept', passport.authenticate('pass', {
   })
 })
 
-router.put('/decide', function (req, res) {
-  let questid = req.body.quest_id
-  Quest.findById(questid).then(quest => {
-    console.log(quest)
-    if (req.body.approve) {
-      quest.status = 'approved'
-    }
-    else {
-      quest.status = 'reject'
-    }
-    quest.save()
-    return res.send(quest)
-  })
-})
+
 
 router.put('/select', function (req, res) {
   let questid = req.body.quest_id

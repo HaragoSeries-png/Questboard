@@ -1,0 +1,13 @@
+alert-title {
+  font-size: 28px;
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+
+alert-subtitle {
+  font-size: 14px;
+  font-family: "Montserrat";
+  font-weight: bold;
+
+  color: gray;
+}

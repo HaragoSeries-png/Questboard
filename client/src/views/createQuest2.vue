@@ -136,9 +136,9 @@
               <v-col cols="12" md="6" lg="6">
                 <div class="text-fill">
                   <div>
-                   <div class="head123">
-                     Info.
-                   </div>
+                    <div class="head123">
+                      Info.
+                    </div>
                     <tr>
                       <span id="q1"> Quest</span>
                       <td>
@@ -264,14 +264,14 @@
                     </td>
                   </tr>
                   <center>
-                  <v-btn
-                    color="white "
-                    text
-                    style="font-size:20px; background-color:#558b2f;margin-top:20%;"
-                    @click="sendquest"
-                  >
-                    Create your quest
-                  </v-btn>
+                    <v-btn
+                      color="white "
+                      text
+                      style="font-size:20px; background-color:#558b2f;margin-top:20%;"
+                      @click="sendquest"
+                    >
+                      Create your quest
+                    </v-btn>
                   </center>
                 </v-col>
               </div>
@@ -401,10 +401,10 @@ td {
   text-decoration: underline;
   margin-bottom: 10%;
 }
-.head123{
-font-size: 25px;
-color: black;
-text-decoration: underline;
+.head123 {
+  font-size: 25px;
+  color: black;
+  text-decoration: underline;
 }
 .main {
   width: 100%;

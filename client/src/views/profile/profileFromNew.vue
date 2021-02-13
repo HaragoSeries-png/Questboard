@@ -22,7 +22,7 @@
             <span
               style="font-size: 14px; font-weight: bold; text-transform: capitalize;"
             >
-              {{ item }}:
+              {{ transformText(item) }}:
             </span>
           </v-col>
           <v-col>
@@ -83,6 +83,14 @@ export default {
     },
     requestClose() {
       this.$emit("closeDialog");
+    },
+    transformText(value) {
+      if (value == "topic") return "Title";
+      else if (value == "desc") return "Detail";
+      else if (value == "skill") return "Skill";
+      else if (value == "branch") return "Branch";
+      else if (value == "date") return "Year";
+      else return value;
     },
   },
   data() {

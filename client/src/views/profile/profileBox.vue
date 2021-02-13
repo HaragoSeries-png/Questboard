@@ -1,27 +1,20 @@
 <template>
   <div id="profileBox">
     <center>
-      <div>
+      <div style="padding: 16px;">
         <v-hover v-slot="{ hover }" v-if="editable">
           <v-img
-            class="rounded-circle"
-            :aspect-ratio="1 / 1"
-            max-width="250"
+            width="400"
+            height="300"
             :src="profilePic"
-            width:auto
-            height:auto
             @click="uploadimg"
-            style="border:1px solid black"
+            style="display:flex;"
           >
             <div class="align-self-center">
+             
               <v-btn
-                class="rounded-circle"
                 :class="{ 'show-btns': hover }"
-                icon
-                style="height:250px"
-                color="transparent"
-                x-large
-                width="250"
+                id="onDefault"
               >
                 <div id="ggf">
                   {{ texthover }}
@@ -30,11 +23,16 @@
                   mdi-upload
                 </v-icon>
               </v-btn>
+             
             </div>
+
+
+            
           </v-img>
         </v-hover>
-        <v-img v-else
-          class="rounded-circle"
+        <v-img
+          v-else
+      
           :aspect-ratio="1 / 1"
           max-width="250"
           :src="profilePic"
@@ -59,15 +57,6 @@
           >
         </div>
       </div>
-
-      <h3 id="ratio">{{ profileName }}</h3>
-      <v-rating
-        v-model="profileRate"
-        background-color="red lighten-3"
-        color="red"
-        size="30"
-        style="margin-top:2%;"
-      ></v-rating>
     </center>
   </div>
 </template>
@@ -75,22 +64,25 @@
 <script>
 import profileService from "@/service/profileService";
 
+import Swal from "sweetalert2";
+
 export default {
   name: "Profile-Box",
-  props: ["profileName", "profilePic", "profileRate", "editable"],
+  props: ["profilePic", "editable"],
   methods: {
     uploadimg() {
       document.getElementById("fileUpload").click();
     },
     onFileChange() {
       if (this.files != null) {
+        console.log('choose')
         const file = this.files;
         this.profilePic = URL.createObjectURL(file);
         this.picHoverText = "Choose Another";
       }
     },
     sendim: async function() {
-      console.log("SENDIMG")
+      console.log("SENDIMG");
       if (this.files) {
         let formData = new FormData();
         formData.append("image", this.files);
@@ -98,9 +90,27 @@ export default {
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
-        if (suc) this.$router.go();
-        else alert("Upload Failed");
-      } else alert("File Missing.");
+        if (suc) {
+          Swal.fire(
+            "<alert-title>Complete!</alert-title>",
+            "<alert-subtitle>Data Updated.</alert-subtitle>",
+            "success"
+          );
+          this.$router.go()
+        } else {
+          Swal.fire(
+            "<alert-title>Error!</alert-title>",
+            "<alert-subtitle>Something wrong.</alert-subtitle>",
+            "error"
+          );
+        }
+      } else {
+        Swal.fire(
+          "<alert-title>Error!</alert-title>",
+          "<alert-subtitle>Data Missing.</alert-subtitle>",
+          "error"
+        );
+      }
     },
   },
   data() {
@@ -146,6 +156,12 @@ body {
 #ggf {
   font-family: "Xanh Mono", monospace;
   font-size: 15px;
+}
+#onDefault{
+  visibility: hidden;
+}
+#onDefault:hover{
+  visibility: visible;
 }
 @import url(https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap);
 </style>

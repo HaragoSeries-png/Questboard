@@ -1,10 +1,16 @@
 <template>
   <v-app>
-    <div id="login" class="loginfrom" style="font-family: Montserrat;">
+    <div id="login" class="loginfrom">
       <img class="avatar" :src="profilePic" />
       <h1>Login</h1>
 
-      <v-text-field label="Email" v-model="email" required dark></v-text-field>
+      <v-text-field
+        label="Email"
+        v-model="email"
+        type="text"
+        required
+        dark
+      ></v-text-field>
 
       <v-text-field
         label="Password"
@@ -27,6 +33,7 @@
 
 <script>
 import authService from "@/service/authService";
+import Swal from "sweetalert2";
 
 export default {
   name: "Login",
@@ -44,16 +51,23 @@ export default {
       if (re.suc) {
         this.$store.dispatch("authen", re);
         this.$router.push({ path: "/feed" });
-      } else alert("Fail");
+      } else {
+        Swal.fire(
+          "<alert-title>Error!</alert-title>",
+          "<alert-subtitle>Something wrong</alert-subtitle>",
+          "error",
+        );
+      }
     },
   },
   created() {
+    this.profilePic = "login-user.png";
+    
     this.$emit("setTitle", this.$options.name);
   },
   data() {
     return {
-      profilePic:
-        "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257_1280.png",
+      profilePic: "",
       email: "",
       password: "",
     };
@@ -63,7 +77,7 @@ export default {
 
 <style scoped>
 #app {
-  background: url("https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+  background: url("/login-background.jpeg")
     no-repeat center center fixed !important;
   background-size: cover;
 }
@@ -120,17 +134,6 @@ h1 {
 .loginfrom input {
   width: 100%;
   margin-bottom: 20px;
-}
-.loginfrom input[type="email"],
-input[type="text"],
-input[type="password"] {
-  border: none;
-  border-bottom: 1px solid #fff;
-  background: transparent;
-  outline: none;
-  height: 40px;
-  color: #fff;
-  font-size: 16px;
 }
 .loginfrom a {
   text-decoration: none;

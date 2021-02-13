@@ -6,13 +6,12 @@ import questfeed from '@/views/questfeed'
 import admin_approve from '../views/Admin/Admin_approve.vue'
 import createQuest2 from '../views/createQuest2.vue'
 import lab from '../views/Atomtest.vue'
-import seeQuest from '../views/seeQuest.vue'
+import quest from '../views/seeQuest.vue'
 import myquest from '../views/myquest.vue'
 import mywork from '../views/mywork.vue'
-import profile_v2_test from '../views/test_profile_v2/pf.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
-
+import profile from '../views/profile/index.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,12 +19,12 @@ const routes = [
     { path: '/login', component: login },
     { path: '/signup', component: signup },
     { path: '/contact', component: contact },
-    { path: '/profile/id/:id', component: profile_v2_test},
+    { path: '/profile/id/:id', component: profile},
     { path: '/feed', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
     { path: '/admin', component: admin_approve },
-    { path : '/quest/id/:id',component : seeQuest},
+    { path : '/quest/id/:id',component : quest},
     { path : '/myquest',component : myquest},
     { path : '/mywork',component : mywork},
 

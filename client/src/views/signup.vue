@@ -24,7 +24,13 @@
         </div>
       </div>
 
-      <v-text-field label="E-mail" v-model="email" required dark></v-text-field>
+      <v-text-field
+        label="E-mail"
+        v-model="email"
+        required
+        dark
+        autocomplete="off"
+      ></v-text-field>
 
       <v-text-field
         label="Password"
@@ -51,39 +57,18 @@
       <div class="alertbox">
         <ul id="alertField" class="p" style="color: red; font-size: 16px"></ul>
       </div>
-
-      <v-dialog v-model="dialog" width="500">
-        <v-card>
-          Complete
-        </v-card>
-      </v-dialog>
     </div>
   </v-app>
 </template>
 
 <script>
 import authService from "@/service/authService";
-import Swal from 'sweetalert2'
-
-// import 'sweetalert2/src/sweetalert2.scss'
+import Swal from "sweetalert2";
 
 export default {
   name: "Sign Up",
   methods: {
     register_check() {
-      // Swal.fire({
-      //   icon: "success",
-      //   title: "<sw>Register Complete!</sw>",
-      //   html: "<sw2>Go back for Sign in Questboard</sw2>",
-      //   width: 450,
-      // });
-
-      Swal.fire(
-        "Register Complete!",
-        "Go back for Sign in Questboard",
-        "success"
-      );
-
       let alertField = document.getElementById("alertField");
       alertField.innerHTML = "";
 
@@ -92,8 +77,9 @@ export default {
       if (!this.lastname) alertField.innerHTML += "<li>Require Lastname.</li>";
       if (!this.email) alertField.innerHTML += "<li>Require Email.</li>";
       if (!this.password) alertField.innerHTML += "<li>Require Password.</li>";
-      if (this.password.length < 8)
-        alertField.innerHTML += "<li>Password required more than 8 length</li>";
+      else if (this.password.length < 8)
+        alertField.innerHTML +=
+          "<li>Password required more length than 8.</li>";
       else if (!this.conpassword)
         alertField.innerHTML += "<li>Please confirm your password.</li>";
       else if (this.password != this.conpassword)
@@ -102,22 +88,31 @@ export default {
       if (alertField.innerHTML == "") this.register();
     },
     register: async function() {
-      let data = {
+      let registerData = {
         firstname: this.firstname,
         lastname: this.lastname,
         email: this.email,
         password: this.password,
       };
 
-      let suc = await authService.register(data).then((res) => {
+      let suc = await authService.register(registerData).then((res) => {
         return res;
       });
-      console.log("logsuc" + suc);
 
       if (suc) {
+        Swal.fire(
+          "<alert-title>Register Complete!</alert-title>",
+          "<alert-subtitle>Go back for Sign in Questboard</alert-subtitle>",
+          "success",
+        );
+
         this.$router.push({ path: "/login" });
       } else {
-        alert("fail");
+        Swal.fire(
+          "<alert-title>Error!</alert-title>",
+          "<alert-subtitle>Something wrong</alert-subtitle>",
+          "error",
+        );
       }
     },
   },
@@ -131,7 +126,6 @@ export default {
       email: "",
       password: "",
       conpassword: "",
-      dialog: false,
     };
   },
 };
@@ -139,7 +133,6 @@ export default {
 
 <style scoped>
 #app {
-  font-family: Montserrat;
   background: url("https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center fixed !important;
   background-size: cover;
@@ -151,8 +144,6 @@ body {
 
   background-position: center;
   background-size: cover;
-  /* font-family: sans-serif; */
-  font-family: Montserrat;
 }
 
 .register_from {
