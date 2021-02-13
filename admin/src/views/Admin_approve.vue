@@ -38,7 +38,9 @@
               <questbox v-for='quest in quests' :key="quest._id" 
                 :name='quest.questname' 
                 :status="quest.status"
-                :qid="quest._id">
+                :qid="quest._id"
+                @allee="allee"
+                >                
               </questbox>
          
           </ul>
@@ -83,8 +85,8 @@ export default {
       console.log(re.quests)
       this.quests = re.quests
     },
-    allee(){
-      alert("workk")
+    allee(t){
+      alert("workk "+t)
     }
   }
   

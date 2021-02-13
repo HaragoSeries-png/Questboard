@@ -18,7 +18,8 @@ export default {
     props:['name','status','qid'],
     methods:{
         al(status){
-            adminService.decide(this.qid,status)            
+            adminService.decide(this.qid,status)   
+            this.$emit("allee",this.qid)         
         }
     }
 }

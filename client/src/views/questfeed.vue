@@ -18,6 +18,7 @@
           :Detail="item.questdetail"
           :Reward="item.questreward"
           :Image="item.image"
+          :Qid='item._id'
         >
         </Questcard>
       </li>
