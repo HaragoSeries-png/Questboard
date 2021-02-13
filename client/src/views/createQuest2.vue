@@ -366,7 +366,7 @@ export default {
   margin-left: 5%;
 }
 #noob .v-textarea {
-  width: 300px;
+  width: 200px;
 }
 
 td {
