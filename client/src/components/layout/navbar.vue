@@ -83,7 +83,7 @@
               <v-icon size=20 >{{item.icon}}</v-icon>
             </v-list-item-icon>
 
-            <v-list-item-content style="font-size:11px;">
+            <v-list-item-content style="font-size:11px;font-weight:bold;">
               {{item.title}}
             </v-list-item-content>
           
@@ -278,11 +278,7 @@ export default {
         { title :'My Quest', icon : 'mdi-account-multiple-outline',to:'/myquest'},
         { title :'My Work', icon: 'mdi-cog-outline',to:"/mywork"}
       ],
-      sub_mywork : [
-        { title: "Inprogress", icon: "mdi-book-clock", to: "/mw_inprogress" },
-        { title: "Waiting", icon: "mdi-backup-restore", to: "/mw_waiting" },
-        { title: "Complete", icon: "mdi-book-check", to: "/mw_complete" },
-      ],
+     
       status: this.$store.getters.isLoggedIn,
       drawer: false,
       username: this.$store.getters.getfullname,

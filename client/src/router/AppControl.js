@@ -1,6 +1,5 @@
 import home from '@/views/landing'
 import login from '../views/login.vue'
-import profile from '@/views/profile/index.vue'
 import signup from '../views/signup.vue'
 import contact from '@/views/contact'
 import questfeed from '@/views/questfeed'
@@ -12,7 +11,7 @@ import myquest from '../views/myquest.vue'
 import mywork from '../views/mywork.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
-
+import profile from '../views/profile/index.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,7 +19,7 @@ const routes = [
     { path: '/login', component: login },
     { path: '/signup', component: signup },
     { path: '/contact', component: contact },
-    { path: '/profile/id/:id', component: profile },
+    { path: '/profile/id/:id', component: profile},
     { path: '/feed', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },

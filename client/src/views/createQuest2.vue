@@ -18,7 +18,7 @@
                       <v-img
                         v-if="!url"
                         contain
-                        full-width
+                        fill-width
                         height="400"
                         src="https://cdn.pixabay.com/photo/2012/04/14/16/57/scroll-34606_1280.png"
                         id="quest_img"
@@ -38,7 +38,7 @@
                                   :color="transparent"
                                   style="font-size:30px;"
                                 >
-                                  {{ sometext }}
+                              {{sometext}}
                                 </span>
 
                                 <div
@@ -72,9 +72,8 @@
                           v-if="url"
                           :src="url"
                           contain
-                          width="1680"
-                          height="300"
-                          size="300"
+                         width="500"
+                     
                           @click="chooseFiles()"
                         >
                           <v-card :class="{ 'on-hover': hover }">
@@ -86,34 +85,10 @@
                                   class="fill-height flex-column"
                                   justify="space-between"
                                 >
-                                  <div>
-                                    <span
-                                      :class="{ 'show-btns': hover }"
-                                      :color="transparent"
-                                      style="font-size:20px; background-color:#ececec;"
-                                    >
-                                      {{ sometext1 }}
-                                    </span>
+                                 
 
-                                    <div
-                                      class="align-self-center"
-                                      style="display:inline;"
-                                    >
-                                      <v-btn
-                                        :class="{ 'show-btns': hover }"
-                                        :color="transparent"
-                                        icon
-                                      >
-                                        <v-icon
-                                          :class="{ 'show-btns': hover }"
-                                          color="white;"
-                                          style="border-redius:2px;backgrond-color:#ececec"
-                                        >
-                                          {{ icon }}
-                                        </v-icon>
-                                      </v-btn>
-                                    </div>
-                                  </div>
+                                    
+                                
                                 </v-row>
                               </v-card-title>
                             </div>
@@ -121,7 +96,7 @@
                         </v-img>
                       </v-hover>
                     </div>
-                    <div style="display: none;">
+                    <div>
                       <v-file-input
                         v-model="files"
                         @change="onFileChange"
@@ -205,46 +180,44 @@
 
               <div class="text-fill1">
                 <v-col cols="12" md="6" lg="6">
+                  <h4 id="Deadline" style="margin-bottom:15%;">
+                    Deadline
+                  </h4>
                   <tr>
-                    <span id="Deadline"> Deadline </span>
-                    <td></td>
-                  </tr>
-
-                  <tr>
-                    <span id="Date" style="margin-top:10%;"> Date : </span>
+                    <span id="Date" style="margin-top:10%;"> Date  </span>
                     <td>
                       <input
                         type="date"
                         name=""
                         id="I_date"
                         v-model="duedate"
-                        style="margin-bottom:10%;"
+                        style="margin-bottom:15%;"
                       />
                     </td>
                   </tr>
 
                   <tr>
-                    <span id="Start"> Start : </span>
+                    <span id="Start"> Start  </span>
                     <td>
                       <input
                         type="time"
                         name=""
                         id="I_start"
                         v-model="tstart"
-                        style="margin-bottom:10%; border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;  "
+                        style="margin-bottom:15%; border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;  "
                       />
                     </td>
                   </tr>
 
                   <tr>
-                    <span id="End"> End : </span>
+                    <span id="End"> End </span>
                     <td>
                       <input
                         type="time"
                         name=""
                         id="I_end"
                         v-model="tend"
-                        style="margin-bottom:10%;    border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
+                        style="margin-bottom:15%;    border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
                       />
                     </td>
                   </tr>
@@ -364,9 +337,10 @@ export default {
 }
 .text-fill1 {
   margin-left: 5%;
+  margin-top:-3%;
 }
 #noob .v-textarea {
-  width: 300px;
+  width: 200px;
 }
 
 td {
@@ -489,6 +463,20 @@ td {
 }
 .show-btns {
   color: rgb(0, 0, 0) !important;
+}
+@media screen and (max-width:900px){
+  .text-fill1{
+    margin-top:-20%;
+  }
+}
+@media screen and (max-width:320px){
+  .text-fill{
+    margin-left:-19%;
+  }
+  .text-fill1{
+    margin-top:-55%;
+    margin-left:-15%;
+  }
 }
 
 @import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@1&display=swap);
