@@ -8,7 +8,7 @@
 
       <v-col cols="12" md="8">
         <div>
-          <h3 style="font-weight: bold">
+          <h3 style="font-weight: bold;text-transform:upperCase;">
             {{ profileFullName }}
             <!-- <span style="color: lightgrey; margin-left: 2%">@junearza007</span> -->
           </h3>
@@ -49,46 +49,81 @@
           </div>
 
           <!-- Contact -->
-          <div id="profileContact" style="padding-top: 1%">
+          <div id="profileContact" style="padding-top: 1%;">
             <h4 style="font-weight: bold">
               Contact
               <a style="float: right;">Edit</a>
             </h4>
-
             <div id="contactList">
-              <i
-                class="fa fa-facebook-official"
-                style="font-size: 30px; color: #01579b;"
-              >
-                <span class="contactTitle">
+              
+           <div class="container2">
+              <div>
+                <img
+                  src="http://ecx.images-amazon.com/images/I/21-leKb-zsL._SL500_AA300_.png"
+                  class="iconDetails"
+                />
+              </div>
+              <div style="margin-left:60px;">
+                <h4>Facebook</h4>
+                <div style="font-size:13px;">
                   Junior Jiraphat
-                </span>
-              </i>
-
-              <i class="fab fa-line" style="font-size: 30px; color: #00B900">
-                <span class="contactTitle">
-                  Juniorza11143
-                </span>
-              </i>
-
-              <i
-                class="fa fa-phone-square"
-                style="font-size: 30px; color: #00e5ff "
-              >
-                <span class="contactTitle">
-                  097-727-4455
-                </span>
-              </i>
-
-              <i
-                class="fas fa-envelope"
-                style="font-size: 30px; color: #ef6c00"
-              >
-                <span class="contactTitle">
-                  Jiraphat-saeheng@hotmail.com
-                </span>
-              </i>
+                </div>
+              </div>
             </div>
+
+            <div class="container2">
+              <div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/600px-LINE_logo.svg.png"
+                  class="iconDetails"
+                />
+              </div>
+              <div style="margin-left:60px;">
+                <h4>Line</h4>
+                <div style="font-size:13px;">
+                  junearza1143
+                </div>
+              </div>
+            </div>
+
+            <div class="container2">
+              <div>
+                <img
+                  src="https://smallroomstudio.com/wp-content/uploads/2019/10/call-icon.png"
+                  class="iconDetails"
+                />
+              </div>
+              <div style="margin-left:60px;">
+                <h4>Call</h4>
+                <div style="font-size:13px;">
+                094-727-4455
+                </div>
+              </div>
+            </div>
+            <div class="container2">
+              <div>
+                <img
+                  src="https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png"
+                  class="iconDetails"
+                />
+              </div>
+              <div style="margin-left:60px;">
+                <h4>Email</h4>
+                <div style="font-size:13px;">
+                    Jiraphat-saeheng@hotmail.com
+                </div>
+              </div>
+            </div>
+          
+
+            </div>
+
+
+
+
+
+
+
           </div>
         </div>
       </v-col>
@@ -317,7 +352,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 @import "../../styles/profile.css";
 
 a {
@@ -335,18 +370,45 @@ a {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
-  margin-left: -3.5%;
+  margin-left: -1.5%;
+ 
 }
+.iconDetails {
+  margin-left: 2%;
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+.container2 {
+  width: 50%;
+  height: 85px;
+  padding: 1%;
+  padding:16px;
+  background-color:#ececec; 
+  border:5px solid white;
+  border-radius:13px;
+}
+
+h4 {
+  margin: 0px;
+}
+
+
 @media screen and (max-width: 956px) {
   #contactList {
     flex-direction: column;
-    margin-left: 0%;
+    margin-left: -3.5%;
+    
   }
   #contactList i {
     margin-top: 2%;
   }
+  .container2{
+    background-color:white;
+  }
 }
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-@import url("https://kit.fontawesome.com/a076d05399.js");
+
 </style>
