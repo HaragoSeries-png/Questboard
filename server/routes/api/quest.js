@@ -114,7 +114,6 @@ router.put('/accept', passport.authenticate('pass', {
 })
 
 
-
 router.put('/select', function (req, res) {
   let questid = req.body.quest_id
   let contid = req.body.user_id

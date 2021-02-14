@@ -1,7 +1,7 @@
 const express = require('express');
 const mongodb = require('mongodb'),
   passport = require('passport');
-  
+  fs = require('fs')
 const Quest = require('../../models/quest.model');
 const User = require('../../models/user.model');
 const router = express.Router();
@@ -15,6 +15,10 @@ router.put('/decide', function (req, res) {
       }
       else {
         quest.status = 'reject'
+        fs.unlinkSync('server/public/'+ quest.image)
+        Quest.findByIdAndDelete(questid).then(quest => {
+          res.send(quest)
+        })
       }
       quest.save()
       console.log(quest.status)
