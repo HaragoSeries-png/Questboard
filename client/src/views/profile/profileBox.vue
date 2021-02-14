@@ -4,35 +4,41 @@
       <div style="padding: 16px;">
         <v-hover v-slot="{ hover }" v-if="editable">
           <v-img
+            style="margin-top:3%;"
+            
+            full-width
             width="400"
             height="300"
             :src="profilePic"
             @click="uploadimg"
-            style="display:flex;"
           >
             <div class="align-self-center">
-             
               <v-btn
+             
                 :class="{ 'show-btns': hover }"
-                id="onDefault"
+                class="rounded-0"
+                icon
+                style="height:300px;color:white;"
+                color="transparent"
+                x-large
+                width="400"
+                
+               
               >
-                <div id="ggf">
-                  {{ texthover }}
-                </div>
                 <v-icon>
                   mdi-upload
                 </v-icon>
+                <div id="ggf">
+                  {{ texthover }}
+                </div>
+              
               </v-btn>
-             
             </div>
-
-
-            
           </v-img>
         </v-hover>
         <v-img
           v-else
-      
+         class="rounded-0"
           :aspect-ratio="1 / 1"
           max-width="250"
           :src="profilePic"
@@ -50,10 +56,11 @@
         </div>
 
         <div style="margin-top:5%;" v-if="files">
-          <v-btn :class="{ 'show-btns': hover }" @click="sendim">Save</v-btn>
+          <v-btn :class="{ 'show-btns': hover }" @click="sendim" style="background-color:#00c853" ><span style="color:white;">Save</span></v-btn>
           &nbsp;
-          <v-btn :class="{ 'show-btns': hover }" style="margin-left:2%"
-            >Cancel</v-btn
+          <v-btn :class="{ 'show-btns': hover }" @click="cancleim" style="margin-left:2%;background-color:#ff3d00;"
+            >
+               <span style="color:white;">Cancel</span></v-btn
           >
         </div>
       </div>
@@ -86,7 +93,6 @@ export default {
       if (this.files) {
         let formData = new FormData();
         formData.append("image", this.files);
-
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
@@ -112,6 +118,9 @@ export default {
         );
       }
     },
+    cancleim : async function(){
+        this.$router.go()
+    }
   },
   data() {
     return {
@@ -156,12 +165,6 @@ body {
 #ggf {
   font-family: "Xanh Mono", monospace;
   font-size: 15px;
-}
-#onDefault{
-  visibility: hidden;
-}
-#onDefault:hover{
-  visibility: visible;
 }
 @import url(https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap);
 </style>

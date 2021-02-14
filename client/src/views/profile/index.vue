@@ -382,7 +382,7 @@ a {
 
 .container2 {
   width: 50%;
-  height: auto;
+  height: 85px;
   padding: 1%;
   padding:16px;
   background-color:#ececec; 
