@@ -11,11 +11,18 @@ router.put('/decide', function (req, res) {
     Quest.findById(questid).then(quest => {
       console.log(quest)
       if (req.body.approve) {
-        quest.status = 'approved'
+        quest.status = 'waiting'
+        quest.rate = req.body.rate
       }
       else {
         quest.status = 'reject'
-        fs.unlinkSync('server/public/'+ quest.image)
+        try{
+          fs.unlinkSync('server/public/'+ quest.image)
+        }
+        catch{
+          
+        }
+        
         Quest.findByIdAndDelete(questid).then(quest => {
           res.send(quest)
         })
