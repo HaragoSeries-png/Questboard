@@ -56,7 +56,7 @@ Beware
 + 01-Feb-21 : 22.21 : ดู Quest Detail ได้เเล้ว (/quest/id/-id ของเควสนั้น-)
 + 05-Feb-21 : 01.17 : เชื่อม MyQuest ไป QuestDetail
 + 11-Feb-21 : 22.00 : Questfeed function completed(เหลือแก้ style css)
-
++ 15-Feb-21 : 15.48 : Questfeed responsive improve
 # Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {
