@@ -15,7 +15,7 @@
             <li>
               <div 
                 id='approve'
-                @click="reject()"
+                @click="rate()"
                 v-bind="attrs"
                 v-on="on"
                 >approve
@@ -23,7 +23,7 @@
             <li>
               <div 
                 id='reject'
-                @click="rate()"
+                @click="reject()"
                 >reject
               </div></li>
         </ul>
@@ -69,16 +69,15 @@ import adminService from '../../service/adminService'
 export default {
     props:['name','qstatus','qid'],
     methods:{
-        al(status){
-           this.status = status              
-        },
+        
         reject(){
           adminService.decide(this.qid,false,this.rating)  
           this.$emit("reload")  
         },
         rate(){
+          this.status = true 
           this.dialog = false
-          adminService.decide(this.qid,status,this.rating)  
+          adminService.decide(this.qid,this.status,this.rating)  
           this.$emit("reload")  
         }
     },
