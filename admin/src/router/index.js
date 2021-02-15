@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Admin_approve.vue'
 import seeQuest from '../views/seeQuest.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
     component: Home
   },
   { path : '/quest/id/:id',component : seeQuest},
+
   {
     path: '/about',
     name: 'About',

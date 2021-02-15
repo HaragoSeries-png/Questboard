@@ -103,7 +103,7 @@
         </v-row>
       </v-card>
     </div>
-
+ 
     <div id="mobi-screen">
       <v-select
         :items="items"
@@ -143,7 +143,7 @@ export default {
   name: "My Work",
   components: { QuestTable },
   methods: {
-    senddata(value) {
+    senddata(value) {     
       this.search = value;
     },
   },
