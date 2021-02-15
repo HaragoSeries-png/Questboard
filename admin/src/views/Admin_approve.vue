@@ -37,12 +37,12 @@
             
               <questbox v-for='quest in quests' :key="quest._id" 
                 :name='quest.questname' 
-                :status="quest.status"
                 :qid="quest._id"
-                @allee="allee"
-                >                
+                @reload="allee"
+                >       
+                
               </questbox>
-         
+             
           </ul>
          
           <v-col cols="12" md="6" class="section2">
@@ -85,8 +85,8 @@ export default {
       console.log(re.quests)
       this.quests = re.quests
     },
-    allee(t){
-      alert("workk "+t)
+    async allee(){
+      await this.getpending();
     }
   }
   

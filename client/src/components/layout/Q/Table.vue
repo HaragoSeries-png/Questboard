@@ -52,7 +52,7 @@ export default {
     },
     getColor(value) {
       if (value == "waiting") return "green";
-      else if (value == "approved") return "blue";
+      else if (value == "in progress") return "blue";
       else if (value == "pending") return "orange";
       else return "grey";
     },

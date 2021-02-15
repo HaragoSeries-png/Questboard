@@ -3,11 +3,63 @@
     <div>
         name:{{this.name}}
     </div>
-    <div>
-        status:{{this.status}}
-    </div>
-    <div id='approve' @click="al(true)">approve</div>
-    <div id='reject' @click="al(false)">reject</div>
+    
+   
+     <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="290"
+    >
+      <template v-slot:activator="{ on, attrs }">
+         <ul>
+            <li>
+              <div 
+                id='approve'
+                @click="reject()"
+                v-bind="attrs"
+                v-on="on"
+                >approve
+              </div></li>
+            <li>
+              <div 
+                id='reject'
+                @click="rate()"
+                >reject
+              </div></li>
+        </ul>
+      </template>
+      <v-card>
+        <v-card-title class="headline">
+          Use Google's location service?
+        </v-card-title>
+        <v-card-text><v-rating
+          v-model="rating"
+          background-color="pink lighten-3"
+          color="pink"
+          large
+          half-increments
+        ></v-rating>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="rate()"
+          >
+            confirm
+          </v-btn>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            cancle
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    
 </div>
     
 </template>
@@ -15,25 +67,54 @@
 <script>
 import adminService from '../../service/adminService'
 export default {
-    props:['name','status','qid'],
+    props:['name','qstatus','qid'],
     methods:{
         al(status){
-            adminService.decide(this.qid,status)   
-            this.$emit("allee",this.qid)         
+           this.status = status              
+        },
+        reject(){
+          adminService.decide(this.qid,false,this.rating)  
+          this.$emit("reload")  
+        },
+        rate(){
+          this.dialog = false
+          adminService.decide(this.qid,status,this.rating)  
+          this.$emit("reload")  
         }
+    },
+    data(){
+      return{
+        dialog: false,
+        rating:0,
+        status:false
+      }
     }
+       
+    
 }
 </script>
 
 <style>
+body{
+    font-size: 30px;
+}
 #box{
     background-color:#bfddff ;
     margin-top: 10px;
+    padding: 20px;
+    border-radius:7px ;
 }
 #approve{
+   border-radius:7px ; 
    background-color:#61fd95 ; 
 }
 #reject{
+    margin-top: 3px;
+   border-radius:7px ;
    background-color:#fd9f61 ;  
+}
+li{
+    list-style: none;
+    
 }
 </style>

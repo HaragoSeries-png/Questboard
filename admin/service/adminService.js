@@ -12,8 +12,8 @@ class adminService{
         let a = await axios.get(url + "/questid/" + value).then(res => { return res.data })
         return { suc: a.success, quest: a.quest }
     }
-    static async decide(qid,status){
-        await axios.put(url+'/decide',{quest_id:qid,approve:status})
+    static async decide(qid,status,r){
+        await axios.put(url+'/decide',{quest_id:qid,approve:status,rate:r})
     }
 }
 export default adminService

@@ -45,7 +45,7 @@ router.get('/feed', function (req, res) {
   let page = Math.max(0, req.query.page)
   let perPage = 20
   console.log("quest feed")
-  Quest.find({ status: "approved" })
+  Quest.find({ status: "waiting" })
   .limit(perPage)
   .skip(perPage*page)
   .sort({rdate:-1})
@@ -112,7 +112,6 @@ router.put('/accept', passport.authenticate('pass', {
     return res.send(quest)
   })
 })
-
 
 
 router.put('/select', function (req, res) {
