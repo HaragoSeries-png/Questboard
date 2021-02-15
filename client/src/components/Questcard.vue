@@ -1,6 +1,4 @@
 <template>
-    
-
         <div class="card" style="max-width:300px, max-height:500px">
             <v-img
              :src='Image'
@@ -18,7 +16,7 @@
                     {{Reward}}
                 </div>
             <div>
-                <a to="'/quest/id/'+this.Qid" class="more">View More</a>
+                <a :href='Qid' class="more">View More</a>
             </div>
         </div>
         </div>
@@ -35,14 +33,22 @@ export default {
     },
     methods: {
      collapse(Detail) {
-       console.log("in"+this.Name)
+       console.log("in"+this.Detail)
                 //let l = await Detail.replace(/(^\s+|\s+$)/g, "")
                 if (Detail.length > 20) {
                     Detail = Detail.substring(0, 17) + '...';
                 }
                 this.Detail = Detail
+        console.log("out"+this.Detail)
+            },
+      collapsehead(Name) {
+        console.log("in"+this.Name)
+                if (Name.length > 15) {
+                    Name = Name.substring(0, 12) + '...';
+                }
+                this.Name = Name
         console.log("out"+this.Name)
-            }
+      }
         
     },
     created(){
@@ -50,7 +56,9 @@ export default {
         if (this.Image != "default.png")
           this.Image = this.$store.state.gurl + this.Image;
         console.log(this.Image)
-    }
+        this.Qid = 'quest/id/'+this.Qid
+    },
+
 }
 
 </script>

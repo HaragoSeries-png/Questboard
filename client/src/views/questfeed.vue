@@ -1,5 +1,19 @@
 <template>
-  <div>
+    <div >
+    <div>
+    <select class="category-drop" aria-placeholder="Select category">
+    
+    <option>Handicraft</option>
+    <option>Advice</option>
+    <option>Education</option>
+    <option>Accident</option>
+    <option>Housework</option>
+    <option>Find friends</option>
+    <option>Food and home economics</option>
+    <option>Traffic</option>
+  </select>
+    </div>
+    
     <div class="category">
       <a href="./">Handicraft</a>
       <a href="./">Advice</a>
@@ -10,9 +24,9 @@
       <a href="./">Food and home economics</a>
       <a href="./">Traffic</a>
     </div>
-
-    <ul class = "Questcards">
-      <li v-for="(item, index) in quests" :key="index" style="list-style:none">
+    
+    <v-row style="border:1px solid black; margin-left: 5%; margin-right: 5%;">
+      <v-col cols = '12' md = '3' style="border:1px solid red" v-for="(item, index) in quests" :key="index">
         <Questcard
           :Name="item.questname"
           :Detail="item.questdetail"
@@ -21,8 +35,10 @@
           :Qid='item._id'
         >
         </Questcard>
-      </li>
-    </ul>
+      </v-col>
+      <div style="display:none">
+      </div>
+    </v-row>
     <div class="page">
       <div class="bar">
         <a href="#" class="button">«</a>
@@ -61,13 +77,6 @@ export default {
   created: async function() {
     await this.getquest();
   },
-  // detail: async function(Detail) {
-  //               if (Detail.length > 20) {
-  //                   Detail = Detail.substring(0, 17) + 'abc';
-  //               }
-  //               return Detail
-  //           }
-  
 };
 </script>
 
@@ -76,11 +85,22 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+.category-drop{
+  display: none;
+  margin: 5px;
+  color: #072448;
+  background: #f8aa4b;
+  padding: 15px;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-shadow: 0 2px 5px #54d2d2;
+}
+
 .Questcards {
-  margin: 0 auto;
+  margin: 0px auto;
   max-width: 1300px;
   display: grid;
-  grid-template-columns: repeat(4, 2fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   font-family: sans-serif;
 }
@@ -128,6 +148,7 @@ body {
   text-align: center;
 }
 .category a {
+  margin: 5px;
   color: #072448;
   background: #f8aa4b;
   padding: 15px;
@@ -160,16 +181,57 @@ body {
   text-decoration: underline;
 }
 @media screen and (max-width: 768px) {
+  .category{
+    display: none;
+  }
+  .category-drop{
+  display: block;
+  visibility: visible;
+  width: 80%;
+  margin: 50px;
+  color: #072448;
+  background: #f8aa4b;
+  padding: 20px;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-shadow: 0 2px 5px #54d2d2;
+}
   .category a {
     font-size: 10px;
     padding: 10px;
     white-space: nowrap;
   }
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
+  .Questcards {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: auto;
+    align-content: center;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 @media screen and (max-width: 1024px) {
+  .Questcards {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: auto;
+    /* max-width: 300px; */
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .category{
+    display: none;
+  }
+  .category-drop{
+  display: block;
+  visibility: visible;
+  width: 80%;
+  margin: 50px;
+  color: #072448;
+  background: #f8aa4b;
+  padding: 20px;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-shadow: 0 2px 5px #54d2d2;
+}
   .category a {
     font-size: 10px;
     padding: 10px;
