@@ -20,10 +20,26 @@
               Introduce
             </h4>
             <div
-              style="color: gray; width: auto; height: 60px; display: block; overflow-x: auto; font-size: 14px;"
+              style="color: gray; width: auto; min-height: 60px; display: block; font-size: 14px;"
             >
-              -- No Introduce Given --
-              <br /><a @click="testedit()">Edit</a>
+              <div id="informationField" v-if="!introBox">
+                {{ introNullCheck(profileInfo) }}
+              </div>
+
+              <v-text-field
+                v-if="introBox"
+                v-model="profileInfoEdit"
+                autocomplete="off"
+                counter
+                maxlength="120"
+              ></v-text-field>
+              <div v-if="introBox" style="float: right;">
+                <a @click="sendInformation()">Save</a>
+                &nbsp;
+                <a @click="introEdit(false)">Cancel</a>
+              </div>
+
+              <br /><a v-if="!introBox" @click="introEdit(true)">Edit</a>
             </div>
           </div>
 
@@ -55,75 +71,65 @@
               <a style="float: right;">Edit</a>
             </h4>
             <div id="contactList">
-              
-           <div class="container2">
-              <div>
-                <img
-                  src="http://ecx.images-amazon.com/images/I/21-leKb-zsL._SL500_AA300_.png"
-                  class="iconDetails"
-                />
-              </div>
-              <div style="margin-left:60px;">
-                <h4>Facebook</h4>
-                <div style="font-size:13px;">
-                  Junior Jiraphat
+              <div class="container2">
+                <div>
+                  <img
+                    src="http://ecx.images-amazon.com/images/I/21-leKb-zsL._SL500_AA300_.png"
+                    class="iconDetails"
+                  />
+                </div>
+                <div style="margin-left:60px;">
+                  <h4>Facebook</h4>
+                  <div style="font-size:13px;">
+                    Junior Jiraphat
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="container2">
-              <div>
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/600px-LINE_logo.svg.png"
-                  class="iconDetails"
-                />
-              </div>
-              <div style="margin-left:60px;">
-                <h4>Line</h4>
-                <div style="font-size:13px;">
-                  junearza1143
+              <div class="container2">
+                <div>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/600px-LINE_logo.svg.png"
+                    class="iconDetails"
+                  />
+                </div>
+                <div style="margin-left:60px;">
+                  <h4>Line</h4>
+                  <div style="font-size:13px;">
+                    junearza1143
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="container2">
-              <div>
-                <img
-                  src="https://smallroomstudio.com/wp-content/uploads/2019/10/call-icon.png"
-                  class="iconDetails"
-                />
-              </div>
-              <div style="margin-left:60px;">
-                <h4>Call</h4>
-                <div style="font-size:13px;">
-                094-727-4455
+              <div class="container2">
+                <div>
+                  <img
+                    src="https://smallroomstudio.com/wp-content/uploads/2019/10/call-icon.png"
+                    class="iconDetails"
+                  />
+                </div>
+                <div style="margin-left:60px;">
+                  <h4>Call</h4>
+                  <div style="font-size:13px;">
+                    094-727-4455
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="container2">
-              <div>
-                <img
-                  src="https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png"
-                  class="iconDetails"
-                />
-              </div>
-              <div style="margin-left:60px;">
-                <h4>Email</h4>
-                <div style="font-size:13px;">
+              <div class="container2">
+                <div>
+                  <img
+                    src="https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png"
+                    class="iconDetails"
+                  />
+                </div>
+                <div style="margin-left:60px;">
+                  <h4>Email</h4>
+                  <div style="font-size:13px;">
                     Jiraphat-saeheng@hotmail.com
+                  </div>
                 </div>
               </div>
             </div>
-          
-
-            </div>
-
-
-
-
-
-
-
           </div>
         </div>
       </v-col>
@@ -289,18 +295,39 @@ export default {
 
       this.profile = re.user;
     },
+    sendInformation: async function() {
+      if (this.profileInfoEdit) {
+        let formData = {};
+
+        formData.intro = this.profileInfoEdit;
+
+        let suc = await profileService.editprofile(formData).then((res) => {
+          return res;
+        });
+
+        if (suc) {
+          this.profileInfo = this.profileInfoEdit;
+          this.introEdit(false)
+        }
+      }
+    },
     editable() {
       return this.$route.params.id == this.$store.getters.getuserid;
     },
     add() {
       this.$store.dispatch("set");
     },
-    testedit() {
-      console.log("testing");
-    },
     remove(item) {
       this.chips.splice(this.chips.indexOf(item), 1);
       this.chips = [...this.chips];
+    },
+    introEdit(value) {
+      this.profileInfoEdit = this.profileInfo;
+      this.introBox = value;
+    },
+    introNullCheck(value) {
+      if (value == "") return "-- No Introduce Given --";
+      else return value;
     },
   },
   created: async function() {
@@ -316,9 +343,11 @@ export default {
       this.profileEducation = this.profile.infoma.education;
     if (this.profile.infoma.exp)
       this.profileExperience = this.profile.infoma.exp;
-    if (this.profile.infoma.desc) this.profileInfo = this.profile.infoma.desc;
     if (this.profile.infoma.contact)
       this.profileContact = this.profile.infoma.contact;
+
+    if (this.profile.infoma.introduce)
+      this.profileInfo = this.profile.infoma.introduce;
 
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;
@@ -335,8 +364,8 @@ export default {
       profilePic: "",
       profileRate: 0,
 
-      profileInfo: [],
-      profileInfoKey: ["topic", "desc"],
+      profileInfo: "",
+      profileInfoEdit: "",
       profileSkill: [],
       profileSkillKey: ["skill"],
       profileEducation: [],
@@ -347,16 +376,19 @@ export default {
       profileContactKey: ["con", "val"],
 
       dialog: false,
+
+      introBox: false,
     };
   },
 };
 </script>
 
-<style scoped>
+<style>
 @import "../../styles/profile.css";
 
 a {
   font-size: 14px;
+  font-weight: bold;
 }
 
 .contactTitle {
@@ -371,7 +403,6 @@ a {
   justify-content: space-around;
   margin-top: 20px;
   margin-left: -1.5%;
- 
 }
 .iconDetails {
   margin-left: 2%;
@@ -384,31 +415,28 @@ a {
   width: 50%;
   height: 85px;
   padding: 1%;
-  padding:16px;
-  background-color:#ececec; 
-  border:5px solid white;
-  border-radius:13px;
+  padding: 16px;
+  background-color: #ececec;
+  border: 5px solid white;
+  border-radius: 13px;
 }
 
 h4 {
   margin: 0px;
 }
 
-
 @media screen and (max-width: 956px) {
   #contactList {
     flex-direction: column;
     margin-left: -3.5%;
-    
   }
   #contactList i {
     margin-top: 2%;
   }
-  .container2{
-    background-color:white;
+  .container2 {
+    background-color: white;
   }
 }
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-
 </style>

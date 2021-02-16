@@ -13,7 +13,7 @@ let UserSchema = new mongoose.Schema({
         lastname: String,
         address: String,
         rating: Number,
-        desc: String,
+        introduce: String,
         proimage: String,
         desc: [{
             topic: String,
