@@ -21,7 +21,7 @@
                  <v-spacer></v-spacer>
               <v-rating
                 v-model="rating"
-                background-color="white"
+                background-color="red"
                 color="yellow accent-4"
                 dense
                 half-increments
@@ -76,11 +76,11 @@
             <v-card-actions class="pa-4">
               Date
               <v-spacer></v-spacer>
-              <span style="font-size:18px;"> {{ quest.date }}</span>
+              <span style="font-size:14px;"> {{ quest.date }}</span>
               <v-spacer></v-spacer>
-              <span style="font-size:18px;">{{ quest.tstart }} </span>
+              <span style="font-size:14px;">{{ quest.tstart }} </span>
               <v-spacer></v-spacer>
-              <span style="font-size:18px;">{{ quest.tend }} </span>
+              <span style="font-size:14px;">{{ quest.tend }} </span>
             </v-card-actions>
             <div class="pa-4" style="margin-top:-1%;">
               <div>
@@ -88,8 +88,8 @@
               </div>
 
               <v-card width="650" height="100" style="margin-top:5%;overflow-x:auto;padding:16px;">
-                <p style="font-size:18px;text-indent:90px; ">
-                  {{ quest.questdetail }}
+                <p style="font-size:14px;text-indent:20px; ">
+                  {{ quest.questdetail }} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit unde voluptates quam id hic explicabo mollitia laboriosam quod dicta, inventore sapiente, ipsam quia ratione exercitationem necessitatibus, iste voluptatibus aliquam totam!
                 </p>
               </v-card>
             </div>
