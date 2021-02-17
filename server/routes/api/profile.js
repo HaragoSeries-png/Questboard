@@ -42,7 +42,7 @@ router.get('/id/:id', passport.authenticate('pass', {
     });
 });
 
-router.put('/', passport.authenticate('pass', {
+router.put('/editPro', passport.authenticate('pass', {
     session: false
 }), (req, res) => {
     // let newdata = req.body
@@ -58,6 +58,7 @@ router.put('/', passport.authenticate('pass', {
         if (keys[v] == 'desc') req.user.infoma.desc = data.desc
         if (keys[v] == 'education') req.user.infoma.education = data.education
         if (keys[v] == 'contact') req.user.infoma.contact = data.contact
+        if (keys[v] == 'intro') req.user.infoma.introduce = data.intro
     }
     
     req.user.save()

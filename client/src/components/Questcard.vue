@@ -1,27 +1,33 @@
 <template>
-    
-
-        <div class="card" style="max-width:300px, max-height:500px">
+        <v-card class="card" style="width:300px, height:500px">
             <v-img
              :src='Image'
-             max-width="300" 
-             :aspect-ratio=16/9
+             full-width
+             :aspect-ratio="16/9"
              class="card__img"></v-img>
-            <div class="card__content">
-                <h2>{{Name}}</h2>
-                <p>{{Detail}}</p>
-                
-                
-            </div>
+
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title><span style="font-size: 20px; font-weight:bold;">{{Name}}</span></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+            <v-list-item three-line style="margin-top: -10%;">
+             <v-list-item-content>     
+                <v-list-item-subtitle style="font-size: 13px;">{{Detail}}</v-list-item-subtitle>
+            </v-list-item-content>
+            </v-list-item>
+            
             <div class="card__info">
                 <div>
                     {{Reward}}
                 </div>
+            
             <div>
-                <a to="'/quest/id/'+this.Qid" class="more">View More</a>
+                <a :href='Qid' class="more">View More</a>
             </div>
         </div>
-        </div>
+        
+        </v-card>
  
 </template>
 <script>
@@ -35,14 +41,11 @@ export default {
     },
     methods: {
      collapse(Detail) {
-       console.log("in"+this.Name)
-                //let l = await Detail.replace(/(^\s+|\s+$)/g, "")
-                if (Detail.length > 20) {
-                    Detail = Detail.substring(0, 17) + '...';
-                }
+       console.log("in"+this.Detail)
                 this.Detail = Detail
-        console.log("out"+this.Name)
-            }
+        console.log("out"+this.Detail)
+            },
+      
         
     },
     created(){
@@ -50,7 +53,9 @@ export default {
         if (this.Image != "default.png")
           this.Image = this.$store.state.gurl + this.Image;
         console.log(this.Image)
-    }
+        this.Qid = 'quest/id/'+this.Qid
+    },
+
 }
 
 </script>
@@ -59,11 +64,28 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+.category-drop{
+  display: none;
+  margin: 5px;
+  color: #072448;
+  background: #f8aa4b;
+  padding: 15px;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-shadow: 0 2px 5px #54d2d2;
+}
 
+.Questcards {
+  margin: 0px auto;
+  width: 1000px;
+  height: 1000px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  font-family: sans-serif;
+}
 .card {
   box-shadow: 0 0 5px rgb(0, 0, 0);
-  width:300px;
-  
 }
 .card__img {
   width: 100%;
@@ -80,6 +102,8 @@ body {
 }
 .card__content > p:first-of-type {
   margin-top: 0;
+
+
 }
 .card__content > h2:last-of-type {
   margin-bottom: 0;
@@ -106,6 +130,7 @@ body {
   text-align: center;
 }
 .category a {
+  margin: 5px;
   color: #072448;
   background: #f8aa4b;
   padding: 15px;
@@ -138,16 +163,59 @@ body {
   text-decoration: underline;
 }
 @media screen and (max-width: 768px) {
+  .category{
+    display: none;
+  }
+  .category-drop{
+  display: block;
+  visibility: visible;
+  width: 100%;
+  margin: 0px;
+  color: #072448;
+  background: #f8aa4b;
+  padding: 30px;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-shadow: 0 2px 5px #54d2d2;
+}
   .category a {
     font-size: 10px;
     padding: 10px;
     white-space: nowrap;
   }
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
+  .Questcards {
+    max-width: 300px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: auto;
+    align-content: center;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 @media screen and (max-width: 1024px) {
+  .Questcards {
+    max-width: 450px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: auto;
+    /* max-width: 300px; */
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .category{
+    display: none;
+  }
+  .category-drop{
+  display: block;
+  visibility: visible;
+  width: 80%;
+  margin: 50px;
+  color: #072448;
+  background: #f8aa4b;
+  padding: 20px;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-shadow: 0 2px 5px #54d2d2;
+}
   .category a {
     font-size: 10px;
     padding: 10px;
