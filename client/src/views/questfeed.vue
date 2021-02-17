@@ -25,12 +25,12 @@
       <a href="./">Traffic</a>
     </div>
     
-    <v-row style="border:1px solid black; margin-left: 5%; margin-right: 5%;">
-      <v-col cols = '12' md = '3' style="border:1px solid red" v-for="(item, index) in quests" :key="index">
+    <v-row style=" margin-left: 5%; margin-right: 5%;">
+      <v-col cols = '12' md = '3'  v-for="(item, index) in quests" :key="index">
         <Questcard
           :Name="item.questname"
           :Detail="item.questdetail"
-          :Reward="item.questreward"
+          :Reward="item.reward"
           :Image="item.image"
           :Qid='item._id'
         >

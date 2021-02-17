@@ -58,6 +58,7 @@ Beware
 + 11-Feb-21 : 22.00 : Questfeed function completed(เหลือแก้ style css)
 + 15-Feb-21 : 15.48 : Questfeed responsive improve
 + 17-Feb-21 : 20:53 : Questfeed responsive #2 (optimized code) 
++ 17-Feb-21 : 23.14 : Questfeed responsive #3 (re-arrange card)
 # Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {

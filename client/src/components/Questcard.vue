@@ -1,25 +1,33 @@
 <template>
-        <div class="card" style="max-width:300px, max-height:500px">
+        <v-card class="card" style="width:300px, height:500px">
             <v-img
              :src='Image'
-             max-width="300" 
-             :aspect-ratio=16/9
+             full-width
+             :aspect-ratio="16/9"
              class="card__img"></v-img>
-            <div class="card__content">
-                <h2>{{Name}}</h2>
-                <p>{{Detail}}</p>
-                
-                
-            </div>
+
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title><span style="font-size: 20px; font-weight:bold;">{{Name}}</span></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+            <v-list-item three-line style="margin-top: -10%;">
+             <v-list-item-content>     
+                <v-list-item-subtitle style="font-size: 13px;">{{Detail}}</v-list-item-subtitle>
+            </v-list-item-content>
+            </v-list-item>
+            
             <div class="card__info">
                 <div>
                     {{Reward}}
                 </div>
+            
             <div>
                 <a :href='Qid' class="more">View More</a>
             </div>
         </div>
-        </div>
+        
+        </v-card>
  
 </template>
 <script>
@@ -34,21 +42,10 @@ export default {
     methods: {
      collapse(Detail) {
        console.log("in"+this.Detail)
-                //let l = await Detail.replace(/(^\s+|\s+$)/g, "")
-                if (Detail.length > 20) {
-                    Detail = Detail.substring(0, 17) + '...';
-                }
                 this.Detail = Detail
         console.log("out"+this.Detail)
             },
-      collapsehead(Name) {
-        console.log("in"+this.Name)
-                if (Name.length > 15) {
-                    Name = Name.substring(0, 12) + '...';
-                }
-                this.Name = Name
-        console.log("out"+this.Name)
-      }
+      
         
     },
     created(){
@@ -80,7 +77,8 @@ body {
 
 .Questcards {
   margin: 0px auto;
-  max-width: 1000px;
+  width: 1000px;
+  height: 1000px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
@@ -104,6 +102,8 @@ body {
 }
 .card__content > p:first-of-type {
   margin-top: 0;
+
+
 }
 .card__content > h2:last-of-type {
   margin-bottom: 0;
