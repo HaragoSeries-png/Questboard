@@ -7,24 +7,54 @@
           append-icon="mdi-magnify"
           label="Search"
           single-line
-          hide-details
+          
         ></v-text-field>
       </v-card-title>
-      <v-data-table :headers="headers" :items="questdata" :search="search">
-        <template v-slot:item="{ item }">
-          <tr @click="sentToDetail(item._id)">
-            <td class="item">{{ item.questname }}</td>
+      <v-data-table :headers="headers" :items="questdata" :search="search" class="onDesk">
+        <template #item="{ item }">
+         
+          <tr @click="sentToDetail(item._id)" >
+            <td class="item" style="font-size:15px;">{{ item.questname }}</td>
+            <td class="item" style="text-transform: uppercase;font-size:15px;">
+              <v-chip :color="getColor(item.status)" dark>
+                {{ item.status }}
+              </v-chip>
+            </td>
+            <td class="item" style="font-size:15px;">{{ item.category }}</td>
+            <td class="item" style="font-size:15px;">{{ item.tend }}</td>
+          </tr>
+        </template>
+      </v-data-table>
+
+        <v-data-table :headers="headers" :items="questdata" :search="search" class="onMobile">
+        <template #item="{ item }">
+      
+          <tr @click="sentToDetail(item._id)" style="padding:20px;" >
+            <td class="item" style="font-size:20px;" >{{ item.questname }}</td>
             <td class="item" style="text-transform: uppercase;">
               <v-chip :color="getColor(item.status)" dark>
                 {{ item.status }}
               </v-chip>
             </td>
-            <td class="item">{{ item.helperID }}</td>
-            <td class="item">{{ item.tend }}</td>
+           
+            <td id="itemspecial" style="text-align:end;font-size:20px;">{{ item.category }}</td>
+            <td id="itemspecial" style="text-align:center;">{{ item.tend }}</td>
           </tr>
+         
         </template>
       </v-data-table>
+
+ 
+
+
+
+
+
+
+
+
     </v-card>
+    
   </div>
 </template>
 
@@ -65,36 +95,44 @@ export default {
       questdata: [],
       selected: [],
       headers: [
-        { text: "Quest Name", value: "questname", align: "start" },
+        { text: "Quest Name", value: "questname", align: "start" ,size:"30px" },
         {
           text: "Status",
           value: "status",
           align: "start",
         },
-        { text: "By", value: "helperID", align: "start" },
+        { text: "Category", value: "category", align: "start" },
         {
           text: "Time",
           value: "tend",
           align: "start",
         },
       ],
-      information: [
-        {
-          _id: "12345",
-          questname: "q_test1",
-          status: "sompong",
-          helperID: "1/2/2012",
-          tend: "in progress",
-        },
-      ],
+      
     };
   },
 };
 </script>
 
 <style scoped>
-.item {
-  font-size: 20px;
-  font-weight: bold;
+
+.onDesk{
+  
+}
+.onMobile{
+  display: none;
+ 
+}
+@media screen and (max-width:600px) {
+  .onDesk{
+    display:none;
+  }
+  .onMobile{
+    display: block;
+  }
+  #itemspecial{
+    display: none;
+  }
+  
 }
 </style>
