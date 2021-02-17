@@ -26,13 +26,14 @@
     </div>
     
     <v-row style=" margin-left: 5%; margin-right: 5%;">
-      <v-col cols = '12' md = '3'  v-for="(item, index) in quests" :key="index">
+      <v-col cols = '12' md = '3' style="padding-bottom: 2%;"  v-for="(item, index) in quests" :key="index">
         <Questcard
           :Name="item.questname"
           :Detail="item.questdetail"
           :Reward="item.reward"
           :Image="item.image"
           :Qid='item._id'
+          :date='item.duedate'
         >
         </Questcard>
       </v-col>
