@@ -19,10 +19,12 @@ let UserSchema = new mongoose.Schema({
             topic: String,
             desc: String
         }],
-        contact: [{
-            con: String,
-            val: String
-        }],
+        contact: {
+            facebook: String,
+            line: String,
+            call: String,
+            email: String
+        },
         skill: [{
             skill: String
         }],
