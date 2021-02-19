@@ -1,5 +1,5 @@
 <template>
-  <div style="margin:16px;">
+  <div id="profile" style="margin: 16px;">
     <v-row>
       <v-col cols="12" md="4">
         <!-- Picture -->
@@ -68,67 +68,26 @@
           <div id="profileContact" style="padding-top: 1%;">
             <h4 style="font-weight: bold">
               Contact
-              <a style="float: right;">Edit</a>
+              <v-dialog v-model="contactEditBox" v-if="editable()" width="500">
+                <template v-slot:activator="{ on }">
+                  <a v-on="on" style="float: right;">Edit</a>
+                </template>
+                <ProfileFromContact
+                  infoName="Contact"
+                  :infoData="profileContact"
+                  :infoKey="profileContactKey"
+                  infoIndex="0"
+                  @sentUpdateObject="sendContact"
+                  @requestClose="contactEditBox = !contactEditBox"
+                />
+              </v-dialog>
             </h4>
+
             <div id="contactList">
-              <div class="container2">
-                <div>
-                  <img
-                    src="http://ecx.images-amazon.com/images/I/21-leKb-zsL._SL500_AA300_.png"
-                    class="iconDetails"
-                  />
-                </div>
-                <div style="margin-left:60px;">
-                  <h4>Facebook</h4>
-                  <div style="font-size:13px;">
-                    Junior Jiraphat
-                  </div>
-                </div>
-              </div>
-
-              <div class="container2">
-                <div>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/600px-LINE_logo.svg.png"
-                    class="iconDetails"
-                  />
-                </div>
-                <div style="margin-left:60px;">
-                  <h4>Line</h4>
-                  <div style="font-size:13px;">
-                    junearza1143
-                  </div>
-                </div>
-              </div>
-
-              <div class="container2">
-                <div>
-                  <img
-                    src="https://smallroomstudio.com/wp-content/uploads/2019/10/call-icon.png"
-                    class="iconDetails"
-                  />
-                </div>
-                <div style="margin-left:60px;">
-                  <h4>Call</h4>
-                  <div style="font-size:13px;">
-                    094-727-4455
-                  </div>
-                </div>
-              </div>
-              <div class="container2">
-                <div>
-                  <img
-                    src="https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png"
-                    class="iconDetails"
-                  />
-                </div>
-                <div style="margin-left:60px;">
-                  <h4>Email</h4>
-                  <div style="font-size:13px;">
-                    Jiraphat-saeheng@hotmail.com
-                  </div>
-                </div>
-              </div>
+              <ContactBox Title="Facebook" :Detail="profileContact.facebook" />
+              <ContactBox Title="LINE" :Detail="profileContact.line" />
+              <ContactBox Title="Call" :Detail="profileContact.call" />
+              <ContactBox Title="E-mail" :Detail="profileContact.email" />
             </div>
           </div>
         </div>
@@ -265,14 +224,20 @@
 <script>
 import profileService from "@/service/profileService";
 
+import Swal from "sweetalert2";
+
 import ProfileInfo from "./profileInfo";
 import ProfileBox from "./profileBox";
+import ProfileFromContact from "./profileFromContact"
+import ContactBox from "@/components/layout/profile/contactBox"
 
 export default {
-  name: "pf",
+  name: "Profile",
   components: {
     ProfileInfo,
     ProfileBox,
+    ProfileFromContact,
+    ContactBox
   },
   watch: {
     "$route.params.id": function() {
@@ -307,7 +272,34 @@ export default {
 
         if (suc) {
           this.profileInfo = this.profileInfoEdit;
-          this.introEdit(false)
+          this.introEdit(false);
+        }
+      }
+    },
+    sendContact: async function(value) {
+      if (this.profileContact) {
+        let formData = {};
+
+        formData.contact = value;
+        
+        let suc = await profileService.editprofile(formData).then((res) => {
+          return res;
+        });
+
+        if (suc) {
+          this.profileContact = value;
+          Swal.fire(
+            "<alert-title>Complete!</alert-title>",
+            "<alert-subtitle>Data Updated.</alert-subtitle>",
+            "success"
+          );
+        } else {
+          Swal.fire(
+            "<alert-title>Error!</alert-title>",
+            "<alert-subtitle>Something wrong.</alert-subtitle>",
+            "error"
+          );
+          this.$router.go()
         }
       }
     },
@@ -372,12 +364,13 @@ export default {
       profileEducationKey: ["branch", "date"],
       profileExperience: [],
       profileExperienceKey: ["topic", "desc", "date"],
-      profileContact: [],
-      profileContactKey: ["con", "val"],
+      profileContact: {},
+      profileContactKey: ["facebook", "line", "call", "email"],
 
       dialog: false,
 
       introBox: false,
+      contactEditBox: false,
     };
   },
 };
@@ -439,4 +432,10 @@ h4 {
 }
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+</style>
+
+<style scoped>
+h4 {
+  font-weight: bold;
+}
 </style>

@@ -109,21 +109,21 @@
               </v-col>
 
               <v-col cols="12" md="6" lg="6">
-                <div class="text-fill">
+                <div class="text-fill" style="margin-top:-1.5%;">
                   <div>
                     <div class="head123">
-                      Info.
+                      Info
                     </div>
                     <tr>
                       <span id="q1"> Quest</span>
                       <td>
                         <v-text-field
-                          style="margin-bottom:10%; "
+                          style="margin-bottom:15%; "
                           id="iq"
                           :rules="rules"
                           counter="25"
                           hint="Baby sister,Tutor "
-                          label="Quest name"
+                        
                           v-model="questname"
                         ></v-text-field>
                       </td>
@@ -136,7 +136,7 @@
                           :items="items"
                           id="ic"
                           label="Default"
-                          style="margin-bottom:3%;"
+                          style="margin-bottom:5%;"
                           dense
                           v-model="category"
                         ></v-select>
@@ -146,82 +146,16 @@
                       <span id="q1"> Reward</span>
                       <td>
                         <v-text-field
-                          style="margin-bottom:10%;"
+                          style="margin-bottom:20%;"
                           id="iq"
                           :rules="rules"
                           counter="55"
-                          label="Prize for your helper"
+                          
                           v-model="reward"
                         ></v-text-field>
                       </td>
                     </tr>
-
-                    <tr id="noob">
-                      <span id="d1">Details</span>
-                      <td>
-                        <v-textarea
-                          v-model="detail"
-                          color="teal"
-                          dense
-                          contain
-                          textarea
-                        >
-                          <template v-slot:label>
-                            <div>
-                              More information <small>(optional)</small>
-                            </div>
-                          </template>
-                        </v-textarea>
-                      </td>
-                    </tr>
-                  </div>
-                </div>
-              </v-col>
-
-              <div class="text-fill1">
-                <v-col cols="12" md="6" lg="6">
-                  <h4 id="Deadline" style="margin-bottom:15%;">
-                    Deadline
-                  </h4>
-                  <tr>
-                    <span id="Date" style="margin-top:10%;"> Date  </span>
-                    <td>
-                      <input
-                        type="date"
-                        name=""
-                        id="I_date"
-                        v-model="duedate"
-                        style="margin-bottom:15%;"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <span id="Start"> Start  </span>
-                    <td>
-                      <input
-                        type="time"
-                        name=""
-                        id="I_start"
-                        v-model="tstart"
-                        style="margin-bottom:15%; border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;  "
-                      />
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <span id="End"> End </span>
-                    <td>
-                      <input
-                        type="time"
-                        name=""
-                        id="I_end"
-                        v-model="tend"
-                        style="margin-bottom:15%;    border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
-                      />
-                    </td>
-                  </tr>
-
+                    
                   <tr id="main_Person">
                     <i class="material-icons">person</i>
                     <td>
@@ -236,19 +170,72 @@
                       <span style="margin-left:10%;">Person</span>
                     </td>
                   </tr>
-                  <center>
-                    <v-btn
+
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="6" lg="6">
+              <div class="text-fill1">
+                
+                  <h4 id="Deadline" style="margin-bottom:10%;font-weight:bold;color:black;">
+                    Deadline
+                  </h4>
+                  <tr>
+                    <span id="Date" style="margin-top:10%; font-weight:bold;color:black;"> Date  </span>
+                    <td>
+                      <input
+                        type="date"
+                        name=""
+                        id="I_date"
+                        v-model="duedate"
+                        style="margin-bottom:15%;"
+                      />
+                    </td>
+                  </tr>
+                    <tr id="noob">
+                      <span id="d1">Details</span>
+                      <td>
+                        <v-textarea
+                          v-model="detail"
+                          color="teal"
+                          dense
+                          contain
+                          textarea
+                        >
+                          <template v-slot:label>
+                           
+                          </template>
+                        </v-textarea>
+                      </td>
+                    </tr>
+                  <v-btn
+                    id="btn-mobi"
                       color="white "
                       text
-                      style="font-size:20px; background-color:#558b2f;margin-top:20%;"
+                      style="font-size:20px; background-color:#558b2f;margin-top:0%;"
                       @click="sendquest"
                     >
                       Create your quest
                     </v-btn>
-                  </center>
-                </v-col>
+   
+
               </div>
+                      </v-col>
+
             </v-row>
+            <div>
+              <center>
+                 <v-btn
+                    id="btn-desk"
+                      color="white "
+                      text
+                      style="font-size:20px; background-color:#558b2f;margin-top:-2%;"
+                      @click="sendquest"
+                    >
+                      Create your quest
+                    </v-btn>
+              </center>
+            </div>
           </v-container>
         </div>
       </v-container>
@@ -332,15 +319,15 @@ export default {
   justify-items: center;
 }
 .text-fill {
-  margin-top: 1%;
+  margin-top: -5%;
   margin-left: 5%;
 }
 .text-fill1 {
   margin-left: 5%;
-  margin-top:-3%;
+  
 }
 #noob .v-textarea {
-  width: 200px;
+  width: 400px;
 }
 
 td {
@@ -370,7 +357,7 @@ td {
 }
 #Deadline {
   font-size: 25px;
-  padding-top: 30px;
+  
   color: black;
   text-decoration: underline;
   margin-bottom: 10%;
@@ -458,23 +445,35 @@ td {
 .v-card:not(.on-hover) {
   opacity: 0;
 }
+
 #quest_img {
   cursor: pointer;
 }
 .show-btns {
   color: rgb(0, 0, 0) !important;
 }
+#btn-mobi{
+  display:none;
+}
 @media screen and (max-width:900px){
-  .text-fill1{
-    margin-top:-20%;
-  }
+ .btn-desk{
+   display:none;
+ }
+ .btn-mobi{
+   display:block;
+ }
+}
+@media screen and (max-width:600){
+  #noob .v-textarea {
+  width: 200px;
+}
+
 }
 @media screen and (max-width:320px){
   .text-fill{
     margin-left:-19%;
   }
   .text-fill1{
-    margin-top:-55%;
     margin-left:-15%;
   }
 }

@@ -11,9 +11,10 @@
                     <v-list-item-title><span style="font-size: 20px; font-weight:bold;">{{Name}}</span></v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
-            <v-list-item three-line style="margin-top: -10%;">
+            <v-list-item three-line style="margin-top: -7%;">
              <v-list-item-content>     
                 <v-list-item-subtitle style="font-size: 13px;">{{Detail}}</v-list-item-subtitle>
+                <v-list-item-subtitle style="font-size: 13px;">{{date}}</v-list-item-subtitle>
             </v-list-item-content>
             </v-list-item>
             
@@ -37,7 +38,8 @@ export default {
         Detail: String,
         Reward: String,
         Image:String,
-        Qid:String
+        Qid:String,
+        date:String
     },
     methods: {
      collapse(Detail) {
@@ -71,7 +73,6 @@ body {
   background: #f8aa4b;
   padding: 15px;
   text-decoration: none;
-  font-family: sans-serif;
   box-shadow: 0 2px 5px #54d2d2;
 }
 
@@ -81,8 +82,7 @@ body {
   height: 1000px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  font-family: sans-serif;
+  gap: 500px;
 }
 .card {
   box-shadow: 0 0 5px rgb(0, 0, 0);
