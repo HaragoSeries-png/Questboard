@@ -1,9 +1,7 @@
 <template>
 <div id="box">
-
-
     <div>
-        name:{{name}}      
+        name:{{this.name}}
     </div>
     
    
@@ -30,8 +28,6 @@
               </div></li>
         </ul>
       </template>
-
-
       <v-card>
         <v-card-title class="headline">
           Use Google's location service?
@@ -73,6 +69,7 @@ import adminService from '../../service/adminService'
 export default {
     props:['name','qstatus','qid'],
     methods:{
+        
         reject(){
           adminService.decide(this.qid,false,this.rating)  
           this.$emit("reload")  
@@ -88,8 +85,7 @@ export default {
       return{
         dialog: false,
         rating:0,
-        status:false,
-        
+        status:false
       }
     }
        
