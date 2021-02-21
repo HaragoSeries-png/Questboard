@@ -39,7 +39,9 @@
                 <a @click="introEdit(false)">Cancel</a>
               </div>
 
-              <br /><a v-if="!introBox" @click="introEdit(true)">Edit</a>
+              <br /><a v-if="!introBox && editable()" @click="introEdit(true)"
+                >Edit</a
+              >
             </div>
           </div>
 
@@ -83,11 +85,34 @@
               </v-dialog>
             </h4>
 
-            <div id="contactList">
-              <ContactBox Title="Facebook" :Detail="profileContact.facebook" />
-              <ContactBox Title="LINE" :Detail="profileContact.line" />
-              <ContactBox Title="Call" :Detail="profileContact.call" />
-              <ContactBox Title="E-mail" :Detail="profileContact.email" />
+            <div id="contactList" v-if="!contactNullCheck()">
+              <ContactBox
+                Title="Facebook"
+                v-if="profileContact.facebook"
+                :Detail="profileContact.facebook"
+              />
+              <ContactBox
+                Title="LINE"
+                v-if="profileContact.line"
+                :Detail="profileContact.line"
+              />
+              <ContactBox
+                Title="Call"
+                v-if="profileContact.call"
+                :Detail="profileContact.call"
+              />
+              <ContactBox
+                Title="E-mail"
+                v-if="profileContact.email"
+                :Detail="profileContact.email"
+              />
+            </div>
+            <div
+              id="contactField"
+              style="color: gray; width: auto; display: block; font-size: 14px;"
+              v-else
+            >
+              -- No Contact Given --
             </div>
           </div>
         </div>
@@ -228,8 +253,8 @@ import Swal from "sweetalert2";
 
 import ProfileInfo from "./profileInfo";
 import ProfileBox from "./profileBox";
-import ProfileFromContact from "./profileFromContact"
-import ContactBox from "@/components/layout/profile/contactBox"
+import ProfileFromContact from "./profileFromContact";
+import ContactBox from "@/components/layout/profile/contactBox";
 
 export default {
   name: "Profile",
@@ -237,7 +262,7 @@ export default {
     ProfileInfo,
     ProfileBox,
     ProfileFromContact,
-    ContactBox
+    ContactBox,
   },
   watch: {
     "$route.params.id": function() {
@@ -281,7 +306,7 @@ export default {
         let formData = {};
 
         formData.contact = value;
-        
+
         let suc = await profileService.editprofile(formData).then((res) => {
           return res;
         });
@@ -299,7 +324,7 @@ export default {
             "<alert-subtitle>Something wrong.</alert-subtitle>",
             "error"
           );
-          this.$router.go()
+          this.$router.go();
         }
       }
     },
@@ -321,6 +346,10 @@ export default {
       if (value == "") return "-- No Introduce Given --";
       else return value;
     },
+    contactNullCheck() {
+      if (Object.keys(this.profileContact).length === 0) return true;
+      else return false;
+    },
   },
   created: async function() {
     await this.getinfoma();
@@ -337,9 +366,10 @@ export default {
       this.profileExperience = this.profile.infoma.exp;
     if (this.profile.infoma.contact)
       this.profileContact = this.profile.infoma.contact;
-
     if (this.profile.infoma.introduce)
       this.profileInfo = this.profile.infoma.introduce;
+
+    console.log(this.profileContact);
 
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;

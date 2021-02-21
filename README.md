@@ -59,6 +59,7 @@ Beware
 + 15-Feb-21 : 15.48 : Questfeed responsive improve
 + 17-Feb-21 : 20:53 : Questfeed responsive #2 (optimized code) 
 + 17-Feb-21 : 23.14 : Questfeed responsive #3 (re-arrange card)
++ 21-Feb-21 : 04.55 : Questfeed Page Enable
 # Example Code
 + How Form Data Console Log
     for (var pair of formData.entries()) {
