@@ -36,8 +36,13 @@ const upload = multer({
 });
 
 router.get('/questid/:id', function (req, res) {
-  Quest.findById(req.params.id).then(async (quest) => {   
-    return res.send({quest: quest, success: true})
+  Quest.findById(req.params.id).then(async (quest) => {
+    let ownerID = quest.helperID
+    
+    User.findById(ownerID).then(async (owner) => {
+      let ownerName = owner.infoma.firstname + " " + owner.infoma.lastname
+      return res.send({quest: quest, owner: ownerName, success: true})
+    })
   })
 })
 

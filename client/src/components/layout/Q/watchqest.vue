@@ -58,7 +58,7 @@
              <v-card-actions class="pa-4">
               Create by 
               <v-spacer></v-spacer>
-              <span style="text-align:center;"> {{ name }}</span>
+              <span style="text-align:center;"> {{ ownername }}</span>
             </v-card-actions>
          
 
@@ -138,6 +138,7 @@ export default {
       });
 
       this.quest = re.quest;
+      this.ownername = re.owner;
       console.log("complete");
       console.log(this.quest);
     },
@@ -155,7 +156,7 @@ export default {
       time: 2,
       rating: 4.3,
       testdetail:"sssssssssssssssssssssssssssssssssss",
-      name:"Jiraphat Sae-heng"
+      ownername:""
     };
   },
 };
