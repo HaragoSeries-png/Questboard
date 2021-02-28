@@ -41,7 +41,8 @@ router.get('/questid/:id', function (req, res) {
     
     User.findById(ownerID).then(async (owner) => {
       let ownerName = owner.infoma.firstname + " " + owner.infoma.lastname
-      return res.send({quest: quest, owner: ownerName, success: true})
+      let ownerInfo = {ID: ownerID, name: ownerName}
+      return res.send({quest: quest, owner: ownerInfo, success: true})
     })
   })
 })
