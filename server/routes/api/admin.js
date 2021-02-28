@@ -13,6 +13,11 @@ router.put('/decide', function (req, res) {
       if (req.body.approve) {
         quest.status = 'waiting'
         quest.rate = req.body.rate
+        User.findById(quest.helperID).then(user=>{
+          let noti = {message:"Approve"}
+          user.notify.push(noti)
+          user.havenoti = true
+        })
       }
       else {
         quest.status = 'reject'

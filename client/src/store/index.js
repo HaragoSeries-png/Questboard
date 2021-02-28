@@ -19,10 +19,10 @@ export default new Vuex.Store({
     currentUser: '',
     count: 0,
     userinfoma: '',
+    notification:[]
   },
   getters: {
     getTitle(state) { return state.title },
-
     isLoggedIn(state) { return state.islog },
     getusername(state) { return state.currentUser },
     getfullname(state) { return state.userfullname },

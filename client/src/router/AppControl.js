@@ -20,7 +20,7 @@ const routes = [
     { path: '/signup', component: signup },
     { path: '/contact', component: contact },
     { path: '/profile/id/:id', component: profile},
-    { path: '/feed/:page', component: questfeed },
+    { path: '/feed/:page/:category', component: questfeed ,name:'feed'},
     { path: '/feed/', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
