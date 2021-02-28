@@ -44,14 +44,27 @@ router.get('/questid/:id', function (req, res) {
 router.get('/feed', function (req, res) {
   let page = Math.max(0, req.query.page)
   let perPage = 20
+  let cat = req.query.cat
   console.log("quest feed")
-  Quest.find({ status: "waiting" })
-  .limit(perPage)
-  .skip(perPage*page)
-  .sort({rdate:-1})
-  .then(quest => {
-    res.send({ quest: quest, success: true })
-  })
+  if(cat){
+    Quest.find({ status: "waiting",category:cat })
+    .limit(perPage)
+    .skip(perPage*page)
+    .sort({rdate:-1})
+    .then(quest => {
+      res.send({ quest: quest, success: true })
+    })
+  }
+  else{
+    Quest.find({ status: "waiting"})
+    .limit(perPage)
+    .skip(perPage*page)
+    .sort({rdate:-1})
+    .then(quest => {
+      res.send({ quest: quest, success: true })
+    })
+  }
+  
 })
 
 router.post('/',  passport.authenticate('pass', {

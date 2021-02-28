@@ -82,9 +82,12 @@ export default {
       if (this.$route.params.page) {
         feedpage = this.$route.params.page;
       }
+      if (this.$route.params.category) {
+        cate = this.$route.params.category;
+      }
 
       console.log(feedpage)
-      let a = await QuestService.getquest(feedpage-1).then((res) => {
+      let a = await QuestService.getquest(feedpage-1,cate).then((res) => {
         return res;
       });
       console.log(a.quest);
