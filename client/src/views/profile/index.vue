@@ -85,34 +85,34 @@
               </v-dialog>
             </h4>
 
-            <div id="contactList" v-if="!contactNullCheck()">
+            <div id="contactList">
               <ContactBox
                 Title="Facebook"
-                v-if="profileContact.facebook"
+               
                 :Detail="profileContact.facebook"
               />
               <ContactBox
                 Title="LINE"
-                v-if="profileContact.line"
+            
                 :Detail="profileContact.line"
               />
               <ContactBox
                 Title="Call"
-                v-if="profileContact.call"
+              
                 :Detail="profileContact.call"
               />
               <ContactBox
                 Title="E-mail"
-                v-if="profileContact.email"
+            
                 :Detail="profileContact.email"
               />
             </div>
             <div
               id="contactField"
               style="color: gray; width: auto; display: block; font-size: 14px;"
-              v-else
+             
             >
-              -- No Contact Given --
+             
             </div>
           </div>
         </div>

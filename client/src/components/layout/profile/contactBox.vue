@@ -8,8 +8,8 @@
     </div>
     <div style="margin-left: 60px;">
       <h4 style="fint-weight: bold">{{ Title }}</h4>
-      <div style="font-size: 13px;">
-        {{ Detail }}
+      <div style="font-size: 10px;padding-top:3px;">
+        {{ detailnullCheck(Detail) }}
       </div>
     </div>
   </div>
@@ -30,6 +30,15 @@ export default {
       else if (this.Title == "E-mail")
         return "https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png";
     },
+    detailnullCheck(value){
+      if(value == ""){
+          return "No data given"
+
+      }
+      else{
+        return value
+      }
+    }
   },
 };
 </script>
