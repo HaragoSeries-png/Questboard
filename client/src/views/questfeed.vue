@@ -17,13 +17,12 @@
         <option>Traffic</option>
       </select>
     </div>
-
     <div class="category">
-      <a href="./">Handicraft</a>
+      <a href="./Handicup">Handicraft</a>
       <a href="./">Advice</a>
       <a href="./">Education</a>
       <a href="./">Accident</a>
-      <a href="./">Housework</a>
+      <a href="./House worker">Housework</a>
       <a href="./">Find friends</a>
       <a href="./">Food and home economics</a>
       <a href="./">Traffic</a>
@@ -52,10 +51,11 @@
     <div class="page">
       <div class="bar">
         <a href="#" class="button">«</a>
-        <router-link to="/feed/1" class="button">1</router-link>
-        <router-link to="/feed/2" class="button">2</router-link>
+
+        <a v-for="i in pagenum" :key="i" to="/feed/1" class="button">{{i}}</a>
+        <!-- <router-link to="/feed/2" class="button">2</router-link>
         <router-link to="/feed/3" class="button">3</router-link>
-        <router-link to="/feed/4" class="button">4</router-link>
+        <router-link to="/feed/4" class="button">4</router-link> -->
         <a href="#" class="button">»</a>
       </div>
     </div>
@@ -71,14 +71,16 @@ export default {
     Questcard,
   },
   watch: {
-    "$route.params.page": async function() {
+    "$route.params": async function() {
       await this.getquest();
     },
+    
+
   },
   methods: {
     getquest: async function() {
       let feedpage = 1
-
+      let cate = undefined
       if (this.$route.params.page) {
         feedpage = this.$route.params.page;
       }
@@ -90,13 +92,15 @@ export default {
       let a = await QuestService.getquest(feedpage-1,cate).then((res) => {
         return res;
       });
-      console.log(a.quest);
+      console.log('pagenum ='+a.pagenum);
       this.quests = await a.quest;
+      this.pagenum = await a.pagenum
     },
   },
   data() {
     return {
-      quests: ''
+      quests: '',
+      pagenum:''
     };
   },
   created: async function() {
