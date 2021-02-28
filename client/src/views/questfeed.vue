@@ -18,14 +18,14 @@
       </select>
     </div>
     <div class="category">
-      <a href="./Handicup">Handicraft</a>
-      <a href="./">Advice</a>
-      <a href="./">Education</a>
-      <a href="./">Accident</a>
-      <a href="./House worker">Housework</a>
-      <a href="./">Find friends</a>
-      <a href="./">Food and home economics</a>
-      <a href="./">Traffic</a>
+      <a @click="changeCat('Handicup')">Handicraft</a>
+      <a @click="changeCat('Advice')">Advice</a>
+      <a @click="changeCat(i)">Education</a>
+      <a @click="changeCat(i)">Accident</a>
+      <a @click="changeCat('House worker')">Housework</a>
+      <a @click="changeCat(i)">Find friends</a>
+      <a @click="changeCat(i)">Food and home economics</a>
+      <a @click="changeCat(i)">Traffic</a>
     </div>
 
     <v-row style=" margin-left: 5%; margin-right: 5%;">
@@ -52,7 +52,7 @@
       <div class="bar">
         <a href="#" class="button">«</a>
 
-        <a v-for="i in pagenum" :key="i" to="/feed/1" class="button">{{i}}</a>
+        <a v-for="i in pagenum" :key="i" @click="changePage(i)" class="button">{{i}}</a>
         <!-- <router-link to="/feed/2" class="button">2</router-link>
         <router-link to="/feed/3" class="button">3</router-link>
         <router-link to="/feed/4" class="button">4</router-link> -->
@@ -96,6 +96,12 @@ export default {
       this.quests = await a.quest;
       this.pagenum = await a.pagenum
     },
+    changePage(i){
+      this.$router.push({ name: "feed",params:{page:i} });
+    },
+    changeCat(i){
+      this.$router.push({ name: "feed",params:{category:i} });
+    }
   },
   data() {
     return {
