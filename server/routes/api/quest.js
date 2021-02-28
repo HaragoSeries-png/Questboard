@@ -36,22 +36,47 @@ const upload = multer({
 });
 
 router.get('/questid/:id', function (req, res) {
-  Quest.findById(req.params.id).then(async (quest) => {   
-    return res.send({quest: quest, success: true})
+  Quest.findById(req.params.id).then(async (quest) => {
+    let ownerID = quest.helperID
+    
+    User.findById(ownerID).then(async (owner) => {
+      let ownerName = owner.infoma.firstname + " " + owner.infoma.lastname
+      let ownerInfo = {ID: ownerID, name: ownerName}
+      return res.send({quest: quest, owner: ownerInfo, success: true})
+    })
   })
 })
 
 router.get('/feed', function (req, res) {
   let page = Math.max(0, req.query.page)
   let perPage = 20
-  console.log("quest feed")
-  Quest.find({ status: "waiting" })
-  .limit(perPage)
-  .skip(perPage*page)
-  .sort({rdate:-1})
-  .then(quest => {
-    res.send({ quest: quest, success: true })
-  })
+  let cat = req.query.cat
+  console.log("quest feed " + cat)
+  if(cat){
+    Quest.find({ status: "waiting",category:cat })
+    .limit(perPage)
+    .skip(perPage*page)
+    .sort({rdate:-1})
+    .then(quest => {
+      let count = quest.length
+      count = Math.ceil(count/perPage)
+      console.log('count '+count)
+      res.send({ quest: quest, success: true,pagenum:count })
+    })
+  }
+  else{
+    Quest.find({ status: "waiting"})
+    .limit(perPage)
+    .skip(perPage*page)
+    .sort({rdate:-1})
+    .then(quest => {
+      let count = quest.length
+      count = Math.ceil(count/perPage)
+      console.log('count '+count)
+      res.send({ quest: quest, success: true,pagenum:count })
+    })
+  }
+  
 })
 
 router.post('/',  passport.authenticate('pass', {

@@ -17,16 +17,15 @@
         <option>Traffic</option>
       </select>
     </div>
-
     <div class="category">
-      <a href="./">Handicraft</a>
-      <a href="./">Advice</a>
-      <a href="./">Education</a>
-      <a href="./">Accident</a>
-      <a href="./">Housework</a>
-      <a href="./">Find friends</a>
-      <a href="./">Food and home economics</a>
-      <a href="./">Traffic</a>
+      <a @click="changeCat('Handicup')">Handicraft</a>
+      <a @click="changeCat('Advice')">Advice</a>
+      <a @click="changeCat(i)">Education</a>
+      <a @click="changeCat(i)">Accident</a>
+      <a @click="changeCat('House worker')">Housework</a>
+      <a @click="changeCat(i)">Find friends</a>
+      <a @click="changeCat(i)">Food and home economics</a>
+      <a @click="changeCat(i)">Traffic</a>
     </div>
 
     <v-row style=" margin-left: 5%; margin-right: 5%;">
@@ -52,10 +51,11 @@
     <div class="page">
       <div class="bar">
         <a href="#" class="button">«</a>
-        <router-link to="/feed/1" class="button">1</router-link>
-        <router-link to="/feed/2" class="button">2</router-link>
+
+        <a v-for="i in pagenum" :key="i" @click="changePage(i)" class="button">{{i}}</a>
+        <!-- <router-link to="/feed/2" class="button">2</router-link>
         <router-link to="/feed/3" class="button">3</router-link>
-        <router-link to="/feed/4" class="button">4</router-link>
+        <router-link to="/feed/4" class="button">4</router-link> -->
         <a href="#" class="button">»</a>
       </div>
     </div>
@@ -71,29 +71,42 @@ export default {
     Questcard,
   },
   watch: {
-    "$route.params.page": async function() {
+    "$route.params": async function() {
       await this.getquest();
     },
+    
+
   },
   methods: {
     getquest: async function() {
       let feedpage = 1
-
+      let cate = undefined
       if (this.$route.params.page) {
         feedpage = this.$route.params.page;
       }
+      if (this.$route.params.category) {
+        cate = this.$route.params.category;
+      }
 
       console.log(feedpage)
-      let a = await QuestService.getquest(feedpage-1).then((res) => {
+      let a = await QuestService.getquest(feedpage-1,cate).then((res) => {
         return res;
       });
-      console.log(a.quest);
+      console.log('pagenum ='+a.pagenum);
       this.quests = await a.quest;
+      this.pagenum = await a.pagenum
     },
+    changePage(i){
+      this.$router.push({ name: "feed",params:{page:i} });
+    },
+    changeCat(i){
+      this.$router.push({ name: "feed",params:{category:i} });
+    }
   },
   data() {
     return {
-      quests: ''
+      quests: '',
+      pagenum:''
     };
   },
   created: async function() {

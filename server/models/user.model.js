@@ -56,8 +56,12 @@ let UserSchema = new mongoose.Schema({
     rating:{
         rate:Number,
         N:Number
-    }
-
+    },
+    notify:[{
+        message:String,
+        time: Date        
+    }],
+    havenoti:Boolean
 })
 
 
@@ -66,16 +70,14 @@ UserSchema.pre("save", async function(next) {
   if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
   }
+  else if(user.isModified("notify")){
+      user.havenoti = true
+  }
   next();
 });
 
 UserSchema.methods.isValidPassword = async function (password) {
     const user = this;
-    // console.log('passsword in '+password)
-    // console.log("password real "+user.password)
-    // const compare = await bcrypt.compare(password, user.password);
-    // console.log('compare '+compare)
-
     let compare = await bcrypt.compare(password, user.password)
     console.log("comapre "+compare)
     return compare
@@ -111,6 +113,10 @@ UserSchema.methods.changepass = async function(newpass){
 
     return this.password
 }
+UserSchema.methods.readed = async function(){
+    this.havenoti = false
+}
+
 
 
 UserSchema.plugin(passportLocalMongoose);
