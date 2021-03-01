@@ -7,17 +7,25 @@
       style="border-right: 1px solid black;"
       src="Navbar-Side.jpg"
     >
-      <v-list-item style="margin-left: 17%;">
-        <center>
+    <center>
+    
+      <div>
+        
           <div
             style="font-family: 'Maven Pro', sans-serif; font-size: 23px; margin-top: 10%"
           >
-            <span style="right: 50%; text-decoration: underline;"
+            <v-icon    @click="drawer = !drawer" x-large  >
+        mdi-arrow-left-bold-circle-outline
+      </v-icon>
+
+
+            <span style="text-decoration: underline;padding-left:1%;"
               >Quest Board</span
             >
           </div>
-        </center>
-      </v-list-item>
+        
+      </div>
+      </center>
       <v-divider></v-divider>
 
       <div id="profileTab" v-if="$store.getters.isLoggedIn">
@@ -156,7 +164,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item @click="logout">
+          <v-list-item @click="logout">                          
             <v-list-item-icon>
               <div class="titlefont">
                 <v-icon style="color: red">mdi-login</v-icon>
@@ -168,12 +176,17 @@
                 Log Out
               </div>
             </v-list-item-content>
+
+
+
+
+            
           </v-list-item>
         </v-list>
 
         <v-divider></v-divider>
       </div>
-
+        
       <div id="loginitems" v-else>
         <v-list dense app>
           <v-list-item
@@ -197,6 +210,7 @@
           </v-list-item>
         </v-list>
       </div>
+      
     </v-navigation-drawer>
 
     <!-- Navbar-Top -->
@@ -226,7 +240,47 @@
       >
 
       <v-spacer></v-spacer>
+      
+
+        <div id="loginitems" v-if="status">
+     <v-menu offset-y :nudge-width="200"  >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="#FF598F"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-icon>
+            mdi-bell
+          </v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+       <div style="text-align:center;font-weight:bold;font-size:13px;padding-top:2%;">
+              Notification
+       </div>
+       <v-divider></v-divider>
+        <v-list-item
+          v-for="(item, index) in fake_noti"
+          :key="index"
+        >
+      
+          <v-list-item-title>{{ item.title }}   </v-list-item-title>
+    
+        </v-list-item>
+             
+      </v-list>
+    </v-menu> 
+        </div>
+      
+     
+
+
+    
+  
     </v-app-bar>
+
   </div>
 </template>
 
@@ -278,10 +332,16 @@ export default {
         { title :'My Quest', icon : 'mdi-account-multiple-outline',to:'/myquest'},
         { title :'My Work', icon: 'mdi-cog-outline',to:"/mywork"}
       ],
+      fake_noti :[
+        {title : 'detail1'},
+        {title : 'detail2'},
+   
+      ],
      
       status: this.$store.getters.isLoggedIn,
       drawer: false,
       username: this.$store.getters.getfullname,
+      notiicon : 'alarm-light-outline'
     };
   },
 };

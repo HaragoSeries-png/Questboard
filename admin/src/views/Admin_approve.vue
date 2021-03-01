@@ -4,35 +4,7 @@
         <v-row>
           <v-col cols="12" md="6" class="section1">
             <div>
-              <div style="margin-top:5%;">
-                <v-img
-                  height="300"
-                  width="400"
-                  src="https://cdn.pixabay.com/photo/2020/07/08/10/17/car-5383371_1280.jpg"
-                ></v-img>
-              </div>
-
-              <table style="width:350px;margin-top:7%;">
-                <tr>
-                  Create quest by :
-                  <td>
-                    <span>Jiraphat junior</span>
-                  </td>
-                </tr>
-              </table>
-
-              <table style="margin-top:5%;width:200px;">
-                <tr>
-                  Number of helper :
-                  <td>
-                    <span>2</span>
-                  </td>
-                </tr>
-              </table>
-
-             
-            </div>
-          </v-col>
+                  
           <ul>
             
               <questbox v-for='quest in quests' :key="quest._id" 
@@ -44,6 +16,11 @@
               </questbox>
              
           </ul>
+             
+             
+            </div>
+          </v-col>
+      
          
           <v-col cols="12" md="6" class="section2">
             <div style="display:block;">

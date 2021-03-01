@@ -9,8 +9,9 @@
                 <v-img height="400" width="370" :src="questPic"></v-img>
               </div>
             </center>
-         
+
             <center>
+
               
                  <v-card-actions style="float:center;" class="Rate">
                   <span style="color:#43a047;font-weight:800">COMPLETE</span>
@@ -32,6 +33,7 @@
             </v-card-actions>
               
               
+
             </center>
           </div>
         </v-col>
@@ -41,11 +43,10 @@
             <h2 style="text-align:center;">
               {{ quest.questname }}
             </h2>
-              <v-card-actions style="text-align:center;" class="Rate2">
-              <span class="grey--text text--lighten-2 caption mr-2">
-            
-              </span>
-              {{rating}}
+
+            <v-card-actions style="text-align:center;" class="Rate2">
+              <span class="grey--text text--lighten-2 caption mr-2"> </span>
+
               <v-rating
                 v-model="rating"
                 background-color="white"
@@ -58,12 +59,13 @@
               ></v-rating>
             </v-card-actions>
             <v-divider></v-divider>
-             <v-card-actions class="pa-4">
-              Create by 
+            <v-card-actions class="pa-4">
+              Create by
               <v-spacer></v-spacer>
-              <span style="text-align:center;"> {{ name }}</span>
+              <router-link :to="'/profile/id/' + ownerID">
+                <span style="text-align:center;"> {{ ownername }}</span>
+              </router-link>
             </v-card-actions>
-         
 
             <v-card-actions class="pa-4">
               Category
@@ -90,32 +92,36 @@
                 Details
               </div>
 
-              <v-card width="650" height="100" style="margin-top:5%;overflow-x:auto;padding:16px;">
+              <v-card
+                width="650"
+                height="100"
+                style="margin-top:5%;overflow-x:auto;padding:16px;"
+              >
                 <p style="font-size:14px;text-indent:20px; ">
-                  {{ quest.questdetail }} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit unde voluptates quam id hic explicabo mollitia laboriosam quod dicta, inventore sapiente, ipsam quia ratione exercitationem necessitatibus, iste voluptatibus aliquam totam!
+                  {{ quest.questdetail }} Lorem, ipsum dolor sit amet
+                  consectetur adipisicing elit. Reprehenderit unde voluptates
+                  quam id hic explicabo mollitia laboriosam quod dicta,
+                  inventore sapiente, ipsam quia ratione exercitationem
+                  necessitatibus, iste voluptatibus aliquam totam!
                 </p>
               </v-card>
             </div>
             <div style="display:flex;">
-            <v-btn
-              color="white "
-              text
-              style="margin-left:3%;margin-top:2%;font-size:20px; background-color:#ff6e40 ;"
-             
-            >
-              Helper
-              
-            </v-btn>
-            <v-spacer></v-spacer>
               <v-btn
-              color="white "
-              text
-              style="margin-top:2%;font-size:20px; background-color:#388e3c;"
-             
-            >
-              Next
-            </v-btn>
-          
+                color="white "
+                text
+                style="margin-left:3%;margin-top:2%;font-size:20px; background-color:#ff6e40 ;"
+              >
+                Helper
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="white "
+                text
+                style="margin-top:2%;font-size:20px; background-color:#388e3c;"
+              >
+                Next
+              </v-btn>
             </div>
             <!-- <div style="margin-left:15%;">
               <slot></slot>
@@ -141,7 +147,12 @@ export default {
       });
 
       this.quest = re.quest;
+
+      this.ownerID = re.owner.ID;
+      this.ownername = re.owner.name;
+
       this.rating = this.quest.rate
+
       console.log("complete");
       console.log(this.quest);
     },
@@ -158,8 +169,9 @@ export default {
       questRate: 3,
       time: 2,
       rating: 4.3,
-      testdetail:"sssssssssssssssssssssssssssssssssss",
-      name:"Jiraphat Sae-heng"
+      testdetail: "sssssssssssssssssssssssssssssssssss",
+      ownername: "",
+      ownerID: "",
     };
   },
 };
@@ -170,7 +182,7 @@ export default {
   display: flex;
   padding: 20px;
 }
-.section2{
+.section2 {
   margin-top: -10%;
 }
 .expire {
@@ -232,17 +244,17 @@ table {
   margin-top: 5%;
   text-align: left;
 }
-.Rate2{
-  display:none;
+.Rate2 {
+  display: none;
 }
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lexend+Mega&display=swap');
-@media screen and (max-width:956px){
-.Rate{
-  display:none;
-}
-.Rate2{
-  display: inline;
-}
+@import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lexend+Mega&display=swap");
+@media screen and (max-width: 956px) {
+  .Rate {
+    display: none;
+  }
+  .Rate2 {
+    display: inline;
+  }
 }
 </style>
