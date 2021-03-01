@@ -25,6 +25,7 @@
                 color="yellow accent-4"
                 dense
                 half-increments
+                readonly
                 hover
                 size="25"
               ></v-rating>
@@ -44,12 +45,14 @@
               <span class="grey--text text--lighten-2 caption mr-2">
             
               </span>
+              {{rating}}
               <v-rating
                 v-model="rating"
                 background-color="white"
                 color="yellow accent-4"
                 dense
                 half-increments
+                readonly
                 hover
                 size="20"
               ></v-rating>
@@ -138,6 +141,7 @@ export default {
       });
 
       this.quest = re.quest;
+      this.rating = this.quest.rate
       console.log("complete");
       console.log(this.quest);
     },
