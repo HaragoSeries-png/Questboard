@@ -108,7 +108,8 @@ router.post('/',  passport.authenticate('pass', {
     wait: [],
     contributor:[],
     tstart:req.body.tstart,
-    tend:req.body.tend
+    tend:req.body.tend,
+    rate:0
   }
 
   Quest.create(newquest).then((quest, err) => {

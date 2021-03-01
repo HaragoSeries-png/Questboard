@@ -1,7 +1,7 @@
 <template>
         <v-card class="card" style="width:300px, height:500px">
             <v-img
-             :src='Image'
+             :src='ImageUrl'
              full-width
              :aspect-ratio="16/9"
              class="card__img"></v-img>
@@ -23,10 +23,10 @@
                     {{Reward}}
                 </div>
             
-            <div>
-                <a :href='Qid' class="more">View More</a>
+                <div>
+                    <a @click="gotodetail()" class="more">View More</a>
+                </div>
             </div>
-        </div>
         
         </v-card>
  
@@ -41,22 +41,35 @@ export default {
         Qid:String,
         date:String
     },
+    data(){
+      return{
+        ImageUrl :''
+      }
+    },
     methods: {
-     collapse(Detail) {
-       console.log("in"+this.Detail)
-                this.Detail = Detail
+      collapse(Detail) {
+        console.log("in"+this.Detail)
+        this.Detail = Detail
         console.log("out"+this.Detail)
-            },
-      
+      },
+      gotodetail(){
+        this.$router.push({ path: "/quest/id/"+this.Qid });
+      }
         
     },
     created(){
         this.collapse(this.Detail)
-        if (this.Image != "default.png")
-          this.Image = this.$store.state.gurl + this.Image;
+        if (this.Image != "default.png"){
+          this.ImageUrl = this.$store.state.gurl + this.Image;
+        }   
+        else{
+          this.ImageUrl= "default.png"
+        }     
         console.log(this.Image)
         this.Qid = 'quest/id/'+this.Qid
-    },
+    }
+    
+
 
 }
 

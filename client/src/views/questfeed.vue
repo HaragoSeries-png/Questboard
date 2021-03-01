@@ -5,13 +5,14 @@
         class="category-drop"
         aria-placeholder="Select category"
         style="margin-left: 5%; margin-right: 5%;"
+        @change="changeCatm($event)"
       >
-        <option disabled selected>Select category</option>
-        <option>Handicraft</option>
+        <option>Select category</option>
+        <option value="Handicup">Handicraft</option>
         <option>Advice</option>
         <option>Education</option>
         <option>Accident</option>
-        <option>Housework</option>
+        <option value="House worker">Housework</option>
         <option>Find friends</option>
         <option>Food and home economics</option>
         <option>Traffic</option>
@@ -50,13 +51,13 @@
     </v-row>
     <div class="page">
       <div class="bar">
-        <a href="#" class="button">«</a>
+ 
 
         <a v-for="i in pagenum" :key="i" @click="changePage(i)" class="button">{{i}}</a>
         <!-- <router-link to="/feed/2" class="button">2</router-link>
         <router-link to="/feed/3" class="button">3</router-link>
         <router-link to="/feed/4" class="button">4</router-link> -->
-        <a href="#" class="button">»</a>
+      
       </div>
     </div>
   </div>
@@ -71,10 +72,12 @@ export default {
     Questcard,
   },
   watch: {
-    "$route.params": async function() {
+    "$route.params.page": async function() {
       await this.getquest();
     },
-    
+    "$route.params.category": async function() {
+      await this.getquest();
+    },
 
   },
   methods: {
@@ -87,8 +90,8 @@ export default {
       if (this.$route.params.category) {
         cate = this.$route.params.category;
       }
-
-      console.log(feedpage)
+      this.currpage = feedpage
+      console.log('page '+this.currpage)
       let a = await QuestService.getquest(feedpage-1,cate).then((res) => {
         return res;
       });
@@ -100,13 +103,23 @@ export default {
       this.$router.push({ name: "feed",params:{page:i} });
     },
     changeCat(i){
-      this.$router.push({ name: "feed",params:{category:i} });
+      this.currcat = i
+      let pathh = '/feed/'+this.currpage+'/category/'+this.currcat
+      this.$router.push({ path:pathh});
+    },
+    changeCatm(i){
+      i = i.target.value
+      this.currcat = i
+      let pathh = '/feed/'+this.currpage+'/category/'+this.currcat
+      this.$router.push({ path:pathh});
     }
   },
   data() {
     return {
       quests: '',
-      pagenum:''
+      pagenum:'',
+      currpage:'',
+      currcat:''
     };
   },
   created: async function() {

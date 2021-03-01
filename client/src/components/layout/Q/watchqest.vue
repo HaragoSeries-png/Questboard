@@ -11,21 +11,29 @@
             </center>
 
             <center>
-              <v-card-actions style="float:center;" class="Rate">
-                <span style="color:#43a047;font-weight:800">COMPLETE</span>
 
-                <span class="grey--text text--lighten-2 caption mr-2"> </span>
-                <v-spacer></v-spacer>
-                <v-rating
-                  v-model="rating"
-                  background-color="red"
-                  color="yellow accent-4"
-                  dense
-                  half-increments
-                  hover
-                  size="25"
-                ></v-rating>
-              </v-card-actions>
+              
+                 <v-card-actions style="float:center;" class="Rate">
+                  <span style="color:#43a047;font-weight:800">COMPLETE</span>
+           
+              <span class="grey--text text--lighten-2 caption mr-2">
+          
+              </span>
+                 <v-spacer></v-spacer>
+              <v-rating
+                v-model="rating"
+                background-color="red"
+                color="yellow accent-4"
+                dense
+                half-increments
+                readonly
+                hover
+                size="25"
+              ></v-rating>
+            </v-card-actions>
+              
+              
+
             </center>
           </div>
         </v-col>
@@ -35,14 +43,17 @@
             <h2 style="text-align:center;">
               {{ quest.questname }}
             </h2>
+
             <v-card-actions style="text-align:center;" class="Rate2">
               <span class="grey--text text--lighten-2 caption mr-2"> </span>
+
               <v-rating
                 v-model="rating"
                 background-color="white"
                 color="yellow accent-4"
                 dense
                 half-increments
+                readonly
                 hover
                 size="20"
               ></v-rating>
@@ -136,8 +147,12 @@ export default {
       });
 
       this.quest = re.quest;
+
       this.ownerID = re.owner.ID;
       this.ownername = re.owner.name;
+
+      this.rating = this.quest.rate
+
       console.log("complete");
       console.log(this.quest);
     },
