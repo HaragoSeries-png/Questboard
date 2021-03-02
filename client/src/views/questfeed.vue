@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{currpage}}
     <div>
       <select
         class="category-drop"
@@ -73,15 +74,13 @@ export default {
   },
   watch: {
     "$route.params.page": async function() {
-      await this.getquest();
-    },
-    "$route.params.category": async function() {
-      await this.getquest();
-    },
 
+      await this.getquest();
+    }
   },
   methods: {
     getquest: async function() {
+      console.log('dudu')
       let feedpage = 1
       let cate = undefined
       if (this.$route.params.page) {

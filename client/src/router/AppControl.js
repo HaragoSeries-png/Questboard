@@ -21,6 +21,7 @@ const routes = [
     { path: '/contact', component: contact },
     { path: '/profile/id/:id', component: profile},
     { path: '/feed/:page/category/:category', component: questfeed ,name:'feed'},
+    { path: '/feed/:page', component: questfeed ,name:'feed'},
     { path: '/feed/', component: questfeed },
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
