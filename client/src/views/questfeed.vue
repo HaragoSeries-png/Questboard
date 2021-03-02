@@ -100,7 +100,15 @@ export default {
       this.pagenum = await a.pagenum
     },
     changePage(i){
-      this.$router.push({ name: "feed",params:{page:i} });
+      this.currpage = i
+      let pathh
+      if(this.currcat){
+        pathh = '/feed/'+this.currpage+'/category/'+this.currcat
+      }
+      else{
+        pathh = '/feed/'+this.currpage
+      }      
+      this.$router.push({ path:pathh});
     },
     changeCat(i){
       this.currcat = i
