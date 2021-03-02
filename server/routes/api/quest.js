@@ -49,29 +49,37 @@ router.get('/questid/:id', function (req, res) {
 
 router.get('/feed', function (req, res) {
   let page = Math.max(0, req.query.page)
-  let perPage = 20
+  let perPage = 12
   let cat = req.query.cat
   console.log("quest feed " + cat)
+
+  var numall  
   if(cat){
-    Quest.find({ status: "waiting",category:cat })
+    Quest.find({ status: "waiting",category:cat})
+    .then(quest => {
+      numall = quest.length
+    })
+    Quest.find({ status: "waiting",category:cat})
     .limit(perPage)
     .skip(perPage*page)
     .sort({rdate:-1})
     .then(quest => {
-      let count = quest.length
-      count = Math.ceil(count/perPage)
+      count = Math.ceil(numall/perPage)
       console.log('count '+count)
       res.send({ quest: quest, success: true,pagenum:count })
     })
   }
   else{
     Quest.find({ status: "waiting"})
+    .then(quest => {
+      numall = quest.length
+    })
+    Quest.find({ status: "waiting"})
     .limit(perPage)
     .skip(perPage*page)
     .sort({rdate:-1})
     .then(quest => {
-      let count = quest.length
-      count = Math.ceil(count/perPage)
+      count = Math.ceil(numall/perPage)
       console.log('count '+count)
       res.send({ quest: quest, success: true,pagenum:count })
     })
