@@ -78,15 +78,7 @@
               <v-spacer></v-spacer>
               <span style="text-align:center;"> {{ quest.reward }}</span>
             </v-card-actions>
-            <v-card-actions class="pa-4">
-              Date
-              <v-spacer></v-spacer>
-              <span style="font-size:14px;"> {{ quest.date }}</span>
-              <v-spacer></v-spacer>
-              <span style="font-size:14px;">{{ quest.tstart }} </span>
-              <v-spacer></v-spacer>
-              <span style="font-size:14px;">{{ quest.tend }} </span>
-            </v-card-actions>
+          
             <div class="pa-4" style="margin-top:-1%;">
               <div>
                 Details
@@ -94,7 +86,7 @@
 
               <v-card
                 width="650"
-                height="100"
+                height="150"
                 style="margin-top:5%;overflow-x:auto;padding:16px;"
               >
                 <p style="font-size:14px;text-indent:20px; ">

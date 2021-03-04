@@ -161,8 +161,8 @@
                     <td>
                       <input
                         type="number"
-                        min="0"
-                        name=""
+                        min="1"
+                      
                         id="num_per"
                         v-model="numberofcon"
                         style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
@@ -189,6 +189,7 @@
                         id="I_date"
                         v-model="duedate"
                         style="margin-bottom:15%;"
+                        :min="this.current_date"
                       />
                     </td>
                   </tr>
@@ -249,6 +250,10 @@ export default {
   name: "Create Quest",
   created() {
     this.$emit("setTitle", this.$options.name);
+     var today = new Date();
+     const now = today.getFullYear() + '-' + ("0" + (today.getMonth() + 1)).slice(-2) + '-' + ("0" + today.getDate()).slice(-2);
+     this.current_date = now;
+    
   },
   data() {
     return {
@@ -268,9 +273,11 @@ export default {
       sometext: "Upload file",
       sometext1: "Change file",
       transparent: "rgba(255, 255, 255, 0)",
+      current_date : "",
     };
   },
   methods: {
+    
     onFileChange() {
       if (this.files != null) {
         const file = this.files;
@@ -283,8 +290,8 @@ export default {
     },
     sendquest: async function() {
       let formData = new FormData();
-
       // files
+     
       formData.append("image", this.files);
 
       // additional data
@@ -295,7 +302,7 @@ export default {
       formData.append("tstart", this.tstart);
       formData.append("tend", this.tend);
       formData.append("duedate", this.duedate);
-      console.log(formData.get("questdatail"));
+     
       let suc = await QuestService.createquest(formData).then((res) => {
         return res.suc;
       });

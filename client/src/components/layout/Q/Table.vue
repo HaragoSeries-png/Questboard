@@ -73,9 +73,6 @@ export default {
       this.questdata = re.allquest;
       console.log(this.questdata);
     },
-    showAlert(a) {
-      alert("Alert! \n" + a._id);
-    },
     sentToDetail(value) {
       let path = '/quest/id/' + value
       this.$router.push({ path: path})
