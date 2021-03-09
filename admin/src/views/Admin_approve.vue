@@ -106,11 +106,7 @@
 </template>
 
 <script>
-import adminService from '../../service/adminService'
-import QuestService from "@/service/questService";
-
-
-
+import adminService from '../../service/adminService';
 
 import questbox from '../components/questbox.vue';
 export default {
@@ -161,13 +157,7 @@ export default {
       let path = '/quest/id/' + value
       this.$router.push({ path: path})
     },
-    getquest: async function() {
-      let a = await QuestService.getquest(feedpage-1,cate).then((res) => {
-        return res;
-      });
-      console.log('pagenum ='+a.pagenum);
-      this.questdata = await a.quest;
-    },
+  
 
   }
   
