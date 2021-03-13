@@ -4,30 +4,29 @@
         name:{{this.name}}
     </div>
     
-   
-     <v-dialog
+   <v-btn
+      color="primary"
+      dark
+      @click.stop="dialog = true"
+    >
+      Accept
+    </v-btn>
+    
+     <v-btn
+      color="primary"
+      dark
+      id='reject'
+      @click="reject()"
+    >
+      reject
+    </v-btn>
+
+    <v-dialog
       v-model="dialog"
       persistent
       max-width="290"
     >
-      <template v-slot:activator="{ on, attrs }">
-         <ul>
-            <li>
-              <div 
-                id='approve'
-                @click="rate()"
-                v-bind="attrs"
-                v-on="on"
-                >approve
-              </div></li>
-            <li>
-              <div 
-                id='reject'
-                @click="reject()"
-                >reject
-              </div></li>
-        </ul>
-      </template>
+   
       <v-card>
         <v-card-title class="headline">
           Use Google's location service?
@@ -59,6 +58,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+  
     
 </div>
     
@@ -69,16 +69,16 @@ import adminService from '../../service/adminService'
 export default {
     props:['name','qstatus','qid'],
     methods:{
-        
+
         reject(){
-          adminService.decide(this.qid,false,this.rating)  
-          this.$emit("reload")  
+          adminService.decide(this.qid,false,this.rating);
+          this.$emit('q_reElement',this.qid)
         },
         rate(){
-          this.status = true 
-          this.dialog = false
-          adminService.decide(this.qid,this.status,this.rating)  
-          this.$emit("reload")  
+          this.status = true ;
+          this.dialog = false;
+          adminService.decide(this.qid,this.status,this.rating)  ;
+          this.$emit('q_reElement',this.qid)
         }
     },
     data(){

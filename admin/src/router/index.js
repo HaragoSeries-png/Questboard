@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Admin_approve.vue'
 import seeQuest from '../views/seeQuest.vue'
-
-
+import Admin_approve from '../views/Admin_approve.vue'
+import adminFeed from '../views/adminFeed.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,15 +13,9 @@ const routes = [
     component: Home
   },
   { path : '/quest/id/:id',component : seeQuest},
+  { path : '/approve',component : Admin_approve},
+  { path : '/adminfeed',component : adminFeed},
 
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
 ]
 
 const router = new VueRouter({

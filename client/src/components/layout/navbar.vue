@@ -4,8 +4,8 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      style="border-right: 1px solid black;"
-      src="Navbar-Side.jpg"
+      style="border-right: 1px solid black;background-color:#2e292a"
+      
     >
     <center>
     
@@ -14,12 +14,12 @@
           <div
             style="font-family: 'Maven Pro', sans-serif; font-size: 23px; margin-top: 10%"
           >
-            <v-icon    @click="drawer = !drawer" x-large  >
+            <v-icon    @click="drawer = !drawer" x-large style="color:#ffc76e"  >
         mdi-arrow-left-bold-circle-outline
       </v-icon>
 
 
-            <span style="text-decoration: underline;padding-left:1%;"
+            <span style="text-decoration: underline;padding-left:1%; " class="c_font"
               >Quest Board</span
             >
           </div>
@@ -30,9 +30,9 @@
 
       <div id="profileTab" v-if="$store.getters.isLoggedIn">
         <div class="profileInfo">
-          Welcome
+          <span style="color:#ffc76e;">Welcome</span>
           <br />
-          <span style="font-size: 14px">{{
+          <span style="font-size: 14px" class="c_font">{{
             this.$store.getters.getfullname
           }}</span>
           <br />
@@ -53,15 +53,16 @@
             link
             :to="item.to"
             color="#FF598F"
+            class="on_hover"
           >
             <v-list-item-icon>
-              <div class="titlefont">
-                <v-icon>{{ item.icon }}</v-icon>
+              <div class="titlefont"   >
+                <v-icon style="color:#ffc76e">{{ item.icon }}</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">
+              <div class="titlefont c_font ">
                 {{ item.title }}
               </div>
             </v-list-item-content>
@@ -70,13 +71,15 @@
         <div v-if="status">
         <v-list-group
         :value="true"
-        prepend-icon="mdi-account-circle"
         color="#FF598F"
+        
       >
-        <template v-slot:activator    >
-          
-          <v-list-item-content><div class="titlefont">
-            Quest</div></v-list-item-content>
+        <template v-slot:activator >
+          <v-list-item-content>
+            <div class="titlefont c_font">
+              <v-icon style="color:#ffc76e;padding-right:27px;" >mdi-account-circle</v-icon>
+            Quest</div>
+            </v-list-item-content>
         </template>
           <v-list-item
             v-for="item in quest"
@@ -85,13 +88,14 @@
             link
             :to="item.to"
             style="padding-left:20%;"
+            class="on_hover"
           >
           
              <v-list-item-icon >
-              <v-icon size=20 >{{item.icon}}</v-icon>
+              <v-icon size=20 style="color:#ffc76e"   >{{item.icon}}</v-icon>
             </v-list-item-icon>
 
-            <v-list-item-content style="font-size:11px;font-weight:bold;">
+            <v-list-item-content style="font-size:11px;font-weight:bold;" class="c_font"  >
               {{item.title}}
             </v-list-item-content>
           
@@ -111,15 +115,16 @@
             link
             :to="item.to"
             color="#FF598F"
+            class="on_hover"
           >
             <v-list-item-icon>
               <div>
-                <v-icon>{{ item.icon }}</v-icon>
+                <v-icon style="color:#ffc76e">{{ item.icon }}</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">
+              <div class="titlefont   c_font "  style="color:#ffc76e;"  >
                 {{ item.title }}
               </div>
             </v-list-item-content>
@@ -136,35 +141,36 @@
             link
             :to="item.to"
             color="#FF598F"
+            class="on_hover"
           >
             <v-list-item-icon>
               <div class="titlefont">
-                <v-icon>{{ item.icon }}</v-icon>
+                <v-icon  style="color:#ffc76e">{{ item.icon }}</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">
+              <div class="titlefont  c_font"   >
                 {{ item.title }}
               </div>
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item link :to="getuserLink()" color="#FF598F">
+          <v-list-item link :to="getuserLink()" color="#FF598F"   class="on_hover">
             <v-list-item-icon>
               <div class="titlefont">
-                <v-icon>mdi-login</v-icon>
+                <v-icon  style="color:#ffc76e" >mdi-login</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">
+              <div class="titlefont c_font">
                 Profile
               </div>
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item @click="logout">                          
+          <v-list-item @click="logout"    class="on_hover">                          
             <v-list-item-icon>
               <div class="titlefont">
                 <v-icon style="color: red">mdi-login</v-icon>
@@ -176,16 +182,12 @@
                 Log Out
               </div>
             </v-list-item-content>
-
-
-
-
-            
           </v-list-item>
         </v-list>
-
-        <v-divider></v-divider>
       </div>
+        
+
+
         
       <div id="loginitems" v-else>
         <v-list dense app>
@@ -195,15 +197,16 @@
             link
             :to="item.to"
             color="#FF598F"
+            class="on_hover"
           >
             <v-list-item-icon>
-              <div class="titlefont">
-                <v-icon>{{ item.icon }}</v-icon>
+              <div class="titlefont"  style="color:#ffc76e;">
+                <v-icon   style="color:#ffc76e;"  >{{ item.icon }}</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">
+              <div class="titlefont"  style="color:#ffc76e;"  >
                 {{ item.title }}
               </div>
             </v-list-item-content>
@@ -217,24 +220,20 @@
     <v-app-bar
       app
       dark
-      src="../../assets/pexels-stephan-seeber-1054289.jpg"
+      color="white"
       full-width
     >
       <!-- backgroud color -->
-      <template v-slot:img="{ props }">
-        <v-img
-          v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
-        ></v-img>
-      </template>
+  
 
       <v-app-bar-nav-icon
         @click="drawer = !drawer"
         style="margin-left:0.5%;"
+        color="pink"
       ></v-app-bar-nav-icon>
 
       <v-toolbar-title
-        ><span style="font-size: 20px; font-family: 'Merriweather', serif;"
+        ><span style="font-size: 20px; font-family: 'Merriweather', serif;color:black;"
           >Quest Board</span
         ></v-toolbar-title
       >
@@ -379,4 +378,12 @@ body {
 .sub_font {
   font-size: 10px;
 }
+.c_font{
+  color:#ffc76e;
+}
+
+.on_hover:hover{
+  background-color:rgba(  246,162,209,0.4);
+}
+
 </style>

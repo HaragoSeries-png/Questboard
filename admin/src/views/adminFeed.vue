@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-container>
-      <QuestTable :questData="quests" @q_reElement="reElement"   dark   ></QuestTable>
-     
+      <QuestTable :questData="allQuest" @q_reElement="reElement"   dark   ></QuestTable>
+     {{allQuest}}
     </v-container>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   components: {
     QuestTable,
   },
-  name: "Admin_approve",
+  name: "adminFeed",
   data() {
     return {
       quests: [],
@@ -25,7 +25,7 @@ export default {
   },
   created: async function() {
     await this.getpending();
-    await this.getAll();
+    await this.getall();
   },
   methods: {
     getpending: async function() {
@@ -33,11 +33,11 @@ export default {
         return res;
       });
       this.quests = re.quests
-      // console.log('open');
-      // console.log(this.quests)
+   
     },
-   async getAll(){
-       let re = await adminService.getAll().then((res) => {
+   async getall(){
+       
+       let re = await adminService.getall().then((res) => {
         return res;
       });
       this.allQuest = re.quests
