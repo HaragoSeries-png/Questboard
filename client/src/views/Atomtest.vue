@@ -1,5 +1,6 @@
 <template>
   <div id="questfeed">
+    noti here {{noti}}
     <v-form>
       <v-container>
         <v-row>
@@ -62,6 +63,12 @@ import profileService from "@/service/profileService";
 export default {
   name: "Quest Feed",
   methods: {
+    async getnoti(){
+      let noti = await profileService.getnoti().then((res) => {
+        return res;
+      });
+      this.noti = noti
+    },
     add() {
       this.$store.dispatch("set");
     },
@@ -109,12 +116,14 @@ export default {
   },
   created() {
     this.$emit("setTitle", this.$options.name);
+    
   },
   data() {
     return {
       count: this.$store.getters.getcount,
       files: null,
       url: null,
+      noti:''
     };
   },
 };

@@ -1,5 +1,7 @@
 <template>
+
         <v-card class="card" style="width:300px, height:500px"   >
+
             <v-img
             :class="rounded"
              :src='ImageUrl'

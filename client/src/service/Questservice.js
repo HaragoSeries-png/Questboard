@@ -17,6 +17,11 @@ class questService {
         let a = await axios.get(url + "/questid/" + value).then(res => { return res.data })
         return { suc: a.success, quest: a.quest, owner: a.owner }
     }
+    static async acceptquest(qid){
+        let a = await axios.put(url+'/post', qid).then(res => { return res.data })
+        console.log("suc " + a.success)
+        return { suc: a.success }
+    }
 }
 
 export default questService

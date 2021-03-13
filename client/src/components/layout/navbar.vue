@@ -240,8 +240,8 @@
 
       <v-spacer></v-spacer>
       
-
-        <div id="loginitems" v-if="status">
+  <notibut></notibut>
+        <!-- <div id="loginitems" v-if="status">
      <v-menu offset-y :nudge-width="200"  >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -271,7 +271,7 @@
              
       </v-list>
     </v-menu> 
-        </div>
+        </div> -->
       
      
 
@@ -284,8 +284,14 @@
 </template>
 
 <script>
+import notibut from './notibut'
+
 export default {
   name: "Navbar",
+  components:{
+    notibut
+    
+  },
   methods: {
     getuserLink() {
       return '/profile/id/' + this.$store.getters.getuserid

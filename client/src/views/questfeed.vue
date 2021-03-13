@@ -74,7 +74,9 @@ export default {
   },
   watch: {
     "$route.params.page": async function() {
-
+      await this.getquest();
+    },
+    "$route.params.category": async function() {
       await this.getquest();
     }
   },
@@ -95,6 +97,7 @@ export default {
         return res;
       });
       console.log('pagenum ='+a.pagenum);
+      this.quests =[]
       this.quests = await a.quest;
       this.pagenum = await a.pagenum
     },

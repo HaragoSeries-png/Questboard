@@ -8,26 +8,33 @@ const router = express.Router();
 
 router.put('/decide', function (req, res) {
     let questid = req.body.quest_id
-    Quest.findById(questid).then(quest => {
-      console.log(quest)
+    Quest.findById(questid).then(quest => {      
       if (req.body.approve) {
+        console.log('in app')
         quest.status = 'waiting'
         quest.rate = req.body.rate
         User.findById(quest.helperID).then(user=>{
           let noti = {message:"Approve"}
           user.notify.push(noti)
           user.havenoti = true
+          user.save()
         })
       }
       else {
         quest.status = 'reject'
+        
         try{
           fs.unlinkSync('server/public/'+ quest.image)
         }
         catch{
           
         }
-        
+        User.findById(quest.helperID).then(user=>{
+          let noti = {message:"reject"}
+          user.notify.push(noti)
+          user.havenoti = true
+          user.save()
+        })
         Quest.findByIdAndDelete(questid).then(quest => {
           res.send(quest)
         })
@@ -48,10 +55,8 @@ router.get('/quest',function(req,res){
 
 router.get('/getall',function(req,res){
   Quest.find({}).then(quest => {
-  
     res.send(quest)
   })
 })
-
 
 module.exports = router
