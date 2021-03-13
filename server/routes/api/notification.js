@@ -13,7 +13,8 @@ router.get('/',passport.authenticate('pass', {
     if(user.havenoti){
         console.log('have noti')
         let notify = user.notify
-        await user.readed()
+        user.havenoti = false
+        user.save()
         res.send(notify)
     }
     else{
