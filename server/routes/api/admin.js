@@ -45,4 +45,13 @@ router.get('/quest',function(req,res){
     res.send({ quests: quest, success: true })
   })
 })
+
+router.get('/getall',function(req,res){
+  Quest.find({}).then(quest => {
+  
+    res.send(quest)
+  })
+})
+
+
 module.exports = router

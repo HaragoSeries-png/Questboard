@@ -44,18 +44,18 @@ export default {
 @import "./styles/alert.css";
 @import "./styles/table.css";
 
+
+
 #app {
   font-family: 'Montserrat', 'Bai Jamjuree';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   font-weight: bold
 }
 
 .component {
-  margin: 2%;
-  margin-top: 5%;
-  width: auto;
+  margin-top: 4.4%;
+  width: 100%;
   /* border: 1px solid black;
   border-style: solid; */
 }

@@ -124,7 +124,7 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont   c_font ">
+              <div class="titlefont   c_font "  style="color:#ffc76e;"  >
                 {{ item.title }}
               </div>
             </v-list-item-content>
@@ -141,16 +141,16 @@
             link
             :to="item.to"
             color="#FF598F"
-              class="on_hover"
+            class="on_hover"
           >
             <v-list-item-icon>
               <div class="titlefont">
-                <v-icon  style="color:#ffc76e"   >{{ item.icon }}</v-icon>
+                <v-icon  style="color:#ffc76e">{{ item.icon }}</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont  c_font">
+              <div class="titlefont  c_font"   >
                 {{ item.title }}
               </div>
             </v-list-item-content>
@@ -182,16 +182,12 @@
                 Log Out
               </div>
             </v-list-item-content>
-
-
-
-
-            
           </v-list-item>
         </v-list>
-
-        <v-divider></v-divider>
       </div>
+        
+
+
         
       <div id="loginitems" v-else>
         <v-list dense app>
@@ -204,13 +200,13 @@
             class="on_hover"
           >
             <v-list-item-icon>
-              <div class="titlefont">
-                <v-icon>{{ item.icon }}</v-icon>
+              <div class="titlefont"  style="color:#ffc76e;">
+                <v-icon   style="color:#ffc76e;"  >{{ item.icon }}</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <div class="titlefont">
+              <div class="titlefont"  style="color:#ffc76e;"  >
                 {{ item.title }}
               </div>
             </v-list-item-content>

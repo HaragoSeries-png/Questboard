@@ -15,5 +15,12 @@ class adminService{
     static async decide(qid,status,r){
         await axios.put(url+'/decide',{quest_id:qid,approve:status,rate:r})
     }
+    static async getall(){
+        
+        let a = await axios.get(url+'/getall').then(res=>{return res.data})
+        return {quests:a} 
+    }
+
+
 }
 export default adminService
