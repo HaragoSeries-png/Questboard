@@ -61,7 +61,8 @@ let UserSchema = new mongoose.Schema({
         message:String,
         time: Date        
     }],
-    havenoti:Boolean
+    havenoti:Boolean,
+    token:[String]
 })
 
 

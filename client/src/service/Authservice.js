@@ -32,9 +32,15 @@ class authService {
         return a.success
     }
     static async logout() {
-        await localStorage.removeItem('token');
-        await localStorage.removeItem('islogin');
-        delete axios.defaults.headers.common['Authorization'];
+        let text = await localStorage.getItem('token');
+        console.log(text)
+        let a = await axios.post(url + '/logout', {token:text}).then(res => { return res.data })
+        if(a){
+            await localStorage.removeItem('token');
+            await localStorage.removeItem('islogin');
+            delete axios.defaults.headers.common['Authorization']; 
+        }
+        
     }
     static async profile() {
         console.log("Profile Search :")

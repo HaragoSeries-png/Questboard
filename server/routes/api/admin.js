@@ -58,5 +58,8 @@ router.get('/getall',function(req,res){
     res.send(quest)
   })
 })
+router.put('/putlog',function(){
+  
+})
 
 module.exports = router
