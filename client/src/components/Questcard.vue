@@ -1,20 +1,21 @@
 <template>
 
-        <v-card class="card" style="width:300px, height:500px"   >
+        <v-card class="card" style="width:300px, height:400px"   >
 
             <v-img
             :class="rounded"
              :src='ImageUrl'
              full-width
-             :aspect-ratio="16/9"
-             class="card__img"></v-img>
+            aspect-ratio="16/9"
+            
+             ></v-img>
 
                 <v-list-item>
-                  <v-list-item-content>
+                  <v-list-item-content >
                     <v-list-item-title><span style="font-size: 20px; font-weight:bold;">{{Name}}</span></v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
-            <v-list-item three-line style="">
+            <v-list-item three-line  style="margin-top:-3%;">
              <v-list-item-content>     
                 <v-list-item-subtitle style="font-size: 13px;">{{Detail}}</v-list-item-subtitle>
                 <v-list-item-subtitle style="font-size: 13px;">{{date}}</v-list-item-subtitle>

@@ -11,29 +11,22 @@
             </center>
 
             <center>
+              <v-card-actions style="float:center;" class="Rate">
+                <span style="color:#43a047;font-weight:800">COMPLETE</span>
 
-              
-                 <v-card-actions style="float:center;" class="Rate">
-                  <span style="color:#43a047;font-weight:800">COMPLETE</span>
-           
-              <span class="grey--text text--lighten-2 caption mr-2">
-          
-              </span>
-                 <v-spacer></v-spacer>
-              <v-rating
-                v-model="rating"
-                background-color="red"
-                color="yellow accent-4"
-                dense
-                half-increments
-                readonly
-                hover
-                size="25"
-              ></v-rating>
-            </v-card-actions>
-              
-              
-
+                <span class="grey--text text--lighten-2 caption mr-2"> </span>
+                <v-spacer></v-spacer>
+                <v-rating
+                  v-model="rating"
+                  background-color="red"
+                  color="yellow accent-4"
+                  dense
+                  half-increments
+                  readonly
+                  hover
+                  size="25"
+                ></v-rating>
+              </v-card-actions>
             </center>
           </div>
         </v-col>
@@ -78,7 +71,7 @@
               <v-spacer></v-spacer>
               <span style="text-align:center;"> {{ quest.reward }}</span>
             </v-card-actions>
-          
+
             <div class="pa-4" style="margin-top:-1%;">
               <div>
                 Details
@@ -90,11 +83,7 @@
                 style="margin-top:5%;overflow-x:auto;padding:16px;"
               >
                 <p style="font-size:14px;text-indent:20px; ">
-                  {{ quest.questdetail }} Lorem, ipsum dolor sit amet
-                  consectetur adipisicing elit. Reprehenderit unde voluptates
-                  quam id hic explicabo mollitia laboriosam quod dicta,
-                  inventore sapiente, ipsam quia ratione exercitationem
-                  necessitatibus, iste voluptatibus aliquam totam!
+                  {{ quest.questdetail }}
                 </p>
               </v-card>
             </div>
@@ -103,16 +92,47 @@
                 color="white "
                 text
                 style="margin-left:3%;margin-top:2%;font-size:20px; background-color:#ff6e40 ;"
+                @click="toFeed()"
               >
-                Helper
+                Back
               </v-btn>
+              <v-dialog v-model="dialog" max-width="450"  style="text-align:center;">
+                <v-card style="height:min-content;">
+                  <v-card-title >
+                      <span style="text-align:center;font-weight:bold;margin-left:auto;margin-right:auto;font-size:18px;margin-top:2%;">Are you sure you want to apply this quest</span>
+                  </v-card-title>
+                   <v-divider></v-divider>
+                  <v-card-text>
+                   <span style="color:red;font-weight:bold;font-size:15px;">
+                     *Please reminded
+                   </span>
+                  <br>
+                  <br>
+                 <span style="font-size:13px;color:black;"> After your confirm you can't reject this quest except helper don't choose you. </span>
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn color="red darken-1" text @click="dialog = false">
+                      Back
+                    </v-btn>
+
+                    <v-btn color="green darken-1" text @click="completed()" >
+                      Confirm
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
               <v-spacer></v-spacer>
               <v-btn
                 color="white "
                 text
                 style="margin-top:2%;font-size:20px; background-color:#388e3c;"
+                @click.stop="dialog = true"
               >
-                Next
+                Apply
               </v-btn>
             </div>
             <!-- <div style="margin-left:15%;">
@@ -127,10 +147,19 @@
 
 <script>
 import questService from "@/service/questService";
-
+import Swal from "sweetalert2";
 export default {
   name: "questInfo",
   methods: {
+    completed(){
+    
+          Swal.fire(
+            "<alert-title>You request is complete!</alert-title>",
+            "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
+            "success"
+          );
+      this.dialog=false;
+    },
     getinfoma: async function() {
       let questid = this.$route.params.id;
 
@@ -143,10 +172,13 @@ export default {
       this.ownerID = re.owner.ID;
       this.ownername = re.owner.name;
 
-      this.rating = this.quest.rate
+      this.rating = this.quest.rate;
 
       console.log("complete");
       console.log(this.quest);
+    },
+    toFeed() {
+      this.$router.push("/feed");
     },
   },
   created: async function() {
@@ -164,6 +196,7 @@ export default {
       testdetail: "sssssssssssssssssssssssssssssssssss",
       ownername: "",
       ownerID: "",
+      dialog: false,
     };
   },
 };

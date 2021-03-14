@@ -37,9 +37,9 @@
     data: () => ({
       links: [
         {title: "Feed", to: "/adminfeed"},
-        {title: "Wating Approve", to: "/approve"},
-        {title: "Report", to: "/report"},
-        {title: "Dashboard", to: "/dashboard"},
+        {title: "Wating Approve", to: "/adminapprove"},
+        {title: "Report", to: "/adminreport"},
+        {title: "Dashboard", to: "/admindashboard"},
       ],
     }),
   }

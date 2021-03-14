@@ -1,4 +1,4 @@
-import home from '@/views/landing'
+
 import login from '../views/login.vue'
 import signup from '../views/signup.vue'
 import contact from '@/views/contact'
@@ -15,7 +15,7 @@ import profile from '../views/profile/index.vue'
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', component: home },
+    { path: '/', component: contact },
     { path: '/login', component: login },
     { path: '/signup', component: signup },
     { path: '/contact', component: contact },
