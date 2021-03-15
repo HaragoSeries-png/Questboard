@@ -4,6 +4,7 @@ import Home from '../views/Admin_approve.vue'
 import seeQuest from '../views/seeQuest.vue'
 import Admin_approve from '../views/Admin_approve.vue'
 import adminFeed from '../views/adminFeed.vue'
+import report from '../views/report.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,8 +14,9 @@ const routes = [
     component: Home
   },
   { path : '/quest/id/:id',component : seeQuest},
-  { path : '/approve',component : Admin_approve},
+  { path : '/adminapprove',component : Admin_approve},
   { path : '/adminfeed',component : adminFeed},
+  { path : '/adminreport',component : report}
 
 ]
 

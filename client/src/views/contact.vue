@@ -6,6 +6,7 @@
         <a href="#" type="button" class="cta" style="text-decoration:none;"
           >Join Us</a
         >
+          <a href="#contact">contact</a>
       </div>
     </section>
     <section>
@@ -217,6 +218,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "Contact",
   methods: {
@@ -230,8 +232,11 @@ export default {
         this.$refs.form.resetValidation()
       },
       send(){
-        
-        alert('ส่งแล้วน้ะ ไอ่สั้ด');
+         Swal.fire(
+            "<alert-title>You message has been send</alert-title>",
+            "<alert-subtitle></alert-subtitle>",
+            "success"
+          );
       }
     },
   data: () => ({
@@ -256,6 +261,9 @@ export default {
 </script>
 
 <style scoped>
+.main_section{
+  scroll-behavior: smooth;
+}
 .container {
   min-height: 100vh;
   width: 100%;
@@ -303,15 +311,11 @@ export default {
   margin-top: 2%;
   display: inline-block;
   padding: 10px 10px;
-  color: crimson;
-  background-color: transparent;
+  color: white;
+  background-color: crimson;
   border: 2px solid crimson;
   position: relative;
   justify-content: start;
-}
-#hero .cta:hover {
-  color: white;
-  background-color: crimson;
 }
 
 .about-top {
