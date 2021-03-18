@@ -19,7 +19,7 @@ export default new Vuex.Store({
     currentUser: '',
     count: 0,
     userinfoma: '',
-    notification:[]
+    notification:localStorage.getItem('notificaton') || []
   },
   getters: {
     getTitle(state) { return state.title },
@@ -28,8 +28,8 @@ export default new Vuex.Store({
     getfullname(state) { return state.userfullname },
     getcount(state) { return state.count },
     getinfoma(state) { return state.userinfoma },
-
     getuserid(state) { return state.userid },
+    getnoti(state) { return state.notification },
     getAll(state) { return [state.islog, state.currentUser, state.userfullname, state.userinfoma] }
   },
   mutations: {

@@ -1,5 +1,6 @@
 <template>
   <div id="questInfo" style="margin:20px;">
+    {{quest._id}}
     <v-container>
       <v-row>
         <v-col cols="12" md="6">
@@ -135,6 +136,7 @@
                 Apply
               </v-btn>
             </div>
+            {{quest.wait}}
             <!-- <div style="margin-left:15%;">
               <slot></slot>
             </div> -->
@@ -151,14 +153,27 @@ import Swal from "sweetalert2";
 export default {
   name: "questInfo",
   methods: {
-    completed(){
-    
-          Swal.fire(
+    async completed(){
+      let suc = await questService.acceptquest(this.quest._id).then((res) => {
+        return res;
+      });
+      if(suc){
+        Swal.fire(
             "<alert-title>You request is complete!</alert-title>",
             "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
             "success"
           );
-      this.dialog=false;
+        this.dialog=false;
+      }
+      else{
+        Swal.fire(
+            "<alert-title>Somethinf wrong</alert-title>",
+            "<alert-subtitle></alert-subtitle>",
+            "fail"
+        );
+        this.dialog=false;
+      }
+          
     },
     getinfoma: async function() {
       let questid = this.$route.params.id;
@@ -198,7 +213,7 @@ export default {
       ownerID: "",
       dialog: false,
     };
-  },
+  }
 };
 </script>
 

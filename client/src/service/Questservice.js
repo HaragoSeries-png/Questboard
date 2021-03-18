@@ -17,8 +17,14 @@ class questService {
         let a = await axios.get(url + "/questid/" + value).then(res => { return res.data })
         return { suc: a.success, quest: a.quest, owner: a.owner }
     }
-    static async acceptquest(qid){
-        let a = await axios.put(url+'/post', qid).then(res => { return res.data })
+    static async acceptquest(quest_id){
+        let a = await axios.put(url+'/accept', {quest_id:quest_id}).then(res => { return res.data })
+        console.log("suc " + a.success)
+        return { suc: a.success }
+    }
+    static async waitselect(cid,qid,ap){
+        let data = {cid:cid , quest_id:qid , approve:ap}
+        let a = await axios.put(url+'/select', data).then(res => { return res.data })
         console.log("suc " + a.success)
         return { suc: a.success }
     }
