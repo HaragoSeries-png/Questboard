@@ -68,10 +68,13 @@ router.post('/login', async (req, res, next) => {
           email: user.email
         };
         console.log("name " + user.username)
-        const token = jwt.sign(payload, 'TOP_SECRET');
+        const token = 'Bearer '+ jwt.sign(payload, 'TOP_SECRET');
+        user.token.push(token)
+        user.havenoti = true
+        user.save()
         console.log("token " + token)
         res.json({
-          token: 'Bearer ' + token,
+          token: token,
           success: true,
           id: user._id,
           username: user.username,
@@ -84,6 +87,19 @@ router.post('/login', async (req, res, next) => {
   )(req, res, next);
 }
 );
+router.post('/logout',passport.authenticate('logout', {
+  session: false
+}),
+  (req,res)=>{
+    let token = req.body.token
+    let user = req.user
+    console.log(JSON.stringify(token))
+    user.token.pull(token)
+    user.save()
+    console.log('logout')
+    res.send(true)
+  }
+)
 
 router.get('/test',(req, res) => {
   let email = req.body.email

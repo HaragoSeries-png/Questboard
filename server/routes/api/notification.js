@@ -11,7 +11,7 @@ router.get('/',passport.authenticate('pass', {
     console.log('noti')
     let user = req.user
     if(user.havenoti){
-        console.log('have noti')
+        console.log('have notiiiiiiiiiiiiiiiiii')
         let notify = user.notify
         user.havenoti = false
         user.save()

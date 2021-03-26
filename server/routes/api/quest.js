@@ -37,8 +37,7 @@ const upload = multer({
 
 router.get('/questid/:id', function (req, res) {
   Quest.findById(req.params.id).then(async (quest) => {
-    let ownerID = quest.helperID
-    
+    let ownerID = quest.helperID    
     User.findById(ownerID).then(async (owner) => {
       let ownerName = owner.infoma.firstname + " " + owner.infoma.lastname
       let ownerInfo = {ID: ownerID, name: ownerName}
@@ -173,6 +172,7 @@ router.put('/accept', passport.authenticate('pass', {
   console.log(req.body.quest_id)
   let questid = req.body.quest_id
   let adventurer = req.user._id
+  console.log("idd "+questid)
   Quest.findById(questid).then(quest => {
     console.log(quest)
     quest.wait.push(adventurer)
@@ -185,20 +185,27 @@ router.put('/accept', passport.authenticate('pass', {
 router.put('/select', passport.authenticate('pass', {
   session: false
 }), function (req, res) {
+  
   let questid = req.body.quest_id
-  let contid = req.user._id
-  Quest.findById(questid).then(quest => {
-    console.log(quest)
-    if (req.body.approve) {
-      quest.wait.pull(contid)
-      quest.contributor.push(contid)
-    }
-    else {
-      quest.wait.pull(contid)
-    }
-    quest.save()
-    return res.send(quest)
+  let contid = req.body.cid
+  let approve = req.body.approve
+  let detail = contid.map((cid,i)=>{
+    return [cid,approve[i]]
   })
+  console.log("idd "+questid)
+  Quest.findById(questid).then(quest => {
+    detail.forEach(de => {    
+      if (de.approve) {
+        quest.wait.pull(cid)
+        quest.contributor.push(cid)
+      }
+      else {
+        quest.wait.pull(cid)
+      }
+      quest.save()
+    }); 
+    return res.send(quest)
+  })  
 })
 
 router.get('/test', function (req, res) {

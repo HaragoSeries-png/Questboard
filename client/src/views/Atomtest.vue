@@ -53,6 +53,7 @@
         >
       </v-card>
     </v-dialog>
+    <button v-on:keyup.enter="loo" id="sss">butt </button>
   </div>
 </template>
 
@@ -113,10 +114,17 @@ export default {
         alert("yeah");
       } else alert("fail");
     },
+    loo(){
+      alert('hh')
+    },
+    nextPlease: function () {
+      alert('ee')
+      document.getElementById('sss').focus();
+    }
   },
   created() {
     this.$emit("setTitle", this.$options.name);
-    
+    this.nextPlease()
   },
   data() {
     return {

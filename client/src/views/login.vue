@@ -10,6 +10,7 @@
         type="text"
         required
         dark
+        v-on:keyup.enter='login()'
       ></v-text-field>
 
       <v-text-field
@@ -18,6 +19,7 @@
         type="password"
         required
         dark
+        v-on:keyup.enter='login()'
       ></v-text-field>
 
       <br />
