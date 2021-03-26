@@ -185,21 +185,27 @@ router.put('/accept', passport.authenticate('pass', {
 router.put('/select', passport.authenticate('pass', {
   session: false
 }), function (req, res) {
+  
   let questid = req.body.quest_id
   let contid = req.body.cid
+  let approve = req.body.approve
+  let detail = contid.map((cid,i)=>{
+    return [cid,approve[i]]
+  })
   console.log("idd "+questid)
   Quest.findById(questid).then(quest => {
-    console.log(quest)
-    if (req.body.approve) {
-      quest.wait.pull(contid)
-      quest.contributor.push(contid)
-    }
-    else {
-      quest.wait.pull(contid)
-    }
-    quest.save()
+    detail.forEach(de => {    
+      if (de.approve) {
+        quest.wait.pull(cid)
+        quest.contributor.push(cid)
+      }
+      else {
+        quest.wait.pull(cid)
+      }
+      quest.save()
+    }); 
     return res.send(quest)
-  })
+  })  
 })
 
 router.get('/test', function (req, res) {
