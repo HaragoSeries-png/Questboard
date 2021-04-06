@@ -1,6 +1,7 @@
 <template>
-
+  
   <div id="loginitems" v-if="status">
+    
      <v-menu offset-y :nudge-width="200"  >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -20,10 +21,10 @@
        </div>
        <v-divider></v-divider>
         <v-list-item
-          v-for="(item, index) in noti"
-          :key="index"
+          v-for="(item) in noti"
+          :key="item._id"
         >
-      
+         
           <v-list-item-title>{{ item.message }}   </v-list-item-title>
     
         </v-list-item>
@@ -40,16 +41,15 @@ export default {
         return{
             status: this.$store.getters.isLoggedIn,
             notiicon : 'alarm-light-outline',
-            noti:[]
+            noti:this.$store.getters.getnoti
         }
     },
     methods:{
         async getnoti(){
             
-            let noti = await notifyService.getnoti().then((res) => {
-                return res;
-            });
-            this.noti = noti
+            let a = await notifyService.getnoti()
+            
+            this.$store.dispatch("setnoti", a.notify );
         },
         loop(){           
             setInterval(function(){

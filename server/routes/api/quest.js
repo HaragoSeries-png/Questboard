@@ -190,9 +190,10 @@ router.put('/select', passport.authenticate('pass', {
   let contid = req.body.cid
   let approve = req.body.approve
   let detail = contid.map((cid,i)=>{
-    return [cid,approve[i]]
+    let tde = {cod:cid,approve:approve[i]}
+    return [tde]
   })
-  console.log("idd "+questid)
+  console.log("idd "+detail)
   Quest.findById(questid).then(quest => {
     detail.forEach(de => {    
       if (de.approve) {
