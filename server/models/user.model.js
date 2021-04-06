@@ -61,6 +61,10 @@ let UserSchema = new mongoose.Schema({
         message:String,
         time: Date        
     }],
+    unreadnoti:[{
+        message:String,
+        time: Date        
+    }],
     havenoti:Boolean,
     token:[String]
 })
@@ -70,9 +74,6 @@ UserSchema.pre("save", async function(next) {
   const user = this;
   if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
-  }
-  else if(user.isModified("notify")){
-      user.havenoti = true
   }
   next();
 });

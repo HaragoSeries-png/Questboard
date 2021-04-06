@@ -1,6 +1,6 @@
 <template>
   <div id="questInfo" style="margin:20px;">
-    {{quest._id}}
+    {{condi}}
     <v-container>
       <v-row>
         <v-col cols="12" md="6">
@@ -132,9 +132,13 @@
                 text
                 style="margin-top:2%;font-size:20px; background-color:#388e3c;"
                 @click.stop="dialog = true"
+                v-if="!condi"
               >
                 Apply
               </v-btn>
+              <div v-if="aldy">
+                already
+              </div>
             </div>
             {{quest.wait}}
             <!-- <div style="margin-left:15%;">
@@ -212,7 +216,20 @@ export default {
       ownername: "",
       ownerID: "",
       dialog: false,
+      uid:this.$store.getters.getuserid
     };
+  },
+  computed:{
+    isowner:function(){
+      return this.uid==this.ownerID    
+    },
+    aldy:function(){
+      let n = this.quest.wait.includes(this.uid)
+      return n
+    },
+    condi:function(){
+      return this.aldy|| this.isowner
+    }
   }
 };
 </script>

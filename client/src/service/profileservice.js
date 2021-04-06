@@ -58,7 +58,6 @@ class profileService {
     static async getnoti(){
         console.log('noti ser')
         let a = await axios.get('/api/noti').then(res=>{return res.data})
-        console.log(a)
         return a
     }
 }

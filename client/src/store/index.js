@@ -29,7 +29,7 @@ export default new Vuex.Store({
     getcount(state) { return state.count },
     getinfoma(state) { return state.userinfoma },
     getuserid(state) { return state.userid },
-    getnoti(state) { return state.notification },
+    getnoti(state) { return JSON.parse(state.notification) },
     getAll(state) { return [state.islog, state.currentUser, state.userfullname, state.userinfoma] }
   },
   mutations: {
@@ -63,6 +63,11 @@ export default new Vuex.Store({
       state.userid = localStorage.getItem('uid') || '',
       state.userfullname = localStorage.getItem('fullname') || ''
     },
+    senoti(state,value){
+    
+      localStorage.setItem('notificaton',JSON.stringify(value));
+      state.noti = value
+    },
     setcount: (state, value) => state.count = value,
   },
   actions: {
@@ -71,6 +76,9 @@ export default new Vuex.Store({
     set(context) {
       context.commit('setcount', this.getters.getcount + 1)
     },
+    setnoti(context,value){
+      context.commit('senoti',value)
+    }
   },
   modules: {
   }

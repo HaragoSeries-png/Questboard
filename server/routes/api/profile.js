@@ -174,7 +174,7 @@ router.delete('/',passport.authenticate('pass', {
     session: false
 }), function (req, res) {
     console.log(req.user)
-    let uod = req.user
+    let uid = req.user
     User.findByIdAndDelete({uid},function(err){
         if(err){
             console.log('err'+err)
