@@ -358,6 +358,8 @@ export default {
     if (this.profile.infoma.proimage)
       this.profilePic = this.$store.state.gurl + this.profile.infoma.proimage;
 
+    console.log("Pic " + this.profilePic);
+
     if (this.profile.infoma.skill)
       this.profileSkill = this.profile.infoma.skill;
     if (this.profile.infoma.education)
@@ -368,8 +370,6 @@ export default {
       this.profileContact = this.profile.infoma.contact;
     if (this.profile.infoma.introduce)
       this.profileInfo = this.profile.infoma.introduce;
-
-    console.log(this.profileContact);
 
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;

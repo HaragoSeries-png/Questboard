@@ -22,7 +22,7 @@ class questService {
         console.log("suc " + a.success)
         return { suc: a.success }
     }
-    static async waitselect(cid,qid,ap){ 
+    static async waitselect(cid, qid, ap){ 
         // select คนทำเควส cid:คนที่เลือก , qid:questID(array) ,ap:true=approve false=reject (array)
         let data = {quest_id:qid  ,cid:cid, approve:ap}
         let a = await axios.put(url+'/select', data).then(res => { return res.data })

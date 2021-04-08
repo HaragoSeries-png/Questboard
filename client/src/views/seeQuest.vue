@@ -1,9 +1,9 @@
 <template>
   <div id="questDetail">
     <Watchquest>
-      <div style="text-decoration:underline;margin-top:5%;">Helper</div>
+      <div style="text-decoration: underline; margin-top: 5%;">Helper</div>
 
-      <div style="margin-top:5%">
+      <div style="margin-top: 5%">
         <v-data-table
           :headers="headers"
           :items="helper_slot"

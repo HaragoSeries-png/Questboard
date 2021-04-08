@@ -1,6 +1,5 @@
 <template>
   <div id="questInfo" style="margin:20px;">
-   
     <v-container>
       <v-row>
         <v-col cols="12" md="6">
@@ -14,17 +13,26 @@
             <center>
               <v-card-actions style="float:center;" class="Rate">
                 <div class="statusQuest">
-                  <div v-if="quest.status == 'pending'"> 
-                  <span style="font-weight:800;background-color:#f57c00;border-radius:12px;padding:10px;color:white;">{{quest.status}}</span>
+                  <div v-if="quest.status == 'pending'">
+                    <span
+                      style="font-weight:800;background-color:#f57c00;border-radius:12px;padding:10px;color:white;"
+                      >{{ quest.status }}</span
+                    >
                   </div>
-                    <div v-else-if="quest.status == 'inprogress'"> 
-                  <span style="font-weight:800;background-color:#1e88e5;">{{quest.status}}</span>
+                  <div v-else-if="quest.status == 'inprogress'">
+                    <span style="font-weight:800;background-color:#1e88e5;">{{
+                      quest.status
+                    }}</span>
                   </div>
-                    <div v-if="quest.status == 'complete'"> 
-                  <span style="font-weight:800;background-color:#689f38;">{{quest.status}}</span>
+                  <div v-if="quest.status == 'complete'">
+                    <span style="font-weight:800;background-color:#689f38;">{{
+                      quest.status
+                    }}</span>
                   </div>
-                   <div v-if="quest.status == 'wait'"> 
-                  <span style="font-weight:800;background-color:#1e88e5;">{{quest.status}}</span>
+                  <div v-if="quest.status == 'wait'">
+                    <span style="font-weight:800;background-color:#1e88e5;">{{
+                      quest.status
+                    }}</span>
                   </div>
                 </div>
 
@@ -101,19 +109,26 @@
                 </p>
               </v-card>
             </div>
-            <div >
+            <div>
               <v-btn
-                color="white "
+                color="white"
                 text
                 style="float:left;margin-top:2%;font-size:15px; background-color:#ff6e40;margin-left:3.5%;"
                 @click="toFeed()"
               >
                 Back
               </v-btn>
-           
+              <v-btn
+                v-if="isowner || true"
+                color="white"
+                text
+                style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
+              >
+                See Helper
+              </v-btn>
               <v-spacer></v-spacer>
-           
-<!-- <div   v-if="isowner">
+
+              <!-- <div   v-if="isowner">
   
  <v-dialog
     
@@ -160,22 +175,29 @@
     </v-dialog>
 </div> -->
 
-
-
-   
-              <v-dialog v-model="dialog" max-width="450"  style="text-align:center;">
+              <v-dialog
+                v-model="dialog"
+                max-width="450"
+                style="text-align:center;"
+              >
                 <v-card style="height:min-content;">
-                  <v-card-title >
-                      <span style="text-align:center;font-weight:bold;margin-left:auto;margin-right:auto;font-size:18px;margin-top:2%;">Are you sure you want to apply this quest</span>
+                  <v-card-title>
+                    <span
+                      style="text-align:center;font-weight:bold;margin-left:auto;margin-right:auto;font-size:18px;margin-top:2%;"
+                      >Are you sure you want to apply this quest</span
+                    >
                   </v-card-title>
-                   <v-divider></v-divider>
+                  <v-divider></v-divider>
                   <v-card-text>
-                   <span style="color:red;font-weight:bold;font-size:15px;">
-                     *Please reminded
-                   </span>
-                  <br>
-                  <br>
-                 <span style="font-size:13px;color:black;"> After your confirm you can't reject this quest except helper don't choose you. </span>
+                    <span style="color:red;font-weight:bold;font-size:15px;">
+                      *Please reminded
+                    </span>
+                    <br />
+                    <br />
+                    <span style="font-size:13px;color:black;">
+                      After your confirm you can't reject this quest except
+                      helper don't choose you.
+                    </span>
                   </v-card-text>
 
                   <v-card-actions>
@@ -185,7 +207,7 @@
                       Back
                     </v-btn>
 
-                    <v-btn color="green darken-1" text @click="completed()" >
+                    <v-btn color="green darken-1" text @click="completed()">
                       Confirm
                     </v-btn>
                   </v-card-actions>
@@ -206,44 +228,86 @@
                 already
               </div>
             </div>
-            
-          
           </div>
         </v-col>
       </v-row>
+
+      <div id="helperBox" v-if="isowner || true">
+        <template v-for="(item, index) in quest.wait">
+          <v-list-item :key="item.index">
+            <v-list-item-content style="margin-left: -15px; text-align: left;">
+              <v-list-item-subtitle
+                v-html="item"
+                style="margin-top: -13px; font-size: 15px; color: #ffab40"
+              ></v-list-item-subtitle>
+
+              <v-list-item-icon>
+                <v-checkbox v-model="selectHelperStatus[index]"></v-checkbox>
+              </v-list-item-icon>
+              <v-divider v-if="index != quest.wait.length - 1"></v-divider>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+        {{ quest.wait }}&nbsp;{{ selectHelperStatus }} Selected:
+        {{ selectedHelperTotal() }}/{{}}
+        <v-btn
+          v-if="isowner || true"
+          color="white"
+          text
+          style="float: right; margin-top: 2%; font-size: 15px; background-color:green; margin-left: 3.5%;"
+          @click="sendHelperSelected()"
+        >
+          Select Helper
+        </v-btn>
+      </div>
     </v-container>
   </div>
-
 </template>
 
 <script>
 import questService from "@/service/questService";
 import Swal from "sweetalert2";
+
 export default {
   name: "questInfo",
-
   methods: {
-    async completed(){
+    async completed() {
       let suc = await questService.acceptquest(this.quest._id).then((res) => {
         return res;
       });
-      if(suc){
+      if (suc) {
         Swal.fire(
-            "<alert-title>You request is complete!</alert-title>",
-            "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
-            "success"
-          );
-        this.dialog=false;
-      }
-      else{
-        Swal.fire(
-            "<alert-title>Somethinf wrong</alert-title>",
-            "<alert-subtitle></alert-subtitle>",
-            "fail"
+          "<alert-title>You request is complete!</alert-title>",
+          "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
+          "success"
         );
-        this.dialog=false;
+        this.dialog = false;
+      } else {
+        Swal.fire(
+          "<alert-title>Something wrong</alert-title>",
+          "<alert-subtitle></alert-subtitle>",
+          "fail"
+        );
+        this.dialog = false;
       }
-          
+    },
+    async sendHelperSelected() {
+      let suc = await questService.waitselect(this.quest.wait, this.quest._id, this.selectHelperStatus, ).then((res) => {
+        return res;
+      });
+      if (suc) {
+        Swal.fire(
+          "<alert-title>You accept Helper!</alert-title>",
+          "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
+          "success"
+        );
+      } else {
+        Swal.fire(
+          "<alert-title>Something wrong</alert-title>",
+          "<alert-subtitle></alert-subtitle>",
+          "fail"
+        );
+      }
     },
     getinfoma: async function() {
       let questid = this.$route.params.id;
@@ -265,52 +329,53 @@ export default {
     toFeed() {
       this.$router.push("/feed");
     },
+    selectedHelperTotal() {
+      return this.selectHelperStatus.filter(Boolean).length;
+    },
   },
   created: async function() {
     await this.getinfoma();
     this.questPic = this.$store.state.gurl + this.quest.image;
 
-    this.conInfor = this.quest.wait.map((con)=>{
-      let de = {conName:con,conCheck:false}
-      return [de]
-    })
+    this.conInfor = this.quest.wait.map((con) => {
+      let de = { conName: con, conCheck: false };
+      return [de];
+    });
+
+    for (var i = 1; i <= this.quest.wait.length; i++) {
+      this.selectHelperStatus.push(1 == 0);
+    }
   },
-  
   data() {
     return {
       quest: "",
       questPic: "",
-      
+
       questRate: 3,
       time: 2,
       rating: 4.3,
       ownername: "",
       ownerID: "",
       dialog: false,
-      dialog1:false,
-      uid:this.$store.getters.getuserid,
-      testCon : this.quest.wait,
+      dialog1: false,
+      uid: this.$store.getters.getuserid,
       conInfor: [],
-        headers: [
-         
-          { text: 'Name', value: 'conName',align:'start' },
-          { text: 'Check', value: 'conCheck',align:'center' },
-        ],
 
+      selectHelperStatus: [],
     };
   },
-  computed:{
-    isowner:function(){
-      return this.uid==this.ownerID    
+  computed: {
+    isowner: function() {
+      return this.uid == this.ownerID;
     },
-    aldy:function(){
-      let n = this.quest.wait.includes(this.uid)
-      return n
+    aldy: function() {
+      let n = this.quest.wait.includes(this.uid);
+      return n;
     },
-    condi:function(){
-      return this.aldy|| this.isowner
-    }
-  }
+    condi: function() {
+      return this.aldy || this.isowner;
+    },
+  },
 };
 </script>
 
@@ -376,13 +441,12 @@ tbody tr td {
 table {
   width: 50%;
 }
-.statusQuest{
-  font-size:1.5rem;
+.statusQuest {
+  font-size: 1.5rem;
   margin-left: 2%;
 }
-.statusQuest div{
+.statusQuest div {
   text-transform: uppercase;
-  
 }
 #text_fill {
   margin-top: 5%;

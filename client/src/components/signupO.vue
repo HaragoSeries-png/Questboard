@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import authService from '../service/Authservice'
+import authService from '../service/authService'
 export default {
     name:'register',
     data(){
