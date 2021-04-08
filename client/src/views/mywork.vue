@@ -114,21 +114,12 @@
     </div>
     <div id="noob">
       <center>
-        <v-btn
-          color="white "
-          text
-          style="font-size:20px; background-color:#00bcd4;margin-top:10%;"
-        >
-          <router-link
-            to="/createQuest2"
-            style="text-decoration:none;color:white;"
-          >
-            Create your quest
-          </router-link>
-        </v-btn>
+       
       </center>
     </div>
-    <div style="margin-top:40px;text-align:center;font-size:30px ">
+
+
+    <div class="tableInfo">
       Information about your current quest
     </div>
 
@@ -160,7 +151,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.tableInfo{
+  margin-top:40px;
+  text-align:center;
+  font-size:30px
+}
 .full-screen-bot {
   margin-top: 2%;
   display: flex;

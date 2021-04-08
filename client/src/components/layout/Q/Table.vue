@@ -76,6 +76,7 @@ export default {
     sentToDetail(value) {
       let path = '/quest/id/' + value
       this.$router.push({ path: path})
+      
     },
     getColor(value) {
       if (value == "waiting") return "green";
@@ -113,9 +114,6 @@ export default {
 
 <style scoped>
 
-.onDesk{
-  
-}
 .onMobile{
   display: none;
  

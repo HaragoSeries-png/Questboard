@@ -1,6 +1,6 @@
 <template>
   <div id="questInfo" style="margin:20px;">
-    {{condi}}
+   
     <v-container>
       <v-row>
         <v-col cols="12" md="6">
@@ -13,7 +13,20 @@
 
             <center>
               <v-card-actions style="float:center;" class="Rate">
-                <span style="color:#43a047;font-weight:800">COMPLETE</span>
+                <div class="statusQuest">
+                  <div v-if="quest.status == 'pending'"> 
+                  <span style="font-weight:800;background-color:#f57c00;border-radius:12px;padding:10px;color:white;">{{quest.status}}</span>
+                  </div>
+                    <div v-else-if="quest.status == 'inprogress'"> 
+                  <span style="font-weight:800;background-color:#1e88e5;">{{quest.status}}</span>
+                  </div>
+                    <div v-if="quest.status == 'complete'"> 
+                  <span style="font-weight:800;background-color:#689f38;">{{quest.status}}</span>
+                  </div>
+                   <div v-if="quest.status == 'wait'"> 
+                  <span style="font-weight:800;background-color:#1e88e5;">{{quest.status}}</span>
+                  </div>
+                </div>
 
                 <span class="grey--text text--lighten-2 caption mr-2"> </span>
                 <v-spacer></v-spacer>
@@ -88,15 +101,68 @@
                 </p>
               </v-card>
             </div>
-            <div style="display:flex;">
+            <div >
               <v-btn
                 color="white "
                 text
-                style="margin-left:3%;margin-top:2%;font-size:20px; background-color:#ff6e40 ;"
+                style="float:left;margin-top:2%;font-size:15px; background-color:#ff6e40;margin-left:3.5%;"
                 @click="toFeed()"
               >
                 Back
               </v-btn>
+           
+              <v-spacer></v-spacer>
+           
+<!-- <div   v-if="isowner">
+  
+ <v-dialog
+    
+      v-model="dialog1"
+      width="450px"
+      height="300px"
+      style="overflow-x:hidden;"
+      scrollable ="false"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          dark
+          v-bind="attrs"
+          v-on="on"
+          style=" color=white;margin-top:2%;background-color:red;float:right;font-size:15px;margin-right:3.5%;"
+        >
+          Worker
+        </v-btn>
+      </template>
+      <v-card>
+  <div style="text-align:center;margin:10px 0 0 0;font-size:1.8rem;">
+    Contributor   
+  </div>
+  <v-divider></v-divider>
+        <v-card-actions>
+          <div>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="dialog1 = false"
+          >
+            Close
+          </v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="dialog1 = false"
+          >
+            Save
+          </v-btn>
+          </div>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+</div> -->
+
+
+
+   
               <v-dialog v-model="dialog" max-width="450"  style="text-align:center;">
                 <v-card style="height:min-content;">
                   <v-card-title >
@@ -140,15 +206,14 @@
                 already
               </div>
             </div>
-            {{quest.wait}}
-            <!-- <div style="margin-left:15%;">
-              <slot></slot>
-            </div> -->
+            
+          
           </div>
         </v-col>
       </v-row>
     </v-container>
   </div>
+
 </template>
 
 <script>
@@ -156,6 +221,7 @@ import questService from "@/service/questService";
 import Swal from "sweetalert2";
 export default {
   name: "questInfo",
+
   methods: {
     async completed(){
       let suc = await questService.acceptquest(this.quest._id).then((res) => {
@@ -202,21 +268,35 @@ export default {
   },
   created: async function() {
     await this.getinfoma();
-
     this.questPic = this.$store.state.gurl + this.quest.image;
+
+    this.conInfor = this.quest.wait.map((con)=>{
+      let de = {conName:con,conCheck:false}
+      return [de]
+    })
   },
+  
   data() {
     return {
       quest: "",
       questPic: "",
+      
       questRate: 3,
       time: 2,
       rating: 4.3,
-      testdetail: "sssssssssssssssssssssssssssssssssss",
       ownername: "",
       ownerID: "",
       dialog: false,
-      uid:this.$store.getters.getuserid
+      dialog1:false,
+      uid:this.$store.getters.getuserid,
+      testCon : this.quest.wait,
+      conInfor: [],
+        headers: [
+         
+          { text: 'Name', value: 'conName',align:'start' },
+          { text: 'Check', value: 'conCheck',align:'center' },
+        ],
+
     };
   },
   computed:{
@@ -296,7 +376,14 @@ tbody tr td {
 table {
   width: 50%;
 }
-
+.statusQuest{
+  font-size:1.5rem;
+  margin-left: 2%;
+}
+.statusQuest div{
+  text-transform: uppercase;
+  
+}
 #text_fill {
   margin-top: 5%;
   text-align: left;
