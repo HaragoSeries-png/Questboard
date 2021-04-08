@@ -301,6 +301,7 @@ export default {
       formData.append("reward", this.reward);
       formData.append("tstart", this.tstart);
       formData.append("tend", this.tend);
+      formData.append("numberofcon", this.numberofcon);
       formData.append("duedate", this.duedate);
      
       let suc = await QuestService.createquest(formData).then((res) => {

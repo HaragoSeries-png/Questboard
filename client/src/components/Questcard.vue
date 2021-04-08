@@ -6,7 +6,7 @@
             :class="rounded"
              :src='ImageUrl'
              full-width
-            aspect-ratio="16/9"
+            :aspect-ratio="16/9"
             
              ></v-img>
 

@@ -232,7 +232,7 @@
         </v-col>
       </v-row>
 
-      <div id="helperBox" v-if="isowner || true">
+      <div id="helperBox" v-if="isowner">
         <template v-for="(item, index) in quest.wait">
           <v-list-item :key="item.index">
             <v-list-item-content style="margin-left: -15px; text-align: left;">
@@ -249,9 +249,8 @@
           </v-list-item>
         </template>
         {{ quest.wait }}&nbsp;{{ selectHelperStatus }} Selected:
-        {{ selectedHelperTotal() }}/{{}}
         <v-btn
-          v-if="isowner || true"
+          v-if="isowner"
           color="white"
           text
           style="float: right; margin-top: 2%; font-size: 15px; background-color:green; margin-left: 3.5%;"
