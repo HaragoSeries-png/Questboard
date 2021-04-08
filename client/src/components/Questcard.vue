@@ -47,7 +47,8 @@ export default {
     },
     data(){
       return{
-        ImageUrl :''
+        ImageUrl :'',
+        qid:''
       }
     },
     methods: {
@@ -57,7 +58,7 @@ export default {
         console.log("out"+this.Detail)
       },
       gotodetail(){
-        this.$router.push({ path: "/quest/id/"+this.Qid });
+        this.$router.push({ path: this.qid });
       }
         
     },
@@ -70,7 +71,7 @@ export default {
           this.ImageUrl= "default.png"
         }     
         console.log(this.Image)
-        this.Qid = 'quest/id/'+this.Qid
+        this.qid = '/quest/id/'+this.Qid
     }
     
 
