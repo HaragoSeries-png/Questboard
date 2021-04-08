@@ -6,7 +6,7 @@
         <a href="#" type="button" class="cta" style="text-decoration:none;"
           >Join Us</a
         >
-          <a href="#contact">contact</a>
+        
       </div>
     </section>
     <section>
@@ -15,10 +15,7 @@
           <center>"Welcome to Questboard project"</center>
         </div>
         <div class="detail-welcome">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero ipsum
-          fuga minima repellendus, reiciendis dicta magnam illum iste in!
-          Tempore quisquam cumque hic totam earum quam harum iste,
-          exercitationem accusamus?
+    
         </div>
       </div>
     </section>

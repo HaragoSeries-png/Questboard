@@ -84,8 +84,8 @@
               <v-btn
                 color="white "
                 text
-                style="font-size:20px; background-color:#f57c00;margin-top:10%;"
-                @click="senddata('pending')"
+                style="font-size:20px; background-color:black;margin-top:10%;"
+                @click="senddata('complete')"
               >
                 Pending
               </v-btn>
