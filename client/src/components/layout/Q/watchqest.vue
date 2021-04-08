@@ -1,5 +1,6 @@
 <template>
   <div id="questInfo" style="margin:20px;">
+    
     <v-container>
       <v-row>
         <v-col cols="12" md="6">
@@ -35,19 +36,12 @@
                     }}</span>
                   </div>
                 </div>
-
+ 
                 <span class="grey--text text--lighten-2 caption mr-2"> </span>
                 <v-spacer></v-spacer>
-                <v-rating
-                  v-model="rating"
-                  background-color="red"
-                  color="yellow accent-4"
-                  dense
-                  half-increments
-                  readonly
-                  hover
-                  size="25"
-                ></v-rating>
+                <span :style="{color:ratea.Color}" class="rateLabel">
+                  {{ratea.Label}}                 
+                </span>                 
               </v-card-actions>
             </center>
           </div>
@@ -58,10 +52,10 @@
             <h2 style="text-align:center;">
               {{ quest.questname }}
             </h2>
-
+           
             <v-card-actions style="text-align:center;" class="Rate2">
               <span class="grey--text text--lighten-2 caption mr-2"> </span>
-
+              
               <v-rating
                 v-model="rating"
                 background-color="white"
@@ -119,7 +113,7 @@
                 Back
               </v-btn>
               <v-btn
-                v-if="isowner || true"
+                v-if="isowner"
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
@@ -248,7 +242,7 @@
             </v-list-item-content>
           </v-list-item>
         </template>
-        {{ quest.wait }}&nbsp;{{ selectHelperStatus }} Selected:
+
         <v-btn
           v-if="isowner"
           color="white"
@@ -281,6 +275,7 @@ export default {
           "success"
         );
         this.dialog = false;
+        this.$router.go()
       } else {
         Swal.fire(
           "<alert-title>Something wrong</alert-title>",
@@ -374,6 +369,12 @@ export default {
     condi: function() {
       return this.aldy || this.isowner;
     },
+    ratea:function(){
+      let r = (this.rating*2)-1
+      let Lrat =['D','D+','C','C+','B','B+','A','A+','S','SS'] 
+      let Crat =['Gray','Gray','green','green','#FFCC00','#FFCC00','#33CCFF','#33CCFF','#9A00FF','#FF3366'] //color
+      return {Label:Lrat[r],Color:Crat[r]}
+    }
   },
 };
 </script>
@@ -453,6 +454,9 @@ table {
 }
 .Rate2 {
   display: none;
+}
+.rateLabel{
+  font-size: 80px;
 }
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lexend+Mega&display=swap");
