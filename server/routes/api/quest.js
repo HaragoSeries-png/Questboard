@@ -141,7 +141,7 @@ router.post('/',  passport.authenticate('pass', {
     objective: req.body.objective,
     reward: req.body.reward,
     location: req.body.location,
-    status: "pending",
+    status: "pending",       //original is pending
     image: filename,
     date: dateFormat(new Date(), "longDate"),
     rdate: dateFormat(new Date(), "longDate"),
@@ -234,6 +234,27 @@ router.delete('/', function (req, res) {
   Quest.findByIdAndDelete(req.body.quest_id).then(quest => {
     res.send(quest)
   })
+})
+router.put('/complete',function(req,res){
+  Quest.findById(req.body.quest_id).then(quest=>{
+    quest.status= 'complete'
+    quest.save()
+    res.send({success:true})
+  })
+})
+router.put('/rate', passport.authenticate('pass', {
+  session: false
+}), function (req, res) { 
+  console.log("test rate from back")
+  let detail =req.body.detail 
+  detail.forEach((de) => {
+    User.findById(de.conName).then(user=>{
+  
+      user.setrating(de.conRate)
+      user.save()
+    })
+  }); 
+  return res.send({success:true})
 })
 
 

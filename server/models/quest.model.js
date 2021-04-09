@@ -33,7 +33,7 @@ let QuestSchema = new mongoose.Schema({
 
 QuestSchema.methods.remain = async function(){
     console.log("numcon "+this.numberofcon)
-    console("this.contributor.length "+this.contributor.length)
+    console.log("this.contributor.length "+this.contributor.length)
     let remain = this.numberofcon-this.contributor.length
     console.log(remain)
     return remain

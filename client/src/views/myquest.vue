@@ -132,29 +132,43 @@
       Information about your current quest
     </div>
 
-    <QuestTable :search="search" tye="quest"></QuestTable>
+    <QuestTable :search="search" :questdata="questdata"></QuestTable>
   </div>
 </template>
 
 <script>
 import QuestTable from "../components/layout/Q/Table";
-
+import profileService from "@/service/profileService";
 export default {
   name: "My Quest",
+  props: ["search"],
   components: { QuestTable },
   methods: {
+    getinfoma: async function() {
+      let re = await profileService.myquest().then((res) => {
+        return res;
+      });
+      this.questdata = re.allquest;
+      console.log(this.questdata);
+    },
+    sentToDetail(value) {
+      let path = '/quest/id/' + value
+      this.$router.push({ path: path})
+    },
     senddata(value) {
       this.search = value;
     },
   },
   created: async function() {
     this.$emit("setTitle", this.$options.name);
+    await this.getinfoma();
   },
   data() {
     return {
-      search: "",
       items: ["in progress", "pending", "waiting"],
-      userquest: ""
+      userquest: "",
+      questdata: [],
+      selected: [],
     };
   },
 };

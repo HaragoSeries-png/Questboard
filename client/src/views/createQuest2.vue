@@ -258,7 +258,7 @@ export default {
   data() {
     return {
       icon: "mdi-upload",
-      items: ["Crafter", "House worker", "Handicup", "Etc"],
+      items: ["Handicraft", "Advice", "Education", "Accident", "Housework", "Find friend", "Food and home", "Traffic"],
       Pic1: "https://pbs.twimg.com/media/EBBMoBNU4AA2DXn.jpg",
       files: null,
       url: "",
@@ -297,6 +297,9 @@ export default {
       // additional data
       formData.append("questname", this.questname);
       formData.append("category", this.category);
+      if(this.detail == ""){
+        this.datail = 'no information'
+      }
       formData.append("questdetail", this.detail);
       formData.append("reward", this.reward);
       formData.append("tstart", this.tstart);
