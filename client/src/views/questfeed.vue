@@ -8,26 +8,26 @@
         style="margin-left: 5%; margin-right: 5%;"
         @change="changeCatm($event)"
       >
-        <option>Select category</option>
-        <option value="Handicup">Handicraft</option>
-        <option>Advice</option>
-        <option>Education</option>
-        <option>Accident</option>
-        <option value="House worker">Housework</option>
-        <option>Find friends</option>
-        <option>Food and home economics</option>
-        <option>Traffic</option>
+        <option value="">Select category</option>
+        <option value="Handicraft">Handicraft</option>
+        <option value="Advice">Advice</option>
+        <option value="Education">Education</option>
+        <option value="Accident">Accident</option>
+        <option value="Housework">Housework</option>
+        <option value="Find friend">Find friends</option>
+        <option value="Food and home">Food and home economics</option>
+        <option value="Traffic">Traffic</option>
       </select>
     </div>
     <div class="category">
-      <a @click="changeCat('Handicup')">Handicraft</a>
+      <a @click="changeCat('Handicraft')">Handicraft</a>
       <a @click="changeCat('Advice')">Advice</a>
-      <a @click="changeCat(i)">Education</a>
-      <a @click="changeCat(i)">Accident</a>
-      <a @click="changeCat('House worker')">Housework</a>
-      <a @click="changeCat(i)">Find friends</a>
-      <a @click="changeCat(i)">Food and home economics</a>
-      <a @click="changeCat(i)">Traffic</a>
+      <a @click="changeCat('Education')">Education</a>
+      <a @click="changeCat('Accident')">Accident</a>
+      <a @click="changeCat('Housework')">Housework</a>
+      <a @click="changeCat('Find friend')">Find friends</a>
+      <a @click="changeCat('Food and home')">Food and home economics</a>
+      <a @click="changeCat('Traffic')">Traffic</a>
     </div>
 
     <v-row style=" margin-left: 5%; margin-right: 5%;">
