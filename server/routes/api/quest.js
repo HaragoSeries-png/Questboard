@@ -235,6 +235,13 @@ router.delete('/', function (req, res) {
     res.send(quest)
   })
 })
+router.put('/complete',function(req,res){
+  Quest.findById(req.body.quest_id).then(quest=>{
+    quest.status= 'complete'
+    quest.save()
+    res.send({success:true})
+  })
+})
 
 
 

@@ -1,6 +1,9 @@
 <template>
   <div id="questTable">
     <v-card>
+
+
+
       <v-card-title>
         <v-text-field
           v-model="search"
@@ -80,24 +83,9 @@
 
 export default {
   name: "QuestTable",
-  props: ["search",'tye'],
+  props: ["search",'questdata'],
   methods: {
-    getinfoma: async function() {
-      let re
-      if(this.tye=='work'){
-        re = await profileService.mywork().then((res) => {
-          return res;
-        });
-      }
-      else{
-        re = await profileService.myquest().then((res) => {
-          return res;
-        });
-      }
-
-      this.questdata = re.allquest;
-      console.log(this.questdata);
-    },
+  
     sentToDetail(value) {
       let path = '/quest/id/' + value
       this.$router.push({ path: path})

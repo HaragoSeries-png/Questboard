@@ -11,6 +11,7 @@ import myquest from '../views/myquest.vue'
 import mywork from '../views/mywork.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
+import rateUser from '../views/rateUser.vue'
 import profile from '../views/profile/index.vue'
 Vue.use(VueRouter)
 
@@ -23,7 +24,7 @@ const routes = [
     { path: '/feed/:page/category/:category', component: questfeed ,name:'feed'},
     { path: '/feed/:page', component: questfeed ,name:'feed'},
     { path: '/feed/', component: questfeed },
-    {path:'rateUser',component: rateUser},
+    { path: '/rateUser',component: rateUser},
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
     { path: '/admin', component: admin_approve },
