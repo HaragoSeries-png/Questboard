@@ -298,6 +298,7 @@ export default {
       formData.append("questname", this.questname);
       formData.append("category", this.category);
       formData.append("questdetail", this.detail);
+      
       formData.append("reward", this.reward);
       formData.append("tstart", this.tstart);
       formData.append("tend", this.tend);

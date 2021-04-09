@@ -32,14 +32,28 @@
                     {{ quest.status }}</span
                   >
                 </div>
+              
               </div>
 
-              <span class="grey--text text--lighten-2 caption mr-2"> </span>
+   
               <v-spacer></v-spacer>
               <span :style="{ color: ratea.Color }" class="rateLabel">
                 {{ ratea.Label }}
               </span>
+           
             </v-card-actions>
+              <center>
+  
+                 <v-btn
+                color="black"
+                text
+                style="margin-top:2%;font-size:20px;display:inline;text-align:center;"
+                v-if="aldy"
+              >
+                you apllied this quest already
+              </v-btn>
+
+</center>
 
             <div style="text-align:center;" v-if="quest.status == 'inprogress'">
               <div class="completeBox" @click="dialog3 = true">
@@ -103,7 +117,7 @@
             <h2 style="text-align:center;">
               {{ quest.questname }}
             </h2>
-            {{ quest.contributor }}
+
 
             <v-divider></v-divider>
             <v-card-actions class="pa-4">
@@ -210,20 +224,22 @@
               <v-btn
                 color="white "
                 text
-                style="margin-top:2%;font-size:20px; background-color:#388e3c;"
+                style="margin-top:2%;font-size:20px; background-color:#388e3c;float:left"
                 @click.stop="dialog = true"
                 v-if="!condi"
               >
                 Apply
               </v-btn>
-              <div v-if="aldy">
-                already
-              </div>
+            
+       
+
+
+
             </div>
           </div>
         </v-col>
       </v-row>
-      {{ quest.wait }}
+  
       <v-dialog v-model="dialog2" width="500px" height="300px" overlay>
         <v-card style="background-color:#ececec">
           <div id="helperBox" v-if="isowner">
@@ -385,6 +401,7 @@ export default {
       dialog2: false,
       dialog3: false,
       selectHelperStatus: [],
+      rating:0
     };
   },
   computed: {
@@ -413,7 +430,7 @@ export default {
         "#9A00FF",
         "#FF3366",
       ]; //color
-      return { Label: Lrat[r], Color: Crat[r] };
+      return  { Label: Lrat[r], Color: Crat[r] };
     },
   },
 };
@@ -499,7 +516,7 @@ table {
   display: none;
 }
 .rateLabel {
-  font-size: 80px;
+  font-size: 50px;
 }
 .statusBox {
   font-weight: 800;
@@ -508,10 +525,11 @@ table {
   padding: 13px;
 }
 .completeBox {
-  padding: 16px;
+  padding: 13px;
+  margin-top:10%;
   background-color: green;
   color: white;
-  border-radius: 50px;
+  border-radius: 12px;
   cursor: pointer;
 }
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
