@@ -144,12 +144,13 @@ router.get('/mywork',passport.authenticate('pass', {
 }),async function(req,res){
     try {
         let questid = req.user.accquest
+        console.log(questid)
         let accquest = await Quest.find().where('_id').in(questid).exec();
         
-    
+        console.log('acc '+accquest)
         return res.json({
             success:true,
-           allquest:accquest
+            allquest:accquest
         })
     } catch (error) {
         return res.json({success:false})

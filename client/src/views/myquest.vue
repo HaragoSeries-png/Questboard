@@ -132,7 +132,7 @@
       Information about your current quest
     </div>
 
-    <QuestTable :search="search" :questdata="questdata"></QuestTable>
+    <QuestTable :search="search" tye="quest"></QuestTable>
   </div>
 </template>
 
