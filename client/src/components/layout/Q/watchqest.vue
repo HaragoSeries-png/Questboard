@@ -88,6 +88,12 @@
               <span style="text-align:center;"> {{ quest.reward }}</span>
             </v-card-actions>
 
+             <v-card-actions class="pa-4">
+              Number
+              <v-spacer></v-spacer>
+              <span style="text-align:center;"> 0/{{ quest.numberofcon }}</span>
+            </v-card-actions>
+            
             <div class="pa-4" style="margin-top:-1%;">
               <div>
                 Details
@@ -103,6 +109,10 @@
                 </p>
               </v-card>
             </div>
+           
+
+
+
             <div>
               <v-btn
                 color="white"
@@ -253,6 +263,7 @@
           Select Helper
         </v-btn>
       </div>
+
     </v-container>
   </div>
 </template>

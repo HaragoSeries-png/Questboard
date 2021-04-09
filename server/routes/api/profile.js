@@ -146,12 +146,10 @@ router.get('/mywork',passport.authenticate('pass', {
         let questid = req.user.accquest
         let accquest = await Quest.find().where('_id').in(questid).exec();
         
-        let inprogress = accquest.filter(ele => ele.status == 'inprogress')
-        let waiting = accquest.filter(ele => ele.status == 'wait')
+    
         return res.json({
             success:true,
-            inprogress : inprogress,
-            waiting:waiting
+           allquest:accquest
         })
     } catch (error) {
         return res.json({success:false})
