@@ -36,13 +36,15 @@ const upload = multer({
 });
 
 router.get('/questid/:id', function (req, res) {
-  Quest.findById(req.params.id).then(async (quest) => {
-    let ownerID = quest.helperID    
+  Quest.findById(req.params.id).populate('contributor').populate('wait').then(async (quest) => {
+    let ownerID = quest.helperID  
+    console.log('-------------------------------------------')
+
     User.findById(ownerID).then(async (owner) => {
       let ownerName = owner.infoma.firstname + " " + owner.infoma.lastname
       let rim = quest.remain()
       let ownerInfo = {ID: ownerID, name: ownerName,remain:rim}     
-      return res.send({quest: quest, owner: ownerInfo, success: true})
+      return res.send({quest: quest, owner: ownerInfo,success: true})
     })
   })
 })
@@ -138,19 +140,15 @@ router.post('/',  passport.authenticate('pass', {
     questname: req.body.questname,
     category: req.body.category,
     questdetail: req.body.questdetail,
-    objective: req.body.objective,
     reward: req.body.reward,
-    location: req.body.location,
     status: "pending",       //original is pending
     image: filename,
     date: dateFormat(new Date(), "longDate"),
-    rdate: dateFormat(new Date(), "longDate"),
+    rdate: Date.now(),
     duedate: req.body.duedate,
     numberofcon: req.body.numberofcon,
     wait: [],
     contributor:[],
-    tstart:req.body.tstart,
-    tend:req.body.tend,
     rate:0
   }
 
@@ -221,12 +219,14 @@ router.put('/select', passport.authenticate('pass', {
 })
 
 router.get('/test', function (req, res) {
-  let questid = req.body.quest_id
-  Quest.findById(questid).then(async (quest) => {
-    let remain = await quest.remain()
-    console.log(remain)
-    return res.send({ remain: remain })
-  })
+  // let questid = req.body.quest_id
+  // Quest.findById(questid).then(async (quest) => {
+  //   let remain = await quest.remain()
+  //   console.log(remain)
+  //   return res.send({ remain: remain })
+  // })
+  let d = 'time '+ dateFormat(Date.now(), "longDate")
+  return res.send(d) 
 })
 
 router.delete('/', function (req, res) {
@@ -256,7 +256,13 @@ router.put('/rate', passport.authenticate('pass', {
   }); 
   return res.send({success:true})
 })
-
+router.put('/start',function(req,res){
+  Quest.findById(req.body.quest_id).then(quest=>{
+    quest.status= 'inprogress'
+    quest.save()
+    res.send({success:true})
+  })
+})
 
 
 module.exports = router;

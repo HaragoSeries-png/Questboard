@@ -35,6 +35,11 @@ class questService {
         console.log("suc " + a.success)
         return { suc: a.success }
     }
+    static async startquest(quest_id){
+
+        let a = await axios.put(url+'/start',{quest_id:quest_id}).then(res => { return res.data })
+        return a.success
+    }
 }
 
 export default questService

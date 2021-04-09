@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./user.model');
 
 
 let QuestSchema = new mongoose.Schema({
@@ -37,6 +38,30 @@ QuestSchema.methods.remain = async function(){
     let remain = this.numberofcon-this.contributor.length
     console.log(remain)
     return remain
+}
+QuestSchema.methods.cNametoString= function(){
+    let cName = this.contributor.map(function(c){
+        let ci = c.toString()
+        console.log('ci '+ typeof ci)
+        let cname = User.findById(ci).then((u)=>{
+            let data = {id:u._id,name:u.infoma.firstname}
+            console.log('data : '+JSON.stringify(data) )
+            return data
+        })
+       
+        return cname
+    })
+    return  cName
+}
+QuestSchema.methods.wNametoString= async function(){
+    let cName = this.wait.map(function(c){
+        let ci = c.toString()
+        let cname = User.findById(ci).then(u=>{
+            return {_id:u._id,name:u.infoma.firstname}
+        })
+        return cname
+    })
+    return cName
 }
 
 const Quest = mongoose.model('Quest',QuestSchema)

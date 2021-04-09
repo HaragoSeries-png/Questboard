@@ -14,30 +14,20 @@ router.put('/decide', function (req, res) {
         quest.status = 'waiting'
         quest.rate = req.body.rate
         User.findById(quest.helperID).then(user=>{
-          let noti = {message:"Approve"}
+          let noti = {message:"Approve",quest:{quest_id:questid,questname:quest.questname}}
           user.notify.push(noti)
           user.havenoti = true
           user.save()
         })
       }
       else {
-        quest.status = 'reject'
-        
-        try{
-          fs.unlinkSync('server/public/'+ quest.image)
-        }
-        catch{
-          
-        }
+        quest.status = 'reject'       
         User.findById(quest.helperID).then(user=>{
-          let noti = {message:"reject"}
+          let noti = {message:"reject",quest:{quest_id:questid,questname:quest.questname}}
           user.notify.push(noti)
           user.havenoti = true
           user.save()
-        })
-        Quest.findByIdAndDelete(questid).then(quest => {
-          res.send(quest)
-        })
+        })       
       }
       quest.save()
       console.log(quest.status)
