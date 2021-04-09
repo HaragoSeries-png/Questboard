@@ -35,7 +35,7 @@
               
               </div>
 
-   
+
               <v-spacer></v-spacer>
               <span :style="{ color: ratea.Color }" class="rateLabel">
                 {{ ratea.Label }}
@@ -69,6 +69,7 @@
               <h3 style="text-align:center;margin-bottom:5%;">
                 Evaluate your helper
               </h3>
+              <v-divider></v-divider>
               <v-row style="margin-left:0.5%;">
                 <v-col cols="8" md="8">
                   <p>
@@ -103,7 +104,7 @@
                   color="white"
                   text
                   style="font-size: 13px; background-color:green;text-align:center;"
-                  @click="sendHelperSelected()"
+                  @click="ratecon()"
                 >
                   Complete
                 </v-btn>
@@ -156,8 +157,12 @@
                 height="150"
                 style="margin-top:5%;overflow-x:auto;padding:16px;"
               >
-                <p style="font-size:14px;text-indent:20px; ">
-                  {{ quest.questdetail }}
+               
+                <p style="font-size:14px;text-indent:20px;" v-if="quest.questdata ==underfined">
+                  no information
+                </p>
+                <p v-else>
+                    {{ quest.questdetail }}
                 </p>
               </v-card>
             </div>
@@ -321,6 +326,7 @@ export default {
         this.dialog = false;
       }
     },
+
     async completeQuest() {
       let suc = await questService.comquest(this.quest._id).then((res) => {
         return res;
@@ -348,6 +354,32 @@ export default {
           "fail"
         );
       }
+    },
+    async ratecon(){
+      alert('nani')
+      let re = await questService.ratingcon(this.conInfor).then((res) => {
+        return res;
+      });
+      if (re.suc) {
+        Swal.fire(
+          "<alert-title>You accept Helper!</alert-title>",
+          "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
+          "success"
+        );
+      } else {
+        Swal.fire(
+          "<alert-title>Something wrong</alert-title>",
+          "<alert-subtitle></alert-subtitle>",
+          "fail"
+        );
+      }
+
+
+
+
+
+
+
     },
     getinfoma: async function() {
       let questid = this.$route.params.id;
@@ -526,7 +558,7 @@ table {
 }
 .completeBox {
   padding: 13px;
-  margin-top:10%;
+  margin-top:0%;
   background-color: green;
   color: white;
   border-radius: 12px;

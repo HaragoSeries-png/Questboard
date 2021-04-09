@@ -13,6 +13,7 @@ import VueRouter from 'vue-router'
 import Vue from 'vue'
 import rateUser from '../views/rateUser.vue'
 import profile from '../views/profile/index.vue'
+import aboutUs from '../views/aboutUs.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -31,6 +32,7 @@ const routes = [
     { path : '/quest/id/:id',component : quest},
     { path : '/myquest',component : myquest},
     { path : '/mywork',component : mywork},
+    { path : '/aboutus',component : aboutUs}
 
 ]
 

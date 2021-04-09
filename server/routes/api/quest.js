@@ -242,6 +242,20 @@ router.put('/complete',function(req,res){
     res.send({success:true})
   })
 })
+router.put('/rate', passport.authenticate('pass', {
+  session: false
+}), function (req, res) { 
+  console.log("test rate from back")
+  let detail =req.body.detail 
+  detail.forEach((de) => {
+    User.findById(de.conName).then(user=>{
+  
+      user.setrating(de.conRate)
+      user.save()
+    })
+  }); 
+  return res.send({success:true})
+})
 
 
 

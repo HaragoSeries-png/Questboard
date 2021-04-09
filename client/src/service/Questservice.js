@@ -29,6 +29,12 @@ class questService {
         console.log("suc " + a.success)
         return { suc: a.success }
     }
+    static async ratingcon(conInfor){ 
+        let data = {detail:conInfor}
+        let a = await axios.put(url+'/rate', data).then(res => { return res.data })
+        console.log("suc " + a.success)
+        return { suc: a.success }
+    }
 }
 
 export default questService
