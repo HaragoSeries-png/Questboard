@@ -1,6 +1,9 @@
 <template>
   <div id="questTable">
     <v-card>
+
+
+
       <v-card-title>
         <v-text-field
           v-model="search"
@@ -12,7 +15,7 @@
       </v-card-title>
       <v-data-table :headers="headers" :items="questdata" :search="search" class="onDesk">
         <template #item="{ item }">
-         
+          
           <tr @click="sentToDetail(item._id)" >
             <td class="item" style="font-size:15px;">{{ item.questname }}</td>
             <td class="item" style="text-transform: uppercase;font-size:15px;">
@@ -25,6 +28,23 @@
           </tr>
         </template>
       </v-data-table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <v-data-table :headers="headers" :items="questdata" :search="search" class="onMobile">
         <template #item="{ item }">
@@ -44,7 +64,7 @@
         </template>
       </v-data-table>
 
- 
+
 
 
 
@@ -54,33 +74,18 @@
 
 
     </v-card>
-    
+ 
   </div>
 </template>
 
 <script>
-import profileService from "@/service/profileService";
+
 
 export default {
   name: "QuestTable",
-  props: ["search",'tye'],
+  props: ["search",'questdata'],
   methods: {
-    getinfoma: async function() {
-      let re
-      if(this.tye=='work'){
-        re = await profileService.mywork().then((res) => {
-          return res;
-        });
-      }
-      else{
-        re = await profileService.myquest().then((res) => {
-          return res;
-        });
-      }
-
-      this.questdata = re.allquest;
-      console.log(this.questdata);
-    },
+  
     sentToDetail(value) {
       let path = '/quest/id/' + value
       this.$router.push({ path: path})
@@ -93,12 +98,9 @@ export default {
       else return "grey";
     },
   },
-  created: async function() {
-    await this.getinfoma();
-  },
   data() {
     return {
-      questdata: [],
+      
       selected: [],
       headers: [
         { text: "Quest Name", value: "questname", align: "start" ,size:"30px" },

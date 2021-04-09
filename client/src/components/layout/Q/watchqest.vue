@@ -1,6 +1,5 @@
 <template>
   <div id="questInfo" style="margin:20px;">
-    
     <v-container>
       <v-row>
         <v-col cols="12" md="6">
@@ -11,62 +10,116 @@
               </div>
             </center>
 
-            <center>
-              <v-card-actions style="float:center;" class="Rate">
-                <div class="statusQuest">
-                  <div v-if="quest.status == 'pending'">
-                    <span
-                      style="font-weight:800;background-color:#f57c00;border-radius:12px;padding:10px;color:white;"
-                      >{{ quest.status }}</span
-                    >
-                  </div>
-                  <div v-else-if="quest.status == 'inprogress'">
-                    <span style="font-weight:800;background-color:#1e88e5;">{{
-                      quest.status
-                    }}</span>
-                  </div>
-                  <div v-if="quest.status == 'complete'">
-                    <span style="font-weight:800;background-color:#689f38;">{{
-                      quest.status
-                    }}</span>
-                  </div>
-                  <div v-if="quest.status == 'wait'">
-                    <span style="font-weight:800;background-color:#1e88e5;">{{
-                      quest.status
-                    }}</span>
-                  </div>
+            <v-card-actions class="Rate">
+              <div class="statusQuest">
+                <div v-if="quest.status == 'pending'">
+                  <span style="background-color:#f57c00;" class="statusBox">{{
+                    quest.status
+                  }}</span>
                 </div>
- 
-                <span class="grey--text text--lighten-2 caption mr-2"> </span>
-                <v-spacer></v-spacer>
-                <span :style="{color:ratea.Color}" class="rateLabel">
-                  {{ratea.Label}}                 
-                </span>                 
-              </v-card-actions>
-            </center>
+                <div v-else-if="quest.status == 'inprogress'">
+                  <span style="background-color:#1e88e5;" class="statusBox">
+                    {{ quest.status }}</span
+                  >
+                </div>
+                <div v-else-if="quest.status == 'complete'">
+                  <span style="background-color:#689f38;" class="statusBox">
+                    {{ quest.status }}</span
+                  >
+                </div>
+                <div v-else-if="quest.status == 'waiting'">
+                  <span style="background-color:#1e88e5;" class="statusBox">
+                    {{ quest.status }}</span
+                  >
+                </div>
+              
+              </div>
+
+
+              <v-spacer></v-spacer>
+              <span :style="{ color: ratea.Color }" class="rateLabel">
+                {{ ratea.Label }}
+              </span>
+           
+            </v-card-actions>
+              <center>
+  
+                 <v-btn
+                color="black"
+                text
+                style="margin-top:2%;font-size:20px;display:inline;text-align:center;"
+                v-if="aldy"
+              >
+                you apllied this quest already
+              </v-btn>
+
+</center>
+
+            <div style="text-align:center;" v-if="quest.status == 'inprogress'">
+              <div class="completeBox" @click="dialog3 = true">
+                Quest Complete
+              </div>
+            </div>
           </div>
         </v-col>
+
+        <v-dialog v-model="dialog3" width="500px" height="300px" overlay>
+          <v-card style="background-color:#ececec">
+            <div id="helperBox">
+              <h3 style="text-align:center;margin-bottom:5%;">
+                Evaluate your helper
+              </h3>
+              <v-divider></v-divider>
+              <v-row style="margin-left:0.5%;">
+                <v-col cols="8" md="8">
+                  <p>
+                    Name
+                  </p>
+                </v-col>
+
+                <v-col cols="4" md="4">
+                  Rate
+                </v-col>
+              </v-row>
+              <template v-for="item in conInfor">
+                <v-list-item :key="item.index">
+                  <v-row>
+                    <v-col cols="8" md="8">
+                      {{ item.conName }}
+                    </v-col>
+                    <v-col cols="4" md="4">
+                      <v-rating
+                        v-model="item.conRate"
+                        background-color="green lighten-3"
+                        color="green"
+                        small
+                      ></v-rating>
+                    </v-col>
+                  </v-row>
+                </v-list-item>
+              </template>
+              <center>
+                <v-btn
+                  v-if="isowner"
+                  color="white"
+                  text
+                  style="font-size: 13px; background-color:green;text-align:center;"
+                  @click="ratecon()"
+                >
+                  Complete
+                </v-btn>
+              </center>
+            </div>
+          </v-card>
+        </v-dialog>
 
         <v-col cols="12" md="6">
           <div class="section2">
             <h2 style="text-align:center;">
               {{ quest.questname }}
             </h2>
-           
-            <v-card-actions style="text-align:center;" class="Rate2">
-              <span class="grey--text text--lighten-2 caption mr-2"> </span>
-              
-              <v-rating
-                v-model="rating"
-                background-color="white"
-                color="yellow accent-4"
-                dense
-                half-increments
-                readonly
-                hover
-                size="20"
-              ></v-rating>
-            </v-card-actions>
+
+
             <v-divider></v-divider>
             <v-card-actions class="pa-4">
               Create by
@@ -88,6 +141,12 @@
               <span style="text-align:center;"> {{ quest.reward }}</span>
             </v-card-actions>
 
+            <v-card-actions class="pa-4">
+              Number
+              <v-spacer></v-spacer>
+              <span style="text-align:center;"> 0/{{ quest.numberofcon }}</span>
+            </v-card-actions>
+
             <div class="pa-4" style="margin-top:-1%;">
               <div>
                 Details
@@ -98,11 +157,16 @@
                 height="150"
                 style="margin-top:5%;overflow-x:auto;padding:16px;"
               >
-                <p style="font-size:14px;text-indent:20px; ">
-                  {{ quest.questdetail }}
+               
+                <p style="font-size:14px;text-indent:20px;" v-if="quest.questdata ==underfined">
+                  no information
+                </p>
+                <p v-else>
+                    {{ quest.questdetail }}
                 </p>
               </v-card>
             </div>
+
             <div>
               <v-btn
                 color="white"
@@ -117,58 +181,11 @@
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
+                @click="dialog2 = true"
               >
                 See Helper
               </v-btn>
               <v-spacer></v-spacer>
-
-              <!-- <div   v-if="isowner">
-  
- <v-dialog
-    
-      v-model="dialog1"
-      width="450px"
-      height="300px"
-      style="overflow-x:hidden;"
-      scrollable ="false"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          dark
-          v-bind="attrs"
-          v-on="on"
-          style=" color=white;margin-top:2%;background-color:red;float:right;font-size:15px;margin-right:3.5%;"
-        >
-          Worker
-        </v-btn>
-      </template>
-      <v-card>
-  <div style="text-align:center;margin:10px 0 0 0;font-size:1.8rem;">
-    Contributor   
-  </div>
-  <v-divider></v-divider>
-        <v-card-actions>
-          <div>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="dialog1 = false"
-          >
-            Close
-          </v-btn>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="dialog1 = false"
-          >
-            Save
-          </v-btn>
-          </div>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-</div> -->
-
               <v-dialog
                 v-model="dialog"
                 max-width="450"
@@ -212,47 +229,71 @@
               <v-btn
                 color="white "
                 text
-                style="margin-top:2%;font-size:20px; background-color:#388e3c;"
+                style="margin-top:2%;font-size:20px; background-color:#388e3c;float:left"
                 @click.stop="dialog = true"
                 v-if="!condi"
               >
                 Apply
               </v-btn>
-              <div v-if="aldy">
-                already
-              </div>
+            
+       
+
+
+
             </div>
           </div>
         </v-col>
       </v-row>
+  
+      <v-dialog v-model="dialog2" width="500px" height="300px" overlay>
+        <v-card style="background-color:#ececec">
+          <div id="helperBox" v-if="isowner">
+            <h3 style="text-align:center;margin-bottom:5%;">
+              Select your recruiter
+            </h3>
+            <v-row style="margin-left:0.5%;">
+              <v-col cols="10" md="9">
+                <p>
+                  Name
+                </p>
+              </v-col>
 
-      <div id="helperBox" v-if="isowner">
-        <template v-for="(item, index) in quest.wait">
-          <v-list-item :key="item.index">
-            <v-list-item-content style="margin-left: -15px; text-align: left;">
-              <v-list-item-subtitle
-                v-html="item"
-                style="margin-top: -13px; font-size: 15px; color: #ffab40"
-              ></v-list-item-subtitle>
-
-              <v-list-item-icon>
-                <v-checkbox v-model="selectHelperStatus[index]"></v-checkbox>
-              </v-list-item-icon>
-              <v-divider v-if="index != quest.wait.length - 1"></v-divider>
-            </v-list-item-content>
-          </v-list-item>
-        </template>
-
-        <v-btn
-          v-if="isowner"
-          color="white"
-          text
-          style="float: right; margin-top: 2%; font-size: 15px; background-color:green; margin-left: 3.5%;"
-          @click="sendHelperSelected()"
-        >
-          Select Helper
-        </v-btn>
-      </div>
+              <v-col cols="2" md="3">
+                <p>
+                  Status
+                </p>
+              </v-col>
+            </v-row>
+            <template v-for="(item, index) in quest.wait">
+              <v-list-item :key="item.index">
+                <v-row style="border-top:1px solid gray;">
+                  <v-col cols="10" md="10">
+                    {{ item }}
+                  </v-col>
+                  <v-col cols="2" md="2">
+                    <v-checkbox
+                      v-model="selectHelperStatus[index]"
+                      style="display:inline;"
+                    ></v-checkbox>
+                    <!-- <v-divider v-if="index != quest.wait.length - 1"></v-divider> -->
+                  </v-col>
+                </v-row>
+              </v-list-item>
+            </template>
+            <center>
+              <v-btn
+                v-if="isowner"
+                color="white"
+                text
+                style="font-size: 13px; background-color:green;text-align:center;"
+                @click="sendHelperSelected()"
+              >
+                Select Helper
+              </v-btn>
+            </center>
+          </div>
+        </v-card>
+      </v-dialog>
     </v-container>
   </div>
 </template>
@@ -275,7 +316,7 @@ export default {
           "success"
         );
         this.dialog = false;
-        this.$router.go()
+        this.$router.go();
       } else {
         Swal.fire(
           "<alert-title>Something wrong</alert-title>",
@@ -285,10 +326,21 @@ export default {
         this.dialog = false;
       }
     },
-    async sendHelperSelected() {
-      let suc = await questService.waitselect(this.quest.wait, this.quest._id, this.selectHelperStatus, ).then((res) => {
+
+    async completeQuest() {
+      let suc = await questService.comquest(this.quest._id).then((res) => {
         return res;
       });
+      if (suc) {
+        console.log("success");
+      }
+    },
+    async sendHelperSelected() {
+      let suc = await questService
+        .waitselect(this.quest.wait, this.quest._id, this.selectHelperStatus)
+        .then((res) => {
+          return res;
+        });
       if (suc) {
         Swal.fire(
           "<alert-title>You accept Helper!</alert-title>",
@@ -302,6 +354,32 @@ export default {
           "fail"
         );
       }
+    },
+    async ratecon(){
+      alert('nani')
+      let re = await questService.ratingcon(this.conInfor).then((res) => {
+        return res;
+      });
+      if (re.suc) {
+        Swal.fire(
+          "<alert-title>You accept Helper!</alert-title>",
+          "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
+          "success"
+        );
+      } else {
+        Swal.fire(
+          "<alert-title>Something wrong</alert-title>",
+          "<alert-subtitle></alert-subtitle>",
+          "fail"
+        );
+      }
+
+
+
+
+
+
+
     },
     getinfoma: async function() {
       let questid = this.$route.params.id;
@@ -331,9 +409,9 @@ export default {
     await this.getinfoma();
     this.questPic = this.$store.state.gurl + this.quest.image;
 
-    this.conInfor = this.quest.wait.map((con) => {
-      let de = { conName: con, conCheck: false };
-      return [de];
+    this.conInfor = this.quest.contributor.map((con) => {
+      let de = { conName: con, conRate: 0 };
+      return de;
     });
 
     for (var i = 1; i <= this.quest.wait.length; i++) {
@@ -344,18 +422,18 @@ export default {
     return {
       quest: "",
       questPic: "",
-
       questRate: 3,
       time: 2,
-      rating: 4.3,
       ownername: "",
       ownerID: "",
       dialog: false,
       dialog1: false,
       uid: this.$store.getters.getuserid,
       conInfor: [],
-
+      dialog2: false,
+      dialog3: false,
       selectHelperStatus: [],
+      rating:0
     };
   },
   computed: {
@@ -369,12 +447,23 @@ export default {
     condi: function() {
       return this.aldy || this.isowner;
     },
-    ratea:function(){
-      let r = (this.rating*2)-1
-      let Lrat =['D','D+','C','C+','B','B+','A','A+','S','SS'] 
-      let Crat =['Gray','Gray','green','green','#FFCC00','#FFCC00','#33CCFF','#33CCFF','#9A00FF','#FF3366'] //color
-      return {Label:Lrat[r],Color:Crat[r]}
-    }
+    ratea: function() {
+      let r = this.rating * 2 - 1;
+      let Lrat = ["D", "D+", "C", "C+", "B", "B+", "A", "A+", "S", "SS"];
+      let Crat = [
+        "Gray",
+        "Gray",
+        "green",
+        "green",
+        "#FFCC00",
+        "#FFCC00",
+        "#33CCFF",
+        "#33CCFF",
+        "#9A00FF",
+        "#FF3366",
+      ]; //color
+      return  { Label: Lrat[r], Color: Crat[r] };
+    },
   },
 };
 </script>
@@ -386,6 +475,9 @@ export default {
 }
 .section2 {
   margin-top: -10%;
+}
+#helperBox {
+  padding: 15px 30px 30px 30px;
 }
 .expire {
   margin-left: 15%;
@@ -455,8 +547,22 @@ table {
 .Rate2 {
   display: none;
 }
-.rateLabel{
-  font-size: 80px;
+.rateLabel {
+  font-size: 50px;
+}
+.statusBox {
+  font-weight: 800;
+  border-radius: 12px;
+  color: white;
+  padding: 13px;
+}
+.completeBox {
+  padding: 13px;
+  margin-top:0%;
+  background-color: green;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
 }
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lexend+Mega&display=swap");
