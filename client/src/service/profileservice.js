@@ -43,14 +43,10 @@ class profileService {
         else return false
     }
     static async mywork(){
-        let a = await axios.get(url+'/mywork').then(res=>{return res.data})
-    
-        if(a.success){
-            let inprogress = a.inprogress
-            let waiting= a.waiting  
+        let a = await axios.get(url+'/mywork').then(res=>{return res.data})   
+        if(a.success){            
             return {
-                inprogress : inprogress,
-                waiting:waiting
+                allquest:a.allquest
             }     
         }
         else return false
