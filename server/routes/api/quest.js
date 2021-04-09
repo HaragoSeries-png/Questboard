@@ -190,6 +190,7 @@ router.put('/select', passport.authenticate('pass', {
   let questid = req.body.quest_id
   let contid = req.body.cid
   let approve = req.body.approve
+  let user = req.user
   let detail = contid.map((cid,i)=>{
     let tde = {cid:cid,approve:approve[i]}
     return [tde]
@@ -203,12 +204,14 @@ router.put('/select', passport.authenticate('pass', {
         console.log('iftrue')
         quest.wait.pull(de[i].cid)
         quest.contributor.push(de[i].cid)
+        user.accquest.push(questid)
       }
       else {
         console.log('iffalse')
         quest.wait.pull(de[i].cid)
       }
       quest.save()
+      user.save()
     }); 
     return res.send(quest)
   })  
