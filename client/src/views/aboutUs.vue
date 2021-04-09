@@ -11,11 +11,11 @@
             <div class="contentBx">
                 <div class="content">
                     <h2>Waris Tornsathien</h2>
-                    <p>project manager</p>
-                    <a href="https://www.facebook.com/fray.siraw" class="fab fa-facebook-f"></a>
-                    <a href="https://www.linkedin.com/in/waris-tornsathien/" class="fab fa-linkedin-in"></a>
-                    <a href="https://github.com/Siraw1998" class="fab fa-github"></a>
-                    <a href="https://www.instagram.com/siraw1998/" class="fab fa-instagram"></a>
+                    <p><span style="font-size:3rem;color:red;">P</span>roject Manager</p>
+                    <a href="https://www.facebook.com/fray.siraw"> <img src="facebook1.png" class="icon_profile">  </a>
+                    <a href="https://www.linkedin.com/in/waris-tornsathien/"> <img src="linkedin1.png" class="icon_profile"> </a>
+                    <a href="https://github.com/Siraw1998" > <img src="github1.png" class="icon_profile"></a>
+                    <a href="https://www.instagram.com/siraw1998/" > <img src="ig1.png" class="icon_profile"></a>
                 </div>
             </div>
         </div>
@@ -26,27 +26,27 @@
             </div>
             <div class="contentBx">
                 <div class="content">
-                    <h2>Jiraphat</h2>
-                    <p>เป็นอะไรจำไม่ได้</p>
-                    <a href="https://www.facebook.com/jiraphat.saeheng" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-linkedin-in"></a>
-                    <a href="https://github.com/juniorjiraphat1143" class="fab fa-github"></a>
-                    <a href="https://www.instagram.com/junior_jpz/" class="fab fa-instagram"></a>
+                    <h2>Jiraphat Sae-heng</h2>
+                    <p><span style="font-size:3rem;color:red;">B</span>usiness Analyze</p>
+                    <a href="https://www.facebook.com/jiraphat.saeheng"><img src="facebook1.png" class="icon_profile"> </a>
+                    <a href="#">          <img src="linkedin1.png" class="icon_profile"> </a>
+                    <a href="https://github.com/juniorjiraphat1143"> <img src="github1.png" class="icon_profile"></a>
+                    <a href="https://www.instagram.com/junior_jpz/" ><img src="ig1.png" class="icon_profile"></a>
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="imgBx">
-                <img src="a.png">
+                <img src="atom.png.png">
             </div>
             <div class="contentBx">
                 <div class="content">
                     <h2>Chanon Likitsarwit</h2>
-                    <p>Developer</p>
-                    <a href="https://www.facebook.com/atom3.14" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-linkedin-in"></a>
-                    <a href="https://github.com/HaragoSeries-png" class="fab fa-github"></a>
-                    <a href="https://www.instagram.com/atomtofu/" class="fab fa-instagram"></a>
+                     <p><span style="font-size:3rem;color:red;">D</span>eveloper </p>
+                    <a href="https://www.facebook.com/atom3.14" >  <img src="facebook1.png" class="icon_profile"> </a>
+                    <a href="#" class="fab fa-linkedin-in"><img src="linkedin1.png" class="icon_profile"></a>
+                    <a href="https://github.com/HaragoSeries-png"><img src="github1.png" class="icon_profile"></a>
+                    <a href="https://www.instagram.com/atomtofu/" ><img src="ig1.png" class="icon_profile"></a>
                 </div>
             </div>
         </div><div class="card">
@@ -56,11 +56,12 @@
             <div class="contentBx">
                 <div class="content">
                     <h2>Sutisak Sompong</h2>
-                    <p>UX/UI Designer</p>
-                    <a href="https://www.facebook.com/profile.php?id=100004565280118" class="fab fa-facebook-f"></a>
-                    <a href="https://www.linkedin.com/in/sutisak-sompong-072155204/" class="fab fa-linkedin-in"></a>
-                    <a href="https://github.com/61090500454" class="fab fa-github"></a>
-                    <a href="https://www.instagram.com/sutisaksompong/" class="fab fa-instagram"></a>
+               
+                    <p><span style="font-size:3rem;color:red;">U</span>X/UI Designer </p>
+                    <a href="https://www.facebook.com/profile.php?id=100004565280118"><img src="facebook1.png" class="icon_profile"></a>
+                    <a href="https://www.linkedin.com/in/sutisak-sompong-072155204/" ><img src="linkedin1.png" class="icon_profile"></a>
+                    <a href="https://github.com/61090500454" > <img src="github1.png" class="icon_profile"></a>
+                    <a href="https://www.instagram.com/sutisaksompong/"><img src="ig1.png" class="icon_profile"></a>
                 </div>
             </div>
         </div><div class="card">
@@ -70,11 +71,11 @@
             <div class="contentBx">
                 <div class="content">
                     <h2>Kittisak Sangkarak</h2>
-                    <p>Tester</p>
-                    <a href="https://www.facebook.com/bboykungg" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-linkedin-in"></a>
-                    <a href="https://github.com/o-AI-o" class="fab fa-github"></a>
-                    <a href="https://www.instagram.com/bboykungg.2/" class="fab fa-instagram"></a>
+                     <p><span style="font-size:3rem;color:red;">T</span>ester </p>
+                    <a href="https://www.facebook.com/bboykungg"><img src="facebook1.png" class="icon_profile"></a>
+                    <a href="#" ><img src="linkedin1.png" class="icon_profile"></a>
+                    <a href="https://github.com/o-AI-o" > <img src="github1.png" class="icon_profile"></a>
+                    <a href="https://www.instagram.com/bboykungg.2/"><img src="ig1.png" class="icon_profile"></a>
                 </div>
             </div>
         </div>
@@ -91,6 +92,7 @@ name:"aboutUs"
 </script>
 
 <style scoped>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
 *{
     margin: 0;
     padding: 0;
@@ -98,7 +100,14 @@ name:"aboutUs"
     font-family: 'poppins',sans-serif;
 }
 body
-{
+.icon_profile{
+    width:10%;
+}
+.icon_profile:hover{
+    width: 20%;
+    transition: .5s;
+}
+.body{
     width: 100%;
     min-height:100vh;
     display: flex;
@@ -109,7 +118,7 @@ body
 {
     
     position:relative;
-    max-width: 1000px;
+    width: 1000px;
     display: flex;
     justify-content:center;
     align-items:center;
@@ -213,22 +222,30 @@ margin-top: 15px;
 {
     
     .container .card
-    {flex-direction: column;
-    max-width: 350px;
-    margin: 25px 25px;}
+    {
+    flex-direction: column;
+    width: 350px;
+    margin: 25px 25px;
+    }
+
     .container .card .imgBx
-    {width: 100%;
+    {
+    width: 100%;
     height:250px;
-    left:0;}
+    left:0;
+    }
     .container .card .contentBx
-    {width:100%;
+    {
+    width:100%;
     height:auto;
     right: 0;
     padding: 30px;
-    text-align: center}
+    text-align: center
+    }
     .container .card .contentBx:before
-    {top: 0;
-    bottom: 0;}
+    {
+        top: 0;
+        bottom: 0;}
     .container .card:nth-child(even) .imgBx
     {left:0px;}
     .container .card:nth-child(even) .contentBx

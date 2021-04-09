@@ -314,7 +314,7 @@ export default {
         { title: "Quest Board", icon: "mdi-view-dashboard", to: "/feed" },
       ],
       allow2: [
-        { title: "About", icon: "mdi-account-group", to: "/About" },
+        { title: "About", icon: "mdi-account-group", to: "/aboutus" },
         { title: "Contact", icon: "mdi-message-draw", to: "/contact" },
       ],
       unlogitems: [

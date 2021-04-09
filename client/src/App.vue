@@ -41,6 +41,7 @@ export default {
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css%22");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap');
+
 @import "./styles/alert.css";
 @import "./styles/table.css";
 
@@ -56,7 +57,6 @@ export default {
 .component {
   margin-top: 4.4%;
   width: 100%;
-  /* border: 1px solid black;
-  border-style: solid; */
+
 }
 </style>

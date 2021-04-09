@@ -37,8 +37,9 @@
 
 
               <v-spacer></v-spacer>
+              <span style="color:black;font-size:24px;padding-right:2%;">Rank : </span>
               <span :style="{ color: ratea.Color }" class="rateLabel">
-                {{ ratea.Label }}
+                 {{ ratea.Label }}
               </span>
            
             </v-card-actions>
@@ -169,9 +170,10 @@
 
             <div>
               <v-btn
-                color="white"
+                color="black"
                 text
-                style="float:left;margin-top:2%;font-size:15px; background-color:#ff6e40;margin-left:3.5%;"
+                style="float:left;margin-top:2%;font-size:15px;margin-left:3.5%;" 
+                class="button_black" 
                 @click="toFeed()"
               >
                 Back
@@ -214,7 +216,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
 
-                    <v-btn color="red darken-1" text @click="dialog = false">
+                    <v-btn class="button_black" color="black;" text @click="dialog = false">
                       Back
                     </v-btn>
 
@@ -225,11 +227,11 @@
                 </v-card>
               </v-dialog>
 
-              <v-spacer></v-spacer>
+             
               <v-btn
                 color="white "
                 text
-                style="margin-top:2%;font-size:20px; background-color:#388e3c;float:left"
+                style="margin-top:2%;font-size:20px; background-color:#388e3c;float:right"
                 @click.stop="dialog = true"
                 v-if="!condi"
               >
@@ -451,15 +453,15 @@ export default {
       let r = this.rating * 2 - 1;
       let Lrat = ["D", "D+", "C", "C+", "B", "B+", "A", "A+", "S", "SS"];
       let Crat = [
-        "Gray",
-        "Gray",
-        "green",
-        "green",
+        "#584b4b",
+        "#584b4b",
+        "#69d923",
+        "#69d923",
         "#FFCC00",
         "#FFCC00",
         "#33CCFF",
         "#33CCFF",
-        "#9A00FF",
+        "#fd7e14",
         "#FF3366",
       ]; //color
       return  { Label: Lrat[r], Color: Crat[r] };
@@ -472,6 +474,11 @@ export default {
 .pic {
   display: flex;
   padding: 20px;
+}
+.button_black{
+ 
+
+  border:1px solid black;
 }
 .section2 {
   margin-top: -10%;

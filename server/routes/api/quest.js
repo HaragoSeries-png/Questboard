@@ -141,7 +141,7 @@ router.post('/',  passport.authenticate('pass', {
     objective: req.body.objective,
     reward: req.body.reward,
     location: req.body.location,
-    status: "pending",
+    status: "pending",       //original is pending
     image: filename,
     date: dateFormat(new Date(), "longDate"),
     rdate: dateFormat(new Date(), "longDate"),
