@@ -179,14 +179,63 @@
                 Back
               </v-btn>
               <v-btn
-                v-if="isowner"
+                v-if="isowner && !isstart"
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
                 @click="dialog2 = true"
+
               >
                 See Helper
               </v-btn>
+              <v-btn
+                v-if="isowner && !isstart"
+                color="white"
+                text
+                style="float: right; margin-top: 2%; font-size: 15px; background-color:#10ae10; margin-left: 3.5%;"
+                @click="dialog4 = true"
+
+              >
+                Start quest
+              </v-btn>
+              <v-dialog
+                v-model="dialog4"
+                max-width="450"
+                style="text-align:center;"
+              >
+                <v-card style="height:min-content;">
+                  <v-card-title>
+                    <span
+                      style="text-align:center;font-weight:bold;margin-left:auto;margin-right:auto;font-size:18px;margin-top:2%;"
+                      >Are you sure you want to start this quest</span
+                    >
+                  </v-card-title>
+                  <v-divider></v-divider>
+                  <v-card-text>
+                    <span style="color:red;font-weight:bold;font-size:15px;">
+                      *Please reminded
+                    </span>
+                    <br />
+                    <br />
+                    <span style="font-size:13px;color:black;">
+                      After your confirm you can't reject this quest except
+                      helper don't choose you.
+                    </span>
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn class="button_black" color="black;" text @click="dialog4 = false">
+                      Back
+                    </v-btn>
+
+                    <v-btn color="green darken-1" text @click="startquest()">
+                      Confirm
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
               <v-spacer></v-spacer>
               <v-dialog
                 v-model="dialog"
@@ -237,11 +286,6 @@
               >
                 Apply
               </v-btn>
-            
-       
-
-
-
             </div>
           </div>
         </v-col>
@@ -268,9 +312,12 @@
             </v-row>
             <template v-for="(item, index) in quest.wait">
               <v-list-item :key="item.index">
-                <v-row style="border-top:1px solid gray;">
-                  <v-col cols="10" md="10">
-                    {{ item }}
+                <v-row style="border-top:1px solid gray;" >
+                  <v-col cols="10" md="10"  >
+                  <router-link :to="'/profile/id/' + item._id">
+                    {{ item.infoma.firstname }}
+                  </router-link>
+                    
                   </v-col>
                   <v-col cols="2" md="2">
                     <v-checkbox
@@ -293,6 +340,7 @@
                 Select Helper
               </v-btn>
             </center>
+            
           </div>
         </v-card>
       </v-dialog>
@@ -394,7 +442,7 @@ export default {
 
       this.ownerID = re.owner.ID;
       this.ownername = re.owner.name;
-
+      this.conenfor =re.coninfor
       this.rating = this.quest.rate;
 
       console.log("complete");
@@ -406,13 +454,20 @@ export default {
     selectedHelperTotal() {
       return this.selectHelperStatus.filter(Boolean).length;
     },
+    async startquest(){
+      let re = await questService.startquest(this.quest._id)
+      if(re){
+        this.dialog4 = false
+        this.$router.go()
+      }
+    }
   },
   created: async function() {
     await this.getinfoma();
     this.questPic = this.$store.state.gurl + this.quest.image;
 
     this.conInfor = this.quest.contributor.map((con) => {
-      let de = { conName: con, conRate: 0 };
+      let de = { conName: con.infoma.firstname, conRate: 0 };
       return de;
     });
 
@@ -434,8 +489,9 @@ export default {
       conInfor: [],
       dialog2: false,
       dialog3: false,
+      dialog4: false,
       selectHelperStatus: [],
-      rating:0
+      rating:0,
     };
   },
   computed: {
@@ -443,7 +499,7 @@ export default {
       return this.uid == this.ownerID;
     },
     aldy: function() {
-      let n = this.quest.wait.includes(this.uid);
+      let n = this.quest.wait.some(w=> w._id==this.uid)||this.quest.contributor.some(c=> c._id==this.uid);
       return n;
     },
     condi: function() {
@@ -466,6 +522,10 @@ export default {
       ]; //color
       return  { Label: Lrat[r], Color: Crat[r] };
     },
+    isstart:function(){
+      let qstatus = this.quest.status
+      return qstatus=='inprogress'
+    }
   },
 };
 </script>

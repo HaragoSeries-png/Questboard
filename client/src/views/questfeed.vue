@@ -83,18 +83,8 @@ export default {
   },
   methods: {
     getquest: async function() {
-      console.log('dudu')
-      let feedpage = 1
-      let cate = undefined
-      if (this.$route.params.page) {
-        feedpage = this.$route.params.page;
-      }
-      if (this.$route.params.category) {
-        cate = this.$route.params.category;
-      }
-      this.currpage = feedpage
-      console.log('page '+this.currpage)
-      let a = await QuestService.getquest(feedpage-1,cate).then((res) => {
+      console.log('cat '+this.currcat)
+      let a = await QuestService.getquest(this.currpage-1,this.currcat).then((res) => {
         return res;
       });
       console.log('pagenum ='+a.pagenum);
@@ -103,26 +93,18 @@ export default {
       this.pagenum = await a.pagenum
     },
     changePage(i){
-      this.currpage = i
-      let pathh
-      if(this.currcat){
-        pathh = '/feed/'+this.currpage+'/category/'+this.currcat
-      }
-      else{
-        pathh = '/feed/'+this.currpage
-      }      
-      this.$router.push({ path:pathh});
+      this.currpage = i   
+      this.getquest()
     },
     changeCat(i){
+      this.currpage = 1
       this.currcat = i
-      let pathh = '/feed/'+this.currpage+'/category/'+this.currcat
-      this.$router.push({ path:pathh});
+      this.getquest()
     },
     changeCatm(i){
       i = i.target.value
       this.currcat = i
-      let pathh = '/feed/'+this.currpage+'/category/'+this.currcat
-      this.$router.push({ path:pathh});
+      this.getquest()
     }
   },
   data() {
@@ -134,6 +116,8 @@ export default {
     };
   },
   created: async function() {
+    this.currpage = 1
+    this.currcat = undefined
     await this.getquest();
   },
 };
