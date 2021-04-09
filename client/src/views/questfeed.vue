@@ -20,6 +20,7 @@
       </select>
     </div>
     <div class="category">
+      <a @click="changeCat('')">All</a>
       <a @click="changeCat('Handicraft')">Handicraft</a>
       <a @click="changeCat('Advice')">Advice</a>
       <a @click="changeCat('Education')">Education</a>
