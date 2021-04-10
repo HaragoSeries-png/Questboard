@@ -179,10 +179,7 @@ margin: 100px 0;}
     
     
 }
-.container .card:nth-child(even) .imgBx
-{
-   
-}
+
 .container .card .imgBx img
 {
     position: absolute;

@@ -5,7 +5,7 @@
       v-model="drawer"
       app
       style="border-right: 1px solid black;background-color:#2e292a"
-      
+    
     >
     <center>
     
@@ -385,5 +385,6 @@ body {
 .on_hover:hover{
   background-color:rgba(  246,162,209,0.4);
 }
+
 
 </style>

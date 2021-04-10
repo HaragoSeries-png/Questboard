@@ -17,7 +17,26 @@
                 </v-list-item>
             <v-list-item three-line  style="margin-top:-3%;">
              <v-list-item-content>     
-                <v-list-item-subtitle style="font-size: 13px;">{{Detail}}</v-list-item-subtitle>
+
+               <div> 
+                 <p  
+                 v-if="Detail!=='undefined'" 
+                 > 
+                 <span>
+                 {{Detail}}
+                 </span>  
+                </p>
+
+                <p 
+                v-else 
+                > 
+                <span> 
+                No information
+                </span>  
+                </p>
+              </div>
+
+
                 <v-list-item-subtitle style="font-size: 13px;">{{date}}</v-list-item-subtitle>
             </v-list-item-content>
             </v-list-item>
