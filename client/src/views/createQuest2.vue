@@ -193,6 +193,9 @@
                       />
                     </td>
                   </tr>
+                       <div class="alertbox">
+                       <ul id="alertField" class="p" style="color: red; font-size: 16px; list-style: none;font-size:13px;"></ul>
+                        </div>
                     <tr id="noob">
                       <span id="d1">Details</span>
                       <td>
@@ -214,7 +217,7 @@
                       color="white "
                       text
                       style="font-size:20px; background-color:#558b2f;margin-top:0%;"
-                      @click="sendquest"
+                      @click="checkAll()"
                     >
                       Create your quest
                     </v-btn>
@@ -231,7 +234,7 @@
                       color="white "
                       text
                       style="font-size:20px; background-color:#558b2f;margin-top:-2%;"
-                      @click="sendquest"
+                      @click="checkAll()"
                     >
                       Create your quest
                     </v-btn>
@@ -288,7 +291,22 @@ export default {
     chooseFiles() {
       document.getElementById("fileUpload").click();
     },
+
+    checkAll(){
+       let alertField = document.getElementById("alertField");
+      alertField.innerHTML = "";
+      if(this.duedate == ''){
+         alertField.innerHTML += "<li>*Please full fill</li>";
+      }
+      if (alertField.innerHTML == "") this.sendquest();
+    },
+
+
+
     sendquest: async function() {
+
+     
+      
       let formData = new FormData();
       // files
      
@@ -297,21 +315,18 @@ export default {
       // additional data
       formData.append("questname", this.questname);
       formData.append("category", this.category);
-      if(this.detail == ""){
-        this.datail = 'no information'
-      }
+   
       formData.append("questdetail", this.detail);
       formData.append("reward", this.reward);
       formData.append("tstart", this.tstart);
       formData.append("tend", this.tend);
       formData.append("numberofcon", this.numberofcon);
       formData.append("duedate", this.duedate);
-     
+      
       let suc = await QuestService.createquest(formData).then((res) => {
         return res.suc;
       });
       console.log("logsuc" + suc);
-
       if (suc) this.$router.push({ path: "/feed" });
       else alert("fail");
     },
