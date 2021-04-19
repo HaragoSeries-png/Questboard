@@ -36,6 +36,7 @@ const upload = multer({
 });
 
 router.get('/questid/:id', function (req, res) {
+  console.log('getid')
   Quest.findById(req.params.id).populate('contributor').populate('wait').then(async (quest) => {
     let ownerID = quest.helperID  
     console.log('-------------------------------------------')

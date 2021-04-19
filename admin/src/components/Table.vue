@@ -15,7 +15,7 @@
         :search="search"
       >
         <template #item="{ item }">
-          <tr>
+          <tr @click="sentToDetail(item._id)">
             <td class="item" style="font-size:15px;">{{ item.questname }}</td>
             <td class="item" style="text-transform: uppercase;font-size:15px;">
               <v-chip :color="getColor(item.status)" dark>
