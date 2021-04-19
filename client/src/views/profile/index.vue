@@ -122,6 +122,7 @@
 
     <v-row>
       <v-col cols="12" md="4">
+
         <!-- Education -->
         <div id="profileEducation">
           <ProfileInfo
@@ -147,10 +148,6 @@
                       v-html="item.branch"
                       style="font-size: 15px; padding-top: 4px;"
                     ></v-list-item-title>
-                    <v-list-item-subtitle
-                      v-html="item.branch"
-                      style="font-size: 15px; padding-top: 4px;"
-                    ></v-list-item-subtitle>
                     <v-divider
                       v-if="index != profileEducation.length - 1"
                     ></v-divider>

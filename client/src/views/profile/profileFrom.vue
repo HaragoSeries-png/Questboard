@@ -80,7 +80,6 @@ export default {
   methods: {
     sendUpdateObject: async function() {
       this.thisObject = {};
-
       await this.infoKey.forEach((item) => this.pushObject(item));
       await this.$emit("sentUpdateObject", this.thisObject, this.infoIndex);
       this.requestClose();
@@ -89,6 +88,7 @@ export default {
       this.thisObject[value] = document.getElementById(
         value + this.infoIndex + this.infoName + "edit"
       ).value;
+
     },
     requestClose() {
       this.dialog = false;

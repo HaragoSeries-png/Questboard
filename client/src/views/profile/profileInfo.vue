@@ -12,6 +12,7 @@
           :infoKey="infoKey"
           @closeDialog="closeDialog"
           @Save="sendData"
+          @reindex='reindex'
         />
       </v-dialog>
     </h4>
@@ -52,12 +53,14 @@ export default {
             "<alert-subtitle>Data Updated.</alert-subtitle>",
             "success"
           );
+          this.$router.go();
         } else {
           Swal.fire(
             "<alert-title>Error!</alert-title>",
             "<alert-subtitle>Something wrong.</alert-subtitle>",
             "error"
           );
+          this.$router.go();
         }
       } else {
         Swal.fire(
@@ -65,11 +68,13 @@ export default {
           "<alert-subtitle>Data Missing.</alert-subtitle>",
           "error"
         );
+        this.$router.go();
       }
     },
     closeDialog() {
       this.dialog = false;
     },
+    
   },
   data() {
     return {
