@@ -70,16 +70,16 @@ router.put('/editPic',  passport.authenticate('pass', {
 }),upload.single('image'), (req, res) => {
     console.log(req.user.infoma.proimage)
     try{
+        req.user.infoma.proimage = req.file.filename
         if(req.user.infoma.proimage != ""){
             fs.unlinkSync('server/public/'+ req.user.infoma.proimage)
         }
     }
-    catch{}
-    
-    req.user.infoma.proimage = req.file.filename
+    catch{
+        res.send({success:true})
+    }  
     req.user.save()
-
-    res.send(req.user)
+    res.send({success:true})
 }),
 
 router.put('/list',passport.authenticate('pass',{

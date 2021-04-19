@@ -20,11 +20,7 @@ export default {
   name: "App",
   components: { Navbar, NotifyBox },
   methods: {
-    logout: async function() {
-      await authService.logout();
-      this.$store.dispatch("deluser");
-      this.$router.push({ path: "/login" });
-    },
+    
 
     setPageTitle(title) {
       if (title) document.title = title + " | " + this.$store.getters.getTitle;
