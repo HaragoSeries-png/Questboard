@@ -191,30 +191,33 @@ router.put('/select', passport.authenticate('pass', {
   let approve = req.body.approve
   let detail = contid.map((cid,i)=>{
     let tde = {cid:cid,approve:approve[i]}
-    return [tde]
+    return tde
   })
-  console.log("idd "+JSON.stringify(detail) )
   Quest.findById(questid).then(quest => {
+    try {
+      detail.forEach((de) => {  
+        console.log(de.approve)  
+        if (de.approve) {
+          console.log('iftrue')
+          quest.wait.pull(de.cid)
+          quest.contributor.push(de.cid)
+          User.findById(de.cid).then(user=>{
+            user.accquest.push(questid)
+            user.save()
+          })
+        }
+        else {
+          console.log('iffalse')
+          quest.wait.pull(de.cid)
+        }
+        quest.save()
+        
+      }); 
+    } catch (error) {
+      return res.send({success:false})
+    }
     
-    detail.forEach((de,i) => {  
-      console.log(de[i].approve)  
-      if (de[i].approve) {
-        console.log('iftrue')
-        quest.wait.pull(de[i].cid)
-        quest.contributor.push(de[i].cid)
-        User.findById(de[i].cid).then(user=>{
-          user.accquest.push(questid)
-          user.save()
-        })
-      }
-      else {
-        console.log('iffalse')
-        quest.wait.pull(de[i].cid)
-      }
-      quest.save()
-      
-    }); 
-    return res.send(quest)
+    return res.send({success:true})
   })  
 })
 
