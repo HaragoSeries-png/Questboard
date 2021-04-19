@@ -370,7 +370,7 @@ export default {
 
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;
-    this.profileRate = 4.3;
+    this.profileRate =this.profile.rating.rate;
 
     let usertitle = this.profile.infoma.firstname;
     if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
