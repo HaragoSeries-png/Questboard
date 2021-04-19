@@ -212,10 +212,6 @@ router.put('/select', passport.authenticate('pass', {
             user.save()
           })
         }
-        else {
-          console.log('iffalse')
-          quest.wait.pull(de.cid)
-        }
         quest.save()
         
       }); 

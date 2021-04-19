@@ -144,8 +144,9 @@
 
             <v-card-actions class="pa-4">
               Number
+            
               <v-spacer></v-spacer>
-              <span style="text-align:center;"> 0/{{ quest.numberofcon }}</span>
+              <span style="text-align:center;"> {{quest.contributor.length}}/{{ quest.numberofcon }}</span>
             </v-card-actions>
 
             <div class="pa-4" style="margin-top:-1%;">
