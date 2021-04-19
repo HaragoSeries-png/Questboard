@@ -55,9 +55,11 @@ router.get('/feed', function (req, res) {
   let cat = req.query.cat
   var count =0
   var numall  =0
+  var fquery = '_id questname questdetail duedate image'
   console.log('count pre  '+count)
   if(cat){
     Quest.find({ status: "waiting",category:cat})
+    .select(fquery)
     .then(async quest => {
       numall = quest.length
       count = await Math.ceil(numall/perPage)
@@ -66,6 +68,7 @@ router.get('/feed', function (req, res) {
     .then(async q=>{
       if(cat){   
         Quest.find({ status: "waiting",category:cat})
+        .select(fquery)
         .limit(perPage)
         .skip(perPage*page)
         .sort({rdate:-1})
@@ -76,6 +79,7 @@ router.get('/feed', function (req, res) {
       }
       else{  
         Quest.find({ status: "waiting"})
+        .select(fquery)
         .limit(perPage)
         .skip(perPage*page)
         .sort({rdate:-1})
@@ -97,6 +101,7 @@ router.get('/feed', function (req, res) {
     .then(q=>{
       if(cat){   
         Quest.find({ status: "waiting",category:cat})
+        .select(fquery)
         .limit(perPage)
         .skip(perPage*page)
         .sort({rdate:-1})
@@ -107,6 +112,7 @@ router.get('/feed', function (req, res) {
       }
       else{  
         Quest.find({ status: "waiting"})
+        .select(fquery)
         .limit(perPage)
         .skip(perPage*page)
         .sort({rdate:-1})
