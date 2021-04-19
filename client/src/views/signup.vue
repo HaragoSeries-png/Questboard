@@ -69,15 +69,23 @@ export default {
   name: "Sign Up",
   methods: {
     register_check() {
+      let compass= this.password.trim()
       let alertField = document.getElementById("alertField");
       alertField.innerHTML = "";
 
       if (!this.firstname)
         alertField.innerHTML += "<li>Require Firstname.</li>";
       if (!this.lastname) alertField.innerHTML += "<li>Require Lastname.</li>";
-      if (!this.email) alertField.innerHTML += "<li>Require Email.</li>";
-      if (!this.password) alertField.innerHTML += "<li>Require Password.</li>";
-      else if (this.password.length < 8)
+      if (!this.email){         
+        alertField.innerHTML += "<li>Require Email.</li>";
+      }
+      else if (!this.validEmail(this.email)) {
+       alertField.innerHTML += "<li>Valid email required.</li>"
+      }
+      if (!this.password){
+         alertField.innerHTML += "<li>Require Password.</li>";
+      }
+      else if (compass.length < 8)
         alertField.innerHTML +=
           "<li>Password required more length than 8.</li>";
       else if (!this.conpassword)
@@ -115,6 +123,10 @@ export default {
         );
       }
     },
+    validEmail: function (email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
   },
   created() {
     this.$emit("setTitle", this.$options.name);
