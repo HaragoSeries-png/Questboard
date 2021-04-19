@@ -506,7 +506,7 @@ export default {
       return this.aldy || this.isowner;
     },
     ratea: function() {
-      let r = this.rating * 2 - 1;
+      let r =  Math.max(this.rating * 2 - 1,0);    
       let Lrat = ["D", "D+", "C", "C+", "B", "B+", "A", "A+", "S", "SS"];
       let Crat = [
         "#584b4b",

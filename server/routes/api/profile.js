@@ -69,9 +69,13 @@ router.put('/editPic',  passport.authenticate('pass', {
     session: false
 }),upload.single('image'), (req, res) => {
     console.log(req.user.infoma.proimage)
-    if(req.user.infoma.proimage != ""){
-        fs.unlinkSync('server/public/'+ req.user.infoma.proimage)
+    try{
+        if(req.user.infoma.proimage != ""){
+            fs.unlinkSync('server/public/'+ req.user.infoma.proimage)
+        }
     }
+    catch{}
+    
     req.user.infoma.proimage = req.file.filename
     req.user.save()
 

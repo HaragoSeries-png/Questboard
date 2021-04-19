@@ -1,6 +1,11 @@
 <template>
-  <div>
-    {{currpage}}
+  <div>    
+    <center>
+      <h1>
+        {{currcat}}
+      </h1>
+    </center>
+      
     <div>
       <select
         class="category-drop"
