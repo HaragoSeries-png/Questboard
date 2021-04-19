@@ -104,7 +104,7 @@
               <ContactBox
                 Title="E-mail"
             
-                :Detail="profileContact.email"
+                :Detail="profile.email"
               />
             </div>
             <div

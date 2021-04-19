@@ -12,7 +12,6 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-card>
-    dsadsadas {{dialog}}
       <v-card max-width="auto" max-height="auto" style="margin: 2%;">
         <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
           <v-dialog v-model="dialog" width="600">
