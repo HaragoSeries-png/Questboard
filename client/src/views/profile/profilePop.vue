@@ -12,7 +12,6 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-card>
-
       <v-card max-width="auto" max-height="auto" style="margin: 2%;">
         <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
           <v-dialog v-model="dialog" width="600">
@@ -67,7 +66,6 @@
                     {{ item[subitem] }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
-
                 <ProfileFrom
                   :infoName="infoName"
                   :infoData="item"
@@ -127,12 +125,24 @@ export default {
       this.$router.go();
     },
     newObject(value) {
+      console.log('obj '+ JSON.stringify(value) )
       this.infoData.push(value);
     },
-    updateObject(value, index) {
-      for (var v in this.infoKey) {
-        this.infoData[index][this.infoKey[v]] = value[this.infoKey[v]];
-      }
+    async updateObject(value, index) {
+      console.log('i'+index)
+      console.log('obj UU '+ JSON.stringify(value) )
+      this.infoData[index]=value
+      console.log(this.infoData[index])
+      this.$forceUpdate()
+      // this.infoKey.forEach((indx)=> {
+      //   console.log(value[indx]+' in '+indx)
+      //   console.log(this.infoData[index][indx])
+      //   this.infoData[index][indx] = value[indx];
+      // });
+      // for (var v in this.infoKey) {
+      //   console('ddd ')
+      //   this.infoData[index][this.infoKey[v]] = value[this.infoKey[v]];
+      // }
     },
     deleteObject(value) {
       this.infoData = this.infoData.splice(value, 1);

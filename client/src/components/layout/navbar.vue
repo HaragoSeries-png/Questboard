@@ -285,7 +285,7 @@
 
 <script>
 import notibut from './notibut'
-
+import authService from "@/service/authService";
 export default {
   name: "Navbar",
   components:{
@@ -300,8 +300,15 @@ export default {
       let profileLink = '/profile/id/' + this.$store.getters.getuserid
       this.$router.push({path: profileLink})
     },
-    logout() {
-      this.$emit("logout");
+    logout: async function() {
+      let re  = await authService.logout().then(res =>{return res});
+      if(re){
+        this.$store.dispatch("deluser");
+        this.$router.push({ path: "/login" });
+      }  
+      else{
+        alert('something wong')
+      }  
     },
   },
   updated() {

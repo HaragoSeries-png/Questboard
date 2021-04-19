@@ -1,6 +1,11 @@
 <template>
-  <div>
-    {{currpage}}
+  <div>    
+    <center>
+      <h1>
+        {{currcat}}
+      </h1>
+    </center>
+      
     <div>
       <select
         class="category-drop"
@@ -38,6 +43,7 @@
         style="padding-bottom: 2%;"
         v-for="(item, index) in quests"
         :key="index"
+        :v-if="masseage"
       >
         <Questcard
           :Name="item.questname"
@@ -48,6 +54,11 @@
           :date="item.duedate"
         >
         </Questcard>
+      </v-col>
+      <v-col >
+        <center>
+          <h1 v-if="!masseage"> no result</h1>
+        </center>
       </v-col>
       <div style="display:none"></div>
     </v-row>
@@ -87,10 +98,20 @@ export default {
       let a = await QuestService.getquest(this.currpage-1,this.currcat).then((res) => {
         return res;
       });
-      console.log('pagenum ='+a.pagenum);
-      this.quests =[]
-      this.quests = await a.quest;
-      this.pagenum = await a.pagenum
+      if(a.pagenum<1){
+        this.quests =[]
+        this.pagenum = 0
+        this.masseage = false
+        return
+      }
+      else{
+        this.masseage = true
+        console.log('pagenum ='+a.pagenum);
+        this.quests =[]
+        this.quests = await a.quest;
+        this.pagenum = await a.pagenum
+      }
+      
     },
     changePage(i){
       this.currpage = i   
@@ -112,7 +133,8 @@ export default {
       quests: '',
       pagenum:'',
       currpage:'',
-      currcat:''
+      currcat:'',
+      masseage:''
     };
   },
   created: async function() {
@@ -120,5 +142,6 @@ export default {
     this.currcat = undefined
     await this.getquest();
   },
+  
 };
 </script>

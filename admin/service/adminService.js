@@ -13,7 +13,8 @@ class adminService{
         return { suc: a.success, quest: a.quest }
     }
     static async decide(qid,status,r){
-        await axios.put(url+'/decide',{quest_id:qid,approve:status,rate:r})
+        let a = await axios.put(url+'/decide',{quest_id:qid,approve:status,rate:r}).then(res=>{return res.data})
+        return a.success
     }
     static async getall(){
 

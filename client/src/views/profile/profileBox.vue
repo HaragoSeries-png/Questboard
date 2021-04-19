@@ -52,6 +52,7 @@
             v-model="files"
             @change="onFileChange"
             id="fileUpload"
+            accept="image/x-png,image/gif,image/jpeg"
           ></v-file-input>
         </div>
 
@@ -82,15 +83,25 @@ export default {
     },
     onFileChange() {
       if (this.files != null) {
+        if(this.files.type !='image/jpeg/gif'){
+          this.files =null
+          Swal.fire(
+            "<alert-title>Error!</alert-title>",
+            "<alert-subtitle>Something wrong.</alert-subtitle>",
+            "error"
+          );
+          return
+        }
         console.log('choose')
         const file = this.files;
         this.profilePic = URL.createObjectURL(file);
         this.picHoverText = "Choose Another";
       }
+
     },
     sendim: async function() {
       console.log("SENDIMG");
-      if (this.files) {
+      if (this.files ) {
         let formData = new FormData();
         formData.append("image", this.files);
         let suc = await profileService.uploadimg(formData).then((res) => {

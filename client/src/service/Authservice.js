@@ -1,16 +1,8 @@
 import axios from 'axios';
 import Swal from "sweetalert2";
 
-const url = 'api/auth'
+const url = '/api/auth'
 class authService {
-    // static async getfuck(){
-    //     let data = await axios.get(url).then((res)=>{
-    //     console.log(res.data)
-    //     return res.data
-    //     })test
-    //     console.log("data in f "+data)
-    //     return data   
-    // }
     static async login(text) {
         let a = await axios.post(url + '/login', text).then(res => { return res.data })
         if (a.success) {
@@ -34,11 +26,12 @@ class authService {
     static async logout() {
         let text = await localStorage.getItem('token');
         console.log(text)
-        let a = await axios.post(url + '/logout', {token:text}).then(res => { return res.data })
+        let a = await axios.post('http://localhost:5000/api/auth/logout', {token:text}).then(res => { return res.data })
         if(a){
             await localStorage.removeItem('token');
             await localStorage.removeItem('islogin');
             delete axios.defaults.headers.common['Authorization']; 
+            return a
         }
         
     }

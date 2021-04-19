@@ -140,8 +140,9 @@
 
             <v-card-actions class="pa-4">
               Number
+            
               <v-spacer></v-spacer>
-              <span style="text-align:center;"> 0/{{ quest.numberofcon }}</span>
+              <span style="text-align:center;"> {{quest.contributor.length}}/{{ quest.numberofcon }}</span>
             </v-card-actions>
 
             <div class="pa-4" style="margin-top:-1%;">
@@ -155,7 +156,9 @@
                 style="margin-top:5%;overflow-x:auto;padding:16px;"
               >
                
+
                 <p style="font-size:14px;text-indent:20px;" v-if="quest.questdetail == underfined">
+
                   no information
                 </p>
                 <p v-else>
@@ -193,7 +196,7 @@
 
 
               <v-btn
-                v-if="isowner && !isstart"
+                v-if="isowner && !isstart  && quest.status!='pending'"
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
@@ -204,7 +207,7 @@
               </v-btn>
 
               <v-btn
-                v-if="isowner && !isstart"
+                v-if="isowner && !isstart && quest.status!='pending'"
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#10ae10; margin-left: 3.5%;"
@@ -346,7 +349,7 @@
             </template>
             <center>
               <v-btn
-                v-if="isowner"
+                v-if="isowner || quest.status!='pending'"
                 color="white"
                 text
                 style="font-size: 13px; background-color:green;text-align:center;"
@@ -521,7 +524,7 @@ export default {
       return this.aldy || this.isowner;
     },
     ratea: function() {
-      let r = this.rating * 2 - 1;
+      let r =  Math.max(this.rating * 2 - 1,0);    
       let Lrat = ["D", "D+", "C", "C+", "B", "B+", "A", "A+", "S", "SS"];
       let Crat = [
         "#584b4b",

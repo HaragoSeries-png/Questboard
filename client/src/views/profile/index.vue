@@ -104,7 +104,7 @@
               <ContactBox
                 Title="E-mail"
             
-                :Detail="profileContact.email"
+                :Detail="profile.email"
               />
             </div>
             <div
@@ -122,6 +122,7 @@
 
     <v-row>
       <v-col cols="12" md="4">
+
         <!-- Education -->
         <div id="profileEducation">
           <ProfileInfo
@@ -147,10 +148,6 @@
                       v-html="item.branch"
                       style="font-size: 15px; padding-top: 4px;"
                     ></v-list-item-title>
-                    <v-list-item-subtitle
-                      v-html="item.branch"
-                      style="font-size: 15px; padding-top: 4px;"
-                    ></v-list-item-subtitle>
                     <v-divider
                       v-if="index != profileEducation.length - 1"
                     ></v-divider>
@@ -373,7 +370,7 @@ export default {
 
     this.profileFullName =
       this.profile.infoma.firstname + " " + this.profile.infoma.lastname;
-    this.profileRate = 4.3;
+    this.profileRate =this.profile.rating.rate;
 
     let usertitle = this.profile.infoma.firstname;
     if (usertitle) this.$emit("setTitle", usertitle + "'s Profile");
