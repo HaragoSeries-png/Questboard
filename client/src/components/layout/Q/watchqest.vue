@@ -179,7 +179,7 @@
                 Back
               </v-btn>
               <v-btn
-                v-if="isowner && !isstart"
+                v-if="isowner && !isstart  && quest.status!='pending'"
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
@@ -189,7 +189,7 @@
                 See Helper
               </v-btn>
               <v-btn
-                v-if="isowner && !isstart"
+                v-if="isowner && !isstart && quest.status!='pending'"
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#10ae10; margin-left: 3.5%;"
@@ -331,7 +331,7 @@
             </template>
             <center>
               <v-btn
-                v-if="isowner"
+                v-if="isowner || quest.status!='pending'"
                 color="white"
                 text
                 style="font-size: 13px; background-color:green;text-align:center;"
