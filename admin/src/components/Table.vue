@@ -26,16 +26,12 @@
             <td class="item" style="font-size:15px;">{{ item.date }}</td>
            <v-icon
            color="success" dark @click.stop="show_Rate(item._id)" medium>
-              mdi-emoticon-happy-outline
-           
+              mdi-emoticon-happy-outline          
             >
            </v-icon>
             <v-icon color="red" dark id="reject" @click="reject(item._id)" medium >
               mdi-emoticon-sad-outline
             </v-icon>
-            
-
-
           </tr>
 
           <v-dialog v-model="dialog" persistent max-width="290">
@@ -98,18 +94,29 @@ export default {
       else if (value == "pending") return "orange";
       else return "grey";
     },
-    reject(value) {
+    async reject(value) {
 
       console.log('click reject');
-      adminService.decide(value, false, this.rating);
-      this.$emit('q_reElement',value)
+
+      let re = await adminService.decide(value, false, this.rating).then((res) => {
+        return res;
+      });
+      if(re){
+        this.$emit('q_reElement',value)
+      }
+      
     },
-    rate() {
+    async rate() {
       console.log("click rate");
       this.status = true;
       this.dialog = false;
-      adminService.decide(this.id_selected, this.status, this.rating);
-      this.$emit('q_reElement',this.id_selected);
+      let re = await adminService.decide(this.id_selected, this.status, this.rating).then((res) => {
+        return res;
+      });
+      if(re){
+        this.$emit('q_reElement',this.id_selected);
+      }
+      
     },
     show_Rate(value){
       this.id_selected = value;
