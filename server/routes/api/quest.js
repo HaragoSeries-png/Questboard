@@ -209,6 +209,7 @@ router.put('/select', passport.authenticate('pass', {
           quest.contributor.push(de.cid)
           User.findById(de.cid).then(user=>{
             user.accquest.push(questid)
+            user.unreadnoti.push({message:'quest accept',quest:{quest_id:questid,questname:quest.questname}})
             user.save()
           })
         }
