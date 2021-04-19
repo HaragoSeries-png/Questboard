@@ -1,8 +1,31 @@
 <template>
-  <div>
-      <center>
-        <div class="container"> 
-        <h1>Our Team </h1>
+<div>
+
+
+
+<h1 style="text-align:center;margin-top:3%;margin-bottom:2%;">Our Team</h1>
+
+   <v-img
+      :aspect-ratio="16/9"
+      :width="width"
+      src="about_paper.png"
+      style="height:90vh"
+    ></v-img>
+  <div class="welcome">
+        <div class="header-welcome">
+          <center>" It does matter who we are . . .<br>
+            <span style="padding-left:10%;">buts we will be a <span style="text-decoration:underline;">Hokange</span>"</span>
+             </center>
+        </div>
+    
+      </div>
+   
+
+
+ <div class="body">
+   
+    <div class="container"> 
+       
 
         <div class="card">
             <div class="imgBx">
@@ -40,7 +63,7 @@
                 <img src="atom.png.png">
             </div>
             <div class="contentBx">
-                <div class="content">
+               <div class="content">
                     <h2>Chanon Likitsarwit</h2>
                      <p><span style="font-size:3rem;color:red;">D</span>eveloper </p>
                     <a href="https://www.facebook.com/atom3.14" >  <img src="facebook1.png" class="icon_profile"> </a>
@@ -54,7 +77,7 @@
                 <img src="t.png">
             </div>
             <div class="contentBx">
-                <div class="content">
+               <div class="content">
                     <h2>Sutisak Sompong</h2>
                
                     <p><span style="font-size:3rem;color:red;">U</span>X/UI Designer </p>
@@ -69,7 +92,7 @@
                 <img src="b.png">
             </div>
             <div class="contentBx">
-                <div class="content">
+              <div class="content">
                     <h2>Kittisak Sangkarak</h2>
                      <p><span style="font-size:3rem;color:red;">T</span>ester </p>
                     <a href="https://www.facebook.com/bboykungg"><img src="facebook1.png" class="icon_profile"></a>
@@ -81,38 +104,39 @@
         </div>
 
     </div>
-    </center>
-  </div>
+ </div>
+     
+</div>
 </template>
 
 <script>
 export default {
-name:"aboutUs"
+name:'aboutUs'
 }
 </script>
 
 <style scoped>
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
-*{
+*
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'poppins',sans-serif;
 }
-body
+.body
+{
+    width: 100%;
+    min-height:100vh;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
 .icon_profile{
     width:10%;
 }
 .icon_profile:hover{
     width: 20%;
     transition: .5s;
-}
-.body{
-    width: 100%;
-    min-height:100vh;
-    display: flex;
-    justify-content:center;
-    align-items:center;
 }
 .container
 {
@@ -148,17 +172,14 @@ margin: 100px 0;}
 .container .card .imgBx
 {
     position: relative;
-    left:25px;
+   
     width: 500px;
     height:400px;
     z-index: 1;
     
     
 }
-.container .card:nth-child(even) .imgBx
-{
-    left:-25px;
-}
+
 .container .card .imgBx img
 {
     position: absolute;
@@ -171,7 +192,7 @@ margin: 100px 0;}
 .container .card .contentBx
 {
     position: relative;
-    right: 25px;
+   
     width:500px;
     height: 400px;
     background: #000;
@@ -182,7 +203,7 @@ margin: 100px 0;}
 }
 .container .card:nth-child(even) .contentBx
 {
-    right: -25px;
+
      padding: 20px 100px 20px 60px;
 }
 .container .card .contentBx:before
@@ -191,7 +212,7 @@ margin: 100px 0;}
     position: absolute;
     top: -50px;
     bottom: -50px;
-    left:0;
+    
     right:0;
     background:#000;
     z-index: -1;
@@ -200,6 +221,18 @@ margin: 100px 0;}
 {
     font-size: 30px;
     color: #fff;
+}
+.welcome {
+    margin-top:5%;
+  width: 100%;
+  height: 30vh;
+}
+.header-welcome {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  font-size: 4rem;
+  width: 100%;
 }
 .container .card .contentBx p
 {
@@ -222,35 +255,29 @@ margin-top: 15px;
 {
     
     .container .card
-    {
-    flex-direction: column;
+    {flex-direction: column;
     width: 350px;
-    margin: 25px 25px;
-    }
-
+    margin: 25px 25px;}
     .container .card .imgBx
-    {
-    width: 100%;
+    {width: 100%;
     height:250px;
-    left:0;
-    }
+    left:0;}
     .container .card .contentBx
-    {
-    width:100%;
+    {width:100%;
     height:auto;
     right: 0;
     padding: 30px;
-    text-align: center
-    }
+    text-align: center}
     .container .card .contentBx:before
-    {
-        top: 0;
-        bottom: 0;}
+    {top: 0;
+    bottom: 0;}
     .container .card:nth-child(even) .imgBx
     {left:0px;}
     .container .card:nth-child(even) .contentBx
     {right: 0px;
      padding: 30px;}
 }
+
+
 
 </style>

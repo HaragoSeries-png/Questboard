@@ -56,11 +56,7 @@
 
 </center>
 
-            <div style="text-align:center;" v-if="quest.status == 'inprogress'">
-              <div class="completeBox" @click="dialog3 = true">
-                Quest Complete
-              </div>
-            </div>
+            
           </div>
         </v-col>
 
@@ -84,7 +80,7 @@
               </v-row>
               <template v-for="item in conInfor">
                 <v-list-item :key="item.index">
-                  <v-row>
+                  <v-row style="border-top:1px solid gray">
                     <v-col cols="8" md="8">
                       {{ item.conName }}
                     </v-col>
@@ -179,6 +175,24 @@
               >
                 Back
               </v-btn>
+
+
+
+            <v-btn
+                v-if="quest.status == 'inprogress'"
+                color="white"
+                text
+                class="completeBox"
+               @click="dialog3 = true"
+
+              >
+                  Quest Complete
+              </v-btn>
+
+
+
+
+
               <v-btn
                 v-if="isowner && !isstart  && quest.status!='pending'"
                 color="white"
@@ -189,6 +203,7 @@
               >
                 See Helper
               </v-btn>
+
               <v-btn
                 v-if="isowner && !isstart && quest.status!='pending'"
                 color="white"
@@ -625,12 +640,12 @@ table {
   padding: 13px;
 }
 .completeBox {
-  padding: 13px;
-  margin-top:0%;
-  background-color: green;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
+ float: right;
+ margin-top: 2%; 
+ background-color:green; 
+ margin-left: 10%;
+ font-size: 20px;
+ 
 }
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lexend+Mega&display=swap");
