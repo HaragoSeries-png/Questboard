@@ -156,7 +156,9 @@
                 style="margin-top:5%;overflow-x:auto;padding:16px;"
               >
                
-                <p style="font-size:14px;text-indent:20px;" v-if="quest.questdetail ==underfined">
+
+                <p style="font-size:14px;text-indent:20px;" v-if="quest.questdetail == underfined">
+
                   no information
                 </p>
                 <p v-else>
