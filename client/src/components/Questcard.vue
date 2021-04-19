@@ -72,9 +72,9 @@ export default {
     },
     methods: {
       collapse(Detail) {
-        console.log("in"+this.Detail)
+
         this.Detail = Detail
-        console.log("out"+this.Detail)
+
       },
       gotodetail(){
         this.$router.push({ path: this.qid });
@@ -89,7 +89,7 @@ export default {
         else{
           this.ImageUrl= "default.png"
         }     
-        console.log(this.Image)
+
         this.qid = '/quest/id/'+this.Qid
     }
     

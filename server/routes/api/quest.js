@@ -36,6 +36,7 @@ const upload = multer({
 });
 
 router.get('/questid/:id', function (req, res) {
+  console.log('getid')
   Quest.findById(req.params.id).populate('contributor').populate('wait').then(async (quest) => {
     let ownerID = quest.helperID  
     console.log('-------------------------------------------')
@@ -209,6 +210,7 @@ router.put('/select', passport.authenticate('pass', {
           quest.contributor.push(de.cid)
           User.findById(de.cid).then(user=>{
             user.accquest.push(questid)
+            user.unreadnoti.push({message:'quest accept',quest:{quest_id:questid,questname:quest.questname}})
             user.save()
           })
         }

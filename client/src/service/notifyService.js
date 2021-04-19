@@ -7,7 +7,6 @@ class notifyService {
     static async getnoti(){
         console.log('noti ser')
         let a = await axios.get(url).then(res=>{return res.data})
-        console.log(a)
         return a
     }
 }

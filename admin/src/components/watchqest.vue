@@ -1,5 +1,6 @@
 <template>
   <div id="questInfo" style="margin:20px;">
+
     <v-container>
       <v-row>
         <v-col cols="12" md="6">
@@ -58,7 +59,7 @@
              <v-card-actions class="pa-4">
               Create by 
               <v-spacer></v-spacer>
-              <span style="text-align:center;"> {{ name }}</span>
+              <span style="text-align:center;"> {{ quest.questname }}</span>
             </v-card-actions>
          
 
@@ -98,20 +99,12 @@
               color="white "
               text
               style="margin-left:3%;margin-top:2%;font-size:20px; background-color:#ff6e40 ;"
-             
+             @click="toFeed()"
             >
-              Helper
+              back
               
             </v-btn>
-            <v-spacer></v-spacer>
-              <v-btn
-              color="white "
-              text
-              style="margin-top:2%;font-size:20px; background-color:#388e3c;"
-             
-            >
-              Next
-            </v-btn>
+            
           
             </div>
             <!-- <div style="margin-left:15%;">
@@ -125,7 +118,8 @@
 </template>
 
 <script>
-import adminService from "../../service/adminService";
+
+import questService from "../../service/questService";
 
 export default {
   name: "questInfo",
@@ -133,19 +127,21 @@ export default {
     getinfoma: async function() {
       let questid = this.$route.params.id;
 
-      let re = await adminService.getquestinfo(questid).then((res) => {
+      let re = await questService.getquestinfo(questid).then((res) => {
         return res;
       });
-
       this.quest = re.quest;
       console.log("complete");
       console.log(this.quest);
+    },
+    toFeed() {
+      this.$router.push("/adminfeed");
     },
   },
   created: async function() {
     await this.getinfoma();
 
-    this.questPic = this.$store.state.gurl + this.quest.image;
+    this.questPic ='http://localhost:5000/' + this.quest.image;
   },
   data() {
     return {
@@ -154,8 +150,6 @@ export default {
       questRate: 3,
       time: 2,
       rating: 4.3,
-      testdetail:"sssssssssssssssssssssssssssssssssss",
-      name:"Jiraphat Sae-heng"
     };
   },
 };

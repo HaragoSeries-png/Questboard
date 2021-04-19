@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <QuestTable :questData="allQuest" @q_reElement="reElement"   dark   ></QuestTable>
-     {{allQuest}}
+
     </v-container>
   </div>
 </template>

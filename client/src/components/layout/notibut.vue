@@ -38,18 +38,20 @@
 import notifyService from '@/service/notifyService'
 export default {
     data(){
-        return{
-            status: this.$store.getters.isLoggedIn,
-            notiicon : 'alarm-light-outline',
-            noti:this.$store.getters.getnoti
-        }
+      return{
+        status: this.$store.getters.isLoggedIn,
+        notiicon : 'alarm-light-outline',
+        noti:this.$store.getters.getnoti
+      }
     },
     methods:{
-        async getnoti(){
-            
-            let a = await notifyService.getnoti()
-            
-            this.$store.dispatch("setnoti", a.notify );
+        async getnoti(){           
+            let a = await notifyService.getnoti()           
+            if(a.sucess){ 
+              this.$store.dispatch("setnoti", a.notify );
+              this.status =this.$store.getters.isLoggedIn            
+              this.$forceUpdate()
+            }
         },
         loop(){           
             setInterval(function(){
@@ -59,7 +61,13 @@ export default {
     },
     created(){
         this.getnoti()  
-        this.loop()    
+        this.loop()   
+        this.status =this.$store.getters.isLoggedIn 
+        this.noti = this.$store.getters.getnoti
+    },
+    updated(){
+      this.status =this.$store.getters.isLoggedIn
+      this.noti = this.$store.getters.getnoti
     }
     
 }

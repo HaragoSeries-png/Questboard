@@ -303,8 +303,11 @@ export default {
     logout: async function() {
       let re  = await authService.logout().then(res =>{return res});
       if(re){
-        this.$store.dispatch("deluser");
-        this.$router.push({ path: "/login" });
+        let r = this.$store.dispatch("deluser");
+        if(r){
+          this.$router.push({ path: "/login" });
+          this.$router.go()
+        }       
       }  
       else{
         alert('something wong')
@@ -314,6 +317,7 @@ export default {
   updated() {
     this.status = this.$store.getters.isLoggedIn;
     this.username = this.$store.getters.getfullname;
+    
   },
   data() {
     return {

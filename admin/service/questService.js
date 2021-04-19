@@ -14,7 +14,9 @@ class questService {
         return {suc:a.success,quest:a.quest,pagenum : a.pagenum} 
     }
     static async getquestinfo(value) {
+        console.log(value)
         let a = await axios.get(url + "/questid/" + value).then(res => { return res.data })
+        console.log(a)
         return { suc: a.success, quest: a.quest, owner: a.owner }
     }
     static async comquest(quest_id){

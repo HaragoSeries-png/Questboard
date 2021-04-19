@@ -43,7 +43,6 @@ router.put('/decide', function (req, res) {
 router.get('/quest',function(req,res){
   console.log('inn')
   Quest.find({ status: "pending" }).then(quest => {
-    console.log(quest)
     res.send({ quests: quest, success: true })
   })
 })
@@ -56,5 +55,6 @@ router.get('/getall',function(req,res){
 router.put('/putlog',function(){
   
 })
+
 
 module.exports = router

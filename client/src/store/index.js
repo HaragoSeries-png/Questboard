@@ -29,7 +29,7 @@ export default new Vuex.Store({
     getcount(state) { return state.count },
     getinfoma(state) { return state.userinfoma },
     getuserid(state) { return state.userid },
-    getnoti(state) { return JSON.parse(state.notification) },
+    getnoti(state) {  return JSON.parse(state.notification) },
     getAll(state) { return [state.islog, state.currentUser, state.userfullname, state.userinfoma] }
   },
   mutations: {
@@ -51,32 +51,42 @@ export default new Vuex.Store({
       //   alert('suck')
       // }  
     },
-    logout() {
+    logout(state) {
       localStorage.setItem('uid', '')
       localStorage.setItem('fullname', '')
-
-      this.commit('update')
+      localStorage.setItem('notificaton', '')
+      state.token = '',
+      state.islog = false,
+      state.userid = '',
+      state.noti =  [],
+      state.userfullname =  ''
     },
     update(state) {
       state.token = localStorage.getItem('token') || '',
       state.islog = localStorage.getItem('islogin') || false,
       state.userid = localStorage.getItem('uid') || '',
+      state.noti = localStorage.getItem('notificaton') || [],
       state.userfullname = localStorage.getItem('fullname') || ''
     },
     senoti(state,value){
-    
+      console.log('v '+value)
       localStorage.setItem('notificaton',JSON.stringify(value));
       state.noti = value
+      this.commit('update')
     },
     setcount: (state, value) => state.count = value,
   },
   actions: {
     authen(context, value) { context.commit('logon', value) },
-    deluser(context) { context.commit('logout') },
+    deluser(context) { 
+      context.commit('logout') 
+      return true
+  },
     set(context) {
       context.commit('setcount', this.getters.getcount + 1)
     },
     setnoti(context,value){
+      
       context.commit('senoti',value)
     }
   },

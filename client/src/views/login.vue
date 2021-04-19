@@ -53,6 +53,7 @@ export default {
       if (re.suc) {
         this.$store.dispatch("authen", re);
         this.$router.push({ path: "/feed" });
+        this.$router.go()
       } else {
         Swal.fire(
           "<alert-title>Error!</alert-title>",
