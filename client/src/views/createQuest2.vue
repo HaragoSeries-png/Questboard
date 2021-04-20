@@ -1,267 +1,221 @@
 <template>
-  <v-app>
-    <div id="main" style="margin:20px;">
-      <v-container>
-        <!-- <div class="main"> -->
-
-        <div id="questcreate">
-          <h1 style="text-align:center;">
-            Create you own quest
-          </h1>
-          <v-divider></v-divider>
-          <v-container fluid>
-            <v-row>
-              <v-col cols="12" md="12" class="section1">
-                <center>
-                  <div>
-                    <v-hover v-slot="{ hover }">
-                      <v-img
-                        v-if="!url"
-                        contain
-                        fill-width
-                        height="400"
-                        src="https://cdn.pixabay.com/photo/2012/04/14/16/57/scroll-34606_1280.png"
-                        id="quest_img"
-                        @click="chooseFiles()"
+  <div class="main">
+    <div>
+      <div class="a" style="margin-bottom:5%;">
+        unyong
+      </div>
+    
+      <div class="container">
+        <form id="Form1">
+          <center>
+            <div class="section1">
+              <div style="font-size:20px;font-weight:bold;margin-bottom:%;">
+                Choose Quest image
+              </div>
+              <v-hover v-slot="{ hover }">
+                <v-img
+                  v-if="!url"
+                  contain
+                  style="margin-top:-5%;"
+                  fill-width
+                  height="350"
+                  src="https://cdn.pixabay.com/.../14/16/57/scroll-34606_1280.png"
+                  id="quest_img"
+                  @click="chooseFiles()"
+                >
+                  <v-card :class="{ 'on-hover': hover }">
+                    <div
+                      style="margin-top:50%;margin-left:25%;cursor:pointer;"
+                      contain
+                    >
+                      <v-row
+                        class="fill-height flex-column"
+                        justify="space-between"
                       >
-                        <v-card :class="{ 'on-hover': hover }">
-                          <div style="margin-top:18%;margin-left:42%;" contain>
-                            <v-row
-                              class="fill-height flex-column"
-                              justify="space-between"
-                            >
-                              <div
-                                style="position:absolute; opacity:0.6; border-radius: 10px;"
-                              >
-                                <span
-                                  :class="{ 'show-btns': hover }"
-                                  :color="transparent"
-                                  style="font-size:30px;"
-                                >
-                              {{sometext}}
-                                </span>
-
-                                <div
-                                  class="align-self-center"
-                                  style="display:inline;"
-                                >
-                                  <v-btn
-                                    :class="{ 'show-btns': hover }"
-                                    :color="transparent"
-                                    icon
-                                    large
-                                  >
-                                    <v-icon
-                                      :class="{ 'show-btns': hover }"
-                                      :color="transparent"
-                                    >
-                                      {{ icon }}
-                                    </v-icon>
-                                  </v-btn>
-                                </div>
-                              </div>
-                            </v-row>
-                          </div>
-                        </v-card>
-                      </v-img>
-                    </v-hover>
-
-                    <div id="preview">
-                      <v-hover v-slot="{ hover }" style="cursor:pointer;">
-                        <v-img
-                          v-if="url"
-                          :src="url"
-                          contain
-                         width="500"
-                     
-                          @click="chooseFiles()"
+                        <div
+                          style="position:absolute; opacity:0.6; border-radius: 10px;"
                         >
-                          <v-card :class="{ 'on-hover': hover }">
-                            <div style="margin-top:12%;margin-left:45%;">
-                              <v-card-title
-                                style="position:absolute; opacity:0.6; border-radius: 10px;"
-                              >
-                                <v-row
-                                  class="fill-height flex-column"
-                                  justify="space-between"
-                                >
-                                 
-
-                                    
-                                
-                                </v-row>
-                              </v-card-title>
-                            </div>
-                          </v-card>
-                        </v-img>
-                      </v-hover>
+                          <span
+                            :class="{ 'show-btns': hover }"
+                            :color="transparent"
+                            style="font-size:30px;"
+                          >
+                            {{ sometext }}
+                          </span>
+                        </div>
+                      </v-row>
                     </div>
-                    <div>
-                      <v-file-input
-                        v-model="files"
-                        @change="onFileChange"
-                        id="fileUpload"
-                      ></v-file-input>
-                    </div>
-                  </div>
-                  <v-divider></v-divider>
-                </center>
-              </v-col>
+                  </v-card>
+                </v-img>
+              </v-hover>
+              <div id="preview">
+                <v-hover v-slot="{ hover }" style="cursor:pointer;">
+                  <v-img
+                    v-if="url"
+                    :src="url"
+                    contain
+                    width="500"
+                    height="350"
+                    @click="chooseFiles()"
+                  >
+                    <v-card :class="{ 'on-hover': hover }">
+                      <div style="margin-top:12%;margin-left:45%;">
+                        <v-card-title
+                          style="position:absolute; opacity:0.6; border-radius: 10px;"
+                        >
+                          <v-row
+                            class="fill-height flex-column"
+                            justify="space-between"
+                          >
+                          </v-row>
+                        </v-card-title>
+                      </div>
+                    </v-card>
+                  </v-img>
+                </v-hover>
+              </div>
+              <div>
+                <v-file-input
+                  v-model="files"
+                  @change="onFileChange"
+                  id="fileUpload"
+                  style="margin-top:5%;"
+                ></v-file-input>
+              </div>
+            </div>
+          
+          </center>
 
-              <v-col cols="12" md="6" lg="6">
-                <div class="text-fill" style="margin-top:-1.5%;">
-                  <div>
-                    <div class="head123">
-                      Info
-                    </div>
-                    <tr>
-                      <span id="q1"> Quest</span>
-                      <td>
-                        <v-text-field
-                          style="margin-bottom:15%; "
-                          id="iq"
-                          :rules="rules"
-                          counter="25"
-                          hint="Baby sister,Tutor "
-                        
-                          v-model="questname"
-                        ></v-text-field>
-                      </td>
-                    </tr>
+          <div class="btn-box" style="margin-top:1.5%;">
+            <button type="button" id="Next1" @click="nClick1()">Next</button>
+          </div>
+        </form>
 
-                    <tr>
-                      <span id="c1">Category</span>
-                      <td>
-                        <v-select
-                          :items="items"
-                          id="ic"
-                          label="Default"
-                          style="margin-bottom:5%;"
-                          dense
-                          v-model="category"
-                        ></v-select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <span id="q1"> Reward</span>
-                      <td>
-                        <v-text-field
-                          style="margin-bottom:20%;"
-                          id="iq"
-                          :rules="rules"
-                          counter="55"
-                          
-                          v-model="reward"
-                        ></v-text-field>
-                      </td>
-                    </tr>
-                    
-                  <tr id="main_Person">
-                    <i class="material-icons">person</i>
-                    <td>
-                      <input
-                        type="number"
-                        min="1"
-                      
-                        id="num_per"
-                        v-model="numberofcon"
-                        style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;"
-                      />
-                      <span style="margin-left:10%;">Person</span>
-                    </td>
-                  </tr>
+        <form id="Form2">
+          <h3 style="margin-bottom:15%;color:black;font-weight:bold;">
+            Information
+          </h3>
+          <v-text-field
+            style="margin-bottom:7%; "
+            id="iq"
+            :rules="rules"
+            counter="25"
+            placeholder="Quest Name"
+            hint="Baby sister,Tutor"
+            v-model="questname"
+          ></v-text-field>
+          <v-select
+            :items="items"
+            id="ic"
+            placeholder="default"
+            style="margin-bottom:7%;"
+            dense
+            v-model="category"
+          ></v-select>
+          <v-text-field
+            style="margin-bottom:7%;"
+            id="iq"
+            :rules="rules"
+            counter="55"
+            v-model="reward"
+            placeholder="Reward"
+          ></v-text-field>
+         <center> 
+        <i class="material-icons"  style="margin-bottom:2%;font-size:25px;">person</i>
+        </center>
+        <div style="text-align:center;font-size:18px;color:gray">
+          Number of Contributor
+        </div>
+            <span>
+          <input
+            type="number"
+            min="1"
+            id="num_per"
+            v-model="numberofcon"
+            
+            style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;margin-bottom:18%;outline:none;"
+          /> 
+            </span>
+          
+          <div class="btn-box">
+            <button type="button" id="Back1" @click="bClick1()">Back</button>
+            <button type="button" id="Next2" @click="nClick2()">Next</button>
+          </div>
+        </form>
 
-                  </div>
-                </div>
-              </v-col>
-              <v-col cols="12" md="6" lg="6">
-              <div class="text-fill1">
-                
-                  <h4 id="Deadline" style="margin-bottom:10%;font-weight:bold;color:black;">
-                    Deadline
-                  </h4>
-                  <tr>
-                    <span id="Date" style="margin-top:10%; font-weight:bold;color:black;"> Date  </span>
-                    <td>
-                      <input
+        <form id="Form3">
+        <h3 style="margin-bottom:15%;color:black;font-weight:bold;">
+            Information
+          </h3>
+          <div>
+            Deadline
+          </div>
+         <input
                         type="date"
                         name=""
                         id="I_date"
                         v-model="duedate"
-                        style="margin-bottom:15%;"
+                        style="margin-bottom:20%;"
                         :min="this.current_date"
                       />
-                    </td>
-                  </tr>
-                       <div class="alertbox">
-                       <ul id="alertField" class="p" style="color: red; font-size: 16px; list-style: none;font-size:13px;"></ul>
-                        </div>
-                    <tr id="noob">
-                      <span id="d1">Details</span>
-                      <td>
-                        <v-textarea
+        <div>
+          More Detail
+        </div>
+        <v-textarea
                           v-model="detail"
                           color="teal"
                           dense
                           contain
                           textarea
-                        >
-                          <template v-slot:label>
-                           
-                          </template>
-                        </v-textarea>
-                      </td>
-                    </tr>
-                  <v-btn
-                    id="btn-mobi"
-                      color="white "
-                      text
-                      style="font-size:20px; background-color:#558b2f;margin-top:0%;"
-                      @click="checkAll()"
-                    >
-                      Create your quest
-                    </v-btn>
-   
+                          style="margin-bottom:45%;font-size:12px;margin-top:5%;"
+                        ></v-textarea>
 
-              </div>
-                      </v-col>
 
-            </v-row>
-            <div>
-              <center>
-                 <v-btn
-                    id="btn-desk"
-                      color="white "
-                      text
-                      style="font-size:20px; background-color:#558b2f;margin-top:-2%;"
-                      @click="checkAll()"
-                    >
-                      Create your quest
-                    </v-btn>
-              </center>
-            </div>
-          </v-container>
+          <div class="btn-box">
+            <button type="button" id="Back2" @click="bClick2()">Back</button>
+            <button type="button"  @click="checkAll()">Submit</button>
+          </div>
+        </form>
+        <div class="step-row">
+          <div id="progress"></div>
+          <div class="step-col"><small>Step1</small></div>
+          <div class="step-col"><small>Step2</small></div>
+          <div class="step-col"><small>Step3</small></div>
         </div>
-      </v-container>
+      </div>
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
 import QuestService from "@/service/questService";
+
 export default {
   name: "Create Quest",
   created() {
     this.$emit("setTitle", this.$options.name);
-     var today = new Date();
-     const now = today.getFullYear() + '-' + ("0" + (today.getMonth() + 1)).slice(-2) + '-' + ("0" + today.getDate()).slice(-2);
-     this.current_date = now;
-    
+    var today = new Date();
+    const now =
+      today.getFullYear() +
+      "-" +
+      ("0" + (today.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + today.getDate()).slice(-2);
+    this.current_date = now;
   },
   data() {
     return {
       icon: "mdi-upload",
-      items: ["Handicraft", "Advice", "Education", "Accident", "Housework", "Find friend", "Food and home", "Traffic"],
+      items: [
+        "Handicraft",
+        "Advice",
+        "Education",
+        "Accident",
+        "Housework",
+        "Find friend",
+        "Food and home",
+        "Traffic",
+      ],
       Pic1: "https://pbs.twimg.com/media/EBBMoBNU4AA2DXn.jpg",
       files: null,
       url: "",
@@ -276,11 +230,42 @@ export default {
       sometext: "Upload file",
       sometext1: "Change file",
       transparent: "rgba(255, 255, 255, 0)",
-      current_date : "",
+      current_date: "",
     };
   },
   methods: {
-    
+    nClick1() {
+      var Form1 = document.getElementById("Form1");
+      var Form2 = document.getElementById("Form2");
+      var progress = document.getElementById("progress");
+      Form1.style.left = "-450px";
+      Form2.style.left = "40px";
+      progress.style.width = "240px";
+    },
+    bClick1() {
+      var Form1 = document.getElementById("Form1");
+      var Form2 = document.getElementById("Form2");
+      var progress = document.getElementById("progress");
+      Form1.style.left = "40px";
+      Form2.style.left = "450px";
+      progress.style.width = "120px";
+    },
+    nClick2() {
+      var Form2 = document.getElementById("Form2");
+      var Form3 = document.getElementById("Form3");
+      var progress = document.getElementById("progress");
+      Form2.style.left = "-450px";
+      Form3.style.left = "40px";
+      progress.style.width = "360px";
+    },
+    bClick2() {
+      var Form2 = document.getElementById("Form2");
+      var Form3 = document.getElementById("Form3");
+      var progress = document.getElementById("progress");
+      Form2.style.left = "40px";
+      Form3.style.left = "-450px";
+      progress.style.width = "240px";
+    },
     onFileChange() {
       if (this.files != null) {
         const file = this.files;
@@ -292,37 +277,36 @@ export default {
       document.getElementById("fileUpload").click();
     },
 
-    checkAll(){
-       let alertField = document.getElementById("alertField");
+    checkAll() {
+      console.log('check all in progress')
+      let alertField = document.getElementById("alertField");
       alertField.innerHTML = "";
-      if(this.duedate == ''){
-         alertField.innerHTML += "<li>*Please full fill</li>";
+      console.log('quest not working1');
+      if (this.duedate == "") {
+        alertField.innerHTML += "<li>*Please full fill</li>";
       }
+      console.log('quest not working2');
       if (alertField.innerHTML == "") this.sendquest();
+      console.log('quest has been send');
     },
 
-
-
     sendquest: async function() {
-
-     
-      
       let formData = new FormData();
       // files
-     
+
       formData.append("image", this.files);
 
       // additional data
       formData.append("questname", this.questname);
       formData.append("category", this.category);
-   
+
       formData.append("questdetail", this.detail);
       formData.append("reward", this.reward);
       formData.append("tstart", this.tstart);
       formData.append("tend", this.tend);
       formData.append("numberofcon", this.numberofcon);
       formData.append("duedate", this.duedate);
-      
+
       let suc = await QuestService.createquest(formData).then((res) => {
         return res.suc;
       });
@@ -335,175 +319,112 @@ export default {
 </script>
 
 <style scoped>
-.pictureQuest img {
-  width: 400px;
-  height: 200px;
-  margin-top: 2vh;
-  justify-content: center;
-}
-.pictureQuest {
-  justify-items: center;
-}
-.text-fill {
-  margin-top: -5%;
-  margin-left: 5%;
-}
-.text-fill1 {
-  margin-left: 5%;
-  
-}
-#noob .v-textarea {
-  width: 400px;
-}
-
-td {
-  margin-top: 20%;
-}
-/* .text-fill table td,tr{
-    border: 1px solid black;
-} */
-.v-text-field {
-  margin-left: 4%;
-  width: 200px;
-  height: 50px;
-  font: 20px;
-}
-
-.v-textarea {
-  width: 400px;
-  height: 200px;
-}
-.v-text-field input {
-  font-size: 80px;
-}
-
-#reward {
-  margin-bottom: 20px;
-  font-size: 18px;
-}
-#Deadline {
-  font-size: 25px;
-  
-  color: black;
-  text-decoration: underline;
-  margin-bottom: 10%;
-}
-.head123 {
-  font-size: 25px;
-  color: black;
-  text-decoration: underline;
+* {
+  margin: 0%;
+  padding: 0%;
 }
 .main {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(https://scontent.fbkk13-2.fna.fbcdn.net/v/t1.6435-9/40914262_1303280716477563_5673712610457944064_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=e3f864&_nc_eui2=AeE2co9Lp4bzuDRnrZmwyo-gOd9Irq-D2iA530iur4PaIPOJkTzEaoChBsI0C1qGDM9Rt9mS7jyPuvnhojpRa2-G&_nc_ohc=p-uJ7CJ8K58AX_j6M5m&_nc_ht=scontent.fbkk13-2.fna&oh=2451a543a3da7645ed32fe15926cc67b&oe=60A60AF1);
+  background-position: center;
+  background-size: cover;
+  margin-top: -2%;
+  height: 95vh;
+}
+
+.container {
+  width: 360px;
+  height: 600px;
+  margin-top: 2%;
+  background: #fff;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0%;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #777;
+  margin-top: -2%;
+}
+.container form {
+  margin-top: 0%;
+  width: 280px;
+  position: absolute;
+  top: 80px;
+  left: 40px;
+  transition: 0.5s;
+}
+form input {
   width: 100%;
-  align-content: center;
-}
-#I_date {
-  margin-left: 7px;
-  border-bottom: 1px solid black;
-  margin-bottom: 10px;
-}
-#Start {
-  font-size: 18px;
-}
-#End {
-  font-size: 18px;
-}
-#foot {
-  font-family: "Redressed", cursive;
-  font-size: 20px;
-  margin-top: 5%;
-}
-#Date {
-  font-size: 18px;
-}
-#head {
-  text-decoration: underline;
-  font-family: "Source Sans Pro", sans-serif;
-  letter-spacing: 1px;
-  font-size: 30px;
-}
-#I_start {
-  margin-left: 7px;
-  margin-top: 5px;
-  border: 1px solid black;
-  border-radius: 8%;
-  margin-bottom: 10px;
-}
-#I_end {
-  margin-left: 7px;
-  margin-top: 5px;
-  border: 1px solid black;
-  border-radius: 8%;
-  margin-bottom: 10px;
-}
-/* .text-fill table tr,td{
-    border: 1px solid black;
-} */
-#num_per {
-  margin-top: 5px;
-  margin-left: 7px;
-  border: 1px solid black;
-  width: 50px;
-  padding-left: 10px;
-  margin-bottom: 10px;
-}
-#q1 {
-  font-size: 18px;
-  text-align: left;
-}
+  padding: 10px 5px;
+  margin: 5px 0;
+  border-bottom: 1px solid #999;
 
-#c1 {
-  font-size: 18px;
-  text-align: left;
+  background: transparent;
 }
-#d1 {
-  font-size: 18px;
-  text-align: left;
+.btn-box {
+  width: 100%;
+  text-align: center;
+  margin: 30px auto;
 }
-#iq {
-  margin-bottom: 5;
-}
-
-.v-card {
-  transition: opacity 0.4s ease-in-out;
-}
-
-.v-card:not(.on-hover) {
-  opacity: 0;
-}
-
-#quest_img {
+form button {
+  width: 110px;
+  height: 35px;
+  margin: 0 10px;
+  background: linear-gradient(to right, #495aff, #0acffe);
+  border-radius: 30px;
+  border: 0;
+  color: white;
+  outline: none;
   cursor: pointer;
 }
-.show-btns {
-  color: rgb(0, 0, 0) !important;
+.step-row {
+  width: 360px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 -1px 5px -1px #000;
+  position: relative;
+  margin-left: -5%;
+  margin-top: -1%;
 }
-#btn-mobi{
-  display:none;
+#Form2 {
+  left: 450px;
 }
-@media screen and (max-width:900px){
- .btn-desk{
-   display:none;
- }
- .btn-mobi{
-   display:block;
- }
+#Form3 {
+  left: 450px;
 }
-@media screen and (max-width:600){
-  #noob .v-textarea {
-  width: 200px;
+.step-col {
+  width: 120px;
+  text-align: center;
+  color: white;
+  position: relative;
 }
-
+#progress {
+  position: absolute;
+  height: 100%;
+  width: 120px;
+  background: linear-gradient(to right, #495aff, #0acffe);
+  transition: 1s;
 }
-@media screen and (max-width:320px){
-  .text-fill{
-    margin-left:-19%;
+#progress::after {
+  content: "";
+  height: 0;
+  width: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  position: absolute;
+  right: -20px;
+  top: 0;
+  border-left: 20px solid #0acffe;
+}
+@media only screen and (max-width: 320px) {
+  .a {
+    margin-top:4%;
   }
-  .text-fill1{
-    margin-left:-15%;
-  }
 }
-
 @import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@1&display=swap);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 </style>
