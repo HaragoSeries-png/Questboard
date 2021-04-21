@@ -1,6 +1,6 @@
 <template>
 
-        <v-card class="card" style="width:300px, height:400px"   >
+        <v-card class="card" style="width:300px, max-height:400px"   >
 
             <v-img
             :class="rounded"
@@ -22,7 +22,7 @@
                  <p  
                  v-if="Detail!=='undefined'" 
                  > 
-                 <span>
+                 <span style="font-size:10px;">
                  {{Detail}}
                  </span>  
                 </p>
