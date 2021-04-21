@@ -57,7 +57,25 @@
       </v-col>
       <v-col >
         <center>
-          <h1 v-if="!masseage"> no result</h1>
+          <div v-if="!masseage">
+              <h1>
+              There is no result  
+              </h1> 
+              <v-img
+              :aspect-ratio="16/9"
+              width="500"
+              src="https://image.dek-d.com/27/0780/2231/128808139"
+              >
+
+              </v-img>
+
+
+
+
+
+
+
+          </div>
         </center>
       </v-col>
       <div style="display:none"></div>

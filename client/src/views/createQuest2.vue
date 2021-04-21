@@ -176,6 +176,7 @@
             <button type="button"  @click="checkAll()">Submit</button>
           </div>
         </form>
+        <div id="alertField"></div>
         <div class="step-row">
           <div id="progress"></div>
           <div class="step-col"><small>Step1</small></div>

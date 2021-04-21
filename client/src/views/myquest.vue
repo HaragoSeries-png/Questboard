@@ -120,6 +120,7 @@
           style="font-size:20px; background-color:#00bcd4;margin-top:10%;"
         >
           <router-link
+            @click="gotocreate"
             to="/createQuest2"
             style="text-decoration:none;color:white;"
           >
@@ -139,6 +140,7 @@
 <script>
 import QuestTable from "../components/layout/Q/Table";
 import profileService from "@/service/profileService";
+
 export default {
   name: "My Quest",
   props: ["search"],
@@ -158,6 +160,9 @@ export default {
     senddata(value) {
       this.search = value;
     },
+    gotcreate(){
+      this.$router.push('/createQuest2')
+    }
   },
   created: async function() {
     this.$emit("setTitle", this.$options.name);
