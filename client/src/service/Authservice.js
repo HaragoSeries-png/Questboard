@@ -26,7 +26,7 @@ class authService {
     static async logout() {
         let text = await localStorage.getItem('token');
         console.log(text)
-        let a = await axios.post('http://localhost:5000/api/auth/logout', {token:text}).then(res => { return res.data })
+        let a = await axios.post('https://questboard-server.herokuapp.com/api/auth/logout', {token:text}).then(res => { return res.data })
         if(a){
             await localStorage.removeItem('token');
             await localStorage.removeItem('islogin');

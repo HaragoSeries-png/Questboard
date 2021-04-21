@@ -5,8 +5,9 @@ const url = '/api/noti'
 
 class notifyService {   
     static async getnoti(){
-        console.log('noti ser')
+        console.log('noti ser at ')
         let a = await axios.get(url).then(res=>{return res.data})
+        console.log(a)
         return a
     }
 }

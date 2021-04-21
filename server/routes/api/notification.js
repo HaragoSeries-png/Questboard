@@ -12,7 +12,7 @@ router.get('/',passport.authenticate('pass', {
     console.log('noti')
     let user = req.user
     if(user.unreadnoti.length){
-        console.log('have notiiiiiiiiiiiiiiiiii')
+        console.log('have notiiiiiiiiiiiiiiiiii')       
         user.notify.push.apply(user.notify,user.unreadnoti)
         user.unreadnoti =[]
         let notify = user.notify
