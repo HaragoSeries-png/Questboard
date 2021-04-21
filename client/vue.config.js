@@ -6,7 +6,7 @@ module.exports = {
   devServer:{
     proxy:{
       "^/api": {
-        target: "http://localhost:5000",
+        target: "https://questboard-server.herokuapp.com/",
         pathRewrite: { "^/api": "/api" },
         changeOrigin: true,
         logLevel: "debug"

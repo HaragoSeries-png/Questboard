@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     // Fix
     title: 'Questboard',
-    gurl: 'http://localhost:5000/',
+    gurl: 'https://questboard-server.herokuapp.com/',
 
     // Changeable
     userid: localStorage.getItem('uid') || '',
